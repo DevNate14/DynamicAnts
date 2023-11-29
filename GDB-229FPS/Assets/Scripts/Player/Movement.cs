@@ -6,10 +6,14 @@ public class Movement : MonoBehaviour
 {
     private Vector3 playerVelocity;
     private bool grounded;
+    private Vector3 move;
+    private int jumpCount;
     [SerializeField] CharacterController controller;
     [SerializeField] float speed;
     [SerializeField] float jumpHeight;
+    [SerializeField] int jumpMax;
     [SerializeField] float gravity;
+    [SerializeField] float sprintMod;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,21 +25,29 @@ public class Movement : MonoBehaviour
     {
         grounded = controller.isGrounded;
         if (grounded && playerVelocity.y < 0)
+        {
             playerVelocity.y = 0;
+            jumpCount = 0;
+        }
 
 
-        Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+        move = Input.GetAxis("Horizontal") * transform.right + Input.GetAxis("Vertical") * transform.forward;
         controller.Move(move * Time.deltaTime * speed);
 
-        if (move != Vector3.zero)
+        if (Input.GetButtonDown("Jump") && jumpCount < jumpMax)
         {
-            gameObject.transform.forward = move;
-        }
-        if (Input.GetButtonDown("Jump") && grounded)
-        {
-            playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravity);
+            playerVelocity.y = jumpHeight;
+            ++jumpCount;
         }
         playerVelocity.y += gravity * Time.deltaTime;
         controller.Move(playerVelocity * Time.deltaTime);
+    }
+
+    void Sprint()
+    {
+        if (Input.GetButtonDown("Sprint"))
+            speed *= sprintMod;
+        else if (Input.GetButtonUp("Sprint"))
+            speed /= sprintMod;
     }
 }

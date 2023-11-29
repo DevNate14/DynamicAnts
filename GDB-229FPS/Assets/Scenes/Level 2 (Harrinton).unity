@@ -309,7 +309,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 474663511}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: 0, y: 3.48, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1861255050}
@@ -347,9 +347,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 474663516}
-  speed: 2
-  jumpHeight: 1
+  speed: 5
+  jumpHeight: 5
+  jumpMax: 1
   gravity: -9.81
+  sprintMod: 2
 --- !u!1 &661023550
 GameObject:
   m_ObjectHideFlags: 0
@@ -648,6 +650,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1861255050}
+  - component: {fileID: 1861255051}
   - component: {fileID: 1861255049}
   - component: {fileID: 1861255048}
   m_Layer: 0
@@ -722,3 +725,19 @@ Transform:
   m_Father: {fileID: 474663515}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1861255051
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1861255047}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0698143e45a7cd44bdd2cf245f609c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sensitivity: 300
+  lockMin: -90
+  lockMax: 90
+  invert: 0
