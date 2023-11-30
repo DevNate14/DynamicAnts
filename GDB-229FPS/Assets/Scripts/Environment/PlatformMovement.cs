@@ -7,19 +7,35 @@ public class PlatformMovement : MonoBehaviour
     [SerializeField] private Transform platform;
     [SerializeField] private Transform position1;
     [SerializeField] private Transform position2;
-    private Vector3 pos1;
-    private Vector3 pos2;
+    [SerializeField] private float travelSpeed;
+    [SerializeField] private float travelTime;
 
+    private Vector3 currentDestination;
+    private bool firstPosition;
+    
+    
     // Start is called before the first frame update
     void Start()
     {
-        pos1 = position1.position;
-        pos2 = position2.position;
+        movingTo();
     }
 
     // Update is called once per frame
     void Update()
     {
-        platform.position = Vector3.Lerp(pos1, pos2, 3f);
+        platform.position = Vector3.MoveTowards(platform.position, currentDestination, travelSpeed * Time.deltaTime);
+    }
+
+    private void movingTo(){
+        if(firstPosition){
+            currentDestination = position1.position;
+            firstPosition = !firstPosition;
+        }
+        else{
+            currentDestination = position2.position;
+            firstPosition = !firstPosition;
+
+        }
+        Invoke("movingTo", travelTime);
     }
 }
