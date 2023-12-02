@@ -119,7 +119,7 @@ public class Movement : MonoBehaviour, IDamageable, IImpluse
     }
 
     public void AddImpluse(int magnitude) {
-        Vector3 impulse = transform.up * (magnitude * 2) +(transform.forward * magnitude);
+        Vector3 impulse = transform.forward * (magnitude * 2) +(transform.up * magnitude);
         controller.SimpleMove(impulse);
     }
     public float GetGravity() {

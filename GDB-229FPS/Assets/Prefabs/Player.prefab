@@ -171,12 +171,8 @@ MonoBehaviour:
   jumpMax: 10
   HP: 3
   shootrate: 0
-<<<<<<< Updated upstream
   originalHP: 0
   bullet: {fileID: 5293575694773355670, guid: 4a558839255bb47429f5620b311ae65b, type: 3}
-=======
-  bullet: {fileID: 5293575694773355670, guid: b04c9fb569297dc46981cf1d1fc85b7e, type: 3}
->>>>>>> Stashed changes
   gunAttachPoint: {fileID: 3899589716843548194}
   hasLongJump: 1
 --- !u!114 &-6282939034786375561
@@ -203,11 +199,7 @@ GameObject:
   - component: {fileID: 4029646822055822185}
   - component: {fileID: 4029646822055822186}
   - component: {fileID: 4029646822055822187}
-<<<<<<< Updated upstream
   - component: {fileID: 977293639}
-=======
-  - component: {fileID: 1316969724}
->>>>>>> Stashed changes
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -280,11 +272,7 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4029646822055822228}
   m_Enabled: 1
-<<<<<<< Updated upstream
 --- !u!114 &977293639
-=======
---- !u!114 &1316969724
->>>>>>> Stashed changes
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -296,11 +284,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4156ba10e847f3847b8a1d10f0cf3b77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-<<<<<<< Updated upstream
   sensitivity: 300
-=======
-  sensitivity: 450
->>>>>>> Stashed changes
   lockMin: -90
   lockMax: 90
   invert: 0
