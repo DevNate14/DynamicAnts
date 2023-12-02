@@ -57,8 +57,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HP: 3
   enemyJump: 5
-  shootrate: 0
-  timebetweenattacks: 3
+  shootrate: 2
+  timebetweenattacks: 1.02
   damageRange: 4
   model: {fileID: 3647757030379969414}
   agent: {fileID: 3647757030379969416}
