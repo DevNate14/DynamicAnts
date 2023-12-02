@@ -242,7 +242,7 @@ MonoBehaviour:
   HP: 3
   shootrate: 0
   originalHP: 0
-  bullet: {fileID: 5293575694773355670, guid: 4a558839255bb47429f5620b311ae65b, type: 3}
+  bullet: {fileID: 5293575694773355670, guid: fd5c6a759bea40341a53e8b3d73c55ce, type: 3}
   gunAttachPoint: {fileID: 2837780996882705893}
   hasLongJump: 1
 --- !u!114 &4157234616990350256
