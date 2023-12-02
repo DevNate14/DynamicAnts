@@ -275,14 +275,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 4029646821376561783, guid: 19ce65f8426daaf4e959b797f4242066, type: 3}
-      propertyPath: HP
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4029646821376561783, guid: 19ce65f8426daaf4e959b797f4242066, type: 3}
-      propertyPath: HasLongJump
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 19ce65f8426daaf4e959b797f4242066, type: 3}
 --- !u!1001 &1587019557
@@ -336,46 +328,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3647757030379969412, guid: 6f00b277009e66b41adb8a68a4309c22, type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
-    - target: {fileID: 3647757030379969413, guid: 6f00b277009e66b41adb8a68a4309c22, type: 3}
-      propertyPath: damageRange
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 3647757030379969413, guid: 6f00b277009e66b41adb8a68a4309c22, type: 3}
-      propertyPath: timebetweenattacks
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 3647757030379969416, guid: 6f00b277009e66b41adb8a68a4309c22, type: 3}
-      propertyPath: m_StoppingDistance
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 3647757030379969417, guid: 6f00b277009e66b41adb8a68a4309c22, type: 3}
       propertyPath: m_Name
       value: Enemy
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6f00b277009e66b41adb8a68a4309c22, type: 3}
---- !u!1 &1602363869 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3647757030379969417, guid: 6f00b277009e66b41adb8a68a4309c22, type: 3}
-  m_PrefabInstance: {fileID: 1587019557}
-  m_PrefabAsset: {fileID: 0}
---- !u!135 &1602363870
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1602363869}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 4
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2087967246
 GameObject:
   m_ObjectHideFlags: 0
@@ -482,6 +440,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0b221e8567f84c4d851aa5b44105d24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 0}
-  PlayerScript: {fileID: 0}
-  Gravity: 0
+  player: {fileID: 0}
+  playerScript: {fileID: 0}
+  gravity: 0
+  isPaused: 0
+  enemyCountText: {fileID: 0}
+  menuActive: {fileID: 0}
+  menuPause: {fileID: 0}
+  menuWin: {fileID: 0}
+  menuLose: {fileID: 0}
