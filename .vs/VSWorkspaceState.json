@@ -1,0 +1,16 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\GDB-229FPS",
+    "\\GDB-229FPS\\Assets",
+    "\\GDB-229FPS\\Assets\\Scripts",
+    "\\GDB-229FPS\\Assets\\Scripts\\Environment",
+    "\\GDB-229FPS\\Assets\\Scripts\\GamePlay",
+    "\\GDB-229FPS\\Assets\\Scripts\\Interfaces",
+    "\\GDB-229FPS\\Assets\\Scripts\\Inventory",
+    "\\GDB-229FPS\\Assets\\Scripts\\Items",
+    "\\GDB-229FPS\\Assets\\Scripts\\Player"
+  ],
+  "SelectedNode": "\\GDB-229FPS\\Assets\\Scripts\\Enemy",
+  "PreviewInSolutionExplorer": false
+}

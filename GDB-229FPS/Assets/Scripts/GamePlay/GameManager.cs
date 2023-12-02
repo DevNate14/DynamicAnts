@@ -29,7 +29,6 @@ public class GameManager : MonoBehaviour
         PlayerScript = GetComponent<Movement>();
         //Gravity = PlayerScript.GetGravity();
     }
-    
     void Update() {
         
     }
