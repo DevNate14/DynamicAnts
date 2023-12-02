@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 4029646821376561781}
   - component: {fileID: 4029646821376561782}
   - component: {fileID: 4029646821376561783}
+  - component: {fileID: -6282939034786375561}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -161,16 +162,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50f2f79b62856484fb231ab5ebd04935, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Inventory: {fileID: 0}
   controller: {fileID: 4029646821376561782}
+  inventory: {fileID: -6282939034786375561}
   speed: 10
   jumpHeight: 10
+  sprintMod: 2
+  gravity: -15
   jumpMax: 10
   HP: 3
-  gravity: -15
-  sprintMod: 2
-  GunAttachPoint: {fileID: 0}
-  HasLongJump: 0
+  shootrate: 0
+  bullet: {fileID: 5293575694773355670, guid: 4a558839255bb47429f5620b311ae65b, type: 3}
+  gunAttachPoint: {fileID: 3899589716843548194}
+  hasLongJump: 0
+--- !u!114 &-6282939034786375561
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4029646821376561776}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3182c7b364e873e4f9f58ed980180265, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SelectedWeapon: 0
 --- !u!1 &4029646822055822228
 GameObject:
   m_ObjectHideFlags: 0
@@ -183,7 +199,6 @@ GameObject:
   - component: {fileID: 4029646822055822186}
   - component: {fileID: 4029646822055822187}
   - component: {fileID: 4029646822055822191}
-  - component: {fileID: 4029646822055822184}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -271,20 +286,4 @@ MonoBehaviour:
   sensitivity: 450
   lockMin: -90
   lockMax: 90
-  invert: 0
---- !u!114 &4029646822055822184
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4029646822055822228}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0698143e45a7cd44bdd2cf245f609c9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sensitivity: 0
-  lockMin: 0
-  lockMax: 0
   invert: 0

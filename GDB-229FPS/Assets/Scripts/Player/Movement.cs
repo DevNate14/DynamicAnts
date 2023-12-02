@@ -6,16 +6,14 @@ public class Movement : MonoBehaviour, IDamageable, IImpluse
 {
     [SerializeField] CharacterController controller;
     [SerializeField] Inventory inventory;
-    [SerializeField] float speed;
-    [SerializeField] float jumpHeight;
-    [SerializeField] int jumpMax, HP;
-    [SerializeField] float gravity;
-    [SerializeField] float sprintMod;
-    [SerializeField] GameObject gunAttachPoint;
+    [SerializeField] float speed, jumpHeight, sprintMod, gravity;
+    [SerializeField] int jumpMax, HP, shootrate;
+    [SerializeField] GameObject bullet, gunAttachPoint;
     private Vector3 playerVelocity;
     private bool grounded;
     private Vector3 move;
     private int jumpCount;
+    bool shooting;
     public bool hasLongJump; // will make a better item inventory asap
     // Start is called before the first frame update
     void Start()
@@ -36,6 +34,9 @@ public class Movement : MonoBehaviour, IDamageable, IImpluse
         LongJump();
         move = Input.GetAxis("Horizontal") * transform.right + Input.GetAxis("Vertical") * transform.forward;
         controller.Move(move * Time.deltaTime * speed);
+        if (Input.GetButtonDown("Shoot") && !shooting) {
+            StartCoroutine(shoot());
+        }
 
         if (Input.GetButtonDown("Jump") && jumpCount < jumpMax)
         {
@@ -69,10 +70,18 @@ public class Movement : MonoBehaviour, IDamageable, IImpluse
     }
     void LongJump() {
         if (hasLongJump) {
-            if (Input.GetButton("Crouch") && Input.GetButton("Jump") && grounded) {
+            if (Input.GetButton("Crouch") && Input.GetButton("Jump") && transform.position.y > 2) {
                 AddImpluse(5000);
             }
         }
+    }
+    IEnumerator shoot()
+    {
+        shooting = true;
+        Instantiate(bullet,gunAttachPoint.transform.position,  transform.rotation);
+        yield return new WaitForSeconds(shootrate);
+
+        shooting = false;
     }
 
     public void Damage(int amount) {
