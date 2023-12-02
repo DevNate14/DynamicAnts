@@ -13,6 +13,7 @@ public class EnemyAI : MonoBehaviour, IDamageable
     [SerializeField] GameObject bullet;
     [SerializeField] Transform headPosition;
     [SerializeField] int viewCone;
+    [SerializeField] int targfacingspd;
     Vector3 playerDirection;
     bool playerInRange;
     bool shooting;
@@ -20,29 +21,38 @@ public class EnemyAI : MonoBehaviour, IDamageable
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame4
     void Update()
     {
-        if(playerInRange && canSeePlayer()){
+        if (playerInRange && canSeePlayer())
+        {
 
-        }   
+        }
     }
 
-    bool canSeePlayer(){
+    bool canSeePlayer()
+    {
         playerDirection = GameManager.instance.player.transform.position - headPosition.position;
         angleToPlayer = Vector3.Angle(playerDirection, transform.forward);
 
         RaycastHit hit;
-        if(Physics.Raycast(headPosition.position, playerDirection, out hit)){
-            if(hit.collider.CompareTag("Player") && angleToPlayer <= viewCone){
-                
+        if (Physics.Raycast(headPosition.position, playerDirection, out hit))
+        {
+            if (hit.collider.CompareTag("Player") && angleToPlayer <= viewCone)
+            {
+
                 agent.SetDestination(GameManager.instance.player.transform.position);
 
-                if(!shooting){
+                if (!shooting)
+                {
                     StartCoroutine(shoot());
+                    if (agent.remainingDistance < agent.stoppingDistance)
+                    {
+                        LookAtTarget();
+                    }
                 }
                 return true;
             }
@@ -50,6 +60,11 @@ public class EnemyAI : MonoBehaviour, IDamageable
         return false;
     }
 
+    void LookAtTarget()
+    {
+        Quaternion rota = Quaternion.LookRotation(playerDirection);
+        transform.rotation = Quaternion.Lerp(transform.rotation, rota, Time.deltaTime * targfacingspd);
+    }
 
     public void Damage(int amount)
     {
@@ -82,16 +97,16 @@ public class EnemyAI : MonoBehaviour, IDamageable
             playerInRange = false;
         }
     }
-    
+
     IEnumerator shoot()
     {
-       shooting = true;
-       Instantiate(bullet, ShootPos.position, transform.rotation);
-       yield return new WaitForSeconds(shootrate);
+        shooting = true;
+        Instantiate(bullet, ShootPos.position, transform.rotation);
+        yield return new WaitForSeconds(shootrate);
 
-       shooting = false;
+        shooting = false;
     }
-    
+
     IEnumerator DamageFeedback()
     {
         Color Temp = model.material.color;
