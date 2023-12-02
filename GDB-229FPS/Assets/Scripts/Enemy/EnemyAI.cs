@@ -6,38 +6,55 @@ using UnityEngine.AI;
 public class EnemyAI : MonoBehaviour, IDamageable
 {
     [Range(1, 10)][SerializeField] int HP;
-    [Range(1, 10)][SerializeField] int enemyJump;
-    [Range(1, 10)][SerializeField] int shootrate;
-    [Range(1, 5)][SerializeField] float timebetweenattacks;
-    [Range(1, 4)][SerializeField] int damageRange;
-    //[SerializeField] Transform ShootPos;
-    //[SerializeField] GameObject bullet;
+    [Range(1, 10)][SerializeField] float shootrate;
+    [SerializeField] Transform ShootPos;
     [SerializeField] Renderer model;
     [SerializeField] NavMeshAgent agent;
+    [SerializeField] GameObject bullet;
+    [SerializeField] Transform headPosition;
+    [SerializeField] int viewCone;
     Vector3 playerDirection;
     bool playerInRange;
-    //public bool HasGun;
-    //bool shooting;
+    bool shooting;
+    float angleToPlayer;
     // Start is called before the first frame update
     void Start()
     {
-
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (playerInRange)
-        {
-            agent.SetDestination(GameManager.instance.Player.transform.position);
-            StartCoroutine(DamageOnProximity());
-        }
+        if(playerInRange && canSeePlayer()){
+
+        }   
     }
+
+    bool canSeePlayer(){
+        playerDirection = GameManager.instance.Player.transform.position - headPosition.position;
+        angleToPlayer = Vector3.Angle(playerDirection, transform.forward);
+
+        RaycastHit hit;
+        if(Physics.Raycast(headPosition.position, playerDirection, out hit)){
+            if(hit.collider.CompareTag("Player") && angleToPlayer <= viewCone){
+                
+                agent.SetDestination(GameManager.instance.Player.transform.position);
+
+                if(!shooting){
+                    StartCoroutine(shoot());
+                }
+                return true;
+            }
+        }
+        return false;
+    }
+
 
     public void Damage(int amount)
     {
         HP -= amount;
-        DamageFeedback();
+        StartCoroutine(DamageFeedback());
         if (HP <= 0)
         {
             Destroy(gameObject);
@@ -50,13 +67,6 @@ public class EnemyAI : MonoBehaviour, IDamageable
         {
             HP = 10;
         }
-    }
-    IEnumerator DamageFeedback()
-    {
-        Color Temp = model.material.color;
-        model.material.color = Color.red;
-        yield return new WaitForSeconds(0.2f);
-        model.material.color = Temp;
     }
     public void OnTriggerEnter(Collider other)
     {
@@ -72,23 +82,21 @@ public class EnemyAI : MonoBehaviour, IDamageable
             playerInRange = false;
         }
     }
-    public IEnumerator DamageOnProximity()
+    
+    IEnumerator shoot()
     {
-        //calculates how far the player and enemy are from each other 
-            float distanceToPlayer = Vector3.Distance(transform.position, GameManager.instance.Player.transform.position);
-        // if the distance is less than the damage range do damage then wait 5 sec I made time & range serialized fields so we can adjust depending on how we feel about it
-            if (distanceToPlayer < damageRange)
-            {
-                GameManager.instance.PlayerScript.Damage(1);                
-                yield return new WaitForSeconds(timebetweenattacks);
-            }
-    }
-    //IEnumerator shot()
-    //{
-    //    shooting = true;
-    //    Instantiate(bullet, ShootPos.position, transform.rotation);
-    //    yield return new WaitForSeconds(shootrate);
+       shooting = true;
+       Instantiate(bullet, ShootPos.position, transform.rotation);
+       yield return new WaitForSeconds(shootrate);
 
-    //    shooting = false;
-    //}
+       shooting = false;
+    }
+    
+    IEnumerator DamageFeedback()
+    {
+        Color Temp = model.material.color;
+        model.material.color = Color.red;
+        yield return new WaitForSeconds(0.2f);
+        model.material.color = Temp;
+    }
 }
