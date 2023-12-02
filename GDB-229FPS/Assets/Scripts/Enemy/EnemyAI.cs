@@ -13,6 +13,7 @@ public class EnemyAI : MonoBehaviour, IDamageable
     [SerializeField] GameObject bullet;
     [SerializeField] Transform headPosition;
     [SerializeField] int viewCone;
+    [SerializeField] int turnSpeed;
     Vector3 playerDirection;
     bool playerInRange;
     bool shooting;
@@ -40,7 +41,9 @@ public class EnemyAI : MonoBehaviour, IDamageable
             if(hit.collider.CompareTag("Player") && angleToPlayer <= viewCone){
                 
                 agent.SetDestination(GameManager.instance.player.transform.position);
-
+                if(agent.remainingDistance < agent.stoppingDistance){
+                    faceTarget();
+                }
                 if(!shooting){
                     StartCoroutine(shoot());
                 }
@@ -50,6 +53,10 @@ public class EnemyAI : MonoBehaviour, IDamageable
         return false;
     }
 
+    void faceTarget(){
+        Quaternion rotate = Quaternion.LookRotation(playerDirection);
+        transform.rotation = Quaternion.Lerp(transform.rotation, rotate, Time.deltaTime * turnSpeed);
+    }
 
     public void Damage(int amount)
     {

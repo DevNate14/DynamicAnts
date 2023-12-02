@@ -125,6 +125,7 @@ MonoBehaviour:
   bullet: {fileID: 5293575694773355670, guid: 4a558839255bb47429f5620b311ae65b, type: 3}
   headPosition: {fileID: 1219253639}
   viewCone: 90
+  turnSpeed: 19
 --- !u!195 &3647757030379969416
 NavMeshAgent:
   m_ObjectHideFlags: 0
