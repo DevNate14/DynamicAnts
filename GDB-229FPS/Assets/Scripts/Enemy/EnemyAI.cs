@@ -7,13 +7,17 @@ public class EnemyAI : MonoBehaviour, IDamageable
 {
     [Range(1, 10)][SerializeField] int HP;
     [Range(1, 10)][SerializeField] int enemyJump;
+    [Range(1, 10)][SerializeField] int shootrate;
     [Range(1, 5)][SerializeField] float timebetweenattacks;
     [Range(1, 4)][SerializeField] int damageRange;
+    //[SerializeField] Transform ShootPos;
+    //[SerializeField] GameObject bullet;
     [SerializeField] Renderer model;
     [SerializeField] NavMeshAgent agent;
     Vector3 playerDirection;
     bool playerInRange;
-
+    //public bool HasGun;
+    //bool shooting;
     // Start is called before the first frame update
     void Start()
     {
@@ -79,4 +83,12 @@ public class EnemyAI : MonoBehaviour, IDamageable
                 yield return new WaitForSeconds(timebetweenattacks);
             }
     }
+    //IEnumerator shot()
+    //{
+    //    shooting = true;
+    //    Instantiate(bullet, ShootPos.position, transform.rotation);
+    //    yield return new WaitForSeconds(shootrate);
+
+    //    shooting = false;
+    //}
 }

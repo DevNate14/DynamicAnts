@@ -42,7 +42,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3647757030379969417}
-  m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!114 &3647757030379969413
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -57,6 +57,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HP: 3
   enemyJump: 5
+  shootrate: 0
+  timebetweenattacks: 3
+  damageRange: 4
   model: {fileID: 3647757030379969414}
   agent: {fileID: 3647757030379969416}
 --- !u!195 &3647757030379969416
@@ -73,7 +76,7 @@ NavMeshAgent:
   m_Acceleration: 32
   avoidancePriority: 50
   m_AngularSpeed: 300
-  m_StoppingDistance: 1
+  m_StoppingDistance: 3
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 0
   m_AutoRepath: 1
