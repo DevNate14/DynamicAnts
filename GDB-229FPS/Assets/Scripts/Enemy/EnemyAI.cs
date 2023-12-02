@@ -24,7 +24,7 @@ public class EnemyAI : MonoBehaviour, IDamageable
 
     }
 
-    // Update is called once per frame
+    // Update is called once per frame4
     void Update()
     {
         if (playerInRange)
