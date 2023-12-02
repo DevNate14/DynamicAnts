@@ -29,7 +29,7 @@ public class EnemyAI : MonoBehaviour, IDamageable
     {
         if (playerInRange)
         {
-            agent.SetDestination(GameManager.instance.Player.transform.position);
+            agent.SetDestination(GameManager.instance.player.transform.position);
             StartCoroutine(DamageOnProximity());
         }
     }
@@ -75,18 +75,18 @@ public class EnemyAI : MonoBehaviour, IDamageable
     public IEnumerator DamageOnProximity()
     {
         //calculates how far the player and enemy are from each other 
-            float distanceToPlayer = Vector3.Distance(transform.position, GameManager.instance.Player.transform.position);
+            float distanceToPlayer = Vector3.Distance(transform.position, GameManager.instance.player.transform.position);
         // if the distance is less than the damage range do damage then wait 5 sec I made time & range serialized fields so we can adjust depending on how we feel about it
             if (distanceToPlayer < damageRange)
             {
-                GameManager.instance.PlayerScript.Damage(1);                
+                GameManager.instance.playerScript.Damage(1);                
                 yield return new WaitForSeconds(timebetweenattacks);
             }
     }
     //IEnumerator shot()
     //{
     //    shooting = true;
-    //    Instantiate(bullet, ShootPos.position, transform.rotation);
+    //    Instantiate(bullet, ShootPos.posistion, transform.rotation);
     //    yield return new WaitForSeconds(shootrate);
 
     //    shooting = false;
