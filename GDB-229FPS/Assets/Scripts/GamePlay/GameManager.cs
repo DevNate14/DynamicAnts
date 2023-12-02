@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using UnityEditor;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -22,7 +22,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject menuPause;
     [SerializeField] GameObject menuWin;
     [SerializeField] GameObject menuLose;
-
+    [SerializeField] public GameObject playerSpawn;
+    public Image playerHPBar;
 
 
 
@@ -30,6 +31,8 @@ public class GameManager : MonoBehaviour
         instance = this;
         player = GameObject.FindWithTag("Player");
         playerScript = player.GetComponent<Movement>();
+        playerSpawn = GameObject.FindWithTag("Player Spawn Point");
+        timeScaleOrig = Time.timeScale;
         //Gravity = PlayerScript.GetGravity();
 
     }

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Movement : MonoBehaviour, IDamageable, IImpluse
@@ -7,7 +8,7 @@ public class Movement : MonoBehaviour, IDamageable, IImpluse
     [SerializeField] CharacterController controller;
     [SerializeField] Inventory inventory;
     [SerializeField] float speed, jumpHeight, sprintMod, gravity;
-    [SerializeField] int jumpMax, HP, shootrate;
+    [SerializeField] int jumpMax, HP, shootrate, originalHP;
     [SerializeField] GameObject bullet, gunAttachPoint;
     private Vector3 playerVelocity;
     private bool grounded;
@@ -18,7 +19,8 @@ public class Movement : MonoBehaviour, IDamageable, IImpluse
     // Start is called before the first frame update
     void Start()
     {
-
+        originalHP = HP;
+        respawn();
     }
 
     // Update is called once per frame
@@ -45,6 +47,14 @@ public class Movement : MonoBehaviour, IDamageable, IImpluse
         }
         playerVelocity.y += gravity * Time.deltaTime;
         controller.Move(playerVelocity * Time.deltaTime);
+    }
+
+    public void respawn(){
+        HP = originalHP;
+        UpdatePlayerUI();
+        controller.enabled = false;
+        transform.position = GameManager.instance.playerSpawn.transform.position;
+        controller.enabled = true;
     }
     void WeaponSwap() { // this will have to be updated for each new weapon added, limits us to twelve items until we get a ui element up for weapons and a working scrollwheel implented
         //if (Input.GetButtonDown("Weapon Slot 1")) { Inventory.SelectedWeapon = 1; }
@@ -88,7 +98,7 @@ public class Movement : MonoBehaviour, IDamageable, IImpluse
         HP -= amount;
         if (HP <= 0) { 
             // loss state
-
+            GameManager.instance.YouLose();
         }
     }
 
@@ -101,4 +111,7 @@ public class Movement : MonoBehaviour, IDamageable, IImpluse
         return gravity;
     }
     
+    public void UpdatePlayerUI(){
+        GameManager.instance.playerHPBar.fillAmount = (float) HP / originalHP;
+    }
 }
