@@ -76,7 +76,7 @@ GameObject:
   - component: {fileID: 3647757030379969415}
   - component: {fileID: 156800867}
   m_Layer: 0
-  m_Name: Enemy
+  m_Name: Enemy Circle
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -126,7 +126,7 @@ MonoBehaviour:
   bullet: {fileID: 5293575694773355670, guid: 4a558839255bb47429f5620b311ae65b, type: 3}
   headPosition: {fileID: 1219253639}
   viewCone: 90
-  targfacingspd: 3
+  targfacingspd: 5
 --- !u!195 &3647757030379969416
 NavMeshAgent:
   m_ObjectHideFlags: 0
