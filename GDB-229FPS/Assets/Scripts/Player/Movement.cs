@@ -50,7 +50,7 @@ public class Movement : MonoBehaviour, IDamageable, IImpluse
         }
         move = Input.GetAxis("Horizontal") * transform.right + Input.GetAxis("Vertical") * transform.forward;
         controller.Move(move * Time.deltaTime * speed);
-        if (Input.GetButtonDown("Shoot") && !shooting) {
+        if (Input.GetButtonDown("Shoot") && !shooting && !GameManager.instance.isPaused) {
             StartCoroutine(shoot());
         }
 
@@ -95,7 +95,7 @@ public class Movement : MonoBehaviour, IDamageable, IImpluse
     void LongJump() {
         if (hasLongJump) {
             if (Space && transform.position.y < 2.5) {
-                AddImpluse(25);
+                AddImpluse(35);
             }
         }
     }
@@ -119,7 +119,7 @@ public class Movement : MonoBehaviour, IDamageable, IImpluse
     }
 
     public void AddImpluse(int magnitude) {
-        Vector3 impulse = transform.forward * (magnitude * 2) +(transform.up * magnitude);
+        Vector3 impulse = transform.forward * (magnitude * 2) + (transform.up * magnitude);
         controller.SimpleMove(impulse);
     }
     public float GetGravity() {
