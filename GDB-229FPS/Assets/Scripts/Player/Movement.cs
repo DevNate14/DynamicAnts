@@ -13,7 +13,7 @@ public class Movement : MonoBehaviour, IDamageable, IImpluse
     private bool grounded;
     private Vector3 move;
     private int jumpCount;
-    bool shooting;
+    bool shooting, ctrl, Space; //last two track thekeys since unity in editor does not like two key events running simultaneously
     public bool hasLongJump; // will make a better item inventory asap
     // Start is called before the first frame update
     void Start()
@@ -31,7 +31,21 @@ public class Movement : MonoBehaviour, IDamageable, IImpluse
             jumpCount = 0;
         }
         Sprint();
-        LongJump();
+        if (Input.GetButtonDown("Crouch")) {
+            ctrl = true;
+        }
+        if (Input.GetButtonUp("Crouch")) {
+            ctrl = false;
+        }
+        if (Input.GetButtonDown("Jump")) {
+            Space = true;
+        }
+        if (Input.GetButtonUp("Jump")) {
+            Space = false;
+        }
+        if (ctrl) {
+            LongJump();
+        }
         move = Input.GetAxis("Horizontal") * transform.right + Input.GetAxis("Vertical") * transform.forward;
         controller.Move(move * Time.deltaTime * speed);
         if (Input.GetButtonDown("Shoot") && !shooting) {
@@ -70,15 +84,16 @@ public class Movement : MonoBehaviour, IDamageable, IImpluse
     }
     void LongJump() {
         if (hasLongJump) {
-            if (Input.GetButton("Crouch") && Input.GetButton("Jump") && transform.position.y > 2) {
-                AddImpluse(5000);
+            if (Space && transform.position.y < 2.5) {
+                AddImpluse(25);
             }
         }
     }
     IEnumerator shoot()
     {
+
         shooting = true;
-        Instantiate(bullet,gunAttachPoint.transform.position,  transform.rotation);
+        Instantiate(bullet,gunAttachPoint.transform.position,  Camera.main.transform.rotation);
         yield return new WaitForSeconds(shootrate);
 
         shooting = false;
@@ -94,8 +109,7 @@ public class Movement : MonoBehaviour, IDamageable, IImpluse
 
     public void AddImpluse(int magnitude) {
         Vector3 impulse = transform.forward * (magnitude * 2) +(transform.up * magnitude);
-        var rb = gameObject.GetComponent<Rigidbody>();
-        rb.AddForce(impulse*100);
+        controller.SimpleMove(impulse);
     }
     public float GetGravity() {
         return gravity;
