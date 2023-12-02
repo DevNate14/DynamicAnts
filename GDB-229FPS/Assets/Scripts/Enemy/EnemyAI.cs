@@ -45,14 +45,13 @@ public class EnemyAI : MonoBehaviour, IDamageable
             {
 
                 agent.SetDestination(GameManager.instance.player.transform.position);
-
+                if(agent.remainingDistance < agent.stoppingDistance){
+                    LookAtTarget();
+                }
                 if (!shooting)
                 {
                     StartCoroutine(shoot());
-                    if (agent.remainingDistance < agent.stoppingDistance)
-                    {
-                        LookAtTarget();
-                    }
+                    
                 }
                 return true;
             }
