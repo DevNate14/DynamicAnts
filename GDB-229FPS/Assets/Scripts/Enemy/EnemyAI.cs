@@ -7,10 +7,13 @@ public class EnemyAI : MonoBehaviour, IDamageable
 {
     [Range(1, 10)][SerializeField] int HP;
     [Range(1, 10)][SerializeField] int enemyJump;
+    [Range(1, 5)][SerializeField] float timebetweenattacks;
+    [Range(1, 4)][SerializeField] int damageRange;
     [SerializeField] Renderer model;
     [SerializeField] NavMeshAgent agent;
     Vector3 playerDirection;
     bool playerInRange;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +26,7 @@ public class EnemyAI : MonoBehaviour, IDamageable
         if (playerInRange)
         {
             agent.SetDestination(GameManager.instance.Player.transform.position);
+            StartCoroutine(DamageOnProximity());
         }
     }
 
@@ -63,5 +67,16 @@ public class EnemyAI : MonoBehaviour, IDamageable
         {
             playerInRange = false;
         }
+    }
+    public IEnumerator DamageOnProximity()
+    {
+        //calculates how far the player and enemy are from each other 
+            float distanceToPlayer = Vector3.Distance(transform.position, GameManager.instance.Player.transform.position);
+        // if the distance is less than the damage range do damage then wait 5 sec I made time & range serialized fields so we can adjust depending on how we feel about it
+            if (distanceToPlayer < damageRange)
+            {
+                GameManager.instance.PlayerScript.Damage(1);                
+                yield return new WaitForSeconds(timebetweenattacks);
+            }
     }
 }
