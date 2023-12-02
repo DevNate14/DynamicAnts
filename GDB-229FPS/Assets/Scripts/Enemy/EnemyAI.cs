@@ -13,7 +13,6 @@ public class EnemyAI : MonoBehaviour, IDamageable
     [SerializeField] GameObject bullet;
     [SerializeField] Transform headPosition;
     [SerializeField] int viewCone;
-    [SerializeField] int targfacingspd;
     Vector3 playerDirection;
     bool playerInRange;
     bool shooting;
@@ -42,13 +41,8 @@ public class EnemyAI : MonoBehaviour, IDamageable
                 
                 agent.SetDestination(GameManager.instance.player.transform.position);
 
-                if(!shooting)
-                {
+                if(!shooting){
                     StartCoroutine(shoot());
-                    if(agent.remainingDistance < agent.stoppingDistance)
-                    {
-                        LookAtTarget();
-                    }
                 }
                 return true;
             }
@@ -56,11 +50,6 @@ public class EnemyAI : MonoBehaviour, IDamageable
         return false;
     }
 
-    void LookAtTarget()
-    {
-        Quaternion rota = Quaternion.LookRotation(playerDirection);
-        transform.rotation = Quaternion.Lerp(transform.rotation, rota, Time.deltaTime * targfacingspd);
-    }
 
     public void Damage(int amount)
     {
