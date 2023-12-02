@@ -111,6 +111,7 @@ public class Movement : MonoBehaviour, IDamageable, IImpluse
 
     public void Damage(int amount) {
         HP -= amount;
+        UpdatePlayerUI();
         if (HP <= 0) { 
             // loss state
             GameManager.instance.YouLose();
@@ -126,6 +127,6 @@ public class Movement : MonoBehaviour, IDamageable, IImpluse
     }
     
     public void UpdatePlayerUI(){
-        GameManager.instance.playerHPBar.fillAmount = (float) HP / originalHP;
+        GameManager.instance.playerHPBar.fillAmount = (float)HP / originalHP;
     }
 }

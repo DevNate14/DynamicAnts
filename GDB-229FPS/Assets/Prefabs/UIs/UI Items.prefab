@@ -120,7 +120,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 494440226534271334}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 322254098}
+        m_TargetAssemblyTypeName: ButtonFunctions, Assembly-CSharp
+        m_MethodName: Quit
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &450869590859679714
 GameObject:
   m_ObjectHideFlags: 0
@@ -776,7 +788,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1007372693266758292}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 322254098}
+        m_TargetAssemblyTypeName: ButtonFunctions, Assembly-CSharp
+        m_MethodName: Quit
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1300216874057024837
 GameObject:
   m_ObjectHideFlags: 0
@@ -1167,6 +1191,8 @@ MonoBehaviour:
   menuPause: {fileID: 3430134649888005546}
   menuWin: {fileID: 2386699751987024216}
   menuLose: {fileID: 3042515953722704554}
+  playerSpawn: {fileID: 0}
+  playerHPBar: {fileID: 5875985955167883320}
 --- !u!114 &322254098
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3148,7 +3174,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6412653332572789495}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 322254098}
+        m_TargetAssemblyTypeName: ButtonFunctions, Assembly-CSharp
+        m_MethodName: Restart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &5469930121205897961
 GameObject:
   m_ObjectHideFlags: 0
@@ -3348,7 +3386,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6041615039315773701}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 322254098}
+        m_TargetAssemblyTypeName: ButtonFunctions, Assembly-CSharp
+        m_MethodName: Restart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &5641428270414251497
 GameObject:
   m_ObjectHideFlags: 0
@@ -3918,7 +3968,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 0
-  m_FillAmount: 0.934
+  m_FillAmount: 0.661
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0

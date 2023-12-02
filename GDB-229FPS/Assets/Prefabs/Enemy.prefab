@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 591471170}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.1, z: 1.029}
+  m_LocalPosition: {x: 0, y: 0.1, z: 0.74999976}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3647757030379969411}
@@ -75,6 +75,7 @@ GameObject:
   - component: {fileID: 3647757030379969414}
   - component: {fileID: 3647757030379969415}
   - component: {fileID: 1341806888}
+  - component: {fileID: 156800867}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -126,6 +127,7 @@ MonoBehaviour:
   bullet: {fileID: 5293575694773355670, guid: 4a558839255bb47429f5620b311ae65b, type: 3}
   headPosition: {fileID: 1219253639}
   viewCone: 90
+  targfacingspd: 0
 --- !u!195 &3647757030379969416
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -216,3 +218,17 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!136 &156800867
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3647757030379969417}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.61
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.5, z: 0}
