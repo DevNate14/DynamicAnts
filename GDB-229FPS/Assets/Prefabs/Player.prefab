@@ -173,7 +173,7 @@ MonoBehaviour:
   shootrate: 0
   bullet: {fileID: 5293575694773355670, guid: 4a558839255bb47429f5620b311ae65b, type: 3}
   gunAttachPoint: {fileID: 3899589716843548194}
-  hasLongJump: 0
+  hasLongJump: 1
 --- !u!114 &-6282939034786375561
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -198,7 +198,6 @@ GameObject:
   - component: {fileID: 4029646822055822185}
   - component: {fileID: 4029646822055822186}
   - component: {fileID: 4029646822055822187}
-  - component: {fileID: 4029646822055822191}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -271,19 +270,3 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4029646822055822228}
   m_Enabled: 1
---- !u!114 &4029646822055822191
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4029646822055822228}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0698143e45a7cd44bdd2cf245f609c9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sensitivity: 450
-  lockMin: -90
-  lockMax: 90
-  invert: 0
