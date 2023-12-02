@@ -6,9 +6,9 @@ using TMPro;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-    public GameObject Player;
-    public Movement PlayerScript;
-    public float Gravity;
+    public GameObject player;
+    public Movement playerScript;
+    public float gravity;
     int enemiesRemaining;
     public bool isPaused;
 
@@ -25,8 +25,8 @@ public class GameManager : MonoBehaviour
 
     void Awake() {
         instance = this;
-        Player = GameObject.FindWithTag("Player");
-        PlayerScript = GetComponent<Movement>();
+        player = GameObject.FindWithTag("Player");
+        playerScript = GetComponent<Movement>();
         //Gravity = PlayerScript.GetGravity();
     }
     void Update() {
@@ -54,6 +54,6 @@ public class GameManager : MonoBehaviour
             menuActive.SetActive(true);
             
         }
-    }
+     }
 
 }
