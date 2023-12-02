@@ -24,7 +24,7 @@ public class EnemyAI : MonoBehaviour, IDamageable
 
     }
 
-    // Update is called once per frame
+    // Update is called once per frame4
     void Update()
     {
         if (playerInRange)
@@ -79,14 +79,14 @@ public class EnemyAI : MonoBehaviour, IDamageable
         // if the distance is less than the damage range do damage then wait 5 sec I made time & range serialized fields so we can adjust depending on how we feel about it
             if (distanceToPlayer < damageRange)
             {
-                GameManager.instance.playerScript.Damage(1);
+                GameManager.instance.playerScript.Damage(1);                
                 yield return new WaitForSeconds(timebetweenattacks);
             }
     }
     //IEnumerator shot()
     //{
     //    shooting = true;
-    //    Instantiate(bullet, ShootPos.position, transform.rotation);
+    //    Instantiate(bullet, ShootPos.posistion, transform.rotation);
     //    yield return new WaitForSeconds(shootrate);
 
     //    shooting = false;
