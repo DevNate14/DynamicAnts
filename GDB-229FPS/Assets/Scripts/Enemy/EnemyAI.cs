@@ -32,14 +32,14 @@ public class EnemyAI : MonoBehaviour, IDamageable
     }
 
     bool canSeePlayer(){
-        playerDirection = GameManager.instance.Player.transform.position - headPosition.position;
+        playerDirection = GameManager.instance.player.transform.position - headPosition.position;
         angleToPlayer = Vector3.Angle(playerDirection, transform.forward);
 
         RaycastHit hit;
         if(Physics.Raycast(headPosition.position, playerDirection, out hit)){
             if(hit.collider.CompareTag("Player") && angleToPlayer <= viewCone){
                 
-                agent.SetDestination(GameManager.instance.Player.transform.position);
+                agent.SetDestination(GameManager.instance.player.transform.position);
 
                 if(!shooting){
                     StartCoroutine(shoot());

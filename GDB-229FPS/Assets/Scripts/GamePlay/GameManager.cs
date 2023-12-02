@@ -28,8 +28,8 @@ public class GameManager : MonoBehaviour
 
     void Awake() {
         instance = this;
-        Player = GameObject.FindWithTag("Player");
-        PlayerScript = Player.GetComponent<Movement>();
+        player = GameObject.FindWithTag("Player");
+        playerScript = player.GetComponent<Movement>();
         //Gravity = PlayerScript.GetGravity();
 
     }
