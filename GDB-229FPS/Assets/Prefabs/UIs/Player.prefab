@@ -161,13 +161,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50f2f79b62856484fb231ab5ebd04935, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Inventory: {fileID: 0}
   controller: {fileID: 4029646821376561782}
   speed: 10
   jumpHeight: 10
   jumpMax: 10
-  HP: 0
+  HP: 3
   gravity: -15
   sprintMod: 2
+  GunAttachPoint: {fileID: 0}
   HasLongJump: 0
 --- !u!1 &4029646822055822228
 GameObject:

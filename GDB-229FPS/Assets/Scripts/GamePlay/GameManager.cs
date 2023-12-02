@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEditor;
 
 public class GameManager : MonoBehaviour
 {
@@ -28,7 +29,7 @@ public class GameManager : MonoBehaviour
     void Awake() {
         instance = this;
         player = GameObject.FindWithTag("Player");
-        playerScript = GetComponent<Movement>();
+        playerScript = player.GetComponent<Movement>();
         //Gravity = PlayerScript.GetGravity();
 
     }
