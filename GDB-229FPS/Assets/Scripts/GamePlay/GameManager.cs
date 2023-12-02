@@ -77,4 +77,12 @@ public class GameManager : MonoBehaviour
         }
      }
 
+     public void YouLose()
+    {
+        StatePaused();
+        menuActive = menuLose;
+        menuActive.SetActive(true);
+    }
 }
+
+
