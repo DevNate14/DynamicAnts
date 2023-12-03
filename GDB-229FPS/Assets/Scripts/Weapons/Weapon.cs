@@ -14,34 +14,34 @@ enum Range
 public abstract class Weapon : MonoBehaviour
 {
     // ints storing damage being dealt per projectile, ammo count, magazine size of the gun, and amount of ammo in the current magazine
-    [SerializeField] int damage, magSize, ammoCount, magAmmoCount;
+    [SerializeField] int Damage, MagSize, AmmoCount, MagAmmoCount;
     //[SerializeField] bool GivesImpulseEnemy, GivesImpulsePlayer;  was going to store a vector 3 for each of these but that is wasteful, if these are true for your weapon I would add a hard coded version of this since I am unsure how many weapons will actually use this
-    [SerializeField] float fireRate;
-    [SerializeField] Range gunRange;
-    [SerializeField] bool hasRecoil; // if wanted on your weapon you can have recoil reduce the players velocity some. might remove this if no weapons use
-    [SerializeField] Vector3 recoilImpulse;
-    [SerializeField] GameObject muzzlePoint;
-    [SerializeField] new string name;
+    [SerializeField] float FireRate;
+    [SerializeField] Range GunRange;
+    [SerializeField] bool HasRecoil; // if wanted on your weapon you can have recoil reduce the players velocity some. might remove this if no weapons use
+    [SerializeField] Vector3 RecoilImpulse;
+    [SerializeField] GameObject MuzzlePoint;
+    [SerializeField] string Name;
     [SerializeField] GameObject testObject; // object to spawn to just test out the raycast
 
     public bool isShooting;
 
     public virtual void Reload() {// virtual so if you need the ability to change this for your weapon you can
-        if (ammoCount == 0) {
+        if (AmmoCount == 0) {
             // error or blinking UI telling player that ammo is empty
 
             return;
         }
-        if (ammoCount < (magSize - magAmmoCount)) {
+        if (AmmoCount < (MagSize - MagAmmoCount)) {
             // if we wanted an animation itd be added above this if with an IEnum that does movement then reloads
-            magAmmoCount += ammoCount;
-            ammoCount = 0;
+            MagAmmoCount += AmmoCount;
+            AmmoCount = 0;
             // in individual classes we can add a small movement or UI flash saying ammo was refilled and showing player ammo is being reloaded
             // can make this more complex later.
         }
         else{
-            ammoCount -= (magSize - magAmmoCount);
-            magAmmoCount = magSize;
+            AmmoCount -= (MagSize - MagAmmoCount);
+            MagAmmoCount = MagSize;
         }
     }
 
@@ -49,27 +49,27 @@ public abstract class Weapon : MonoBehaviour
     public virtual void Shoot() {
         isShooting = true; // <
         RaycastHit hit;
-        if (Physics.Raycast(muzzlePoint.transform.position, muzzlePoint.transform.forward, out hit, (float)gunRange)) {
+        if (Physics.Raycast(MuzzlePoint.transform.position, MuzzlePoint.transform.forward, out hit, (float)GunRange)) {
             IDamageable trgt = hit.collider.GetComponent<IDamageable>();
             if (trgt != null) { // this is the damage per bullet, shotgun will either repeat this the number of pellets it has or do it in one monolithic block, need to see plus range damage drop off, check that script for example
-                trgt.Damage(damage);
+                trgt.Damage(Damage);
                 
             }
             Instantiate<GameObject>(testObject, hit.transform);
         }
         isShooting = false; // < these may need to be removed and added to individuals but testing for now
-        if (ammoCount != -1) { // checking for infinite ammo weapons
-            ammoCount--;
+        if (AmmoCount != -1) { // checking for infinite ammo weapons
+            AmmoCount--;
         }
     }
     public void AddAmmo() {
-        ammoCount += magSize * 3;
+        AmmoCount += MagSize * 3;
     }
     public int GetAmmo() {
-        return ammoCount;
+        return AmmoCount;
     }
     // need to make an IEnumerator per weapon because each will be different
     public string GetName() {
-        return name;
+        return Name;
     }
 }

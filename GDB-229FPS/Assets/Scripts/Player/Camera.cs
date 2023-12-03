@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraScript : MonoBehaviour
+public class Camera : MonoBehaviour
 {
     [SerializeField] int sensitivity;
     [SerializeField] int lockMin;
