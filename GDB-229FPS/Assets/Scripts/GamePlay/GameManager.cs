@@ -21,7 +21,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject menuPause;
     [SerializeField] GameObject menuWin;
     [SerializeField] GameObject menuLose;
-
+    [SerializeField] public GameObject playerSpawn;
+    public Image playerHPBar;
 
 
 
@@ -29,6 +30,8 @@ public class GameManager : MonoBehaviour
         instance = this;
         player = GameObject.FindWithTag("Player");
         playerScript = player.GetComponent<Movement>();
+        playerSpawn = GameObject.FindWithTag("Player Spawn Point");
+        timeScaleOrig = Time.timeScale;
         //Gravity = PlayerScript.GetGravity();
 
     }
@@ -72,7 +75,6 @@ public class GameManager : MonoBehaviour
             StatePaused();
             menuActive = menuWin;
             menuActive.SetActive(true);
-            
         }
      }
 
