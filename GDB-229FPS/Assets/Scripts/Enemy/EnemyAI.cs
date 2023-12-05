@@ -11,8 +11,9 @@ public class EnemyAI : MonoBehaviour, IDamageable //check
     [SerializeField] Transform ShootPos; //check
     [SerializeField] Renderer model; //check
     [SerializeField] NavMeshAgent agent; // check
+    [SerializeField] int spintarget; //check
     [SerializeField] GameObject bullet; // check
-    //[SerializeField] Transform headPosition;
+    [SerializeField] Transform headPosition; // check
     [SerializeField] int viewCone;//check
     Vector3 playerDirection; //check
     bool playerInRange; // check
@@ -35,13 +36,13 @@ public class EnemyAI : MonoBehaviour, IDamageable //check
 
     bool canSeePlayer() //check
     {
-        playerDirection = GameManager.instance.player.transform.position - transform.position;
+        playerDirection = GameManager.instance.player.transform.position - headPosition.position;
         angleToPlayer = Vector3.Angle(playerDirection, transform.forward);
-        Debug.DrawRay(transform.position, playerDirection);
+        Debug.DrawRay(headPosition.position, playerDirection);
         Debug.Log(angleToPlayer);
         RaycastHit hit;
 
-        if(Physics.Raycast(transform.position, playerDirection, out hit))
+        if(Physics.Raycast(headPosition.position, playerDirection, out hit))
         {
             if(hit.collider.CompareTag("Player") && angleToPlayer <= viewCone)
             {
@@ -52,12 +53,20 @@ public class EnemyAI : MonoBehaviour, IDamageable //check
                 {
                     StartCoroutine(shoot());
                 }
+                if(agent.remainingDistance < agent.stoppingDistance)
+                {
+                    faceplayer();
+                }
                 return true;
             }
         }
         return false;
     }
-
+    void faceplayer()
+    {
+        Quaternion spin = Quaternion.LookRotation(playerDirection);
+        transform.rotation = Quaternion.Lerp(transform.rotation , spin, Time.deltaTime * spintarget);
+    }
 
     public void Damage(int amount) //check
     {
