@@ -44,6 +44,14 @@ public class Movement : MonoBehaviour, IDamageable, IImpluse
         {
             ToggleCrouch();
         }
+        if (!grounded)
+        {
+
+        }
+        else
+        {
+
+        }
         move = Input.GetAxis("Horizontal") * transform.right + Input.GetAxis("Vertical") * transform.forward;
         controller.Move(move * Time.deltaTime * speed);
         if (Input.GetButtonDown("Jump") && jumpCount < jumpMax)
@@ -82,6 +90,7 @@ public class Movement : MonoBehaviour, IDamageable, IImpluse
     }
     void Sprint()
     {
+
         if (Input.GetButtonDown("Sprint"))
             speed *= sprintMod;
         else if (Input.GetButtonUp("Sprint"))
