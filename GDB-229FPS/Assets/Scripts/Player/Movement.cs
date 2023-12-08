@@ -9,6 +9,7 @@ public class Movement : MonoBehaviour, IDamageable, IImpluse
     private bool grounded;
     private Vector3 move;
     private int jumpCount;
+    private float currSpeed;
     [SerializeField] CharacterController controller;
     [SerializeField] float speed;
     [SerializeField] float jumpHeight;
@@ -16,11 +17,13 @@ public class Movement : MonoBehaviour, IDamageable, IImpluse
     [SerializeField] float gravity;
     [SerializeField] float sprintMod;
     [SerializeField] GameObject GunAttachPoint;
+    [SerializeField] float maxSpeed;
+    public bool isCrouched; //Bool is public for GameManager to check
     public bool HasLongJump; // will make a better item inventory asap
     // Start is called before the first frame update
     void Start()
     {
-
+        isCrouched = false;
     }
 
     // Update is called once per frame
@@ -36,16 +39,39 @@ public class Movement : MonoBehaviour, IDamageable, IImpluse
         if (HasLongJump) {
             LongJump();
         }
+        // Can be crouch or changed to sneak, using grounded assuming we allow the player to jump multiple times in the future
+        if (Input.GetButtonDown("Crouch") && grounded)
+        {
+            ToggleCrouch();
+        }
+        if (!grounded)
+        {
+
+        }
+        else
+        {
+
+        }
         move = Input.GetAxis("Horizontal") * transform.right + Input.GetAxis("Vertical") * transform.forward;
         controller.Move(move * Time.deltaTime * speed);
-
         if (Input.GetButtonDown("Jump") && jumpCount < jumpMax)
         {
+            //this is for whether we decide to allow the player to jump more than once. without this line, the player wont gain velocity when pressing again after a long fall
+            playerVelocity.y = 0;
             playerVelocity.y = jumpHeight;
             ++jumpCount;
         }
         playerVelocity.y += gravity * Time.deltaTime;
         controller.Move(playerVelocity * Time.deltaTime);
+    }
+    //Made toggle for ease of use
+    void ToggleCrouch()
+    {
+        if (!isCrouched)
+            speed /= sprintMod;
+        else
+            speed *= sprintMod;
+        isCrouched = !isCrouched;
     }
     void WeaponSwap() { // this will have to be updated for each new weapon added, limits us to twelve items until we get a ui element up for weapons and a working scrollwheel implented
         if (Input.GetButtonDown("Weapon Slot 1")) { Inventory.SelectedWeapon = 1; }
@@ -64,6 +90,7 @@ public class Movement : MonoBehaviour, IDamageable, IImpluse
     }
     void Sprint()
     {
+
         if (Input.GetButtonDown("Sprint"))
             speed *= sprintMod;
         else if (Input.GetButtonUp("Sprint"))
@@ -71,6 +98,7 @@ public class Movement : MonoBehaviour, IDamageable, IImpluse
     }
     void LongJump() {
         if (Input.GetButtonDown("Sprint") && Input.GetButtonDown("Jump") && jumpCount < jumpMax) {
+            //Was going to respect longjump's original intention, decided to work on something else at the moment
             AddImpluse(new Vector3(-20,-10,0));
         }
     }
