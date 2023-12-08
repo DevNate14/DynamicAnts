@@ -18,6 +18,12 @@ public class ButtonFunctions : MonoBehaviour
         GameManager.instance.StateUnpaused();
     }
 
+    public void Respawn() 
+    {
+        GameManager.instance.playerScript.RespawnPlayer();
+        GameManager.instance.StateUnpaused();
+    }
+
     public void Quit()
     {
         Application.Quit();

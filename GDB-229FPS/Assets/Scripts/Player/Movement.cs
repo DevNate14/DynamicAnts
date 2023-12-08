@@ -18,12 +18,16 @@ public class Movement : MonoBehaviour, IDamageable, IImpluse
     [SerializeField] float sprintMod;
     [SerializeField] GameObject GunAttachPoint;
     [SerializeField] float maxSpeed;
+    int HPOrig;
+
     public bool isCrouched; //Bool is public for GameManager to check
     public bool HasLongJump; // will make a better item inventory asap
     // Start is called before the first frame update
     void Start()
     {
+        HPOrig = HP;
         isCrouched = false;
+        RespawnPlayer();
     }
 
     // Update is called once per frame
@@ -64,6 +68,23 @@ public class Movement : MonoBehaviour, IDamageable, IImpluse
         playerVelocity.y += gravity * Time.deltaTime;
         controller.Move(playerVelocity * Time.deltaTime);
     }
+
+     public void RespawnPlayer()
+    {
+        HP = HPOrig;
+        UpdatePlayerUI();
+
+        controller.enabled = false;
+        //transform.position = GameManager.instance.playerSpawnPOS.transform.position;
+        //NEED TO ADD PLAYER SPAWN POS IN UNITY!!!!
+        controller.enabled = true;
+    }
+
+      public void UpdatePlayerUI()
+    {
+         GameManager.instance.playerHPBar.fillAmount = (float)HP / HPOrig;
+    }
+
     //Made toggle for ease of use
     void ToggleCrouch()
     {
