@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour, IDamageable, IImpluse
 {
-    public Inventory Inventory;
     private Vector3 playerVelocity;
     private bool grounded;
     private Vector3 move;
@@ -19,7 +18,7 @@ public class Movement : MonoBehaviour, IDamageable, IImpluse
     [SerializeField] int jumpMax, HP;
     [SerializeField] float gravity;
     [SerializeField] float sprintMod;
-    [SerializeField] GameObject GunAttachPoint;
+    [SerializeField] public GameObject GunAttachPoint;
     [SerializeField] float maxSpeed;    
 
     public bool isCrouched; //Bool is public for GameManager to check
@@ -98,21 +97,6 @@ public class Movement : MonoBehaviour, IDamageable, IImpluse
             speed *= sprintMod;
         isCrouched = !isCrouched;
     }
-    void WeaponSwap() { // this will have to be updated for each new weapon added, limits us to twelve items until we get a ui element up for weapons and a working scrollwheel implented
-        if (Input.GetButtonDown("Weapon Slot 1")) { Inventory.SelectedWeapon = 1; }
-        if (Input.GetButtonDown("Weapon Slot 2")) { Inventory.SelectedWeapon = 2; }
-        if (Input.GetButtonDown("Weapon Slot 3")) { Inventory.SelectedWeapon = 3; }
-        if (Input.GetButtonDown("Weapon Slot 4")) { Inventory.SelectedWeapon = 4; }
-        if (Input.GetButtonDown("Weapon Slot 5")) { Inventory.SelectedWeapon = 5; }
-
-        if (Inventory.GetWeapon()!= null) {
-            SetWeapon(Inventory.GetWeapon());
-        }
-    }
-    void SetWeapon(Weapon weapon) {
-        Instantiate(weapon, GunAttachPoint.transform);
-        //weapon.transform.SetParent();
-    }
     void Sprint()
     {
 
@@ -145,9 +129,9 @@ public class Movement : MonoBehaviour, IDamageable, IImpluse
     public float GetGravity() {
         return gravity;
     }
-    public void UpgradeItem(Item item) {
-        Inventory.UpgradeItem(Inventory.FindItem(item));
-    }
+    //public void UpgradeItem(Item item) {
+    //    Inventory.UpgradeItem(Inventory.FindItem(item));
+    //}
     IEnumerator Animate()
     {
         if (animator.GetBool("Jump"))
