@@ -10,6 +10,9 @@ public class Movement : MonoBehaviour, IDamageable, IImpluse
     private Vector3 move;
     private int jumpCount;
     private float currSpeed;
+    private int HPOrig;
+    private Animator animator;
+    private GameObject anchor;
     [SerializeField] CharacterController controller;
     [SerializeField] float speed;
     [SerializeField] float jumpHeight;
@@ -17,17 +20,18 @@ public class Movement : MonoBehaviour, IDamageable, IImpluse
     [SerializeField] float gravity;
     [SerializeField] float sprintMod;
     [SerializeField] GameObject GunAttachPoint;
-    [SerializeField] float maxSpeed;
-    int HPOrig;
+    [SerializeField] float maxSpeed;    
 
     public bool isCrouched; //Bool is public for GameManager to check
     public bool HasLongJump; // will make a better item inventory asap
     // Start is called before the first frame update
     void Start()
     {
+        animator = GetComponent<Animator>();
         HPOrig = HP;
         isCrouched = false;
         RespawnPlayer();
+        //anchor = 
     }
 
     // Update is called once per frame
@@ -50,21 +54,21 @@ public class Movement : MonoBehaviour, IDamageable, IImpluse
         }
         if (!grounded)
         {
-
         }
         else
         {
-
         }
         move = Input.GetAxis("Horizontal") * transform.right + Input.GetAxis("Vertical") * transform.forward;
         controller.Move(move * Time.deltaTime * speed);
         if (Input.GetButtonDown("Jump") && jumpCount < jumpMax)
         {
+            animator.Play("Jump");
             //this is for whether we decide to allow the player to jump more than once. without this line, the player wont gain velocity when pressing again after a long fall
             playerVelocity.y = 0;
             playerVelocity.y = jumpHeight;
             ++jumpCount;
         }
+        // Moved certain functions to allow a smooth animation
         playerVelocity.y += gravity * Time.deltaTime;
         controller.Move(playerVelocity * Time.deltaTime);
     }
@@ -143,5 +147,19 @@ public class Movement : MonoBehaviour, IDamageable, IImpluse
     }
     public void UpgradeItem(Item item) {
         Inventory.UpgradeItem(Inventory.FindItem(item));
+    }
+    IEnumerator Animate()
+    {
+        if (animator.GetBool("Jump"))
+        {
+            animator.Play("Player_Jump");
+            yield return new WaitForSeconds(1);
+            animator.SetBool("Jump", false);
+            animator.SetBool("InAir", true);
+        }
+        if (playerVelocity.y > 0)
+            animator.Play("Player_MidAir");
+        else if (playerVelocity.y < 0)
+            animator.Play("Player_Fall");
     }
 }
