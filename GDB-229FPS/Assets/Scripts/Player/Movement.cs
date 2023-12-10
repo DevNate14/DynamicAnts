@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour, IDamageable, IImpluse
 {
-    private Vector3 playerVelocity;
+    private Vector3 playerVelocity, impulse;
     private bool grounded;
     private Vector3 move;
     private int jumpCount;
-    private float currSpeed;
+    private float currSpeed, impulseResolve;
     private int HPOrig;
     private Animator animator;
     private GameObject anchor;
@@ -18,7 +18,7 @@ public class Movement : MonoBehaviour, IDamageable, IImpluse
     [SerializeField] int jumpMax, HP;
     [SerializeField] float gravity;
     [SerializeField] float sprintMod;
-    [SerializeField] public GameObject GunAttachPoint;
+    [SerializeField] public GameObject gunModel;
     [SerializeField] float maxSpeed;    
 
     public bool isCrouched; //Bool is public for GameManager to check
@@ -69,7 +69,8 @@ public class Movement : MonoBehaviour, IDamageable, IImpluse
         }
         // Moved certain functions to allow a smooth animation
         playerVelocity.y += gravity * Time.deltaTime;
-        controller.Move(playerVelocity * Time.deltaTime);
+        controller.Move((playerVelocity + impulse) * Time.deltaTime);
+        impulse = Vector3.Lerp(impulse, Vector3.zero, Time.deltaTime * impulseResolve);
     }
 
      public void RespawnPlayer()
@@ -106,9 +107,12 @@ public class Movement : MonoBehaviour, IDamageable, IImpluse
             speed /= sprintMod;
     }
     void LongJump() {
-        if (Input.GetButtonDown("Sprint") && Input.GetButtonDown("Jump") && jumpCount < jumpMax) {
+        if (isCrouched && Input.GetButtonDown("Jump") && jumpCount < jumpMax) {
             //Was going to respect longjump's original intention, decided to work on something else at the moment
-            AddImpluse(new Vector3(-20,-10,0));
+            impulse = transform.forward * 10 + transform.up * 5;
+            impulseResolve = 1;
+            // we need a check to zero out impulse after landing from a jump since the lerp likes to drag the player along after landing, cant be a grounded check since it would never allow the player 
+            // to long jump, need a new bool like "longJumped" thattracks the sequence of events will add if noone else gets to it later
         }
     }
 
@@ -123,8 +127,9 @@ public class Movement : MonoBehaviour, IDamageable, IImpluse
         HP += amount;
     }
 
-    public void AddImpluse(Vector3 magnitude) {
-        playerVelocity -= magnitude;
+    public void AddImpluse(Vector3 _impulse, float resolveTime) {
+        impulse = _impulse;
+        impulseResolve = resolveTime;
     }
     public float GetGravity() {
         return gravity;

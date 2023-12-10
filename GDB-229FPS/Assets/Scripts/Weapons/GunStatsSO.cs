@@ -2,31 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum Range // can add more later if needed 
-{
-    Melee = 5,
-    Short = 10,
-    Medium = 20,
-    Long = 30
-}
 
-[CreateAssetMenu]
 public abstract class GunStatsSO : ScriptableObject
 {
     [Header("----- Stats -----")]
     public new string name;
     public int magSize, ammoCount, magAmmoCount;
     public float fireRate;
-    public Range gunRange;
+    //range is handled in the bullets per weapon
 
     [Header("----- assets -----")]
     public Texture image; // image for UI
     public GameObject bullet, model;
-    public ParticleSystem muzzleEffect, hitEffect;
+    public ParticleSystem muzzleEffect;
     public AudioClip shootSound;
     [Range(0, 1)] public float shootVol;
 
-    public GameObject MuzzlePoint;// this may need to be replaced with a parameter in the shoot function
+    public GameObject muzzlePoint;// this may need to be replaced with a parameter in the shoot function
 
     public bool isShooting;
 
@@ -58,7 +50,8 @@ public abstract class GunStatsSO : ScriptableObject
     {
         isShooting = true;
         //shoot
-
+        Instantiate(bullet,muzzlePoint.transform.position, muzzlePoint.transform.rotation);
+        //Instantiate(muzzleEffect, muzzlePoint.transform.position, muzzlePoint.transform.rotation);
         yield return new WaitForSeconds(fireRate);
         isShooting = false;
         if (ammoCount != -1)
