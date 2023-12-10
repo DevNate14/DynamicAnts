@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface IInventory
 {
-    void PickUpWeapon(Weapon weapon);
+    void PickUpWeapon(GunStatsSO stats);
 }
