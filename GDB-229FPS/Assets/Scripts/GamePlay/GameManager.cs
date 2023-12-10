@@ -13,9 +13,13 @@ public class GameManager : MonoBehaviour
     float timeScaleOrig;
     public float gravity;
     int enemiesRemaining;
+    int playerHP;
     public bool isPaused;
+    public Image playerHPBar;
 
     [SerializeField] TMP_Text enemyCountText;
+    [SerializeField] TMP_Text playerHPTotal;
+    [SerializeField] TMP_Text playerHPMissing;
 
     [SerializeField] GameObject menuActive;
     [SerializeField] GameObject menuPause;
@@ -30,8 +34,8 @@ public class GameManager : MonoBehaviour
         player = GameObject.FindWithTag("Player");
         playerScript = player.GetComponent<Movement>();
         //Gravity = PlayerScript.GetGravity();
-
     }
+    
     void Update() 
     {
         if (Input.GetButtonDown("Cancel") 
@@ -64,7 +68,15 @@ public class GameManager : MonoBehaviour
      public void UpdateGameGoal(int amount)
     {
         enemiesRemaining += amount;
-        enemyCountText.text = enemiesRemaining.ToString("0");
+        enemyCountText.text = enemiesRemaining.ToString("00");
+
+        //This should be able to call Player HP 
+        // Should be HP # Missing/ HP # Total 
+        playerHP += amount;
+        playerHPMissing.text = playerHP.ToString("00"); 
+        playerHPTotal.text = playerHP.ToString("00");
+        
+
 
         if (enemiesRemaining <= 0)
         {

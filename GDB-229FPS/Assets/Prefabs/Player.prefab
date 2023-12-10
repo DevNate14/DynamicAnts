@@ -170,6 +170,8 @@ MonoBehaviour:
   gravity: -15
   sprintMod: 2
   GunAttachPoint: {fileID: 0}
+  maxSpeed: 0
+  isCrouched: 0
   HasLongJump: 0
 --- !u!1 &4029646822055822228
 GameObject:

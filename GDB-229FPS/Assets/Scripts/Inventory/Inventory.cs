@@ -1,64 +1,103 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class Inventory : MonoBehaviour, IInventory
+public struct upgradeItem
 {
-    Item[] items = new Item[5]; // we can change this if we end up with more items
-    Weapon[] weapons = new Weapon[5]; // same with this one
-    int CurrItem, CurrWeapon; // this is for the inventories tracking 
-    public int SelectedWeapon; // this is for player tracking, will be handled in player might just put in player
+    public string name;
+    public bool has, upgraded;
+}
 
-    public void PickUpItem(Item item) { // this should cover adding all items, if we limit placement and only give needed plus like 10-20% this should not run into problems
-                                        // only thing this doesnt cover is items that would need a second stack/spot in the inventory. Items will
-        for (int i = 0; i < items.Length; i++) {
-            if (item.GetName() == items[i].GetName()) {
-                items[i].AddUse();
+public class Inventory : MonoBehaviour, IInventory, IUpgradable
+{
+    List<GunStatsSO> weapons = new List<GunStatsSO>();
+    List<upgradeItem> items = new List<upgradeItem>(); 
+    int selectedWeapon;
+    private void Update() {
+       SelectGun();
+    }
+    public void PickUpWeapon(GunStatsSO stats) {
+        string wepName = stats.name;
+        if (weapons.Count != 0)
+        {
+            if (stats.ammoCount != -1)
+            {
+                for (int i = 0; i < weapons.Count; i++)
+                {
+                    if (wepName == weapons[i].name)
+                    {
+                        weapons[i].AddAmmo();
+                        return;
+                    }
+                }
+                selectedWeapon = weapons.Count-1;
+                stats.AddAmmo();
+                weapons.Add(stats);
+                ChangeGun();
+                return;
+            }
+            else
+            {
+                for (int i = 0; i < weapons.Count; i++)
+                {
+                    if (wepName == weapons[i].name)
+                    {
+                        return;
+                    }
+                }
+                selectedWeapon = weapons.Count-1;
+                weapons.Add(stats);
+                ChangeGun();
                 return;
             }
         }
-        items[CurrItem] = item;
-        CurrItem++;
-    }
-    public Weapon GetWeapon() {
-        if (CurrWeapon == 0) {
-            return null;
+        else
+        {
+            weapons.Add(stats);
+            ChangeGun();
+            return;
         }
-        if (weapons[SelectedWeapon-1] != null) {
-            return weapons[SelectedWeapon - 1];
+    }
+    void SelectGun()
+    {
+        if (Input.GetAxis("Mouse ScrollWheel") > 0 && selectedWeapon < weapons.Count - 1 && !weapons[selectedWeapon].isShooting)
+        {
+            selectedWeapon++;
+            ChangeGun();
         }
-        return null;
+        else if (Input.GetAxis("Mouse ScrollWheel") > 0 && selectedWeapon > 0 && !weapons[selectedWeapon].isShooting)
+        {
+            selectedWeapon--;
+            ChangeGun();
+        }
     }
-    public void SetSelectedWeapon(int num) {
-        SelectedWeapon = num;
+    void ChangeGun()
+    {
+        GameManager.instance.playerScript.gunModel.GetComponent<MeshFilter>().sharedMesh = weapons[selectedWeapon].model.GetComponent<MeshFilter>().sharedMesh;
+        GameManager.instance.playerScript.gunModel.GetComponent<MeshRenderer>().sharedMaterial = weapons[selectedWeapon].model.GetComponent<MeshRenderer>().sharedMaterial;
+
     }
-    public void PickUpWeapon(Weapon weapon) {
-        if (weapon.GetAmmo() != -1) {
-            for (int i = 0; i < weapons.Length; i++) {
-                if (weapon.GetName() == weapons[i].GetName()) {
-                    weapons[i].AddAmmo();
-                    return;
+
+    public bool Upgrade(string name)
+    {
+        bool result = false;
+        for (int i = 0; i < items.Count; i++)
+        {
+            if (items[i].name == name)
+            {
+                if (items[i].has && items[i].upgraded)
+                    return result;
+                else if (items[i].has) {
+                    result = true;
+                    //items[i].upgraded = result; giving error saying Im trying to acces a reference type, will need to come back and fix this when I get the chance after guns are finished;
                 }
+                break;
+                
             }
         }
-        weapons[CurrWeapon] = weapon;
-        if (weapon.GetAmmo() != -1) { weapons[CurrWeapon].AddAmmo(); }
-        CurrWeapon++;
+        return result;
     }
-    public int FindItem(Item item) {
-        int ndx = 0;
-        foreach (var v in items) {
-            if (v.GetName() == item.GetName()) {
-                return ndx;
-            }
-            ndx++;
-        }
-        return -1;
-    }
-    public void UpgradeItem(int ndx) {
-        IUpgradable upg = items[ndx].GetComponent<IUpgradable>();
-        if (upg != null) {
-            upg.Upgrade();
-        }
+
+    public void PickUpItem(upgradeItem item)
+    {
     }
 }
