@@ -18,7 +18,7 @@ public class Movement : MonoBehaviour, IDamageable, IImpluse
     [SerializeField] int jumpMax, HP;
     [SerializeField] float gravity;
     [SerializeField] float sprintMod;
-    [SerializeField] public GameObject gunModel;
+    [SerializeField] public GameObject gunModel, muzzlePoint;
     [SerializeField] float maxSpeed;    
 
     public bool isCrouched; //Bool is public for GameManager to check
@@ -134,9 +134,6 @@ public class Movement : MonoBehaviour, IDamageable, IImpluse
     public float GetGravity() {
         return gravity;
     }
-    //public void UpgradeItem(Item item) {
-    //    Inventory.UpgradeItem(Inventory.FindItem(item));
-    //}
     IEnumerator Animate()
     {
         if (animator.GetBool("Jump"))

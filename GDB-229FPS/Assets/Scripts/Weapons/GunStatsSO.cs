@@ -22,6 +22,10 @@ public abstract class GunStatsSO : ScriptableObject
 
     public bool isShooting;
 
+    public void Initialize(GameObject point) {
+        muzzlePoint = point;
+    }
+
     public virtual void Reload()
     {// virtual so if you need the ability to change this for your weapon you can
         if (ammoCount == 0)
@@ -56,7 +60,7 @@ public abstract class GunStatsSO : ScriptableObject
         isShooting = false;
         if (ammoCount != -1)
         { // checking for infinite ammo weapons
-            ammoCount--;
+            magAmmoCount--;
         }
     }
     public void AddAmmo()
