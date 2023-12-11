@@ -14,8 +14,11 @@ public class MeleeEnemy : MonoBehaviour, IDamageable
     [Range(1, 10)][SerializeField] int HP; //check
     [SerializeField] Renderer model; //check
     [SerializeField] NavMeshAgent agent; // check
+    [SerializeField] Animator animate;
     [SerializeField] int dmg;
+    [SerializeField] float animationspeedtransition;
     [SerializeField] float DamageCoolDown;
+    [SerializeField] float MeleeRange;
     bool InMeleeRange;
     // Start is called before the first frame update
     void Start()
@@ -26,8 +29,10 @@ public class MeleeEnemy : MonoBehaviour, IDamageable
     // Update is called once per frame
     void Update()
     {
+        float animationspeed = agent.velocity.normalized.magnitude;
+        animate.SetFloat("Speed", Mathf.Lerp(animate.GetFloat("Speed"), animationspeed, Time.deltaTime * animationspeedtransition));
         agent.SetDestination(GameManager.instance.player.transform.position); //check
-        if (agent.remainingDistance < 2)
+        if (agent.remainingDistance < MeleeRange)
         {
             if (!InMeleeRange)
             {
@@ -64,6 +69,7 @@ public class MeleeEnemy : MonoBehaviour, IDamageable
     IEnumerator MeleeDamage(float time)
     {
         InMeleeRange = true;
+        animate.SetTrigger("Hit");
         GameManager.instance.player.GetComponent<Movement>().Damage(dmg);
         yield return new WaitForSeconds(time);
         InMeleeRange = false;
