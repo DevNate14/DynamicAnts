@@ -70,7 +70,7 @@ public class MeleeEnemy : MonoBehaviour, IDamageable
     {
         InMeleeRange = true;
         animate.SetTrigger("Hit");
-        GameManager.instance.player.GetComponent<Movement>().Damage(dmg);
+        GameManager.instance.player.GetComponent<Controller>().Damage(dmg);
         yield return new WaitForSeconds(time);
         InMeleeRange = false;
     }

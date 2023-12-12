@@ -22,6 +22,7 @@ MonoBehaviour:
   model: {fileID: 8993935844262704315, guid: 9c223e0e65d88a84a895223a87fb0ed8, type: 3}
   muzzleEffect: {fileID: 0}
   shootSound: {fileID: 8300000, guid: d26721e2f9dbe1f40a7661c5b0aef2f5, type: 3}
+  weaponIcon: {fileID: 0}
   shootVol: 0.5
   muzzlePoint: {fileID: 0}
   isShooting: 0

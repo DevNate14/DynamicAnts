@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using Unity.VisualScripting;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     public GameObject player;
-    public Movement playerScript;
+    public GameObject playerSpawnPOS;
+    public Controller playerScript;
 
     float timeScaleOrig;
     public float gravity;
@@ -18,22 +20,27 @@ public class GameManager : MonoBehaviour
     public Image playerHPBar;
 
     [SerializeField] TMP_Text enemyCountText;
-    [SerializeField] TMP_Text playerHPTotal;
     [SerializeField] TMP_Text playerHPMissing;
+    [SerializeField] TMP_Text playerHPTotal;
+    [SerializeField] public TextMeshProUGUI ammoSizeText;
+    [SerializeField] public TextMeshProUGUI ammoCountText;
 
     [SerializeField] GameObject menuActive;
     [SerializeField] GameObject menuPause;
     [SerializeField] GameObject menuWin;
     [SerializeField] GameObject menuLose;
-
-
+    [SerializeField] GameObject reloadMessage;
+    public GameObject playerDamageScreen;
 
 
     void Awake() {
         instance = this;
         player = GameObject.FindWithTag("Player");
-        playerScript = player.GetComponent<Movement>();
+        playerScript = player.GetComponent<Controller>();
         //Gravity = PlayerScript.GetGravity();
+        playerSpawnPOS = GameObject.FindWithTag("PlayerSpawnPOS");
+        timeScaleOrig = Time.timeScale;
+
     }
     
     void Update() 
@@ -76,17 +83,34 @@ public class GameManager : MonoBehaviour
         playerHPMissing.text = playerHP.ToString("00"); 
         playerHPTotal.text = playerHP.ToString("00");
         
+     }
 
+     public void ReloadUI()
+     {
+        //Have Reload UI appear
+        StateUnpaused(); //Game should still play....?
+        menuActive = reloadMessage;
+        menuActive.SetActive(true);
+     }
 
-        if (enemiesRemaining <= 0)
+    public void CheckWinState()
+    {
+       if (enemiesRemaining <= 0)
         {
             //You win!
-            StatePaused();
-            menuActive = menuWin;
-            menuActive.SetActive(true);
-            
+            // StatePaused();
+            // menuActive = menuWin;
+            // menuActive.SetActive(true);
+           YouWin();
         }
-     }
+    }
+
+    public void YouWin()
+    {
+        StatePaused();
+        menuActive = menuWin;
+        menuActive.SetActive(true);
+    }
 
      public void YouLose()
     {

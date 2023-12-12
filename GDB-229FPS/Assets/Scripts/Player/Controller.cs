@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class Movement : MonoBehaviour, IDamageable, IImpluse
+public class Controller : MonoBehaviour, IDamageable, IImpluse
 {
     private Vector3 playerVelocity, impulse;
     private bool grounded;
@@ -10,6 +12,8 @@ public class Movement : MonoBehaviour, IDamageable, IImpluse
     private int jumpCount;
     private float currSpeed, impulseResolve;
     private int HPOrig;
+    public int ammoSize;
+    public int ammoCount;
     private GameObject anchor;
     [SerializeField] CharacterController controller;
     [SerializeField] float speed;
@@ -20,6 +24,7 @@ public class Movement : MonoBehaviour, IDamageable, IImpluse
     [SerializeField] public GameObject gunModel, muzzlePoint;
     [SerializeField] float maxSpeed;
     [SerializeField] Animator animator;
+    
 
     public bool isCrouched; //Bool is public for GameManager to check
     public bool HasLongJump; // will make a better item inventory asap
@@ -79,14 +84,28 @@ public class Movement : MonoBehaviour, IDamageable, IImpluse
         UpdatePlayerUI();
 
         controller.enabled = false;
-        //transform.position = GameManager.instance.playerSpawnPOS.transform.position;
-        //NEED TO ADD PLAYER SPAWN POS IN UNITY!!!!
+        transform.position = GameManager.instance.playerSpawnPOS.transform.position;
         controller.enabled = true;
+    }
+
+     IEnumerator PlayerFlashDamage()
+    {
+        GameManager.instance.playerDamageScreen.SetActive(true);
+        yield return new WaitForSeconds(0.1f);
+        GameManager.instance.playerDamageScreen.SetActive(false);
     }
 
       public void UpdatePlayerUI()
     {
          GameManager.instance.playerHPBar.fillAmount = (float)HP / HPOrig;
+    }
+
+    public void UpdateAmmoUI(GunStatsSO newWeapon)
+    {
+        
+        GameManager.instance.ammoSizeText.text = ammoSize.ToString("00");
+        GameManager.instance.ammoCountText.text = ammoCount.ToString("00");
+        
     }
 
     //Made toggle for ease of use
@@ -119,9 +138,13 @@ public class Movement : MonoBehaviour, IDamageable, IImpluse
 
     public void Damage(int amount) {
         HP -= amount;
+        
         if (HP <= 0) { 
-            // loss state
+            GameManager.instance.YouLose();
         }
+
+        UpdatePlayerUI();
+        StartCoroutine(PlayerFlashDamage());
     }
 
     public void Heal(int amount) {

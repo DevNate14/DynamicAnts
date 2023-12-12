@@ -1,18 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.Dependencies.Sqlite;
 using UnityEngine;
+using UnityEngine.UI;
+//using Microsoft.Unity.VisualStudio.Editor;
 
-
+[CreateAssetMenu]
 public abstract class GunStatsSO : ScriptableObject
 {
     [Header("----- Stats -----")]
     public new string name;
     public int magSize, ammoCount, magAmmoCount;
     public float fireRate;
+
     //range is handled in the bullets per weapon
 
-    [Header("----- assets -----")]
-    public Texture image; // image for UI
+    [Header("----- Assets -----")]
+    public Texture2D image; // Image for UI
     public GameObject bullet, model;
     public ParticleSystem muzzleEffect;
     public AudioClip shootSound;
@@ -26,12 +30,24 @@ public abstract class GunStatsSO : ScriptableObject
         muzzlePoint = point;
     }
 
+    //---------------------------------------------------- CODE FOR UI FUNCTIONS ---------------------------------------------------------------------------------
+
+    public void DisplayGunImage(RawImage rawImage)
+    {
+        //References to Textures that are added in the GunSO on Unity
+        {
+            if (image != null && rawImage != null)
+            {
+                rawImage.texture = image;
+            }
+        }
+    } //Need to add code for Weapon Pick-up
+    
     public virtual void Reload()
     {// virtual so if you need the ability to change this for your weapon you can
         if (ammoCount == 0)
         {
-            // error or blinking UI telling player that ammo is empty
-
+            GameManager.instance.ReloadUI();
             return;
         }
         if (ammoCount < (magSize - magAmmoCount))
@@ -48,6 +64,8 @@ public abstract class GunStatsSO : ScriptableObject
             magAmmoCount = magSize;
         }
     }
+
+     //---------------------------------------------------- CODE FOR UI FUNCTIONS ---------------------------------------------------------------------------------
 
     // VV this may need to be filled out per weapon as it will could be different, idea is you make the IEnum per gun and then cast shoot per bullet needed
     public virtual IEnumerator Shoot()

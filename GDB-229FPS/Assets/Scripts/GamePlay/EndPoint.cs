@@ -9,6 +9,9 @@ public class EndPoint : MonoBehaviour
         if (other.tag == "Player") {
             //win check 
             Debug.Log("Stepped on");
+
+            //Have WinMenu BG Appear
+            GameManager.instance.CheckWinState();
         }
     }
 }
