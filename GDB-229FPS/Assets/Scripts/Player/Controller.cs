@@ -10,7 +10,7 @@ public class Controller : MonoBehaviour, IDamageable, IImpluse
     private bool grounded;
     private Vector3 move;
     private int jumpCount;
-    private float currSpeed, impulseResolve;
+    private float impulseResolve;
     private int HPOrig;
     public int ammoSize;
     public int ammoCount;
@@ -40,7 +40,7 @@ public class Controller : MonoBehaviour, IDamageable, IImpluse
     // Update is called once per frame
     void Update()
     {
-        
+        animator.SetFloat("Speed", speed/maxSpeed);
         grounded = controller.isGrounded;
         if (grounded && playerVelocity.y < 0)
         {
@@ -66,7 +66,6 @@ public class Controller : MonoBehaviour, IDamageable, IImpluse
         controller.Move(move * Time.deltaTime * speed);
         if (Input.GetButtonDown("Jump") && jumpCount < jumpMax)
         {
-            animator.Play("Jump");
             //this is for whether we decide to allow the player to jump more than once. without this line, the player wont gain velocity when pressing again after a long fall
             playerVelocity.y = 0;
             playerVelocity.y = jumpHeight;
@@ -119,7 +118,7 @@ public class Controller : MonoBehaviour, IDamageable, IImpluse
     }
     void Sprint()
     {
-        if (!isCrouched)
+        if (isCrouched)
             return;
         if (Input.GetButtonDown("Sprint"))
             speed *= sprintMod;

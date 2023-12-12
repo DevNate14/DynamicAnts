@@ -60,13 +60,13 @@ BlendTree:
     m_Motion: {fileID: 7400002, guid: a3422ad278cd9a94aa3da8e6bff9deea, type: 3}
     m_Threshold: 0
     m_Position: {x: 0, y: 0}
-    m_TimeScale: 1
+    m_TimeScale: 2
     m_CycleOffset: 0
     m_DirectBlendParameter: Blend
     m_Mirror: 0
   - serializedVersion: 2
     m_Motion: {fileID: 7400000, guid: 154a724602422044c91070a5f3c67c11, type: 3}
-    m_Threshold: 0.5
+    m_Threshold: 1
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1
     m_CycleOffset: 0
@@ -75,7 +75,7 @@ BlendTree:
   m_BlendParameter: Speed
   m_BlendParameterY: Blend
   m_MinThreshold: 0
-  m_MaxThreshold: 0.5
+  m_MaxThreshold: 1
   m_UseAutomaticThresholds: 1
   m_NormalizedBlendValues: 0
   m_BlendType: 0
@@ -115,30 +115,30 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: Crouched
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
-    m_Name: Gun
-    m_StateMachine: {fileID: -1266714699095372168}
-    m_Mask: {fileID: 31900000, guid: 004303f82a801d64da29d767b4be6da9, type: 2}
+    m_Name: Movement
+    m_StateMachine: {fileID: -4465014522372992209}
+    m_Mask: {fileID: 0}
     m_Motions: []
     m_Behaviours: []
-    m_BlendingMode: 1
+    m_BlendingMode: 0
     m_SyncedLayerIndex: -1
     m_DefaultWeight: 0
     m_IKPass: 0
     m_SyncedLayerAffectsTiming: 0
     m_Controller: {fileID: 9100000}
   - serializedVersion: 5
-    m_Name: Movement
-    m_StateMachine: {fileID: -4465014522372992209}
-    m_Mask: {fileID: 31900000, guid: d04d868bfe96fca439074bb1fe69165a, type: 2}
+    m_Name: Gun
+    m_StateMachine: {fileID: -1266714699095372168}
+    m_Mask: {fileID: 31900000, guid: 004303f82a801d64da29d767b4be6da9, type: 2}
     m_Motions: []
     m_Behaviours: []
     m_BlendingMode: 1
