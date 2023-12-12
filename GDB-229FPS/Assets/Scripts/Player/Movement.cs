@@ -10,7 +10,6 @@ public class Movement : MonoBehaviour, IDamageable, IImpluse
     private int jumpCount;
     private float currSpeed, impulseResolve;
     private int HPOrig;
-    private Animator animator;
     private GameObject anchor;
     [SerializeField] CharacterController controller;
     [SerializeField] float speed;
@@ -19,14 +18,14 @@ public class Movement : MonoBehaviour, IDamageable, IImpluse
     [SerializeField] float gravity;
     [SerializeField] float sprintMod;
     [SerializeField] public GameObject gunModel, muzzlePoint;
-    [SerializeField] float maxSpeed;    
+    [SerializeField] float maxSpeed;
+    [SerializeField] Animator animator;
 
     public bool isCrouched; //Bool is public for GameManager to check
     public bool HasLongJump; // will make a better item inventory asap
     // Start is called before the first frame update
     void Start()
     {
-        animator = GetComponent<Animator>();
         HPOrig = HP;
         isCrouched = false;
         RespawnPlayer();
@@ -36,6 +35,7 @@ public class Movement : MonoBehaviour, IDamageable, IImpluse
     // Update is called once per frame
     void Update()
     {
+        
         grounded = controller.isGrounded;
         if (grounded && playerVelocity.y < 0)
         {
@@ -47,7 +47,7 @@ public class Movement : MonoBehaviour, IDamageable, IImpluse
             LongJump();
         }
         // Can be crouch or changed to sneak, using grounded assuming we allow the player to jump multiple times in the future
-        if (Input.GetButtonDown("Crouch") && grounded)
+        if (Input.GetButtonDown("Crouch") && jumpCount == 0)
         {
             ToggleCrouch();
         }
@@ -100,7 +100,8 @@ public class Movement : MonoBehaviour, IDamageable, IImpluse
     }
     void Sprint()
     {
-
+        if (!isCrouched)
+            return;
         if (Input.GetButtonDown("Sprint"))
             speed *= sprintMod;
         else if (Input.GetButtonUp("Sprint"))
