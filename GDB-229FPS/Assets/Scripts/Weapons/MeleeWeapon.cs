@@ -8,7 +8,7 @@ public class MeleeWeapon : GunStatsSO
     public override IEnumerator Shoot()
     {
         isShooting = true;
-        Instantiate(bullet, muzzlePoint.transform.position, GameManager.instance.player.transform.rotation);
+        Instantiate(bullet, muzzlePoint.transform.position, muzzlePoint.transform.rotation);
         yield return new WaitForSeconds(fireRate);
         isShooting = false;
         if (ammoCount != -1)

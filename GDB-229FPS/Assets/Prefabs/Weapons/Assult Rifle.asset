@@ -16,12 +16,12 @@ MonoBehaviour:
   magSize: 30
   ammoCount: 0
   magAmmoCount: 0
-  fireRate: 0.5
+  fireRate: 0.25
   image: {fileID: 2800000, guid: 6ad634f0bc2e16543b94658fbac81a9c, type: 3}
   bullet: {fileID: 5293575694773355670, guid: 1515617d10f329649bc21aadb7bac911, type: 3}
-  model: {fileID: -927199367670048503, guid: f0154324351a2204a934b78c323e8fe8, type: 3}
+  model: {fileID: 2583597474119676894, guid: 89b9258ff25abba48b48dc856aa9acd0, type: 3}
   muzzleEffect: {fileID: 0}
-  shootSound: {fileID: 0}
+  shootSound: {fileID: 8300000, guid: 180e0b06dbfc8234b8ca991ff3821979, type: 3}
   shootVol: 0.5
   muzzlePoint: {fileID: 0}
   isShooting: 0

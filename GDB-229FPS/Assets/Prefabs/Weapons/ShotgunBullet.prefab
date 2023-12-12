@@ -176,7 +176,7 @@ SphereCollider:
   m_GameObject: {fileID: 5293575694773355670}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Radius: 5
   m_Center: {x: 0, y: 0, z: 0}
@@ -195,6 +195,6 @@ MonoBehaviour:
   rb: {fileID: 5293575694773355666}
   explodeRadius: {fileID: 5293575694773355669}
   damageAmount: 5
-  speed: 5
+  speed: 15
   timer: 1
   impulseAmount: 15

@@ -84,8 +84,8 @@ TrailRenderer:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0.028901994
-        value: 0.5098052
+        time: 0
+        value: 0.5
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -93,8 +93,8 @@ TrailRenderer:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.5173359
-        value: 0.692813
+        time: 0.44207954
+        value: 0.24531847
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -102,8 +102,8 @@ TrailRenderer:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 0.87284136
-        value: 0.50980943
+        time: 1
+        value: 0
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -166,7 +166,7 @@ MonoBehaviour:
   rb: {fileID: 5293575694773355666}
   damageAmount: 5
   destroyTimer: 10
-  speed: 30
+  speed: 45
 --- !u!54 &5293575694773355666
 Rigidbody:
   m_ObjectHideFlags: 0

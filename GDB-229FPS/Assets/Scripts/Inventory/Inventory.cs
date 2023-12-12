@@ -1,21 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public struct upgradeItem
-{
-    [SerializeField]public string name;
-    [SerializeField]public bool has, upgraded;
-}
 
 public class Inventory : MonoBehaviour, IInventory, IUpgradable
 {
-    List<GunStatsSO> weapons = new List<GunStatsSO>();
-    
-    [SerializeField] upgradeItem[] items; // not showing up in editor
+    [SerializeField] List<GunStatsSO> weapons = new List<GunStatsSO>();    
+    [SerializeField] UpgradeItem[] items;
     int selectedWeapon;
     private void Update() {
-        if (!GameManager.instance.isPaused && !weapons[selectedWeapon].isShooting) {
-            if (weapons.Count > 0) {
+        if (!GameManager.instance.isPaused && weapons.Count > 0) {
+            if (!weapons[selectedWeapon].isShooting) {
                 if (Input.GetButton("Shoot")) {
                     ShootGun();
                 }
@@ -41,9 +35,10 @@ public class Inventory : MonoBehaviour, IInventory, IUpgradable
                     }
                 }
                 selectedWeapon = weapons.Count-1;
-                stats.AddAmmo();
+                stats.isShooting = false;
                 weapons.Add(stats);
                 weapons[selectedWeapon].Initialize(GameManager.instance.playerScript.muzzlePoint); //this may need to change per weapon but will see
+                weapons[selectedWeapon].AddAmmo();
                 ChangeGun();
                 return;
             }
@@ -57,6 +52,7 @@ public class Inventory : MonoBehaviour, IInventory, IUpgradable
                     }
                 }
                 selectedWeapon = weapons.Count-1;
+                stats.isShooting = false;
                 weapons.Add(stats);
                 weapons[selectedWeapon].Initialize(GameManager.instance.playerScript.muzzlePoint);
                 ChangeGun();
@@ -65,14 +61,17 @@ public class Inventory : MonoBehaviour, IInventory, IUpgradable
         }
         else
         {
+            stats.isShooting = false;
             weapons.Add(stats);
             weapons[selectedWeapon].Initialize(GameManager.instance.playerScript.muzzlePoint);
+            if(weapons[selectedWeapon].ammoCount != -1)
+                weapons[selectedWeapon].AddAmmo();
             ChangeGun();
             return;
         }
     }
     void ShootGun() {
-        if (weapons[selectedWeapon].ammoCount == -1 || weapons[selectedWeapon].magAmmoCount > 0 || weapons[selectedWeapon].ammoCount > 0) {
+        if (weapons[selectedWeapon].ammoCount == -1 || weapons[selectedWeapon].magAmmoCount > 0) {
             StartCoroutine(weapons[selectedWeapon].Shoot());
         }
     }
@@ -81,22 +80,20 @@ public class Inventory : MonoBehaviour, IInventory, IUpgradable
     }
     void SelectGun()
     {
-        if (Input.GetAxis("Mouse ScrollWheel") > 0 && selectedWeapon < weapons.Count - 1 && !weapons[selectedWeapon].isShooting)
+        if (Input.GetAxis("Mouse ScrollWheel") > 0 && selectedWeapon < weapons.Count - 1)
         {
             selectedWeapon++;
             ChangeGun();
         }
-        else if (Input.GetAxis("Mouse ScrollWheel") > 0 && selectedWeapon > 0 && !weapons[selectedWeapon].isShooting)
+        else if (Input.GetAxis("Mouse ScrollWheel") < 0 && selectedWeapon > 0)
         {
             selectedWeapon--;
             ChangeGun();
         }
     }
-    void ChangeGun()
-    {
+    void ChangeGun() {
         GameManager.instance.playerScript.gunModel.GetComponent<MeshFilter>().sharedMesh = weapons[selectedWeapon].model.GetComponent<MeshFilter>().sharedMesh;
         GameManager.instance.playerScript.gunModel.GetComponent<MeshRenderer>().sharedMaterial = weapons[selectedWeapon].model.GetComponent<MeshRenderer>().sharedMaterial;
-
     }
 
     public bool Upgrade(string name)
@@ -111,7 +108,7 @@ public class Inventory : MonoBehaviour, IInventory, IUpgradable
                 else if (items[i].has)
                 {
                     result = true;
-                    items[i].upgraded = result; //giving error saying Im trying to acces a reference type, will need to come back and fix this when I get the chance after guns are finished;
+                    items[i].upgraded = result;
                 }
                 else {
                     result = true;

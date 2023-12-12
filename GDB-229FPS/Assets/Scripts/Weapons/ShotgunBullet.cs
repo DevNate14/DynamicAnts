@@ -10,14 +10,13 @@ public class ShotgunBullet : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        rb.velocity = transform.forward * speed;
         ExplodeCheck();
         Destroy(gameObject, 2);
     }
     IEnumerator ExplodeCheck() {
-        rb.velocity = transform.forward * speed;
         yield return new WaitForSeconds(timer);
         rb.velocity = Vector3.zero;
-        explodeRadius.enabled = true;
     }
     void OnTriggerEnter(Collider other)
     {
@@ -32,10 +31,10 @@ public class ShotgunBullet : MonoBehaviour
         }
         IImpluse obj = other.GetComponent<IImpluse>();
         if (obj != null) {
-            Vector3 imp = -1 * (other.transform.forward * (impulseAmount * Vector3.Magnitude(other.transform.position - explodeRadius.center)) /*+ other.transform.up */);
-            //may need to come back and change this but need to play with the bullet before I know if this is right or not
+            Vector3 imp =(((-1)*(other.transform.forward * impulseAmount)) + (other.transform.up * (impulseAmount*2)));
             obj.AddImpluse(imp, .5f);
         }
+
     }
 
 
