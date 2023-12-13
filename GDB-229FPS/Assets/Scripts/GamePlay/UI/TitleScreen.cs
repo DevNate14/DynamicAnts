@@ -13,7 +13,7 @@ public class TitleScreen : MonoBehaviour
 
     void Start()
     {
-            StartSpinning(); //Rotates Images
+        StartSpinning(); //Rotates Images
     }
 
     void StartSpinning()
