@@ -4,5 +4,11 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/VIv's Scenes/Title Scene.unity
+    guid: ad932f72253a6e14b92bdf3a5359d973
+  - enabled: 1
+    path: Assets/Scenes/VIv's Scenes/Level 6 (Vivianne).unity
+    guid: 32f92c8b81236034b8ca12b7f0084a1e
   m_configObjects: {}

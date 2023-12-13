@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -29,5 +27,17 @@ public class ButtonFunctions : MonoBehaviour
         Application.Quit();
     }
 
-   
+    //------------------------- TITLE PAGE ---------------------------------------------
+
+    public void Play(int sceneNumber)
+    {
+        SceneManager.LoadScene(sceneNumber);
+        GameManager.instance.StatePaused();
+    }
+
+    public void MainMenu(int sceneNumber)
+    {
+        SceneManager.LoadScene(sceneNumber);
+        GameManager.instance.StatePaused();
+    }
 }

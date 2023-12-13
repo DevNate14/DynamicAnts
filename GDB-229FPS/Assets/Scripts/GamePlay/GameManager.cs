@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
@@ -16,42 +14,40 @@ public class GameManager : MonoBehaviour
     public float gravity;
     int enemiesRemaining;
     int playerHP;
+    int damageDone;
     public bool isPaused;
     public Image playerHPBar;
+    public Texture2D weaponIcon;
 
     [SerializeField] TMP_Text enemyCountText;
     [SerializeField] TMP_Text playerHPMissing;
     [SerializeField] TMP_Text playerHPTotal;
     [SerializeField] public TextMeshProUGUI ammoSizeText;
     [SerializeField] public TextMeshProUGUI ammoCountText;
+    [SerializeField] TMP_Text totalDamage;
 
     [SerializeField] GameObject menuActive;
     [SerializeField] GameObject menuPause;
     [SerializeField] GameObject menuWin;
     [SerializeField] GameObject menuLose;
     [SerializeField] GameObject reloadMessage;
+    [SerializeField] GameObject instructionsPage;
     public GameObject playerDamageScreen;
 
 
-    void Awake() {
+    void Awake()
+    {
         instance = this;
         player = GameObject.FindWithTag("Player");
         playerScript = player.GetComponent<Controller>();
         //Gravity = PlayerScript.GetGravity();
         playerSpawnPOS = GameObject.FindWithTag("PlayerSpawnPOS");
         timeScaleOrig = Time.timeScale;
-
     }
-    
-    void Update() 
+
+    void Update()
     {
-        if (Input.GetButtonDown("Cancel") 
-        && menuActive == null)
-        {
-            StatePaused();
-            menuActive = menuPause;
-            menuActive.SetActive(isPaused);
-        }
+        PauseMenu();
     }
 
     public void StatePaused()
@@ -72,7 +68,7 @@ public class GameManager : MonoBehaviour
         menuActive = null;
     }
 
-     public void UpdateGameGoal(int amount)
+    public void UpdateGameGoal(int amount)
     {
         enemiesRemaining += amount;
         enemyCountText.text = enemiesRemaining.ToString("00");
@@ -80,28 +76,57 @@ public class GameManager : MonoBehaviour
         //This should be able to call Player HP 
         // Should be HP # Missing/ HP # Total 
         playerHP += amount;
-        playerHPMissing.text = playerHP.ToString("00"); 
+        playerHPMissing.text = playerHP.ToString("00");
         playerHPTotal.text = playerHP.ToString("00");
-        
-     }
+    }
 
-     public void ReloadUI()
-     {
-        //Have Reload UI appear
-        StateUnpaused(); //Game should still play....?
-        menuActive = reloadMessage;
-        menuActive.SetActive(true);
-     }
+    public void DisplayDamageDone(int amount)
+    {
+        damageDone += amount;
+        totalDamage.text = damageDone.ToString("00");
+    }
+
+    public void DisplayGunImage(Texture2D texture)
+    {
+        //References to Textures that are added in the GunSO on Unity
+        {
+            if (weaponIcon != null && texture != null)
+            {
+                texture = weaponIcon;
+            }
+        }
+    } //Need to add code for Weapon Pick-up
+
+
+    public void ReloadUI()
+    {
+
+        if (Input.GetButtonDown("Reload")
+        && menuActive == null)
+        {
+            //Have Reload UI appear
+            StateUnpaused(); //Game should still play....?
+            menuActive = reloadMessage;
+            menuActive.SetActive(true);
+        }
+
+        else if (Input.GetButtonDown("Reload") 
+        && menuActive != null)
+        {
+            menuActive.SetActive(false); 
+            //Reload UI should be gone, after Player clicks R
+        }
+    }
 
     public void CheckWinState()
     {
-       if (enemiesRemaining <= 0)
+        if (enemiesRemaining <= 0)
         {
             //You win!
             // StatePaused();
             // menuActive = menuWin;
             // menuActive.SetActive(true);
-           YouWin();
+            YouWin();
         }
     }
 
@@ -112,11 +137,38 @@ public class GameManager : MonoBehaviour
         menuActive.SetActive(true);
     }
 
-     public void YouLose()
+    public void YouLose()
     {
         StatePaused();
         menuActive = menuLose;
         menuActive.SetActive(true);
+    }
+
+    public void Instructions()
+    {
+        
+        StatePaused();
+        menuActive = instructionsPage;
+        menuActive.SetActive(true);
+    }
+
+    public void PauseMenu()
+    {
+        if (Input.GetButtonDown("Cancel")
+        && menuActive == null)
+        {
+            StatePaused();
+            menuActive = menuPause;
+            menuActive.SetActive(isPaused);
+        }
+
+        else if (Input.GetButtonDown("Cancel")
+        && menuActive != null)
+        {
+            StatePaused();
+            menuActive = menuPause;
+            menuActive.SetActive(!isPaused);
+        }
     }
 }
 

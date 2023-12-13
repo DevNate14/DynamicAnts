@@ -14,6 +14,7 @@ public class Controller : MonoBehaviour, IDamageable, IImpluse
     private int HPOrig;
     public int ammoSize;
     public int ammoCount;
+    public int damageDone;
     private GameObject anchor;
     [SerializeField] CharacterController controller;
     [SerializeField] float speed;
@@ -105,6 +106,11 @@ public class Controller : MonoBehaviour, IDamageable, IImpluse
         GameManager.instance.ammoSizeText.text = ammoSize.ToString("00");
         GameManager.instance.ammoCountText.text = ammoCount.ToString("00");
         
+    }
+
+    public void ShowTotalDamage()
+    {
+        GameManager.instance.DisplayDamageDone(damageDone);
     }
 
     //Made toggle for ease of use

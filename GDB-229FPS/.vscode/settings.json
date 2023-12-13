@@ -52,5 +52,8 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "GDB-229FPS.sln"
+    "dotnet.defaultSolution": "GDB-229FPS.sln",
+    "cSpell.words": [
+        "UGUI"
+    ]
 }
