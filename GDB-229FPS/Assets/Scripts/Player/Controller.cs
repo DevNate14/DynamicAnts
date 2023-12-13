@@ -15,6 +15,7 @@ public class Controller : MonoBehaviour, IDamageable, IImpluse
     public int ammoSize;
     public int ammoCount;
     public int damageDone;
+    public float currSpeed;
     private GameObject anchor;
     [SerializeField] CharacterController controller;
     [SerializeField] float speed;
@@ -41,7 +42,8 @@ public class Controller : MonoBehaviour, IDamageable, IImpluse
     // Update is called once per frame
     void Update()
     {
-        animator.SetFloat("Speed", speed/maxSpeed);
+        currSpeed = move.magnitude * speed;
+        animator.SetFloat("Speed", currSpeed/maxSpeed);
         grounded = controller.isGrounded;
         if (grounded && playerVelocity.y < 0)
         {
@@ -57,14 +59,8 @@ public class Controller : MonoBehaviour, IDamageable, IImpluse
         {
             ToggleCrouch();
         }
-        if (!grounded)
-        {
-        }
-        else
-        {
-        }
         move = Input.GetAxis("Horizontal") * transform.right + Input.GetAxis("Vertical") * transform.forward;
-        controller.Move(move * Time.deltaTime * speed);
+        controller.Move(move * Time.deltaTime * currSpeed);
         if (Input.GetButtonDown("Jump") && jumpCount < jumpMax)
         {
             //this is for whether we decide to allow the player to jump more than once. without this line, the player wont gain velocity when pressing again after a long fall
@@ -134,6 +130,7 @@ public class Controller : MonoBehaviour, IDamageable, IImpluse
     void LongJump() {
         if (isCrouched && Input.GetButtonDown("Jump") && jumpCount < jumpMax) {
             //Was going to respect longjump's original intention, decided to work on something else at the moment
+            ToggleCrouch();
             impulse = transform.forward * 10 + transform.up * 5;
             impulseResolve = 1;
             // we need a check to zero out impulse after landing from a jump since the lerp likes to drag the player along after landing, cant be a grounded check since it would never allow the player 
