@@ -11,12 +11,11 @@ public class Controller : MonoBehaviour, IDamageable, IImpluse
     private Vector3 move;
     private int jumpCount;
     private float impulseResolve;
-    private int HPOrig;
+    public int HPOrig;
     public int ammoSize;
     public int ammoCount;
     public int damageDone;
     public float currSpeed;
-    private GameObject anchor;
     [SerializeField] CharacterController controller;
     [SerializeField] float speed;
     [SerializeField] float jumpHeight;
@@ -36,7 +35,6 @@ public class Controller : MonoBehaviour, IDamageable, IImpluse
         HPOrig = HP;
         isCrouched = false;
         RespawnPlayer();
-        //anchor = 
     }
 
     // Update is called once per frame
@@ -51,9 +49,6 @@ public class Controller : MonoBehaviour, IDamageable, IImpluse
             jumpCount = 0;
         }
         Sprint();
-        if (HasLongJump) {
-            LongJump();
-        }
         // Can be crouch or changed to sneak, using grounded assuming we allow the player to jump multiple times in the future
         if (Input.GetButtonDown("Crouch") && jumpCount == 0)
         {
@@ -63,15 +58,16 @@ public class Controller : MonoBehaviour, IDamageable, IImpluse
         controller.Move(move * Time.deltaTime * currSpeed);
         if (Input.GetButtonDown("Jump") && jumpCount < jumpMax)
         {
-            //this is for whether we decide to allow the player to jump more than once. without this line, the player wont gain velocity when pressing again after a long fall
-            playerVelocity.y = 0;
-            playerVelocity.y = jumpHeight;
-            ++jumpCount;
+            if (HasLongJump && isCrouched)
+                LongJump();
+            Jump();
         }
         // Moved certain functions to allow a smooth animation
         playerVelocity.y += gravity * Time.deltaTime;
         controller.Move((playerVelocity + impulse) * Time.deltaTime);
         impulse = Vector3.Lerp(impulse, Vector3.zero, Time.deltaTime * impulseResolve);
+        if (impulseResolve > 0)
+            impulseResolve = 0;
     }
 
      public void RespawnPlayer()
@@ -127,15 +123,18 @@ public class Controller : MonoBehaviour, IDamageable, IImpluse
         else if (Input.GetButtonUp("Sprint"))
             speed /= sprintMod;
     }
+    void Jump()
+    {
+        playerVelocity.y = jumpHeight;
+        ++jumpCount;
+    }
     void LongJump() {
-        if (isCrouched && Input.GetButtonDown("Jump") && jumpCount < jumpMax) {
             //Was going to respect longjump's original intention, decided to work on something else at the moment
             ToggleCrouch();
             impulse = transform.forward * 10 + transform.up * 5;
             impulseResolve = 1;
             // we need a check to zero out impulse after landing from a jump since the lerp likes to drag the player along after landing, cant be a grounded check since it would never allow the player 
             // to long jump, need a new bool like "longJumped" thattracks the sequence of events will add if noone else gets to it later
-        }
     }
 
     public void Damage(int amount) {

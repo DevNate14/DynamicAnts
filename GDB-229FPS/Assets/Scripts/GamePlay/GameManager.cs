@@ -40,8 +40,8 @@ public class GameManager : MonoBehaviour
         instance = this;
         player = GameObject.FindWithTag("Player");
         playerScript = player.GetComponent<Controller>();
-        //Gravity = PlayerScript.GetGravity();
-        playerSpawnPOS = GameObject.FindWithTag("PlayerSpawnPOS");
+        gravity = playerScript.GetGravity();
+        playerSpawnPOS = GameObject.FindWithTag("Respawn");
         timeScaleOrig = Time.timeScale;
     }
 
