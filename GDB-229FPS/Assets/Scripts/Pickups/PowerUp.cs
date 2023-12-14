@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PowerUp : MonoBehaviour
 {
-    private GameObject light;
+    private new GameObject light;
     private float rotation = 1;
     private bool up = true;
     private GameObject player;

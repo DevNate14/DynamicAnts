@@ -6,6 +6,7 @@ public class Inventory : MonoBehaviour, IInventory, IUpgradable
 {
     [SerializeField] List<GunStatsSO> weapons = new List<GunStatsSO>();    
     [SerializeField] UpgradeItem[] items;
+    [SerializeField] AudioClip reloadClip;
     int selectedWeapon;
     private void Update() {
         if (!GameManager.instance.isPaused && weapons.Count > 0) {
@@ -82,7 +83,8 @@ public class Inventory : MonoBehaviour, IInventory, IUpgradable
         }
     }
     void ReloadGun() {
-        weapons[selectedWeapon].Reload();
+        if (weapons[selectedWeapon].Reload())
+            GameManager.instance.playerScript.aud.PlayOneShot(reloadClip,.5f);
         GameManager.instance.UpdateAmmoUI(weapons[selectedWeapon]);
     }
     void SelectGun()

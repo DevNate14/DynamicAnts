@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 [CreateAssetMenu]
 public class MeleeWeapon : GunStatsSO
-{   
-    public override void Reload() {}
+{
+    public override bool Reload() { return false; }
     public override IEnumerator Shoot()
     {
         isShooting = true;

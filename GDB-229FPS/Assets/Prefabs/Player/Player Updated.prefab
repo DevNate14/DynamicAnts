@@ -140,7 +140,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4707246722546543172}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.787, z: 0.213}
+  m_LocalPosition: {x: 0, y: 1.711, z: 0.242}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4707246722651801657}
@@ -185,7 +185,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: 0.1
   far clip plane: 1000
   field of view: 60
   orthographic: 0
@@ -223,6 +223,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4707246722651801657}
   - component: {fileID: 4707246722651801658}
+  - component: {fileID: 7887047769315781585}
   - component: {fileID: 4707246722651801659}
   - component: {fileID: 6726697377921402282}
   - component: {fileID: 6948763393607841268}
@@ -268,6 +269,102 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!82 &7887047769315781585
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4707246722651801652}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!114 &4707246722651801659
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -285,6 +382,7 @@ MonoBehaviour:
   ammoCount: 0
   damageDone: 0
   currSpeed: 0
+  aud: {fileID: 7887047769315781585}
   controller: {fileID: 4707246722651801658}
   speed: 5
   jumpHeight: 5
@@ -296,6 +394,7 @@ MonoBehaviour:
   muzzlePoint: {fileID: 1763951321401736401}
   maxSpeed: 10
   animator: {fileID: 4707246722651801656}
+  longJumpSound: {fileID: 0}
   isCrouched: 0
   HasLongJump: 1
 --- !u!136 &6726697377921402282
@@ -326,6 +425,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weapons: []
   items: []
+  reloadClip: {fileID: 8300000, guid: a7ffc34ab8783ee4882cb3e302dc9412, type: 3}
 --- !u!95 &4707246722651801656
 Animator:
   serializedVersion: 3

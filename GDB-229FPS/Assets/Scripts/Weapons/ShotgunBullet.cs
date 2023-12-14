@@ -7,11 +7,14 @@ public class ShotgunBullet : MonoBehaviour
     [SerializeField] Rigidbody rb;
     [SerializeField] SphereCollider explodeRadius;
     [SerializeField] int damageAmount, speed, timer, impulseAmount;
+    [SerializeField] AudioSource src;
+    [SerializeField] AudioClip explosion;
     // Start is called before the first frame update
     void Start()
     {
         rb.velocity = transform.forward * speed;
         ExplodeCheck();
+        src.PlayOneShot(explosion,.5f);
         Destroy(gameObject, 2);
     }
     IEnumerator ExplodeCheck() {
@@ -26,12 +29,11 @@ public class ShotgunBullet : MonoBehaviour
 
         IDamageable thing = other.GetComponent<IDamageable>();
         if(thing != null){
-            float mod = Vector3.Magnitude(Vector3.Normalize(other.transform.position - explodeRadius.center));
-            thing.Damage((int)mod * damageAmount + damageAmount);
+            thing.Damage(damageAmount);
         }
         IImpluse obj = other.GetComponent<IImpluse>();
         if (obj != null) {
-            Vector3 imp =(((-1)*(other.transform.forward * impulseAmount)) + (other.transform.up * (impulseAmount*2)));
+            Vector3 imp =(-1 * (other.transform.forward * impulseAmount) + (other.transform.up * (impulseAmount)));
             obj.AddImpluse(imp, .5f);
         }
 

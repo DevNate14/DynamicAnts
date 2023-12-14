@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class Controller : MonoBehaviour, IDamageable, IImpluse
 {
+    
     private Vector3 playerVelocity, impulse;
     private bool grounded;
     private Vector3 move;
@@ -16,6 +17,7 @@ public class Controller : MonoBehaviour, IDamageable, IImpluse
     public int ammoCount;
     public int damageDone;
     public float currSpeed;
+    [SerializeField] public AudioSource aud;
     [SerializeField] CharacterController controller;
     [SerializeField] float speed;
     [SerializeField] float jumpHeight;
@@ -25,10 +27,11 @@ public class Controller : MonoBehaviour, IDamageable, IImpluse
     [SerializeField] public GameObject gunModel, muzzlePoint;
     [SerializeField] float maxSpeed;
     [SerializeField] Animator animator;
+    [SerializeField] AudioClip longJumpSound;
     
-
     public bool isCrouched; //Bool is public for GameManager to check
     public bool HasLongJump; // will make a better item inventory asap
+
     // Start is called before the first frame update
     void Start()
     {
@@ -77,7 +80,8 @@ public class Controller : MonoBehaviour, IDamageable, IImpluse
     {
         HP = HPOrig;
         UpdatePlayerUI();
-
+        impulse = Vector3.zero;
+        impulseResolve = 0; // I think this fits but rework by player person may have altered the logic to make this line pointless or even dangerous
         controller.enabled = false;
         transform.position = GameManager.instance.playerSpawnPOS.transform.position;
         controller.enabled = true;
@@ -129,6 +133,7 @@ public class Controller : MonoBehaviour, IDamageable, IImpluse
             ToggleCrouch();
             impulse = transform.forward * 10 + transform.up * 5;
             impulseResolve = 1;
+            //aud.PlayOneShot(longJumpSound);
             // we need a check to zero out impulse after landing from a jump since the lerp likes to drag the player along after landing, cant be a grounded check since it would never allow the player 
             // to long jump, need a new bool like "longJumped" thattracks the sequence of events will add if noone else gets to it later
     }
@@ -170,7 +175,7 @@ public class Controller : MonoBehaviour, IDamageable, IImpluse
                 break;
             case 3:
                 Heal(HPOrig - HP);
-                UpdatePlayerUI();
+                //UpdatePlayerUI();
                 break;
         }
     }
