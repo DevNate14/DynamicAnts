@@ -223,7 +223,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4707246722651801657}
   - component: {fileID: 4707246722651801658}
-  - component: {fileID: 7787890587421584946}
   - component: {fileID: 4707246722651801659}
   - component: {fileID: 6948763393607841268}
   - component: {fileID: 4707246722651801656}
@@ -268,35 +267,6 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 1, z: 0}
---- !u!114 &7787890587421584946
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4707246722651801652}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50f2f79b62856484fb231ab5ebd04935, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ammoSize: 0
-  ammoCount: 0
-  damageDone: 0
-  currSpeed: 0
-  controller: {fileID: 4707246722651801658}
-  speed: 5
-  jumpHeight: 5
-  jumpMax: 1
-  HP: 10
-  gravity: -8.91
-  sprintMod: 2
-  gunModel: {fileID: 2307946551410496318}
-  muzzlePoint: {fileID: 1763951321401736401}
-  maxSpeed: 10
-  animator: {fileID: 4707246722651801656}
-  isCrouched: 0
-  HasLongJump: 1
 --- !u!114 &4707246722651801659
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -309,6 +279,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50f2f79b62856484fb231ab5ebd04935, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  HPOrig: 0
   ammoSize: 0
   ammoCount: 0
   damageDone: 0

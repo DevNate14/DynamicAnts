@@ -66,8 +66,11 @@ public class Controller : MonoBehaviour, IDamageable, IImpluse
         playerVelocity.y += gravity * Time.deltaTime;
         controller.Move((playerVelocity + impulse) * Time.deltaTime);
         impulse = Vector3.Lerp(impulse, Vector3.zero, Time.deltaTime * impulseResolve);
-        if (impulseResolve > 0)
+        if (grounded && impulseResolve > 0)
+        {
+            impulse = transform.forward / 10 + transform.up / 5;
             impulseResolve = 0;
+        }
     }
 
      public void RespawnPlayer()
