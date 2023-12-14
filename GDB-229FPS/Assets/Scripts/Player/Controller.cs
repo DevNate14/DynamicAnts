@@ -66,7 +66,7 @@ public class Controller : MonoBehaviour, IDamageable, IImpluse
         playerVelocity.y += gravity * Time.deltaTime;
         controller.Move((playerVelocity + impulse) * Time.deltaTime);
         impulse = Vector3.Lerp(impulse, Vector3.zero, Time.deltaTime * impulseResolve);
-        if (grounded && impulseResolve > 0)
+        if (impulseResolve > 0 && grounded)
         {
             impulse = transform.forward / 10 + transform.up / 5;
             impulseResolve = 0;
@@ -161,6 +161,26 @@ public class Controller : MonoBehaviour, IDamageable, IImpluse
     }
     public float GetGravity() {
         return gravity;
+    }
+    public void ApplyBuff(int type)
+    {
+        switch (type)
+        {
+            default:
+                HasLongJump = true;
+                break;
+            case 1:
+                ++jumpMax;
+                break;
+            case 2:
+                speed += 2;
+                maxSpeed += 4;
+                break;
+            case 3:
+                Heal(HPOrig - HP);
+                UpdatePlayerUI();
+                break;
+        }
     }
     IEnumerator Animate()
     {
