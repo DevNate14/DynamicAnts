@@ -19,15 +19,15 @@ public class GameManager : MonoBehaviour
     int damageDone;
     public bool isPaused;
     public Image playerHPBar;
-    public Texture2D weaponIcon;
+    [SerializeField] RawImage weaponIcon;
 
     [SerializeField] TMP_Text enemyCountText;
     [SerializeField] TMP_Text playerHPMissing;
     [SerializeField] TMP_Text playerHPTotal;
-    [SerializeField] public TextMeshProUGUI ammoSizeText;
-    [SerializeField] public TextMeshProUGUI ammoCountText;
+    [SerializeField] TextMeshProUGUI ammoSizeText;
+    [SerializeField] TextMeshProUGUI ammoCountText;
     [SerializeField] TMP_Text totalDamage;
-
+    [SerializeField] public Camera playerCam;
     [SerializeField] GameObject menuActive;
     [SerializeField] GameObject menuPause;
     [SerializeField] GameObject menuWin;
@@ -82,7 +82,7 @@ public class GameManager : MonoBehaviour
         playerHPTotal.text = playerHP.ToString("00");
     }
 
-    public void DisplayDamageDone(int amount)
+    public void DisplayDamageDone(int amount) // needs a rework of damage system to track which bullets are hitting and from player unless we decouple player and enemy bullets
     {
         damageDone += amount;
         totalDamage.text = damageDone.ToString("00");
@@ -92,32 +92,41 @@ public class GameManager : MonoBehaviour
     {
         //References to Textures that are added in the GunSO on Unity
         {
-            if (weaponIcon != null && texture != null)
+            if (texture != null)
             {
-                weaponIcon = texture;
+                weaponIcon.texture = texture;
             }
         }
     } //Need to add code for Weapon Pick-up
-
-
-    public void ReloadUI()
+    public void UpdateAmmoUI(GunStatsSO newWeapon)
     {
 
-        if (Input.GetButtonDown("Reload")
-        && menuActive == null)
-        {
-            //Have Reload UI appear
-            StateUnpaused(); //Game should still play....?
-            menuActive = reloadMessage;
-            menuActive.SetActive(true);
-        }
+        ammoSizeText.text = newWeapon.ammoCount.ToString("00");
+        ammoCountText.text = newWeapon.magAmmoCount.ToString("00");
 
-        else if (Input.GetButtonDown("Reload") 
-        && menuActive != null)
-        {
-            menuActive.SetActive(false); 
-            //Reload UI should be gone, after Player clicks R
-        }
+    }
+
+    public void ReloadUI() {
+        StartCoroutine(ReloadUIEvent());
+    }
+
+    IEnumerator ReloadUIEvent()
+    {
+        reloadMessage.SetActive(true);
+        yield return new WaitForSeconds(2);
+        reloadMessage.SetActive(false);
+        //if (Input.GetButtonDown("Reload")
+        //&& menuActive == null) {
+        //    //Have Reload UI appear
+        //    //StateUnpaused(); //Game should still play....?
+        //    menuActive = reloadMessage;
+        //    menuActive.SetActive(true);
+        //}
+        //else if (Input.GetButtonDown("Reload") 
+        //&& menuActive != null) {
+        //    menuActive.SetActive(false); 
+        //    //Reload UI should be gone, after Player clicks R
+        //}
     }
 
     public void CheckWinState()

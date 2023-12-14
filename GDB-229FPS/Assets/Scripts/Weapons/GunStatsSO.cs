@@ -24,11 +24,13 @@ public abstract class GunStatsSO : ScriptableObject
 
     public void Initialize(GameObject point) {
         muzzlePoint = point;
+        ammoCount = 0;
+        magAmmoCount = 0;
     }
 
     public virtual void Reload()
     {// virtual so if you need the ability to change this for your weapon you can
-        if (ammoCount == 0)
+        if (ammoCount == 0 && magAmmoCount == 0)
         {
             GameManager.instance.ReloadUI();
             return;
@@ -49,17 +51,18 @@ public abstract class GunStatsSO : ScriptableObject
     }
 
     // VV this may need to be filled out per weapon as it will could be different, idea is you make the IEnum per gun and then cast shoot per bullet needed
-    public virtual IEnumerator Shoot()
+    public virtual IEnumerator Shoot() // to temp fix the rotation issue is grabbing player rotation from the 
     {
         isShooting = true;
         //shoot
-        Instantiate(bullet,muzzlePoint.transform.position, muzzlePoint.transform.rotation);
-        //Instantiate(muzzleEffect, muzzlePoint.transform.position, muzzlePoint.transform.rotation);
+        Instantiate(bullet,muzzlePoint.transform.position, GameManager.instance.playerCam.transform.rotation);
+        //Instantiate(muzzleEffect, muzzlePoint.transform.position, muzzlePoint.transform.rotation); // for vfx when we get to making them
         yield return new WaitForSeconds(fireRate);
         isShooting = false;
         if (ammoCount != -1)
         { // checking for infinite ammo weapons
             magAmmoCount--;
+            GameManager.instance.UpdateAmmoUI(this);
         }
     }
     public void AddAmmo()

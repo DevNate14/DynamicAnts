@@ -73,7 +73,7 @@ public class Controller : MonoBehaviour, IDamageable, IImpluse
         }
     }
 
-     public void RespawnPlayer()
+    public void RespawnPlayer()
     {
         HP = HPOrig;
         UpdatePlayerUI();
@@ -83,27 +83,19 @@ public class Controller : MonoBehaviour, IDamageable, IImpluse
         controller.enabled = true;
     }
 
-     IEnumerator PlayerFlashDamage()
+    IEnumerator PlayerFlashDamage()
     {
         GameManager.instance.playerDamageScreen.SetActive(true);
         yield return new WaitForSeconds(0.1f);
         GameManager.instance.playerDamageScreen.SetActive(false);
     }
 
-      public void UpdatePlayerUI()
+    public void UpdatePlayerUI()
     {
          GameManager.instance.playerHPBar.fillAmount = (float)HP / HPOrig;
     }
 
-    public void UpdateAmmoUI(GunStatsSO newWeapon)
-    {
-        
-        GameManager.instance.ammoSizeText.text = ammoSize.ToString("00");
-        GameManager.instance.ammoCountText.text = ammoCount.ToString("00");
-        
-    }
-
-    public void ShowTotalDamage()
+    public void ShowTotalDamage() // same as other needed damage rework
     {
         GameManager.instance.DisplayDamageDone(damageDone);
     }

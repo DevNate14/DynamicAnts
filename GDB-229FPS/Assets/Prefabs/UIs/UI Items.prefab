@@ -6541,7 +6541,7 @@ MonoBehaviour:
   gravity: 0
   isPaused: 0
   playerHPBar: {fileID: 3135585254284491217}
-  weaponIcon: {fileID: 0}
+  weaponIcon: {fileID: 7617746319375508514}
   enemyCountText: {fileID: 7955664526598704887}
   playerHPMissing: {fileID: 7955664526645017519}
   playerHPTotal: {fileID: 7955664524801804764}

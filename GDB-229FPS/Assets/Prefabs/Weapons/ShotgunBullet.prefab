@@ -194,7 +194,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 5293575694773355666}
   explodeRadius: {fileID: 5293575694773355669}
-  damageAmount: 5
+  damageAmount: 2
   speed: 15
   timer: 1
   impulseAmount: 15

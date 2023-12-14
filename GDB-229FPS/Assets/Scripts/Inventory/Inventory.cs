@@ -31,12 +31,14 @@ public class Inventory : MonoBehaviour, IInventory, IUpgradable
                     if (wepName == weapons[i].name)
                     {
                         weapons[i].AddAmmo();
+                        GameManager.instance.UpdateAmmoUI(weapons[selectedWeapon]);
                         return;
                     }
                 }
-                selectedWeapon = weapons.Count-1;
                 stats.isShooting = false;
+                stats.ammoCount = 0;
                 weapons.Add(stats);
+                selectedWeapon = weapons.Count - 1;
                 weapons[selectedWeapon].Initialize(GameManager.instance.playerScript.muzzlePoint); //this may need to change per weapon but will see
                 weapons[selectedWeapon].AddAmmo();
                 ChangeGun();
@@ -51,9 +53,9 @@ public class Inventory : MonoBehaviour, IInventory, IUpgradable
                         return;
                     }
                 }
-                selectedWeapon = weapons.Count-1;
                 stats.isShooting = false;
                 weapons.Add(stats);
+                selectedWeapon = weapons.Count - 1;
                 weapons[selectedWeapon].Initialize(GameManager.instance.playerScript.muzzlePoint);
                 ChangeGun();
                 return;
@@ -63,9 +65,13 @@ public class Inventory : MonoBehaviour, IInventory, IUpgradable
         {
             stats.isShooting = false;
             weapons.Add(stats);
+            selectedWeapon = weapons.Count - 1;
             weapons[selectedWeapon].Initialize(GameManager.instance.playerScript.muzzlePoint);
-            if(weapons[selectedWeapon].ammoCount != -1)
+            if (weapons[selectedWeapon].ammoCount != -1) {
+                weapons[selectedWeapon].ammoCount = 0;
                 weapons[selectedWeapon].AddAmmo();
+                GameManager.instance.UpdateAmmoUI(weapons[selectedWeapon]);
+            }
             ChangeGun();
             return;
         }
@@ -77,6 +83,7 @@ public class Inventory : MonoBehaviour, IInventory, IUpgradable
     }
     void ReloadGun() {
         weapons[selectedWeapon].Reload();
+        GameManager.instance.UpdateAmmoUI(weapons[selectedWeapon]);
     }
     void SelectGun()
     {
@@ -94,6 +101,8 @@ public class Inventory : MonoBehaviour, IInventory, IUpgradable
     void ChangeGun() {
         GameManager.instance.playerScript.gunModel.GetComponent<MeshFilter>().sharedMesh = weapons[selectedWeapon].model.GetComponent<MeshFilter>().sharedMesh;
         GameManager.instance.playerScript.gunModel.GetComponent<MeshRenderer>().sharedMaterial = weapons[selectedWeapon].model.GetComponent<MeshRenderer>().sharedMaterial;
+        GameManager.instance.DisplayGunImage(weapons[selectedWeapon].image);
+        GameManager.instance.UpdateAmmoUI(weapons[selectedWeapon]);
     }
 
     public bool Upgrade(string name)
