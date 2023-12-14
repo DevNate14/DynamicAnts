@@ -93,6 +93,7 @@ public class Controller : MonoBehaviour, IDamageable, IImpluse
     public void UpdatePlayerUI()
     {
          GameManager.instance.playerHPBar.fillAmount = (float)HP / HPOrig;
+        GameManager.instance.UpdateHPBar(HP,HPOrig);
     }
 
     public void ShowTotalDamage() // same as other needed damage rework
@@ -133,18 +134,17 @@ public class Controller : MonoBehaviour, IDamageable, IImpluse
     }
 
     public void Damage(int amount) {
-        HP -= amount;
-        
+        HP -= amount;        
         if (HP <= 0) { 
             GameManager.instance.YouLose();
         }
-
         UpdatePlayerUI();
         StartCoroutine(PlayerFlashDamage());
     }
 
     public void Heal(int amount) {
         HP += amount;
+        UpdatePlayerUI();
     }
 
     public void AddImpluse(Vector3 _impulse, float resolveTime) {

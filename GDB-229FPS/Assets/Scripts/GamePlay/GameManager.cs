@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
     float timeScaleOrig;
     public float gravity;
     int enemiesRemaining;
-    int playerHP;
+    //int playerHP;
     int damageDone;
     public bool isPaused;
     public Image playerHPBar;
@@ -78,9 +78,11 @@ public class GameManager : MonoBehaviour
 
         //This should be able to call Player HP 
         // Should be HP # Missing/ HP # Total 
-        playerHP += amount;
-        playerHPMissing.text = playerHP.ToString("00");
-        playerHPTotal.text = playerHP.ToString("00");
+        //playerHP += amount;
+    }
+    public void UpdateHPBar(int hpMissing, int hpTotal) {
+        playerHPMissing.text = hpMissing.ToString("00");
+        playerHPTotal.text = hpTotal.ToString("00");
     }
 
     public void DisplayDamageDone(int amount) // needs a rework of damage system to track which bullets are hitting and from player unless we decouple player and enemy bullets
