@@ -21,10 +21,11 @@ public class MeleeEnemy : MonoBehaviour, IDamageable
     [SerializeField] float MeleeRange;
     bool InMeleeRange;
     bool insidesphere;
+    public EnemySpawners mySpawner;
     // Start is called before the first frame update
     void Start()
     {
-        
+        GameManager.instance.UpdateGameGoal(1);
     }
 
     // Update is called once per frame
@@ -37,7 +38,7 @@ public class MeleeEnemy : MonoBehaviour, IDamageable
             agent.SetDestination(GameManager.instance.player.transform.position); //check
             if (agent.remainingDistance < MeleeRange)
             {
-                if (!InMeleeRange)
+               if (!InMeleeRange)
                 {
                     StartCoroutine(MeleeDamage(DamageCoolDown));
                 }
@@ -56,6 +57,9 @@ public class MeleeEnemy : MonoBehaviour, IDamageable
         StartCoroutine(DamageFeedback());
         if (HP <= 0)
         {
+            if (mySpawner != null)
+                mySpawner.DeadUpdate();
+            GameManager.instance.UpdateGameGoal(-1);
             animate.SetBool("Dead", true);
             StartCoroutine(DeadAnim());
         }
@@ -70,11 +74,13 @@ public class MeleeEnemy : MonoBehaviour, IDamageable
     }
     public void OnTriggerEnter(Collider other)
     {
-        insidesphere = true;
+        if(other.CompareTag("Player"))
+            insidesphere = true;
     }
     public void OnTriggerExit(Collider other)
     {
-        insidesphere = false;
+        if (other.CompareTag("Player"))
+            insidesphere = false;
     }
     IEnumerator DamageFeedback() //Check
     {

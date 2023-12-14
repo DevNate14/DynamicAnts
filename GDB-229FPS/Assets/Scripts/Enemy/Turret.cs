@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Turret : MonoBehaviour
+public class Turret : MonoBehaviour, IDamageable
 {
     
     [Range(1, 10)][SerializeField] int HP; //check
@@ -20,10 +20,11 @@ public class Turret : MonoBehaviour
     bool playerInRange; // check
     bool shooting; //check
     float angleToPlayer; // check
+    public EnemySpawners mySpawner;
     // Start is called before the first frame update
     void Start()
     {
-        
+        GameManager.instance.UpdateGameGoal(1);
     }
 
     // Update is called once per frame4
@@ -40,7 +41,7 @@ public class Turret : MonoBehaviour
         playerDirection = GameManager.instance.player.transform.position - headPosition.position;
         angleToPlayer = Vector3.Angle(playerDirection, transform.forward);
         Debug.DrawRay(headPosition.position, playerDirection);
-        Debug.Log(angleToPlayer);
+        //Debug.Log(angleToPlayer);
         RaycastHit hit;
 
         if(Physics.Raycast(headPosition.position, playerDirection, out hit))
@@ -72,6 +73,9 @@ public class Turret : MonoBehaviour
         StartCoroutine(DamageFeedback());
         if (HP <= 0)
         {
+            if(mySpawner != null)
+                mySpawner.DeadUpdate();
+            GameManager.instance.UpdateGameGoal(-1);
             Destroy(gameObject);
         }
     }
