@@ -20,10 +20,11 @@ public class MeleeEnemy : MonoBehaviour, IDamageable
     [SerializeField] float DamageCoolDown;
     [SerializeField] float MeleeRange;
     bool InMeleeRange;
+    bool insidesphere;
     // Start is called before the first frame update
     void Start()
     {
-
+        
     }
 
     // Update is called once per frame
@@ -31,14 +32,21 @@ public class MeleeEnemy : MonoBehaviour, IDamageable
     {
         float animationspeed = agent.velocity.normalized.magnitude;
         animate.SetFloat("Speed", Mathf.Lerp(animate.GetFloat("Speed"), animationspeed, Time.deltaTime * animationspeedtransition));
-        agent.SetDestination(GameManager.instance.player.transform.position); //check
-        if (agent.remainingDistance < MeleeRange)
+        if (insidesphere)
         {
-            if (!InMeleeRange)
+            agent.SetDestination(GameManager.instance.player.transform.position); //check
+            if (agent.remainingDistance < MeleeRange)
             {
-                StartCoroutine(MeleeDamage(DamageCoolDown));
+                if (!InMeleeRange)
+                {
+                    StartCoroutine(MeleeDamage(DamageCoolDown));
+                }
+                //Damage Player and add cooldown to the damage
             }
-            //Damage Player and add cooldown to the damage
+        }
+        else
+        {
+            agent.SetDestination(transform.position);
         }
     }
 
@@ -48,7 +56,8 @@ public class MeleeEnemy : MonoBehaviour, IDamageable
         StartCoroutine(DamageFeedback());
         if (HP <= 0)
         {
-            Destroy(gameObject);
+            animate.SetBool("Dead", true);
+            StartCoroutine(DeadAnim());
         }
     }
     public void Heal(int amount) //check
@@ -59,12 +68,25 @@ public class MeleeEnemy : MonoBehaviour, IDamageable
             HP = 10;
         }
     }
+    public void OnTriggerEnter(Collider other)
+    {
+        insidesphere = true;
+    }
+    public void OnTriggerExit(Collider other)
+    {
+        insidesphere = false;
+    }
     IEnumerator DamageFeedback() //Check
     {
         Color Temp = model.material.color;
         model.material.color = Color.red;
         yield return new WaitForSeconds(0.2f);
         model.material.color = Temp;
+    }
+    IEnumerator DeadAnim()
+    {
+        yield return new WaitForSeconds(1.9f);
+        Destroy(gameObject);
     }
     IEnumerator MeleeDamage(float time)
     {

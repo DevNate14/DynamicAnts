@@ -1275,6 +1275,7 @@ GameObject:
   - component: {fileID: 2692749618907463930}
   - component: {fileID: 5406900716806060888}
   - component: {fileID: 4649098533013911809}
+  - component: {fileID: -5773279843693888980}
   m_Layer: 0
   m_Name: MeleeEnemy
   m_TagString: Untagged
@@ -1309,7 +1310,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 346b65e2c477a8446912eaeb5a95473b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HP: 0
+  HP: 2
   model: {fileID: 2692749618907463930}
   agent: {fileID: 4649098533013911809}
   animate: {fileID: 929986962251255274}
@@ -1542,6 +1543,19 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!135 &-5773279843693888980
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3134537670170786645}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 8.61
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3185433427055273838
 GameObject:
   m_ObjectHideFlags: 0
