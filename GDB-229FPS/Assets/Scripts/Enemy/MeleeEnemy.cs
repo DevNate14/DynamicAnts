@@ -20,7 +20,7 @@ public class MeleeEnemy : MonoBehaviour, IDamageable
     [SerializeField] float DamageCoolDown;
     [SerializeField] float MeleeRange;
     bool InMeleeRange;
-    bool insidesphere;
+    bool insidesphere,hasTriggered;
     public EnemySpawners mySpawner;
     // Start is called before the first frame update
     void Start()
@@ -55,8 +55,9 @@ public class MeleeEnemy : MonoBehaviour, IDamageable
     {
         HP -= amount;
         StartCoroutine(DamageFeedback());
-        if (HP <= 0)
+        if (HP <= 0 && !hasTriggered)
         {
+            hasTriggered = true;
             if (mySpawner != null)
                 mySpawner.DeadUpdate();
             GameManager.instance.UpdateGameGoal(-1);

@@ -32,12 +32,15 @@ public class ButtonFunctions : MonoBehaviour
     public void Play(int sceneNumber)
     {
         SceneManager.LoadScene(sceneNumber);
-        GameManager.instance.StatePaused();
     }
 
     public void MainMenu(int sceneNumber)
     {
+        if (GameManager.instance.isPaused) {
+            GameManager.instance.StateUnpaused();
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.Confined;
+        }
         SceneManager.LoadScene(sceneNumber);
-        GameManager.instance.StatePaused();
     }
 }

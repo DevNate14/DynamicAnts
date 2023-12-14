@@ -6,7 +6,7 @@ public class PowerUp : MonoBehaviour
 {
     private new GameObject light;
     private float rotation = 1;
-    private bool up = true;
+    private bool up;
     private GameObject player;
     [Range(0, 3)] [SerializeField] int type;
     // Start is called before the first frame update
@@ -34,8 +34,8 @@ public class PowerUp : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Time.deltaTime > 0)
-            Movement();
+        //if (Time.deltaTime > 0) 
+            //Movement();
     }
     void OnTriggerEnter(Collider other)
     {
@@ -47,13 +47,13 @@ public class PowerUp : MonoBehaviour
     }
     void Movement()
     {
-        if (up)
+        if (!up)
             transform.localPosition += new Vector3(0, 0.0015f, 0);
-        else if (!up)
+        else if (up)
             transform.localPosition -= new Vector3(0, 0.0015f, 0);
         else
             transform.localPosition += new Vector3(0, 0.0015f, 0);
-        if ((up && transform.localPosition.y >= 0.25f) || (!up && transform.localPosition.y <= -0.15))
+        if ((up && transform.localPosition.y >= 0.25f) || (!up && transform.localPosition.y <= -0.15f))
             up = !up;
         transform.Rotate(0, rotation, 0);
     }

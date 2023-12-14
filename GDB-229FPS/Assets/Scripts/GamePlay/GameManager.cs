@@ -19,8 +19,8 @@ public class GameManager : MonoBehaviour
     int damageDone;
     public bool isPaused;
     public Image playerHPBar;
+    [SerializeField] bool isTitleScreen;
     [SerializeField] RawImage weaponIcon;
-
     [SerializeField] TMP_Text enemyCountText;
     [SerializeField] TMP_Text playerHPMissing;
     [SerializeField] TMP_Text playerHPTotal;
@@ -40,18 +40,20 @@ public class GameManager : MonoBehaviour
     void Awake()
     {
         instance = this;
-        playerSpawnPOS = GameObject.FindWithTag("Respawn");
-        player = GameObject.FindWithTag("Player");
-        playerScript = player.GetComponent<Controller>();
-        playerCam = FindObjectOfType<Camera>();
-        gravity = playerScript.GetGravity();
-        timeScaleOrig = Time.timeScale;
-        enemiesRemaining = 8;
+        if(!isTitleScreen){ 
+            playerSpawnPOS = GameObject.FindWithTag("Respawn");
+            player = GameObject.FindWithTag("Player");
+            playerScript = player.GetComponent<Controller>();
+            playerCam = FindObjectOfType<Camera>();
+            gravity = playerScript.GetGravity();
+            timeScaleOrig = Time.timeScale;
+        }
     }
 
     void Update()
     {
-        PauseMenu();
+        if (!isTitleScreen)
+            PauseMenu();
     }
 
     public void StatePaused()
@@ -74,7 +76,7 @@ public class GameManager : MonoBehaviour
 
     public void UpdateGameGoal(int amount)
     {
-        enemiesRemaining -= amount;
+        enemiesRemaining += amount;
         enemyCountText.text = enemiesRemaining.ToString("00");
 
         //This should be able to call Player HP 
@@ -164,7 +166,7 @@ public class GameManager : MonoBehaviour
     
     public void Instructions()
     {
-        StatePaused();
+        //StatePaused();
         menuActive = instructionsPage;
         menuActive.SetActive(true);
     }
