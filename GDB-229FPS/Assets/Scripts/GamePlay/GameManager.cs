@@ -94,7 +94,7 @@ public class GameManager : MonoBehaviour
         {
             if (weaponIcon != null && texture != null)
             {
-                texture = weaponIcon;
+                weaponIcon = texture;
             }
         }
     } //Need to add code for Weapon Pick-up
