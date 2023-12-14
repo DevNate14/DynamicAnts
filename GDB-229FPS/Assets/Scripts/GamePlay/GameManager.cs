@@ -27,7 +27,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI ammoSizeText;
     [SerializeField] TextMeshProUGUI ammoCountText;
     [SerializeField] TMP_Text totalDamage;
-    [SerializeField] public Camera playerCam;
     [SerializeField] GameObject menuActive;
     [SerializeField] GameObject menuPause;
     [SerializeField] GameObject menuWin;
@@ -35,6 +34,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject reloadMessage;
     [SerializeField] GameObject instructionsPage;
     public GameObject playerDamageScreen;
+    public Camera playerCam;
 
 
     void Awake()
@@ -43,6 +43,7 @@ public class GameManager : MonoBehaviour
         playerSpawnPOS = GameObject.FindWithTag("Respawn");
         player = GameObject.FindWithTag("Player");
         playerScript = player.GetComponent<Controller>();
+        playerCam = FindObjectOfType<Camera>();
         gravity = playerScript.GetGravity();
         timeScaleOrig = Time.timeScale;
     }
