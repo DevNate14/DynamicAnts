@@ -46,6 +46,7 @@ public class GameManager : MonoBehaviour
         playerCam = FindObjectOfType<Camera>();
         gravity = playerScript.GetGravity();
         timeScaleOrig = Time.timeScale;
+        enemiesRemaining = 8;
     }
 
     void Update()
@@ -73,7 +74,7 @@ public class GameManager : MonoBehaviour
 
     public void UpdateGameGoal(int amount)
     {
-        enemiesRemaining += amount;
+        enemiesRemaining -= amount;
         enemyCountText.text = enemiesRemaining.ToString("00");
 
         //This should be able to call Player HP 
@@ -134,14 +135,15 @@ public class GameManager : MonoBehaviour
 
     public void CheckWinState()
     {
+        YouWin();/*
         if (enemiesRemaining <= 0)
         {
             //You win!
             // StatePaused();
             // menuActive = menuWin;
             // menuActive.SetActive(true);
-            YouWin();
-        }
+            
+        }*/
     }
 
     public void YouWin()

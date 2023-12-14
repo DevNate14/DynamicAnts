@@ -179,18 +179,5 @@ public class Controller : MonoBehaviour, IDamageable, IImpluse
                 break;
         }
     }
-    IEnumerator Animate()
-    {
-        if (animator.GetBool("Jump"))
-        {
-            animator.Play("Player_Jump");
-            yield return new WaitForSeconds(1);
-            animator.SetBool("Jump", false);
-            animator.SetBool("InAir", true);
-        }
-        if (playerVelocity.y > 0)
-            animator.Play("Player_MidAir");
-        else if (playerVelocity.y < 0)
-            animator.Play("Player_Fall");
-    }
+
 }
