@@ -142,7 +142,7 @@ public class GameManager : MonoBehaviour
     
     public void YouLose()
     {
-        new WaitForSeconds(3);
+        //new WaitForSeconds(3);
         StatePaused();
         menuActive = menuLose;
         menuActive.SetActive(true);
@@ -150,7 +150,6 @@ public class GameManager : MonoBehaviour
     
     public void Instructions()
     {
-        
         StatePaused();
         menuActive = instructionsPage;
         menuActive.SetActive(true);
@@ -166,13 +165,13 @@ public class GameManager : MonoBehaviour
             menuActive.SetActive(isPaused);
         }
 
-        else if (Input.GetButtonDown("Cancel")
-        && menuActive != null)
-        {
-            StateUnpaused();
-            menuActive = menuPause;
-            menuActive.SetActive(!isPaused);
-        }
+        // else if (Input.GetButtonDown("Cancel")
+        // && menuActive != null)
+        // {
+        //     StatePaused();
+        //     menuActive = menuPause;
+        //     menuActive.SetActive(!isPaused);
+        // }
     }
 }
 
