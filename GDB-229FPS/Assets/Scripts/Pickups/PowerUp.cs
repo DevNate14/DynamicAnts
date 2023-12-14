@@ -48,42 +48,13 @@ public class PowerUp : MonoBehaviour
     void Movement()
     {
         if (up)
-            transform.position += new Vector3(0, 0.0015f, 0);
+            transform.localPosition += new Vector3(0, 0.0015f, 0);
         else if (!up)
-            transform.position -= new Vector3(0, 0.0015f, 0);
+            transform.localPosition -= new Vector3(0, 0.0015f, 0);
         else
-            transform.position += new Vector3(0, 0.0015f, 0);
-        if ((up && transform.position.y >= 0.25f) || (!up && transform.position.y <= 0))
+            transform.localPosition += new Vector3(0, 0.0015f, 0);
+        if ((up && transform.localPosition.y >= 0.25f) || (!up && transform.localPosition.y <= -0.15))
             up = !up;
         transform.Rotate(0, rotation, 0);
     }
-    bool InRange(Vector3 pos)
-    {
-        return (transform.position.x - 1 >= pos.x || transform.position.x + 1 <= pos.x && transform.position.z - 1 >= pos.z || transform.position.z + 1 <= pos.z) ;
-    }
 }
-/*        Animate();
-        if (InRange(player.transform.position))
-        {
-            player.GetComponent<Controller>().ApplyBuff(type);
-            Destroy(gameObject);
-        }
-    }
-    IEnumerator Animate()
-{
-    if (rotation == 360)
-        rotation = 0;
-    ++rotation;
-    transform.Rotate(0, rotation, 0);
-    if (elapsedTime != watchTime)
-        ++elapsedTime;
-    else
-    {
-        elapsedTime = 0;
-        moveDiff *= -1;
-    }
-    movement += moveDiff;
-    transform.position += new Vector3(0, movement, 0);
-    yield return new WaitForSeconds(1);
-}
-*/
