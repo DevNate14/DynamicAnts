@@ -5,20 +5,15 @@ using UnityEngine;
 public class PowerUp : MonoBehaviour
 {
     private GameObject light;
-    private float elapsedTime;
-    private float watchTime = 8;
     private float rotation = 1;
-    private float movement = 0.01f;
-    private float moveDiff = 0.02f;
     private bool up = true;
-    bool triggerSet;
     private GameObject player;
     [Range(0, 3)] [SerializeField] int type;
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindWithTag("Player");
-        light = GameObject.Find("PowerUpLight");
+        light = transform.GetChild(0).gameObject;
         switch (type)
         {
             case 1:
