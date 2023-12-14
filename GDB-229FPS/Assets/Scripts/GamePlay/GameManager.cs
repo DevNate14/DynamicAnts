@@ -2,6 +2,8 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using Unity.VisualScripting;
+using System.Collections;
+using MiscUtil.Extensions.TimeRelated;
 
 public class GameManager : MonoBehaviour
 {
@@ -38,10 +40,10 @@ public class GameManager : MonoBehaviour
     void Awake()
     {
         instance = this;
+        playerSpawnPOS = GameObject.FindWithTag("Respawn");
         player = GameObject.FindWithTag("Player");
         playerScript = player.GetComponent<Controller>();
         gravity = playerScript.GetGravity();
-        playerSpawnPOS = GameObject.FindWithTag("Respawn");
         timeScaleOrig = Time.timeScale;
     }
 
@@ -137,13 +139,15 @@ public class GameManager : MonoBehaviour
         menuActive.SetActive(true);
     }
 
+    
     public void YouLose()
     {
+        new WaitForSeconds(3);
         StatePaused();
         menuActive = menuLose;
         menuActive.SetActive(true);
     }
-
+    
     public void Instructions()
     {
         
@@ -165,7 +169,7 @@ public class GameManager : MonoBehaviour
         else if (Input.GetButtonDown("Cancel")
         && menuActive != null)
         {
-            StatePaused();
+            StateUnpaused();
             menuActive = menuPause;
             menuActive.SetActive(!isPaused);
         }
