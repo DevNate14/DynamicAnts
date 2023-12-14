@@ -135,15 +135,15 @@ public class GameManager : MonoBehaviour
 
     public void CheckWinState()
     {
-        YouWin();/*
+        
         if (enemiesRemaining <= 0)
         {
             //You win!
             // StatePaused();
             // menuActive = menuWin;
             // menuActive.SetActive(true);
-            
-        }*/
+            YouWin();
+        }
     }
 
     public void YouWin()
