@@ -1318,6 +1318,7 @@ MonoBehaviour:
   animationspeedtransition: 3
   DamageCoolDown: 2
   MeleeRange: 2.8
+  mySpawner: {fileID: 0}
 --- !u!95 &929986962251255274
 Animator:
   serializedVersion: 3
@@ -1380,7 +1381,7 @@ SkinnedMeshRenderer:
   m_SortingOrder: 0
   serializedVersion: 2
   m_Quality: 0
-  m_UpdateWhenOffscreen: 0
+  m_UpdateWhenOffscreen: 1
   m_SkinnedMotionVectors: 1
   m_Mesh: {fileID: -3899038720732145164, guid: dde6397db3786f347ad979b0089e784c, type: 3}
   m_Bones:
@@ -1504,8 +1505,8 @@ SkinnedMeshRenderer:
   m_BlendShapeWeights: []
   m_RootBone: {fileID: 4436805663696350335, guid: dde6397db3786f347ad979b0089e784c, type: 3}
   m_AABB:
-    m_Center: {x: 0.022280574, y: 0.86253947, z: 0.005333662}
-    m_Extent: {x: 1.2369425, y: 1.0623441, z: 1.4431981}
+    m_Center: {x: -0.09601593, y: 1.6948837, z: -0.09374356}
+    m_Extent: {x: 3.846654, y: 1.8946878, z: 6.3646154}
   m_DirtyAABB: 0
 --- !u!136 &5406900716806060888
 CapsuleCollider:
