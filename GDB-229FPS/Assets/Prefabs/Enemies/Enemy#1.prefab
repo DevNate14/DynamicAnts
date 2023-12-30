@@ -97,6 +97,9 @@ MonoBehaviour:
   bullet: {fileID: 5293575694773355670, guid: 4a558839255bb47429f5620b311ae65b, type: 3}
   headPosition: {fileID: 213985373}
   viewCone: 90
+  roamdist: 12
+  roampause: 2
+  mySpawner: {fileID: 0}
 --- !u!195 &4057910171191364719
 NavMeshAgent:
   m_ObjectHideFlags: 0

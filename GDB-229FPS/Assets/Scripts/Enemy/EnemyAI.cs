@@ -15,24 +15,39 @@ public class EnemyAI : MonoBehaviour, IDamageable //check
     [SerializeField] GameObject bullet; // check
     [SerializeField] Transform headPosition; // check
     [SerializeField] int viewCone;//check
+    [SerializeField] int roamdist;
+    [SerializeField] int roampause;
     Vector3 playerDirection; //check
+    Vector3 startPosition;
     bool playerInRange; // check
     bool shooting; //check
+    bool playerdestination;
+    float stopdist;
     float angleToPlayer; // check
     public EnemySpawners mySpawner;
     // Start is called before the first frame update
     void Start()
     {
         GameManager.instance.UpdateGameGoal(1);
+        startPosition = transform.position;
+        stopdist = agent.stoppingDistance;
     }
 
     // Update is called once per frame4
     void Update()
     {
-        if(playerInRange && canSeePlayer()) //check
+        if (agent.isActiveAndEnabled)
         {
+            if (playerInRange && !canSeePlayer()) //check
+            {
+                StartCoroutine(Roam());
+            }
+            else if (!playerInRange)
+            {
+                StartCoroutine(Roam());
+            }
+        }
 
-        }   
     }
 
     bool canSeePlayer() //check
@@ -43,30 +58,47 @@ public class EnemyAI : MonoBehaviour, IDamageable //check
         Debug.Log(angleToPlayer);
         RaycastHit hit;
 
-        if(Physics.Raycast(headPosition.position, playerDirection, out hit))
+        if (Physics.Raycast(headPosition.position, playerDirection, out hit))
         {
-            if(hit.collider.CompareTag("Player") && angleToPlayer <= viewCone)
+            if (hit.collider.CompareTag("Player") && angleToPlayer <= viewCone)
             {
-                
+
                 agent.SetDestination(GameManager.instance.player.transform.position); //check
 
-                if(!shooting)
+                if (!shooting)
                 {
                     StartCoroutine(shoot());
                 }
-                if(agent.remainingDistance < agent.stoppingDistance)
+                if (agent.remainingDistance < agent.stoppingDistance)
                 {
                     faceplayer();
                 }
+                agent.stoppingDistance = stopdist;
                 return true;
             }
         }
+        agent.stoppingDistance = 0;
         return false;
+    }
+    IEnumerator Roam()
+    {
+        if (agent.remainingDistance < 0.05f && !playerdestination)
+        {
+            playerdestination = true;
+            agent.stoppingDistance = 0;
+            yield return new WaitForSeconds(roampause);
+            Vector3 posinrange = Random.insideUnitSphere * roamdist;
+            posinrange += startPosition;
+            NavMeshHit hit;
+            NavMesh.SamplePosition(posinrange, out hit, roamdist, 1);
+            agent.SetDestination(hit.position);
+            playerdestination = false;
+        }
     }
     void faceplayer()
     {
-        Quaternion spin = Quaternion.LookRotation(playerDirection);
-        transform.rotation = Quaternion.Lerp(transform.rotation , spin, Time.deltaTime * spintarget);
+        Quaternion spin = Quaternion.LookRotation(new Vector3(playerDirection.x, transform.position.y, playerDirection.z));
+        transform.rotation = Quaternion.Lerp(transform.rotation, spin, Time.deltaTime * spintarget);
     }
 
     public void Damage(int amount) //check
@@ -101,18 +133,19 @@ public class EnemyAI : MonoBehaviour, IDamageable //check
         if (other.CompareTag("Player"))
         {
             playerInRange = false;
+            agent.stoppingDistance = 0;
         }
     }
-    
+
     IEnumerator shoot()
     {
-       shooting = true;
-       Instantiate(bullet, ShootPos.position, transform.rotation);
-       yield return new WaitForSeconds(shootrate);
+        shooting = true;
+        Instantiate(bullet, ShootPos.position, transform.rotation);
+        yield return new WaitForSeconds(shootrate);
 
-       shooting = false;
+        shooting = false;
     }
-    
+
     IEnumerator DamageFeedback() //Check
     {
         Color Temp = model.material.color;
