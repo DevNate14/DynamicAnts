@@ -17,6 +17,8 @@ public class EnemyAI : MonoBehaviour, IDamageable //check
     [SerializeField] int viewCone;//check
     [SerializeField] int roamdist;
     [SerializeField] int roampause;
+    [SerializeField] Animator anim;
+
     Vector3 playerDirection; //check
     Vector3 startPosition;
     bool playerInRange; // check
@@ -36,6 +38,7 @@ public class EnemyAI : MonoBehaviour, IDamageable //check
     // Update is called once per frame4
     void Update()
     {
+        anim.SetFloat("Speed", agent.velocity.normalized.magnitude);
         if (agent.isActiveAndEnabled)
         {
             if (playerInRange && !canSeePlayer()) //check
