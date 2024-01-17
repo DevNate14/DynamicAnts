@@ -12,6 +12,7 @@ public class PlatformMovement : MonoBehaviour
 
     private Vector3 currentDestination;
     private bool firstPosition;
+    private Transform oldParent;
     
     
     // Start is called before the first frame update
@@ -24,6 +25,29 @@ public class PlatformMovement : MonoBehaviour
     void Update()
     {
         platform.position = Vector3.MoveTowards(platform.position, currentDestination, travelSpeed * Time.deltaTime);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            if (other.transform.parent != null)
+                oldParent = other.transform.parent;
+            other.transform.parent = transform;
+        }
+        
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            if (other.transform.parent != null && oldParent != null)
+                other.transform.parent = oldParent;
+            else
+                other.transform.parent = null;
+        }
+
     }
 
     private void movingTo(){
