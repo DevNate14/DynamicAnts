@@ -83,6 +83,7 @@ public class MeleeEnemy : MonoBehaviour, IDamageable
         if (other.CompareTag("Player"))
             insidesphere = false;
     }
+        
     IEnumerator DamageFeedback() //Check
     {
         Color Temp = model.material.color;
