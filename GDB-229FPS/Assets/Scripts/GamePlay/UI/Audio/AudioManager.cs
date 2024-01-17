@@ -19,6 +19,8 @@ public class AudioManager : MonoBehaviour
     [SerializeField] AudioClip changedVol;
     [SerializeField] AudioClip[] backgroundMusics;
 
+    bool playChangedVolClip;
+
     float[] vols = new float[3];
 
     void Awake()
@@ -47,7 +49,6 @@ public class AudioManager : MonoBehaviour
         musicMixer.SetFloat("MusicVol", Mathf.Log10(vol.value) * 20);
         vols[1] = vol.value;
         volSliders[1].GetComponentInChildren<TMP_Text>().text = (vol.value * 100).ToString("F0") + "%";
-        PlaySFX();
     }
     public void SetSFXVol(Slider vol)
     {
@@ -64,7 +65,7 @@ public class AudioManager : MonoBehaviour
 
     public void PlaySFX()
     {
-        if(!sfxSource.isPlaying)
+        if(!sfxSource.isPlaying && playChangedVolClip)
         {
             sfxSource.PlayOneShot(changedVol);
         }
@@ -72,11 +73,13 @@ public class AudioManager : MonoBehaviour
 
     public void PlayMusic(AudioClip music)
     {
+        musicMixer.SetFloat("MusicVol", Mathf.Log10(vols[1]) * 20);
         musicSource.clip = music;
         musicSource.Play();
     }
     public void PlayMusic(int sceneNumber)
     {
+        musicMixer.SetFloat("MusicVol", Mathf.Log10(vols[1]) * 20);
         musicSource.clip = backgroundMusics[sceneNumber];
         musicSource.Play();
     }
@@ -90,6 +93,8 @@ public class AudioManager : MonoBehaviour
 
     void LoadVolSettings()
     {
+        playChangedVolClip = false;
+
         vols[0] = PlayerPrefs.GetFloat("GameVol", 0.5f);
         AudioListener.volume = vols[0];
         
@@ -104,6 +109,8 @@ public class AudioManager : MonoBehaviour
             volSliders[i].value = vols[i];
             volSliders[i].GetComponentInChildren<TMP_Text>().text = (vols[i] * 100).ToString("F0") + "%";
         }
+
+        playChangedVolClip = true;
     }
 
 }
