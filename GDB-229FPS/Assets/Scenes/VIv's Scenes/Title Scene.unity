@@ -988,7 +988,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: GAME TITLE
+  m_text: ULTRA-LIFE
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1b52934832e89f54fa94ee06aeca865c, type: 2}
   m_sharedMaterial: {fileID: -7262362321683612070, guid: 1b52934832e89f54fa94ee06aeca865c, type: 2}

@@ -104,15 +104,22 @@ public class GameManager : MonoBehaviour
             }
         }
     } //Need to add code for Weapon Pick-up
+    
     public void UpdateAmmoUI(GunStatsSO newWeapon)
     {
 
         ammoSizeText.text = newWeapon.ammoCount.ToString("00");
         ammoCountText.text = newWeapon.magAmmoCount.ToString("00");
 
+        if (newWeapon.magAmmoCount == 0) //Should only call UI when mag is empty .
+        {
+            ReloadUI();
+        }
+
     }
 
-    public void ReloadUI() {
+    public void ReloadUI() 
+    {
         StartCoroutine(ReloadUIEvent());
     }
 
@@ -121,18 +128,18 @@ public class GameManager : MonoBehaviour
         reloadMessage.SetActive(true);
         yield return new WaitForSeconds(2);
         reloadMessage.SetActive(false);
-        //if (Input.GetButtonDown("Reload")
-        //&& menuActive == null) {
-        //    //Have Reload UI appear
-        //    //StateUnpaused(); //Game should still play....?
-        //    menuActive = reloadMessage;
-        //    menuActive.SetActive(true);
-        //}
-        //else if (Input.GetButtonDown("Reload") 
-        //&& menuActive != null) {
-        //    menuActive.SetActive(false); 
-        //    //Reload UI should be gone, after Player clicks R
-        //}
+        if (Input.GetButtonDown("Reload")
+        && menuActive == null) {
+           //Have Reload UI appear
+           //StateUnpaused(); //Game should still play....?
+           menuActive = reloadMessage;
+           menuActive.SetActive(true);
+        }
+        else if (Input.GetButtonDown("Reload") 
+        && menuActive != null) {
+           menuActive.SetActive(false); 
+           //Reload UI should be gone, after Player clicks R
+        }
     }
 
     public void CheckWinState()
