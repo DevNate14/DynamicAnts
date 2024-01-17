@@ -33,6 +33,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject menuLose;
     [SerializeField] GameObject reloadMessage;
     [SerializeField] GameObject instructionsPage;
+    [SerializeField] GameObject optionsPage;
     public GameObject playerDamageScreen;
     public Camera playerCam;
 
@@ -175,6 +176,11 @@ public class GameManager : MonoBehaviour
     {
         //StatePaused();
         menuActive = instructionsPage;
+        menuActive.SetActive(true);
+    }
+    public void Options()
+    {
+        menuActive = optionsPage;
         menuActive.SetActive(true);
     }
 

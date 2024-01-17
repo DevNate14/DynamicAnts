@@ -5,6 +5,13 @@ using UnityEngine.UI;
 
 public class ButtonFunctions : MonoBehaviour
 {
+    [SerializeField] AudioClip buttonSFX;
+
+    public void ButtonSound()
+    {
+        AudioManager.instance.PlaySFX(buttonSFX);
+    }
+
     public void Resume()
     {
         GameManager.instance.StateUnpaused();

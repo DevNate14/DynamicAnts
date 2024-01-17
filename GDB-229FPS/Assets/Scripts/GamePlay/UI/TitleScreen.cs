@@ -14,6 +14,7 @@ public class TitleScreen : MonoBehaviour
     void Start()
     {
         StartSpinning(); //Rotates Images
+        AudioManager.instance.PlayMusic(0);
     }
 
     void StartSpinning()
