@@ -16,6 +16,7 @@ public class MeleeEnemy : MonoBehaviour, IDamageable
     [SerializeField] NavMeshAgent agent; // check
     [SerializeField] Animator animate;
     [SerializeField] GameObject bite;
+    [SerializeField] Transform BitePos;
     [SerializeField] int dmg;
     [SerializeField] float animationspeedtransition;
     [SerializeField] float DamageCoolDown;
@@ -101,7 +102,7 @@ public class MeleeEnemy : MonoBehaviour, IDamageable
     {
         InMeleeRange = true;
         animate.SetTrigger("Hit");
-        GameManager.instance.player.GetComponent<Controller>().Damage(dmg);
+        Instantiate(bite, BitePos.position, transform.rotation);
         yield return new WaitForSeconds(time);
         InMeleeRange = false;
     }
