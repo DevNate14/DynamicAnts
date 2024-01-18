@@ -9,7 +9,7 @@ using UnityEngine.XR;
 
 public class RigidPlayer : MonoBehaviour
 {
-
+    //inputs to move player and camera
     Vector3 PlayerMovmentInput;
     Vector2 PlayerMouseInput;
     //camera rotaion 
@@ -22,7 +22,7 @@ public class RigidPlayer : MonoBehaviour
     [SerializeField] Rigidbody Player;
     [SerializeField] float Groundraylength;
    
-
+    //movement variabels 
     [Header("Movement")]
     [SerializeField] private float MoveSpeed;
     [SerializeField] public float walkSpeed;
@@ -70,19 +70,18 @@ public class RigidPlayer : MonoBehaviour
         Player.velocity = new Vector3(MoveVector.x, Player.velocity.y, MoveVector.z);
         Sprint();
         Crouch();
-
+        // walk  up slope 
         if(OnSlop())
         {
             Player.AddForce(GetslopeMove() * SprintSpeed * 20f,ForceMode.Force);
             if(Player.velocity.y >0)
                 Player.AddForce(Vector3.down * 80f, ForceMode.Force);
         }
-
+        //jump
         if (Input.GetKeyDown("space"))
         {
             // if (Physics.CheckSphere(Feet.position, 0.1f, Floormask))
            
-
             Player.AddForce(Vector3.up * Jumpforce, ForceMode.Impulse);
           
         }
@@ -117,7 +116,7 @@ public class RigidPlayer : MonoBehaviour
             //Crouching = true;
             //change local y scale
             // how do i keep the camera from moving 
-           transform.localScale = new Vector3(transform.localScale.x, CrouchScale-= temp,transform.localScale.z);
+           transform.localScale = new Vector3(transform.localScale.x, StandingScale * CrouchScale,transform.localScale.z);
 
            Debug.Log("Im crounching");
             //decrement speed
@@ -128,7 +127,7 @@ public class RigidPlayer : MonoBehaviour
         {
             // Crouching = false;
             //set height back to normal 
-            transform.localScale = new Vector3(transform.localScale.x, temp+=CrouchScale, transform.localScale.z);
+            transform.localScale = new Vector3(transform.localScale.x, StandingScale / CrouchScale, transform.localScale.z);
             //give player back speed 
             Debug.Log("Im not crounching");
         }
@@ -136,9 +135,9 @@ public class RigidPlayer : MonoBehaviour
 
     private bool OnSlop()
     {
+
         if (Physics.Raycast(transform.position, Vector3.down, out slophit, StandingScale * 0.5f + 0.3f))
         {
-
             float angle = Vector3.Angle(Vector3.up, slophit.normal);
             return angle < MaxslopeAngel && angle != 0;
         }// proirty
@@ -153,6 +152,9 @@ public class RigidPlayer : MonoBehaviour
 
     void Stairs()
     {
+        // if i do two ray cast one on th bottom another by the knes 
+        // then chck fo an objct in front
+        // check if room at top then pass in no roomisa all move alng 
         //look into this  low priorty 
         // back up plan invisible slope over stairs 
     }
