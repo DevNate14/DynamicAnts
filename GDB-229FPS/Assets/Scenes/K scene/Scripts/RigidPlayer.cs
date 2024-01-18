@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Xml.Serialization;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.XR;
@@ -37,8 +38,14 @@ public class RigidPlayer : MonoBehaviour
     bool Grounded;
 
     [Header("CROUCHING")]
+    [SerializeField] float CrouchScale;
+    [SerializeField] float CrounchSpeed;
+    [SerializeField] float StandingScale;
     bool Crouching;
-    
+
+    [Header("Slope")]
+    public float MaxslopeAngel;
+    private RaycastHit slophit;
     
     // Update is called once per frame
     void Update()
@@ -47,19 +54,29 @@ public class RigidPlayer : MonoBehaviour
         PlayerMovmentInput = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical"));
         PlayerMouseInput = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
         //ground check
-       
         Debug.DrawRay(Feet.position, transform.TransformDirection(Vector3.down * Groundraylength),Color.red);
         Grounded = Physics.Raycast(transform.position, Vector3.down, Groundraylength);
+        // player height 
+        StandingScale = transform.localScale.y;
        
         MovePlayer();
         MovePlayerCamera();
+        
     }
 
     private void MovePlayer()
     {
-        Vector3 MoveVector = transform.TransformDirection(PlayerMovmentInput) * MoveSpeed;
+        Vector3 MoveVector = transform.TransformDirection(PlayerMovmentInput) * walkSpeed;
         Player.velocity = new Vector3(MoveVector.x, Player.velocity.y, MoveVector.z);
         Sprint();
+        Crouch();
+
+        if(OnSlop())
+        {
+            Player.AddForce(GetslopeMove() * SprintSpeed * 20f,ForceMode.Force);
+            if(Player.velocity.y >0)
+                Player.AddForce(Vector3.down * 80f, ForceMode.Force);
+        }
 
         if (Input.GetKeyDown("space"))
         {
@@ -75,44 +92,63 @@ public class RigidPlayer : MonoBehaviour
     {
         if (Input.GetKeyDown("left shift"))
         {
-
+            Debug.Log("IM RUNNING");
             temp = SprintSpeed;
             MoveSpeed = temp;
             
         }
         if (Input.GetKeyUp("left shift"))
         {
-          
+            Debug.Log("IM WALKING");
             temp = walkSpeed;
             MoveSpeed = temp;
+
         }
     }
 
     void Crouch()
     {
+        float temp;
+        temp = StandingScale;
         //check if grouded check button if false
-        if (groundedPlayer && Input.GetButtonDown("Crouch") && Crouching == false)
+        if (Input.GetKeyDown("right shift"))
         {
-            Crouching = true;
-            //change local y scale
             
+            //Crouching = true;
+            //change local y scale
+            // how do i keep the camera from moving 
+           transform.localScale = new Vector3(transform.localScale.x, CrouchScale-= temp,transform.localScale.z);
+
+           Debug.Log("Im crounching");
             //decrement speed
             
 
         }//check if grouded check button if true
-        else if (groundedPlayer && Input.GetButtonDown("Crouch") && Crouching == true)
+        if (Input.GetKeyUp("right shift"))
         {
-            Crouching = false;
+            // Crouching = false;
             //set height back to normal 
-            
+            transform.localScale = new Vector3(transform.localScale.x, temp+=CrouchScale, transform.localScale.z);
             //give player back speed 
-            
+            Debug.Log("Im not crounching");
         }
     }
 
-    void Slop()
+    private bool OnSlop()
     {
-        // proirty  
+        if (Physics.Raycast(transform.position, Vector3.down, out slophit, StandingScale * 0.5f + 0.3f))
+        {
+
+            float angle = Vector3.Angle(Vector3.up, slophit.normal);
+            return angle < MaxslopeAngel && angle != 0;
+        }// proirty
+         // 
+         return false;
+    }
+
+    private Vector3 GetslopeMove()
+    {
+        return Vector3.ProjectOnPlane(PlayerMovmentInput, slophit.normal).normalized;
     }
 
     void Stairs()
@@ -134,4 +170,5 @@ public class RigidPlayer : MonoBehaviour
         Eyes.transform.localRotation = Quaternion.Euler(xRot, 0f, 0f);
     }
 
+  
 }
