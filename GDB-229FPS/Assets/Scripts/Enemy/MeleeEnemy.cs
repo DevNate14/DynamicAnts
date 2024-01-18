@@ -17,7 +17,6 @@ public class MeleeEnemy : MonoBehaviour, IDamageable
     [SerializeField] Animator animate;
     [SerializeField] GameObject bite;
     [SerializeField] Transform BitePos;
-    [SerializeField] int dmg;
     [SerializeField] float animationspeedtransition;
     [SerializeField] float DamageCoolDown;
     [SerializeField] float MeleeRange;

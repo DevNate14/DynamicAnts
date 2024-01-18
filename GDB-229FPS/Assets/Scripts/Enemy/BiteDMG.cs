@@ -6,7 +6,6 @@ public class BiteDMG : MonoBehaviour
 {
     [SerializeField] int damageAmount;
     [SerializeField] float destroyTimer;
-    [SerializeField] Transform BitePos;
     [SerializeField] int impulseamount;
     IImpluse impulse;
     // Start is called before the first frame update

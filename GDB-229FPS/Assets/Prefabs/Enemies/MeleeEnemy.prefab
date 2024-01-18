@@ -1375,11 +1375,12 @@ MonoBehaviour:
   model: {fileID: 2692749618907463930}
   agent: {fileID: 4649098533013911809}
   animate: {fileID: 929986962251255274}
-  bite: {fileID: 0}
+  bite: {fileID: 3057869153639147232, guid: 9805b4271db11d54b9a56c5cde82a971, type: 3}
+  BitePos: {fileID: 5265100036031458599}
   dmg: 1
   animationspeedtransition: 3
   DamageCoolDown: 2
-  MeleeRange: 2.8
+  MeleeRange: 2.26
   mySpawner: {fileID: 0}
 --- !u!95 &929986962251255274
 Animator:
@@ -1598,7 +1599,7 @@ NavMeshAgent:
   m_Acceleration: 20
   avoidancePriority: 50
   m_AngularSpeed: 600
-  m_StoppingDistance: 2.8
+  m_StoppingDistance: 2.25
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 0
   m_AutoRepath: 1
@@ -4010,7 +4011,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8191411153335166517}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.04, y: 1.06, z: 1.2799988}
+  m_LocalPosition: {x: -0.04, y: 1.06, z: 1.55}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7545848454748409061}
@@ -4027,7 +4028,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.68
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8377205706450659679
 GameObject:
