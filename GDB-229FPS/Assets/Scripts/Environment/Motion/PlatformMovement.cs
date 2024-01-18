@@ -12,8 +12,6 @@ public class PlatformMovement : MonoBehaviour
 
     private Vector3 currentDestination;
     private bool firstPosition;
-    private Transform oldParent;
-    
     
     // Start is called before the first frame update
     void Start()
@@ -31,8 +29,6 @@ public class PlatformMovement : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            if (other.transform.parent != null)
-                oldParent = other.transform.parent;
             other.transform.parent = transform;
         }
         
@@ -42,10 +38,7 @@ public class PlatformMovement : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            if (other.transform.parent != null && oldParent != null)
-                other.transform.parent = oldParent;
-            else
-                other.transform.parent = null;
+            other.transform.parent = null;
         }
 
     }
