@@ -113,4 +113,12 @@ public class AudioManager : MonoBehaviour
         playChangedVolClip = true;
     }
 
+    public void ResetVolSettings()
+    {
+        PlayerPrefs.SetFloat("GameVol", 0.5f);
+        PlayerPrefs.SetFloat("MusicVol", 0.5f);
+        PlayerPrefs.SetFloat("SFXVol", 0.5f);
+        LoadVolSettings();   
+    }
+
 }

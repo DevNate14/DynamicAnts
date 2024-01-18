@@ -2,12 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Inventory : MonoBehaviour, IInventory, IUpgradable
+public class Inventory : MonoBehaviour, IInventory, IUpgradable, IPersist
 {
-    [SerializeField] List<GunStatsSO> weapons = new List<GunStatsSO>();    
+    [SerializeField] List<GunStatsSO> weapons = new List<GunStatsSO>();
     [SerializeField] UpgradeItem[] items;
     [SerializeField] AudioClip reloadClip;
     int selectedWeapon;
+
+    private void Start()
+    {
+        AddToPersistenceManager();
+        LoadState();
+    }
+
     private void Update() {
         if (!GameManager.instance.isPaused && weapons.Count > 0) {
             if (!weapons[selectedWeapon].isShooting) {
@@ -84,7 +91,7 @@ public class Inventory : MonoBehaviour, IInventory, IUpgradable
     }
     void ReloadGun() {
         if (weapons[selectedWeapon].Reload())
-            GameManager.instance.playerScript.aud.PlayOneShot(reloadClip,.5f);
+            GameManager.instance.playerScript.aud.PlayOneShot(reloadClip, .5f);
         GameManager.instance.UpdateAmmoUI(weapons[selectedWeapon]);
     }
     void SelectGun()
@@ -126,9 +133,32 @@ public class Inventory : MonoBehaviour, IInventory, IUpgradable
                     items[i].has = result;
                 }
                 break;
-                
+
             }
         }
         return result;
     }
+
+    public void AddToPersistenceManager()
+    {
+        PersistenceManager.instance.AddToManager(this);
+    }
+    public void SaveState()
+    {
+        PlayerPrefs.SetInt("SelectedWeapon", selectedWeapon);
+        PersistenceManager.instance.SaveInventoryWeapons(weapons);
+    }    
+    
+    public void LoadState()
+    {
+        weapons.Clear();
+        weapons = PersistenceManager.instance.LoadInventoryWeapons();
+        selectedWeapon = PlayerPrefs.GetInt("SelectedWeapon", 0);
+
+        if(weapons.Count > selectedWeapon)
+        {
+            ChangeGun();
+        }
+    }
+
 }

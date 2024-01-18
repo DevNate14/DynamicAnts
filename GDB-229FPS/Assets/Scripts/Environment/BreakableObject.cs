@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BreakableObject : MonoBehaviour, IDamageable
+public class BreakableObject : MonoBehaviour, IDamageable, IPersist
 {
-    [SerializeField] int MaxHp;
+    [SerializeField] int MaxHP;
     int CurrentHP;
 
     public bool Regen; //public just in case we want a regen disabling mechanic
@@ -15,7 +15,9 @@ public class BreakableObject : MonoBehaviour, IDamageable
     // Start is called before the first frame update
     void Start()
     {
-        CurrentHP = MaxHp;
+        CurrentHP = MaxHP;
+        AddToPersistenceManager();
+        LoadState();
     }
 
     // Update is called once per frame
@@ -47,9 +49,9 @@ public class BreakableObject : MonoBehaviour, IDamageable
 
     public void Heal(int hp)
     {
-        if (CurrentHP < MaxHp)
+        if (CurrentHP < MaxHP)
         {
-            if (MaxHp - hp > CurrentHP) // just so hp doesnt overflow
+            if (MaxHP - hp > CurrentHP) // just so hp doesnt overflow
             {
                 CurrentHP += hp;
             }
@@ -60,4 +62,19 @@ public class BreakableObject : MonoBehaviour, IDamageable
     {
         // maybe i wait until theres an animation for this
     }
+
+    public void AddToPersistenceManager()
+    {
+        PersistenceManager.instance.AddToManager(this);
+    }
+    public void SaveState()
+    {
+        PlayerPrefs.SetInt(this.gameObject.GetInstanceID().ToString() + "CurrHP", CurrentHP);
+    }
+
+    public void LoadState()
+    {
+        Damage(MaxHP - PlayerPrefs.GetInt(this.gameObject.GetInstanceID().ToString() + "CurrHP", MaxHP));
+    }
+
 }

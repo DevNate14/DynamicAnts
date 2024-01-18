@@ -38,6 +38,11 @@ public class ButtonFunctions : MonoBehaviour
 
     public void Play(int sceneNumber)
     {
+        //if(PersistenceManager.instance.savedGameExists)
+        //{
+        //    sceneNumber = PersistenceManager.instance.sceneNumber;
+        //}
+
         SceneManager.LoadScene(sceneNumber);
     }
 

@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Controller : MonoBehaviour, IDamageable, IImpluse
+public class Controller : MonoBehaviour, IDamageable, IImpluse, IPersist
 {
     
     private Vector3 playerVelocity, impulse;
@@ -32,12 +32,16 @@ public class Controller : MonoBehaviour, IDamageable, IImpluse
     public bool isCrouched; //Bool is public for GameManager to check
     public bool HasLongJump; // will make a better item inventory asap
 
+    public Vector3 playerSpawnPos;
+
     // Start is called before the first frame update
     void Start()
     {
+        AddToPersistenceManager();
         HPOrig = HP;
         isCrouched = false;
-        RespawnPlayer();
+        LoadState();
+        SpawnPlayer();
     }
 
     // Update is called once per frame
@@ -79,11 +83,16 @@ public class Controller : MonoBehaviour, IDamageable, IImpluse
     public void RespawnPlayer()
     {
         HP = HPOrig;
+        SpawnPlayer();
+    }
+
+    void SpawnPlayer()
+    {
         UpdatePlayerUI();
         impulse = Vector3.zero;
         impulseResolve = 0; // I think this fits but rework by player person may have altered the logic to make this line pointless or even dangerous
         controller.enabled = false;
-        transform.position = GameManager.instance.playerSpawnPOS.transform.position;
+        transform.position = playerSpawnPos;
         controller.enabled = true;
     }
 
@@ -178,6 +187,28 @@ public class Controller : MonoBehaviour, IDamageable, IImpluse
                 //UpdatePlayerUI();
                 break;
         }
+    }
+
+    public void AddToPersistenceManager()
+    {
+        PersistenceManager.instance.AddToManager(this);
+    }
+    public void SaveState()
+    {
+        PlayerPrefs.SetInt("PlayerCurrHP", HP);
+
+        PlayerPrefs.SetFloat("SpawnPosX", playerSpawnPos.x);
+        print("X = " + playerSpawnPos.x.ToString());
+        PlayerPrefs.SetFloat("SpawnPosY", playerSpawnPos.y);
+        print("Y = " + playerSpawnPos.y.ToString());
+        PlayerPrefs.SetFloat("SpawnPosZ", playerSpawnPos.z);
+        print("Z = " + playerSpawnPos.z.ToString());
+    }
+    public void LoadState()
+    {
+        HP = PlayerPrefs.GetInt("PlayerCurrHP", HPOrig);
+
+        playerSpawnPos = new Vector3(PlayerPrefs.GetFloat("SpawnPosX", GameManager.instance.playerSpawnPOS.transform.position.x), PlayerPrefs.GetFloat("SpawnPosY", GameManager.instance.playerSpawnPOS.transform.position.y), PlayerPrefs.GetFloat("SpawnPosZ", GameManager.instance.playerSpawnPOS.transform.position.z));
     }
 
 }
