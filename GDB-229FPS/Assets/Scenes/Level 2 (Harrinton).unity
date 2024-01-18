@@ -235,6 +235,7 @@ MonoBehaviour:
   gravity: 0
   isPaused: 0
   playerHPBar: {fileID: 0}
+  isTitleScreen: 0
   weaponIcon: {fileID: 0}
   enemyCountText: {fileID: 0}
   playerHPMissing: {fileID: 0}
@@ -248,6 +249,7 @@ MonoBehaviour:
   menuLose: {fileID: 0}
   reloadMessage: {fileID: 0}
   instructionsPage: {fileID: 0}
+  optionsPage: {fileID: 0}
   playerDamageScreen: {fileID: 0}
   playerCam: {fileID: 0}
 --- !u!1001 &366847304
@@ -1371,7 +1373,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4707246722651801657, guid: 6de46bea13cce49459fcfb547faa916e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.19
+      value: 1.74
       objectReference: {fileID: 0}
     - target: {fileID: 4707246722651801657, guid: 6de46bea13cce49459fcfb547faa916e, type: 3}
       propertyPath: m_LocalPosition.z
