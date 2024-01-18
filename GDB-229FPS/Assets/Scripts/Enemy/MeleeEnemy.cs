@@ -15,6 +15,7 @@ public class MeleeEnemy : MonoBehaviour, IDamageable
     [SerializeField] Renderer model; //check
     [SerializeField] NavMeshAgent agent; // check
     [SerializeField] Animator animate;
+    [SerializeField] GameObject bite;
     [SerializeField] int dmg;
     [SerializeField] float animationspeedtransition;
     [SerializeField] float DamageCoolDown;
