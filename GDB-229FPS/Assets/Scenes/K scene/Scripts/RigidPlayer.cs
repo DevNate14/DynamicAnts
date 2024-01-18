@@ -54,8 +54,7 @@ public class RigidPlayer : MonoBehaviour
     [SerializeField] float stepHeight;
     [SerializeField] float walk;
 
-    [Header("Floor")]
-    [SerializeField] GameObject floor;
+  
     // Update is called once per frame
     void Update()
     {
@@ -66,7 +65,15 @@ public class RigidPlayer : MonoBehaviour
         StandingScale = transform.localScale.y;
         //ground check
         Debug.DrawRay(Feet.position, transform.TransformDirection(Vector3.down * Groundraylength));
-        Grounded = Physics.Raycast(transform.position, Vector3.down, Groundraylength);
+
+        RaycastHit Hit;
+        if (Physics.Raycast(Feet.position, Vector3.down,out Hit, Groundraylength))
+        {
+            Grounded = true;
+
+            jumpedtimes = 0;
+           
+        }
 
         MovePlayer();
         MovePlayerCamera();
@@ -83,7 +90,6 @@ public class RigidPlayer : MonoBehaviour
         Stairs();
         Jump();
         
-
         //if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out GroundCheck, Groundraylength))
         //{
         //    groundedPlayer = true;
@@ -109,25 +115,18 @@ public class RigidPlayer : MonoBehaviour
 
     void Jump()
     {
-        if (Input.GetKeyDown("space") && jumpedtimes <= jumpMax)
+        if (Input.GetKeyDown("space") && jumpedtimes < jumpMax)
         {
             jumpedtimes++;
             Player.AddForce(Vector3.up * Jumpforce, ForceMode.Impulse);
-            Grounded = false;
+           
             if (jumpedtimes == jumpMax)
             {
                 Player.AddForce(Vector3.down, ForceMode.Impulse);
 
-                Grounded = true;
-
             }
-            else if (jumpedtimes <= jumpMax || jumpedtimes >= jumpMax)
-            {
-                if (Grounded == true && jumpedtimes <= jumpMax)
-                {
-                    jumpedtimes = 0;
-                }
-            }
+           
+            
 
         }
 
@@ -157,12 +156,11 @@ public class RigidPlayer : MonoBehaviour
         //check if grouded check button if false
         if (Input.GetKeyDown("right shift"))
         {
-            
             //Crouching = true;
             //change local y scale
             // how do i keep the camera from moving 
            transform.localScale = new Vector3(transform.localScale.x, StandingScale * CrouchScale,transform.localScale.z);
-          
+           transform.position=new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z);
             Debug.Log("Im crounching");
             //decrement speed
             
@@ -172,6 +170,7 @@ public class RigidPlayer : MonoBehaviour
         {
             // Crouching = false;
             //set height back to normal 
+            transform.position = new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z);
             transform.localScale = new Vector3(transform.localScale.x, StandingScale / CrouchScale, transform.localScale.z);
             //give player back speed 
             Debug.Log("Im not crounching");
