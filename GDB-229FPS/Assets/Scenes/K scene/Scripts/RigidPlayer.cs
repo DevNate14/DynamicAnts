@@ -17,7 +17,7 @@ public class RigidPlayer : MonoBehaviour
 
     [Header("Body parts")]
    // [SerializeField] private LayerMask Floormask;
-    [SerializeField] private Transform Feet;
+    [SerializeField] Transform Feet;
     [SerializeField] Transform Eyes;
     [SerializeField] Rigidbody Player;
     [SerializeField] float Groundraylength;
@@ -34,7 +34,8 @@ public class RigidPlayer : MonoBehaviour
 
     [Header("Jump")]
     [SerializeField] float Jumpforce;
-    private bool groundedPlayer;
+    [SerializeField] int jumpedtimes;
+    [SerializeField] int jumpMax;
     bool Grounded;
 
     [Header("CROUCHING")]
@@ -46,47 +47,91 @@ public class RigidPlayer : MonoBehaviour
     [Header("Slope")]
     public float MaxslopeAngel;
     private RaycastHit slophit;
-    
+
+    [Header("stairs")]
+    [SerializeField]GameObject stepup;
+    [SerializeField]GameObject whatsinfront;
+    [SerializeField] float stepHeight;
+    [SerializeField] float walk;
+
+    [Header("Floor")]
+    [SerializeField] GameObject floor;
     // Update is called once per frame
     void Update()
     {
         
         PlayerMovmentInput = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical"));
         PlayerMouseInput = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
-        //ground check
-        Debug.DrawRay(Feet.position, transform.TransformDirection(Vector3.down * Groundraylength),Color.red);
-        Grounded = Physics.Raycast(transform.position, Vector3.down, Groundraylength);
         // player height 
         StandingScale = transform.localScale.y;
-       
+        //ground check
+        Debug.DrawRay(Feet.position, transform.TransformDirection(Vector3.down * Groundraylength));
+        Grounded = Physics.Raycast(transform.position, Vector3.down, Groundraylength);
+
         MovePlayer();
         MovePlayerCamera();
-        
+       
     }
 
     private void MovePlayer()
     {
         Vector3 MoveVector = transform.TransformDirection(PlayerMovmentInput) * walkSpeed;
         Player.velocity = new Vector3(MoveVector.x, Player.velocity.y, MoveVector.z);
+       
         Sprint();
         Crouch();
-        // walk  up slope 
-        if(OnSlop())
+        Stairs();
+        Jump();
+        
+
+        //if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out GroundCheck, Groundraylength))
+        //{
+        //    groundedPlayer = true;
+        //    //sets the players up and down velocity to 0 
+
+        //    //rests jump to 0 once player lands
+        //    jumpedtimes = 0;
+        //}
+        //else
+        //{
+        //    groundedPlayer = false;
+        //}
+        // walk  up slope
+        if (OnSlop())
         {
             Player.AddForce(GetslopeMove() * SprintSpeed * 20f,ForceMode.Force);
             if(Player.velocity.y >0)
                 Player.AddForce(Vector3.down * 80f, ForceMode.Force);
         }
-        //jump
-        if (Input.GetKeyDown("space"))
-        {
-            // if (Physics.CheckSphere(Feet.position, 0.1f, Floormask))
-           
-            Player.AddForce(Vector3.up * Jumpforce, ForceMode.Impulse);
-          
-        }
+       
+       
     }
 
+    void Jump()
+    {
+        if (Input.GetKeyDown("space") && jumpedtimes <= jumpMax)
+        {
+            jumpedtimes++;
+            Player.AddForce(Vector3.up * Jumpforce, ForceMode.Impulse);
+            Grounded = false;
+            if (jumpedtimes == jumpMax)
+            {
+                Player.AddForce(Vector3.down, ForceMode.Impulse);
+
+                Grounded = true;
+
+            }
+            else if (jumpedtimes <= jumpMax || jumpedtimes >= jumpMax)
+            {
+                if (Grounded == true && jumpedtimes <= jumpMax)
+                {
+                    jumpedtimes = 0;
+                }
+            }
+
+        }
+
+    }
     void Sprint()
     {
         if (Input.GetKeyDown("left shift"))
@@ -117,8 +162,8 @@ public class RigidPlayer : MonoBehaviour
             //change local y scale
             // how do i keep the camera from moving 
            transform.localScale = new Vector3(transform.localScale.x, StandingScale * CrouchScale,transform.localScale.z);
-
-           Debug.Log("Im crounching");
+          
+            Debug.Log("Im crounching");
             //decrement speed
             
 
@@ -152,6 +197,23 @@ public class RigidPlayer : MonoBehaviour
 
     void Stairs()
     {
+        //stairs check
+        stepup.transform.position = new Vector3(stepup.transform.position.x, stepHeight, stepup.transform.position.z);
+
+
+        RaycastHit low;
+        if(Physics.Raycast(whatsinfront.transform.position,transform.TransformDirection(Vector3.forward), out low, 0.1f)) 
+        {
+
+            RaycastHit high;
+
+            if(!Physics.Raycast(stepup.transform.position,transform.TransformDirection(Vector3.forward),out high,0.2f))
+            {
+               
+                Player.position += new Vector3(0f,walk,0f);
+            }
+            
+        }
         // if i do two ray cast one on th bottom another by the knes 
         // then chck fo an objct in front
         // check if room at top then pass in no roomisa all move alng 
