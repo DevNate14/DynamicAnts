@@ -210,6 +210,7 @@ public class GameManager : MonoBehaviour
         StatePaused();
         menuActive = menuWin;
         menuActive.SetActive(true);
+        menuActive.GetComponentInChildren<Button>().Select();
     }
 
 
@@ -219,6 +220,7 @@ public class GameManager : MonoBehaviour
         StatePaused();
         menuActive = menuLose;
         menuActive.SetActive(true);
+        menuActive.GetComponentInChildren<Button>().Select();
     }
 
     public void Instructions()
@@ -226,11 +228,13 @@ public class GameManager : MonoBehaviour
         //StatePaused();
         menuActive = instructionsPage;
         menuActive.SetActive(true);
+        menuActive.GetComponentInChildren<Button>().Select();
     }
     public void Options()
     {
         menuActive = optionsPage;
         menuActive.SetActive(true);
+        menuActive.GetComponentInChildren<Button>().Select();
     }
 
     public void PauseMenu()
@@ -241,6 +245,7 @@ public class GameManager : MonoBehaviour
             StatePaused();
             menuActive = menuPause;
             menuActive.SetActive(isPaused);
+            menuActive.GetComponentInChildren<Button>().Select();
         }
 
         // else if (Input.GetButtonDown("Cancel")

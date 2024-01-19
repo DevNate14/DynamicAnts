@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
+using UnityEditor.ProBuilder;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,6 +16,7 @@ public class TitleScreen : MonoBehaviour
     {
         StartSpinning(); //Rotates Images
         AudioManager.instance.PlayMusic(0);
+        GetComponentInChildren<Button>().Select();
     }
 
     void StartSpinning()
