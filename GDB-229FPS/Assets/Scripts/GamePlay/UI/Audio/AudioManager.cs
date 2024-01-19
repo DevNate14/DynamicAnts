@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class AudioManager : MonoBehaviour
@@ -32,6 +33,8 @@ public class AudioManager : MonoBehaviour
         musicMixer.SetFloat("MusicVol", Mathf.Log10(PlayerPrefs.GetFloat("MusicVol", 0.5f)) * 20);
 
         sfxMixer.SetFloat("SFXVol", Mathf.Log10(PlayerPrefs.GetFloat("SFXVol", 0.5f)) * 20);
+
+        PlayMusic(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void PlaySFX(AudioClip clip)

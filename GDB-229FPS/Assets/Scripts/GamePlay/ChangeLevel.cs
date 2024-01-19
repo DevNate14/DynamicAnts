@@ -14,7 +14,11 @@ public class ChangeLevel : MonoBehaviour
 
     GameObject LoadingPage;
 
+    AsyncOperation asyncLoad;
+
     int loadingCount;
+
+    bool isLoading = false;
 
     private void Start()
     {
@@ -23,45 +27,36 @@ public class ChangeLevel : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && !isLoading)
         {
+            isLoading = true;
+            loadingCount = 1;
+
             GameManager.instance.playerScript.playerSpawnPos = NextStartPos;
             PersistenceManager.instance.sceneNumber = NextSceneNumber;
 
             PersistenceManager.instance.SaveGame();
 
             LoadingPage.SetActive(true);
-
             StartCoroutine(LoadAsyncScene());
         }
     }
 
     IEnumerator LoadAsyncScene()
     {
-        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(NextSceneNumber);
-
-        do
+        asyncLoad = SceneManager.LoadSceneAsync(NextSceneNumber);
+       
+        while (!asyncLoad.isDone)
         {
-            asyncLoad.allowSceneActivation = loadingCount >= 4;
+            asyncLoad.allowSceneActivation = loadingCount > 9;
 
-            LoadingPage.GetComponentInChildren<Slider>().value = Mathf.Clamp(asyncLoad.progress, 0, loadingCount/4f);
-
-            if (loadingCount % 4 == 0)
-            {
-                LoadingPage.GetComponentInChildren<TMP_Text>().text = "LOADING";
-            }
-            else
-            {
-                LoadingPage.GetComponentInChildren<TMP_Text>().text += ".";
-            }
-
+            yield return new WaitForSecondsRealtime(0.3f);
+            
             loadingCount++;
 
-            yield return new WaitForSeconds(0.25f);
+            LoadingPage.GetComponentInChildren<Slider>().value = Mathf.Clamp01(asyncLoad.progress / 0.9f);
+        }
 
-        } while (!asyncLoad.isDone);
-
-        AudioManager.instance.PlayMusic(NextSceneNumber);
         LoadingPage.SetActive(false);
     }
 
