@@ -198,11 +198,8 @@ public class Controller : MonoBehaviour, IDamageable, IImpluse, IPersist
         PlayerPrefs.SetInt("PlayerCurrHP", HP);
 
         PlayerPrefs.SetFloat("SpawnPosX", playerSpawnPos.x);
-        print("X = " + playerSpawnPos.x.ToString());
         PlayerPrefs.SetFloat("SpawnPosY", playerSpawnPos.y);
-        print("Y = " + playerSpawnPos.y.ToString());
         PlayerPrefs.SetFloat("SpawnPosZ", playerSpawnPos.z);
-        print("Z = " + playerSpawnPos.z.ToString());
     }
     public void LoadState()
     {
