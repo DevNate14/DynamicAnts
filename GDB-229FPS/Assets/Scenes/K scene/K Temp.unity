@@ -1897,6 +1897,7 @@ MonoBehaviour:
   Jumpforce: 8
   jumpedtimes: 0
   jumpMax: 1
+  superjumpe: 20
   CrouchScale: 0.5
   CrounchSpeed: 2.5
   StandingScale: 1

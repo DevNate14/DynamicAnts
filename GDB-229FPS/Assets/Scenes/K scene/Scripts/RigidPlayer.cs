@@ -7,18 +7,17 @@ using UnityEngine.UIElements;
 using UnityEngine.XR;
 
 
-public class RigidPlayer : MonoBehaviour
+public class RigidPlayer : MonoBehaviour 
 {
     //inputs to move player and camera
+    GameObject Maincamera;
     Vector3 PlayerMovmentInput;
     Vector2 PlayerMouseInput;
     //camera rotaion 
     private float xRot;
 
     [Header("Body parts")]
-   // [SerializeField] private LayerMask Floormask;
-    [SerializeField] Transform Feet;
-    //[SerializeField] Transform Eyes;
+    [SerializeField] Transform Feet;          
     [SerializeField] Rigidbody Player;
     [SerializeField] float Groundraylength;
    
@@ -36,6 +35,7 @@ public class RigidPlayer : MonoBehaviour
     [SerializeField] float Jumpforce;
     [SerializeField] int jumpedtimes;
     [SerializeField] int jumpMax;
+    [SerializeField] float superjumpe;
     bool Grounded = false;
 
     [Header("CROUCHING")]
@@ -54,7 +54,10 @@ public class RigidPlayer : MonoBehaviour
     [SerializeField] float stepHeight;
     [SerializeField] float smoothwalk;
 
-  
+    private void Start()
+    {
+        Maincamera = GameObject.FindGameObjectWithTag("MainCamera");
+    }
     // Update is called once per frame
     void Update()
     {
@@ -180,6 +183,14 @@ public class RigidPlayer : MonoBehaviour
             transform.localScale = new Vector3(transform.localScale.x, StandingScale / CrouchScale, transform.localScale.z);
             //give player back speed 
             Debug.Log("Im not crounching");
+        }
+        if (Input.GetKeyDown("right shift") && Input.GetKeyDown("space"))
+        {
+            Vector3 vector3 = Maincamera.transform.forward * (superjumpe * 2) + Maincamera.transform.up * superjumpe + Vector3.zero; 
+
+            Player.AddForce(vector3 * superjumpe, ForceMode.Impulse);
+
+
         }
     }
 
