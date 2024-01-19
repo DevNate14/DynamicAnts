@@ -27,7 +27,7 @@ public class RigidPlayer : MonoBehaviour
     [SerializeField] private float MoveSpeed;
     [SerializeField] public float walkSpeed;
     [SerializeField] public float SprintSpeed;
-    private float temp ;
+    [SerializeField]float temp ;
 
     [Header("Eye Sensitivity")]
     [SerializeField] float Sensitivity;
@@ -60,7 +60,7 @@ public class RigidPlayer : MonoBehaviour
     {
         
         PlayerMovmentInput = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical"));
-        PlayerMouseInput = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
+        //ayerMouseInput = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
         // player height 
         StandingScale = transform.localScale.y;
         //ground check
@@ -76,6 +76,7 @@ public class RigidPlayer : MonoBehaviour
             jumpedtimes = 0;
            
         }
+        
 
         MovePlayer();
         //MovePlayerCamera();
@@ -84,7 +85,7 @@ public class RigidPlayer : MonoBehaviour
 
     private void MovePlayer()
     {
-        Vector3 MoveVector = transform.TransformDirection(PlayerMovmentInput) * walkSpeed;
+        Vector3 MoveVector = transform.TransformDirection(PlayerMovmentInput) * MoveSpeed;
         Player.velocity = new Vector3(MoveVector.x, Player.velocity.y, MoveVector.z);
        
         Sprint();
@@ -135,7 +136,7 @@ public class RigidPlayer : MonoBehaviour
     }
     void Sprint()
     {
-        float temp;
+        
 
         if (Input.GetKeyDown("left shift"))
         {
