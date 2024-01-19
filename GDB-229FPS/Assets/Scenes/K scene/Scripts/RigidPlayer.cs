@@ -18,7 +18,7 @@ public class RigidPlayer : MonoBehaviour
     [Header("Body parts")]
    // [SerializeField] private LayerMask Floormask;
     [SerializeField] Transform Feet;
-    [SerializeField] Transform Eyes;
+    //[SerializeField] Transform Eyes;
     [SerializeField] Rigidbody Player;
     [SerializeField] float Groundraylength;
    
@@ -27,7 +27,7 @@ public class RigidPlayer : MonoBehaviour
     [SerializeField] private float MoveSpeed;
     [SerializeField] public float walkSpeed;
     [SerializeField] public float SprintSpeed;
-    private float temp ;
+    [SerializeField]float temp ;
 
     [Header("Eye Sensitivity")]
     [SerializeField] float Sensitivity;
@@ -36,7 +36,7 @@ public class RigidPlayer : MonoBehaviour
     [SerializeField] float Jumpforce;
     [SerializeField] int jumpedtimes;
     [SerializeField] int jumpMax;
-    bool Grounded;
+    bool Grounded = false;
 
     [Header("CROUCHING")]
     [SerializeField] float CrouchScale;
@@ -60,10 +60,12 @@ public class RigidPlayer : MonoBehaviour
     {
         
         PlayerMovmentInput = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical"));
-        PlayerMouseInput = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
+        //ayerMouseInput = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
         // player height 
         StandingScale = transform.localScale.y;
         //ground check
+        stepup.transform.position = new Vector3(stepup.transform.position.x, stepHeight, stepup.transform.position.z);
+
         Debug.DrawRay(Feet.position, transform.TransformDirection(Vector3.down * Groundraylength));
 
         RaycastHit Hit;
@@ -74,15 +76,16 @@ public class RigidPlayer : MonoBehaviour
             jumpedtimes = 0;
            
         }
+        
 
         MovePlayer();
-        MovePlayerCamera();
+        //MovePlayerCamera();
        
     }
 
     private void MovePlayer()
     {
-        Vector3 MoveVector = transform.TransformDirection(PlayerMovmentInput) * walkSpeed;
+        Vector3 MoveVector = transform.TransformDirection(PlayerMovmentInput) * MoveSpeed;
         Player.velocity = new Vector3(MoveVector.x, Player.velocity.y, MoveVector.z);
        
         Sprint();
@@ -133,7 +136,7 @@ public class RigidPlayer : MonoBehaviour
     }
     void Sprint()
     {
-        float temp;
+        
 
         if (Input.GetKeyDown("left shift"))
         {
@@ -199,7 +202,7 @@ public class RigidPlayer : MonoBehaviour
     void Stairs()
     {
         //stairs check
-        stepup.transform.position = new Vector3(stepup.transform.position.x, stepHeight, stepup.transform.position.z);
+       
 
 
         RaycastHit low;
@@ -227,13 +230,13 @@ public class RigidPlayer : MonoBehaviour
         //look for edge  if edge pull up 
     }
 
-    void MovePlayerCamera()
-    {
-        xRot -= PlayerMouseInput.y * Sensitivity;
+    //void MovePlayerCamera()
+    //{
+    //    xRot -= PlayerMouseInput.y * Sensitivity;
 
-        transform.Rotate(0f, PlayerMouseInput.x * Sensitivity, 0f);
-        Eyes.transform.localRotation = Quaternion.Euler(xRot, 0f, 0f);
-    }
+    //    transform.Rotate(0f, PlayerMouseInput.x * Sensitivity, 0f);
+    //    Eyes.transform.localRotation = Quaternion.Euler(xRot, 0f, 0f);
+    //}
 
   
 }

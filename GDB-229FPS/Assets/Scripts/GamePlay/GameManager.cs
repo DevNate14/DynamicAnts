@@ -62,6 +62,7 @@ public class GameManager : MonoBehaviour
         if (!isTitleScreen)
         {
             playerSpawnPOS = GameObject.FindWithTag("Respawn");
+            
             player = GameObject.FindWithTag("Player");
             playerScript = player.GetComponent<Controller>();
             playerCam = FindObjectOfType<Camera>();
