@@ -95,6 +95,10 @@ public class GameManager : MonoBehaviour
             yield return new WaitForSeconds(1F / charactersPerSecond);
         }
 
+        yield return new WaitForSeconds(5F);
+        dialogueText.text = ""; //Clears Text
+
+
         dialoguePanel.SetActive(false);
     }
 
