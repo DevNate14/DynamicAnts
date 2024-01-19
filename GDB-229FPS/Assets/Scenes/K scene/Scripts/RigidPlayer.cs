@@ -14,7 +14,7 @@ public class RigidPlayer : MonoBehaviour
     Vector3 PlayerMovmentInput;
     Vector2 PlayerMouseInput;
     //camera rotaion 
-    private float xRot;
+   // private float xRot;
 
     [Header("Body parts")]
     [SerializeField] Transform Feet;          
@@ -36,7 +36,7 @@ public class RigidPlayer : MonoBehaviour
     [SerializeField] int jumpedtimes;
     [SerializeField] int jumpMax;
     [SerializeField] float superjumpe;
-    bool Grounded = false;
+    bool Grounded;
 
     [Header("CROUCHING")]
     [SerializeField] float CrouchScale;
@@ -163,9 +163,9 @@ public class RigidPlayer : MonoBehaviour
         float temp;
         temp = StandingScale;
         //check if grouded check button if false
-        if (Input.GetKeyDown("right shift"))
+        if (Grounded && Input.GetButtonDown("Crouch") && Crouching==false)
         {
-            //Crouching = true;
+            Crouching = true;
             //change local y scale
             // how do i keep the camera from moving 
            transform.localScale = new Vector3(transform.localScale.x, StandingScale * CrouchScale,transform.localScale.z);
@@ -175,16 +175,16 @@ public class RigidPlayer : MonoBehaviour
             
 
         }//check if grouded check button if true
-        if (Input.GetKeyUp("right shift"))
+        else if (Grounded && Input.GetButtonDown("Crouch") && Crouching == true)
         {
-            // Crouching = false;
+            Crouching = false;
             //set height back to normal 
             transform.position = new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z);
             transform.localScale = new Vector3(transform.localScale.x, StandingScale / CrouchScale, transform.localScale.z);
             //give player back speed 
             Debug.Log("Im not crounching");
         }
-        if (Input.GetKeyDown("right shift") && Input.GetKeyDown("space"))
+        if (Grounded && Input.GetButtonDown("Crouch") ==true && Input.GetKeyDown("space"))
         {
             Vector3 vector3 = (Maincamera.transform.forward * (superjumpe * 100)) + (Maincamera.transform.up * (superjumpe/40)) + Vector3.zero;
             Player.AddRelativeForce(vector3, ForceMode.Impulse);
