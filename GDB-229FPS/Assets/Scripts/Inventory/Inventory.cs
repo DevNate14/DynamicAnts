@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Inventory : MonoBehaviour, IInventory, IUpgradable, IPersist
+public class Inventory : MonoBehaviour, IInventory, IPersist
 {
     [SerializeField] List<GunStatsSO> weapons = new List<GunStatsSO>();
-    [SerializeField] UpgradeItem[] items;
+    //[SerializeField] UpgradeItem[] items;
     [SerializeField] AudioClip reloadClip;
     int selectedWeapon;
 
@@ -117,30 +117,30 @@ public class Inventory : MonoBehaviour, IInventory, IUpgradable, IPersist
         GameManager.instance.UpdateAmmoUI(weapons[selectedWeapon]);
     }
 
-    public bool Upgrade(string name)
-    {
-        bool result = false;
-        for (int i = 0; i < items.Length; i++)
-        {
-            if (items[i].name == name)
-            {
-                if (items[i].has && items[i].upgraded)
-                    return result;
-                else if (items[i].has)
-                {
-                    result = true;
-                    items[i].upgraded = result;
-                }
-                else {
-                    result = true;
-                    items[i].has = result;
-                }
-                break;
+    //public bool Upgrade(string name)
+    //{
+    //    bool result = false;
+    //    for (int i = 0; i < items.Length; i++)
+    //    {
+    //        if (items[i].name == name)
+    //        {
+    //            if (items[i].has && items[i].upgraded)
+    //                return result;
+    //            else if (items[i].has)
+    //            {
+    //                result = true;
+    //                items[i].upgraded = result;
+    //            }
+    //            else {
+    //                result = true;
+    //                items[i].has = result;
+    //            }
+    //            break;
 
-            }
-        }
-        return result;
-    }
+    //        }
+    //    }
+    //    return result;
+    //}
 
     public void AddToPersistenceManager()
     {
