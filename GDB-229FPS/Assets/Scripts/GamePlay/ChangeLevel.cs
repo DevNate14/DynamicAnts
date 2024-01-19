@@ -4,15 +4,22 @@ using UnityEngine;
 using UnityEngine.ProBuilder.Shapes;
 using UnityEngine.SceneManagement;
 using TMPro;
+using System.Threading.Tasks;
+using UnityEngine.UI;
 
 public class ChangeLevel : MonoBehaviour
 {
     [SerializeField] Vector3 NextStartPos;
     [SerializeField] int NextSceneNumber;
 
-    [SerializeField] GameObject LoadingPage;
+    GameObject LoadingPage;
 
     int loadingCount;
+
+    private void Start()
+    {
+        LoadingPage = GameManager.instance.LoadingScreen;
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -23,18 +30,23 @@ public class ChangeLevel : MonoBehaviour
 
             PersistenceManager.instance.SaveGame();
 
-            Instantiate(LoadingPage);
+            LoadingPage.SetActive(true);
 
             StartCoroutine(LoadAsyncScene());
         }
     }
+
     IEnumerator LoadAsyncScene()
     {
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(NextSceneNumber);
 
-        while (!asyncLoad.isDone)
+        do
         {
-            if(loadingCount % 3 == 0)
+            asyncLoad.allowSceneActivation = loadingCount >= 4;
+
+            LoadingPage.GetComponentInChildren<Slider>().value = Mathf.Clamp(asyncLoad.progress, 0, loadingCount/4f);
+
+            if (loadingCount % 4 == 0)
             {
                 LoadingPage.GetComponentInChildren<TMP_Text>().text = "LOADING";
             }
@@ -45,7 +57,12 @@ public class ChangeLevel : MonoBehaviour
 
             loadingCount++;
 
-            yield return null;
-        }
+            yield return new WaitForSeconds(0.25f);
+
+        } while (!asyncLoad.isDone);
+
+        AudioManager.instance.PlayMusic(NextSceneNumber);
+        LoadingPage.SetActive(false);
     }
+
 }

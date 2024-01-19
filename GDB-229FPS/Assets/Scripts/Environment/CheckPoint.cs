@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class CheckPoint : MonoBehaviour, IPersist
 {
-    [SerializeField] MeshRenderer cylinder;
-    [SerializeField] Material inactiveMaterial;
-    [SerializeField] Material activeMaterial;
-    
+    [SerializeField] MeshRenderer colliderEffect;
+    [SerializeField] Material colliderInactive;
+    [SerializeField] Material colliderActive;
+
+    [SerializeField] MeshRenderer baseEffect;
+    [SerializeField] Material baseInactive;
+    [SerializeField] Material baseActive;
+
     public bool active;
 
 
@@ -27,7 +31,9 @@ public class CheckPoint : MonoBehaviour, IPersist
                 checkPoint.GetComponent<CheckPoint>().Deactivate();
             }
             active = true;
-            cylinder.material = activeMaterial;
+            colliderEffect.material = colliderActive;
+            baseEffect.material = baseActive;
+
             GameManager.instance.playerScript.playerSpawnPos = transform.position;
             PersistenceManager.instance.SaveGame();
         }
@@ -36,7 +42,8 @@ public class CheckPoint : MonoBehaviour, IPersist
     public void Deactivate()
     {
         active = false;
-        cylinder.material = inactiveMaterial;
+        colliderEffect.material = colliderInactive;
+        baseEffect.material = baseInactive;
     }
 
     public void AddToPersistenceManager()
@@ -53,11 +60,13 @@ public class CheckPoint : MonoBehaviour, IPersist
         active = PlayerPrefs.GetInt("ActiveCheckPoint") == this.gameObject.GetInstanceID();
         if(active)
         {
-            cylinder.material = activeMaterial;
+            colliderEffect.material = colliderActive;
+            baseEffect.material = baseActive;
         }
         else
         {
-            cylinder.material = inactiveMaterial;
+            colliderEffect.material = colliderInactive;
+            baseEffect.material = baseInactive;
         }
     }
 }

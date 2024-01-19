@@ -55,6 +55,7 @@ public class GameManager : MonoBehaviour
     public Camera playerCam;
     float timeScaleOrig;
     public float gravity;
+    public GameObject LoadingScreen;
 
     void Awake()
     {
