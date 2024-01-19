@@ -46,7 +46,7 @@ public class GameManager : MonoBehaviour
     // [SerializeField] TextMeshProUGUI nameText;
     [SerializeField] TMP_Text dialogueText;
     [SerializeField] GameObject dialoguePanel;
-    float charactersPerSecond = 10;
+    float charactersPerSecond = 8.5f;
 
 
 
