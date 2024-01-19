@@ -14,7 +14,10 @@ public class Inventory : MonoBehaviour, IInventory, IUpgradable, IPersist
         AddToPersistenceManager();
         LoadState();
     }
-
+    private void OnDestroy()
+    {
+        AddToPersistenceManager();
+    }
     private void Update() {
         if (!GameManager.instance.isPaused && weapons.Count > 0) {
             if (!weapons[selectedWeapon].isShooting) {

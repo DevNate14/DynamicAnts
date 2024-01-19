@@ -175,14 +175,14 @@ public class Controller : MonoBehaviour, IDamageable, IImpluse, IPersist
             default:
                 HasLongJump = true;
                 break;
+            //case 1:
+            //    ++jumpMax;
+            //    break;
+            //case 2:
+            //    speed += 2;
+            //    maxSpeed += 4;
+            //    break;
             case 1:
-                ++jumpMax;
-                break;
-            case 2:
-                speed += 2;
-                maxSpeed += 4;
-                break;
-            case 3:
                 Heal(HPOrig - HP);
                 //UpdatePlayerUI();
                 break;
