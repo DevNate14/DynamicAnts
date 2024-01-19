@@ -371,6 +371,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 836362123, guid: a2ee82543ebe40b418181e738fee1d49, type: 3}
+      propertyPath: m_Name
+      value: NG BG
+      objectReference: {fileID: 0}
+    - target: {fileID: 1754598255, guid: a2ee82543ebe40b418181e738fee1d49, type: 3}
+      propertyPath: m_Name
+      value: Checkpoint BG
+      objectReference: {fileID: 0}
     - target: {fileID: 1623759839734396984, guid: a2ee82543ebe40b418181e738fee1d49, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 20
@@ -410,6 +418,18 @@ PrefabInstance:
     - target: {fileID: 7617746319387079555, guid: a2ee82543ebe40b418181e738fee1d49, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7955664524964341968, guid: a2ee82543ebe40b418181e738fee1d49, type: 3}
+      propertyPath: m_Name
+      value: Checkpoint Text
+      objectReference: {fileID: 0}
+    - target: {fileID: 7955664524964341982, guid: a2ee82543ebe40b418181e738fee1d49, type: 3}
+      propertyPath: m_text
+      value: "PREVIOUS \nCHECKPOINT"
+      objectReference: {fileID: 0}
+    - target: {fileID: 7955664525376488195, guid: a2ee82543ebe40b418181e738fee1d49, type: 3}
+      propertyPath: m_Name
+      value: Checkpoint Button
       objectReference: {fileID: 0}
     - target: {fileID: 7955664525442612298, guid: a2ee82543ebe40b418181e738fee1d49, type: 3}
       propertyPath: m_Pivot.x
@@ -507,9 +527,21 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7955664525579578432, guid: a2ee82543ebe40b418181e738fee1d49, type: 3}
+      propertyPath: m_Name
+      value: NG Button
+      objectReference: {fileID: 0}
     - target: {fileID: 7955664525579578433, guid: a2ee82543ebe40b418181e738fee1d49, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -48.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7955664525680215489, guid: a2ee82543ebe40b418181e738fee1d49, type: 3}
+      propertyPath: m_Name
+      value: NG Text
+      objectReference: {fileID: 0}
+    - target: {fileID: 7955664525680215503, guid: a2ee82543ebe40b418181e738fee1d49, type: 3}
+      propertyPath: m_text
+      value: NEW GAME
       objectReference: {fileID: 0}
     - target: {fileID: 7955664526072106986, guid: a2ee82543ebe40b418181e738fee1d49, type: 3}
       propertyPath: m_IsActive
