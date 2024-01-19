@@ -186,10 +186,8 @@ public class RigidPlayer : MonoBehaviour
         }
         if (Input.GetKeyDown("right shift") && Input.GetKeyDown("space"))
         {
-            Vector3 vector3 = Maincamera.transform.forward * (superjumpe * 2) + Maincamera.transform.up * superjumpe + Vector3.zero; 
-
-            Player.AddForce(vector3 * superjumpe, ForceMode.Impulse);
-
+            Vector3 vector3 = (Maincamera.transform.forward * (superjumpe * 100)) + (Maincamera.transform.up * (superjumpe/40)) + Vector3.zero;
+            Player.AddRelativeForce(vector3, ForceMode.Impulse);
 
         }
     }
