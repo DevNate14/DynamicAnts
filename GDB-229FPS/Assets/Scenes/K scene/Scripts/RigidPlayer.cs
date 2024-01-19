@@ -18,7 +18,7 @@ public class RigidPlayer : MonoBehaviour
     [Header("Body parts")]
    // [SerializeField] private LayerMask Floormask;
     [SerializeField] Transform Feet;
-    [SerializeField] Transform Eyes;
+    //[SerializeField] Transform Eyes;
     [SerializeField] Rigidbody Player;
     [SerializeField] float Groundraylength;
    
@@ -36,7 +36,7 @@ public class RigidPlayer : MonoBehaviour
     [SerializeField] float Jumpforce;
     [SerializeField] int jumpedtimes;
     [SerializeField] int jumpMax;
-    bool Grounded;
+    bool Grounded = false;
 
     [Header("CROUCHING")]
     [SerializeField] float CrouchScale;
@@ -78,7 +78,7 @@ public class RigidPlayer : MonoBehaviour
         }
 
         MovePlayer();
-        MovePlayerCamera();
+        //MovePlayerCamera();
        
     }
 
@@ -229,13 +229,13 @@ public class RigidPlayer : MonoBehaviour
         //look for edge  if edge pull up 
     }
 
-    void MovePlayerCamera()
-    {
-        xRot -= PlayerMouseInput.y * Sensitivity;
+    //void MovePlayerCamera()
+    //{
+    //    xRot -= PlayerMouseInput.y * Sensitivity;
 
-        transform.Rotate(0f, PlayerMouseInput.x * Sensitivity, 0f);
-        Eyes.transform.localRotation = Quaternion.Euler(xRot, 0f, 0f);
-    }
+    //    transform.Rotate(0f, PlayerMouseInput.x * Sensitivity, 0f);
+    //    Eyes.transform.localRotation = Quaternion.Euler(xRot, 0f, 0f);
+    //}
 
   
 }

@@ -164,6 +164,7 @@ GameObject:
   - component: {fileID: 63021177}
   - component: {fileID: 63021179}
   - component: {fileID: 63021178}
+  - component: {fileID: 63021180}
   m_Layer: 0
   m_Name: Eyes
   m_TagString: Untagged
@@ -236,6 +237,22 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!114 &63021180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 63021176}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0698143e45a7cd44bdd2cf245f609c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sensitivity: 300
+  lockMin: -90
+  lockMax: 90
+  invert: 0
 --- !u!1 &307212652
 GameObject:
   m_ObjectHideFlags: 0
@@ -1840,7 +1857,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Feet: {fileID: 1054555312}
-  Eyes: {fileID: 63021177}
   Player: {fileID: 1176217784}
   Groundraylength: 0.1
   MoveSpeed: 5
