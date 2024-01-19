@@ -8,40 +8,59 @@ using MiscUtil.Extensions.TimeRelated;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
+
+    [Header("------------------------------ PLAYER ------------------------------\n")]
+    [SerializeField] TMP_Text totalDamage;
+    int damageDone;
+    [SerializeField] TMP_Text playerHPMissing;
+    [SerializeField] TMP_Text playerHPTotal;
+    public Image playerHPBar;
     public GameObject player;
     public GameObject playerSpawnPOS;
     public Controller playerScript;
-
-    float timeScaleOrig;
-    public float gravity;
-    int enemiesRemaining;
     //int playerHP;
-    int damageDone;
-    public bool isPaused;
-    public Image playerHPBar;
-    [SerializeField] bool isTitleScreen;
-    [SerializeField] RawImage weaponIcon;
+
+    [Header("------------------------------ ENEMY------------------------------\n")]
     [SerializeField] TMP_Text enemyCountText;
-    [SerializeField] TMP_Text playerHPMissing;
-    [SerializeField] TMP_Text playerHPTotal;
+    int enemiesRemaining;
+
+    [Header("------------------------------ GUNS ------------------------------\n")]
+
     [SerializeField] TextMeshProUGUI ammoSizeText;
     [SerializeField] TextMeshProUGUI ammoCountText;
-    [SerializeField] TMP_Text totalDamage;
+    [SerializeField] RawImage weaponIcon;
+
+    [Header("------------------------------ MENUS ------------------------------\n")]
+    [SerializeField] bool isTitleScreen;
     [SerializeField] GameObject menuActive;
     [SerializeField] GameObject menuPause;
+    public bool isPaused;
     [SerializeField] GameObject menuWin;
     [SerializeField] GameObject menuLose;
     [SerializeField] GameObject reloadMessage;
     [SerializeField] GameObject instructionsPage;
     [SerializeField] GameObject optionsPage;
+
+    [Header("------------------------------ GAME DIALOG ------------------------------\n")]
+    //[SerializeField] private string gameText;
+    // [SerializeField] TextMeshProUGUI nameText;
+    [SerializeField] TMP_Text dialogueText;
+    [SerializeField] GameObject dialoguePanel;
+    float charactersPerSecond = 10;
+
+
+
+    [Header("------------------------------ OTHER ------------------------------\n")]
     public GameObject playerDamageScreen;
     public Camera playerCam;
-
+    float timeScaleOrig;
+    public float gravity;
 
     void Awake()
     {
         instance = this;
-        if(!isTitleScreen){ 
+        if (!isTitleScreen)
+        {
             playerSpawnPOS = GameObject.FindWithTag("Respawn");
             player = GameObject.FindWithTag("Player");
             playerScript = player.GetComponent<Controller>();
@@ -49,12 +68,33 @@ public class GameManager : MonoBehaviour
             gravity = playerScript.GetGravity();
             timeScaleOrig = Time.timeScale;
         }
+
+        TriggerDialogue("WELCOME TO YOUR FIRST MISSION! GRAB THE GUNS, AND SHOOT THE ENEMIES!");
     }
 
     void Update()
     {
         if (!isTitleScreen)
             PauseMenu();
+    }
+
+    public void TriggerDialogue(string message)
+    {
+        StartCoroutine(TypeText(message));
+    }
+
+    IEnumerator TypeText(string line)
+    {
+        dialoguePanel.SetActive(true);
+        dialogueText.text = ""; //Clears Text
+
+        foreach (char c in line)
+        {
+            dialogueText.text += c;
+            yield return new WaitForSeconds(1F / charactersPerSecond);
+        }
+
+        dialoguePanel.SetActive(false);
     }
 
     public void StatePaused()
@@ -84,7 +124,8 @@ public class GameManager : MonoBehaviour
         // Should be HP # Missing/ HP # Total 
         //playerHP += amount;
     }
-    public void UpdateHPBar(int hpMissing, int hpTotal) {
+    public void UpdateHPBar(int hpMissing, int hpTotal)
+    {
         playerHPMissing.text = hpMissing.ToString("00");
         playerHPTotal.text = hpTotal.ToString("00");
     }
@@ -105,7 +146,7 @@ public class GameManager : MonoBehaviour
             }
         }
     } //Need to add code for Weapon Pick-up
-    
+
     public void UpdateAmmoUI(GunStatsSO newWeapon)
     {
 
@@ -119,7 +160,7 @@ public class GameManager : MonoBehaviour
 
     }
 
-    public void ReloadUI() 
+    public void ReloadUI()
     {
         StartCoroutine(ReloadUIEvent());
     }
@@ -130,22 +171,24 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(2);
         reloadMessage.SetActive(false);
         if (Input.GetButtonDown("Reload")
-        && menuActive == null) {
-           //Have Reload UI appear
-           //StateUnpaused(); //Game should still play....?
-           menuActive = reloadMessage;
-           menuActive.SetActive(true);
+        && menuActive == null)
+        {
+            //Have Reload UI appear
+            //StateUnpaused(); //Game should still play....?
+            menuActive = reloadMessage;
+            menuActive.SetActive(true);
         }
-        else if (Input.GetButtonDown("Reload") 
-        && menuActive != null) {
-           menuActive.SetActive(false); 
-           //Reload UI should be gone, after Player clicks R
+        else if (Input.GetButtonDown("Reload")
+        && menuActive != null)
+        {
+            menuActive.SetActive(false);
+            //Reload UI should be gone, after Player clicks R
         }
     }
 
     public void CheckWinState()
     {
-        
+
         if (enemiesRemaining <= 0)
         {
             //You win!
@@ -163,7 +206,7 @@ public class GameManager : MonoBehaviour
         menuActive.SetActive(true);
     }
 
-    
+
     public void YouLose()
     {
         //new WaitForSeconds(3);
@@ -171,7 +214,7 @@ public class GameManager : MonoBehaviour
         menuActive = menuLose;
         menuActive.SetActive(true);
     }
-    
+
     public void Instructions()
     {
         //StatePaused();
