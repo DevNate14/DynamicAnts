@@ -52,7 +52,7 @@ public class RigidPlayer : MonoBehaviour
     [SerializeField]GameObject stepup;
     [SerializeField]GameObject whatsinfront;
     [SerializeField] float stepHeight;
-    [SerializeField] float walk;
+    [SerializeField] float smoothwalk;
 
   
     // Update is called once per frame
@@ -63,11 +63,12 @@ public class RigidPlayer : MonoBehaviour
         //ayerMouseInput = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
         // player height 
         StandingScale = transform.localScale.y;
+        //STAIRS
+        
+        Debug.DrawRay(stepup.transform.position, stepup.transform.forward);
         //ground check
-        stepup.transform.position = new Vector3(stepup.transform.position.x, stepHeight, stepup.transform.position.z);
-
         Debug.DrawRay(Feet.position, transform.TransformDirection(Vector3.down * Groundraylength));
-
+        
         RaycastHit Hit;
         if (Physics.Raycast(Feet.position, Vector3.down,out Hit, Groundraylength))
         {
@@ -80,7 +81,7 @@ public class RigidPlayer : MonoBehaviour
 
         MovePlayer();
         //MovePlayerCamera();
-       
+        
     }
 
     private void MovePlayer()
@@ -201,23 +202,21 @@ public class RigidPlayer : MonoBehaviour
 
     void Stairs()
     {
-        //stairs check
-       
-
 
         RaycastHit low;
-        if(Physics.Raycast(whatsinfront.transform.position,transform.TransformDirection(Vector3.forward), out low, 0.1f)) 
+
+
+        if (Physics.Raycast(whatsinfront.transform.position,transform.TransformDirection(Vector3.forward), out low, 0.1f)) 
         {
-
-            RaycastHit high;
-
-            if(!Physics.Raycast(stepup.transform.position,transform.TransformDirection(Vector3.forward),out high,0.2f))
+            if (!Physics.Raycast(stepup.transform.position, transform.TransformDirection(Vector3.forward), out _, 0.2f))
             {
-               
-                Player.position += new Vector3(0f,walk,0f);
+
+                Player.position -= new Vector3(0f, -stepHeight, 0f);
+                
             }
-            
+
         }
+        
         // if i do two ray cast one on th bottom another by the knes 
         // then chck fo an objct in front
         // check if room at top then pass in no roomisa all move alng 
