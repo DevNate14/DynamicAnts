@@ -133,6 +133,8 @@ public class RigidPlayer : MonoBehaviour
     }
     void Sprint()
     {
+        float temp;
+
         if (Input.GetKeyDown("left shift"))
         {
             Debug.Log("IM RUNNING");

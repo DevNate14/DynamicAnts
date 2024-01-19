@@ -1845,7 +1845,7 @@ MonoBehaviour:
   Groundraylength: 0.1
   MoveSpeed: 5
   walkSpeed: 5
-  SprintSpeed: 20
+  SprintSpeed: 40
   Sensitivity: 3
   Jumpforce: 8
   jumpedtimes: 0
