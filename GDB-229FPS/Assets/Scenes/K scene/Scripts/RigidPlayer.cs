@@ -64,6 +64,8 @@ public class RigidPlayer : MonoBehaviour
         // player height 
         StandingScale = transform.localScale.y;
         //ground check
+        stepup.transform.position = new Vector3(stepup.transform.position.x, stepHeight, stepup.transform.position.z);
+
         Debug.DrawRay(Feet.position, transform.TransformDirection(Vector3.down * Groundraylength));
 
         RaycastHit Hit;
@@ -199,7 +201,7 @@ public class RigidPlayer : MonoBehaviour
     void Stairs()
     {
         //stairs check
-        stepup.transform.position = new Vector3(stepup.transform.position.x, stepHeight, stepup.transform.position.z);
+       
 
 
         RaycastHit low;

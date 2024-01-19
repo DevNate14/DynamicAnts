@@ -1856,7 +1856,7 @@ MonoBehaviour:
   MaxslopeAngel: 40
   stepup: {fileID: 1450580419}
   whatsinfront: {fileID: 39204318}
-  stepHeight: 20
+  stepHeight: 3.5
   walk: 0.3
 --- !u!54 &1176217784
 Rigidbody:
