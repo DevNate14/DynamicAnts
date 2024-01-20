@@ -526,4 +526,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weapons: []
-  reloadClip: {fileID: 0}
+  reloadClip: {fileID: 8300000, guid: a7ffc34ab8783ee4882cb3e302dc9412, type: 3}

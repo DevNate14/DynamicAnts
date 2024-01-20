@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
     public Image playerHPBar;
     public GameObject player;
     public GameObject playerSpawnPOS;
-    public Controller playerScript;
+    public RigidPlayer playerScript;
     //int playerHP;
 
     [Header("------------------------------ ENEMY------------------------------\n")]
@@ -65,13 +65,13 @@ public class GameManager : MonoBehaviour
             playerSpawnPOS = GameObject.FindWithTag("Respawn");
             
             player = GameObject.FindWithTag("Player");
-            //playerScript = player.GetComponent<Controller>();
+            playerScript = player.GetComponent<RigidPlayer>();
             playerCam = FindObjectOfType<Camera>();
             //gravity = playerScript.GetGravity();
             timeScaleOrig = Time.timeScale;
         }
 
-        TriggerDialogue("WELCOME TO YOUR FIRST MISSION! GRAB THE GUNS, AND SHOOT THE ENEMIES!");
+        //TriggerDialogue("WELCOME TO YOUR FIRST MISSION! GRAB THE GUNS, AND SHOOT THE ENEMIES!");
     }
 
     void Update()

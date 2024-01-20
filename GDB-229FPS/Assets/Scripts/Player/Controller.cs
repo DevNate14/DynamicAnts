@@ -73,9 +73,9 @@ public class Controller : MonoBehaviour, IDamageable, IImpluse, IPersist
         playerVelocity.y += gravity * Time.deltaTime;
         controller.Move((playerVelocity + impulse) * Time.deltaTime);
         impulse = Vector3.Lerp(impulse, Vector3.zero, Time.deltaTime * impulseResolve);
-        if (impulseResolve > 0 && grounded)
+        if (impulse.z > 0.8f && impulse.y > 0.8f && grounded)
         {
-            impulse = transform.forward / 10 + transform.up / 5;
+            impulse = Vector3.zero;
             impulseResolve = 0;
         }
     }
@@ -174,8 +174,8 @@ public class Controller : MonoBehaviour, IDamageable, IImpluse, IPersist
         switch (type)
         {
             default:
-                HasLongJump = true;
-                break;
+                //HasLongJump = true;
+                //break;
             //case 1:
             //    ++jumpMax;
             //    break;

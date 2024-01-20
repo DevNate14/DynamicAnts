@@ -5,12 +5,12 @@ using UnityEngine;
 public class Inventory : MonoBehaviour, IInventory, IPersist
 {
     [SerializeField] List<GunStatsSO> weapons = new List<GunStatsSO>();
-    //[SerializeField] UpgradeItem[] items;
     [SerializeField] AudioClip reloadClip;
+    bool[] keys;
     int selectedWeapon;
-
     private void Start()
     {
+        keys = new bool[3];
         AddToPersistenceManager();
         LoadState();
     }
@@ -30,6 +30,9 @@ public class Inventory : MonoBehaviour, IInventory, IPersist
                 SelectGun();
             }
         }
+    }
+    public void PickUpKey(int keyNum) { //keyNum is 1-3 since only three keys
+        keys[keyNum - 1] = true;
     }
     public void PickUpWeapon(GunStatsSO stats) {
         string wepName = stats.name;
@@ -116,32 +119,6 @@ public class Inventory : MonoBehaviour, IInventory, IPersist
         GameManager.instance.DisplayGunImage(weapons[selectedWeapon].image);
         GameManager.instance.UpdateAmmoUI(weapons[selectedWeapon]);
     }
-
-    //public bool Upgrade(string name)
-    //{
-    //    bool result = false;
-    //    for (int i = 0; i < items.Length; i++)
-    //    {
-    //        if (items[i].name == name)
-    //        {
-    //            if (items[i].has && items[i].upgraded)
-    //                return result;
-    //            else if (items[i].has)
-    //            {
-    //                result = true;
-    //                items[i].upgraded = result;
-    //            }
-    //            else {
-    //                result = true;
-    //                items[i].has = result;
-    //            }
-    //            break;
-
-    //        }
-    //    }
-    //    return result;
-    //}
-
     public void AddToPersistenceManager()
     {
         PersistenceManager.instance.AddToManager(this);
@@ -150,8 +127,7 @@ public class Inventory : MonoBehaviour, IInventory, IPersist
     {
         PlayerPrefs.SetInt("SelectedWeapon", selectedWeapon);
         PersistenceManager.instance.SaveInventoryWeapons(weapons);
-    }    
-    
+    }
     public void LoadState()
     {
         weapons.Clear();

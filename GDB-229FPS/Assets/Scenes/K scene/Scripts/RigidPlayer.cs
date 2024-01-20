@@ -266,6 +266,9 @@ public class RigidPlayer : MonoBehaviour,IDamageable,IPersist
     //void Pullup()
     //{
     //    //look for edge  if edge pull up 
+    //    //This can be done easily with the same logic you have for stairs just a raycast that is slightly further out and checking more area
+    //    //only caveat is we have to set a rule to only make things in the level that keep that spacing rule in mind or else we can get some weird bugs like 
+    //    //one I saw in someones project where a flawed ray check let you "vault" through a wall
     //}
     public void UpdatePlayerUI()
     {
@@ -345,6 +348,13 @@ public class RigidPlayer : MonoBehaviour,IDamageable,IPersist
     //    transform.Rotate(0f, PlayerMouseInput.x * Sensitivity, 0f);
     //    Eyes.transform.localRotation = Quaternion.Euler(xRot, 0f, 0f);
     //}
-
+    public void ApplyBuff(int type) {
+        switch (type)
+        {
+            case 1:
+                Heal(HPOrig - HP);
+                break;
+        }
+    }
 
 }
