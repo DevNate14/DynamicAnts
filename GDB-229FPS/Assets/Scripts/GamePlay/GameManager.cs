@@ -65,9 +65,9 @@ public class GameManager : MonoBehaviour
             playerSpawnPOS = GameObject.FindWithTag("Respawn");
             
             player = GameObject.FindWithTag("Player");
-            playerScript = player.GetComponent<Controller>();
+            //playerScript = player.GetComponent<Controller>();
             playerCam = FindObjectOfType<Camera>();
-            gravity = playerScript.GetGravity();
+            //gravity = playerScript.GetGravity();
             timeScaleOrig = Time.timeScale;
         }
 

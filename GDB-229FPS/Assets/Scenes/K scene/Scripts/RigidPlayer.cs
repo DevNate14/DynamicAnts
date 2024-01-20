@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Net.Sockets;
 using System.Xml.Serialization;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -10,8 +11,9 @@ using UnityEngine.XR;
 
 public class RigidPlayer : MonoBehaviour,IDamageable,IPersist
 {
+    [SerializeField] public AudioSource aud;
     //inputs to move player and camera
-    GameObject Maincamera;
+    [SerializeField] GameObject Maincamera;
     Vector3 PlayerMovmentInput;
     Vector2 PlayerMouseInput;
     public Vector3 playerSpawnPos;
@@ -44,6 +46,8 @@ public class RigidPlayer : MonoBehaviour,IDamageable,IPersist
     [SerializeField] int jumpMax;
     [SerializeField] float superjumpe;
     bool Grounded;
+    Vector3 LongJump;
+    [SerializeField] float LongJumpTime;
 
     [Header("CROUCHING")]
     [SerializeField] float CrouchScale;
@@ -59,12 +63,8 @@ public class RigidPlayer : MonoBehaviour,IDamageable,IPersist
     [SerializeField]GameObject stepup;
     [SerializeField]GameObject whatsinfront;
     [SerializeField] float stepHeight;
-    [SerializeField] float smoothwalk;
 
-    private void Start()
-    {
-        Maincamera = GameObject.FindGameObjectWithTag("MainCamera");
-    }
+    // [SerializeField] float smoothwalk;
     // Update is called once per frame
     void Update()
     {
@@ -76,18 +76,25 @@ public class RigidPlayer : MonoBehaviour,IDamageable,IPersist
         //STAIRS
         
         Debug.DrawRay(stepup.transform.position, stepup.transform.forward);
+        Debug.DrawRay(stepup.transform.position, stepup.transform.forward + stepup.transform.right);
+        Debug.DrawRay(stepup.transform.position, stepup.transform.forward + -stepup.transform.right);
+
+        Debug.DrawRay(whatsinfront.transform.position, stepup.transform.forward, Color.green);
+
         //ground check
         Debug.DrawRay(Feet.position, transform.TransformDirection(Vector3.down * Groundraylength));
-        
-        RaycastHit Hit;
-        if (Physics.Raycast(Feet.position, Vector3.down,out Hit, Groundraylength))
+        RaycastHit[] hits = Physics.RaycastAll(Feet.position, Vector3.down, Groundraylength);
+        foreach (RaycastHit hit in hits)
         {
-            Grounded = true;
+            if (hit.collider != null && hit.transform != this)
+            {
 
-            jumpedtimes = 0;
-           
+                Grounded = true;
+                jumpedtimes = 0;
+
+            }
         }
-        
+
 
         MovePlayer();
         //MovePlayerCamera();
@@ -97,30 +104,19 @@ public class RigidPlayer : MonoBehaviour,IDamageable,IPersist
     private void MovePlayer()
     {
         Vector3 MoveVector = transform.TransformDirection(PlayerMovmentInput) * MoveSpeed;
-        Player.velocity = new Vector3(MoveVector.x, Player.velocity.y, MoveVector.z);
-       
+        
+        
+
         Sprint();
         Crouch();
         Stairs();
         Jump();
+        Player.velocity = MoveVector + new Vector3(LongJump.x, Player.velocity.y, LongJump.z);
         
-        //if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out GroundCheck, Groundraylength))
-        //{
-        //    groundedPlayer = true;
-        //    //sets the players up and down velocity to 0 
-
-        //    //rests jump to 0 once player lands
-        //    jumpedtimes = 0;
-        //}
-        //else
-        //{
-        //    groundedPlayer = false;
-        //}
-        // walk  up slope
         if (OnSlop())
         {
             Player.AddForce(GetslopeMove() * SprintSpeed * 20f,ForceMode.Force);
-            if(Player.velocity.y >0)
+            if(Player.velocity.y > 0.3f)
                 Player.AddForce(Vector3.down * 80f, ForceMode.Force);
         }
        
@@ -129,19 +125,33 @@ public class RigidPlayer : MonoBehaviour,IDamageable,IPersist
 
     void Jump()
     {
+        LongJump = Vector3.Lerp(LongJump, Vector3.zero, LongJumpTime * Time.deltaTime);
         if (Input.GetKeyDown("space") && jumpedtimes < jumpMax)
         {
-            jumpedtimes++;
-            Player.AddForce(Vector3.up * Jumpforce, ForceMode.Impulse);
-           
-            if (jumpedtimes == jumpMax)
+            if (Crouching)
             {
-                Player.AddForce(Vector3.down, ForceMode.Impulse);
+                Debug.Log("Super Jump");
+                LongJump = (Maincamera.transform.forward * 12.5f) / 4 * superjumpe;
+                //Vector3 vector3 = transform.forward * superjumpe;
 
+                Debug.Log(LongJump);
+                Player.AddForce(LongJump, ForceMode.Impulse);
+                Crouching = false;
+                //set height back to normal 
+                transform.position = new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z);
+                transform.localScale = new Vector3(transform.localScale.x, StandingScale / CrouchScale, transform.localScale.z);
+                //give player back speed 
+                Debug.Log("Im not crounching");
             }
-           
-            
+            //Player.AddForce(Vector3.up * Jumpforce, ForceMode.Impulse);
+            Player.velocity += Vector3.up * Jumpforce;
+            Grounded = false;
+            jumpedtimes++;
+            //if (jumpedtimes >= jumpMax)
+            //{
+            //    Player.AddForce(Vector3.down, ForceMode.Impulse);
 
+            //}
         }
 
     }
@@ -179,7 +189,7 @@ public class RigidPlayer : MonoBehaviour,IDamageable,IPersist
            transform.position=new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z);
             Debug.Log("Im crounching");
             //decrement speed
-
+            
             
         }//check if grouded check button if true
         else if (Grounded && Input.GetButtonDown("Crouch") && Crouching == true)
@@ -191,12 +201,7 @@ public class RigidPlayer : MonoBehaviour,IDamageable,IPersist
             //give player back speed 
             Debug.Log("Im not crounching");
         }
-        if (Grounded && Input.GetButtonDown("Crouch") == true && Input.GetKeyDown("space"))
-        {
-            Vector3 vector3 = (Maincamera.transform.forward * (superjumpe * 100)) + (Maincamera.transform.up * (superjumpe / 40)) + Vector3.zero;
-            Player.AddRelativeForce(vector3, ForceMode.Impulse);
-
-        }
+        
     }
 
     private bool OnSlop()
@@ -220,16 +225,36 @@ public class RigidPlayer : MonoBehaviour,IDamageable,IPersist
     {
 
         RaycastHit low;
+        RaycastHit[] high = new RaycastHit[3];
 
 
-        if (Physics.Raycast(whatsinfront.transform.position,transform.TransformDirection(Vector3.forward), out low, 0.1f)) 
+        if (Physics.Raycast(whatsinfront.transform.position, transform.TransformDirection(Vector3.forward), out low, 0.1f))
         {
-            if (!Physics.Raycast(stepup.transform.position, transform.TransformDirection(Vector3.forward), out _, 0.2f))
+            if (low.collider.isTrigger)
+                return;
+            int num = 0;
+            for (int i = 0; i < 3; i++)
             {
-
-                Player.position -= new Vector3(0f, -stepHeight, 0f);
-                
+                if (!Physics.Raycast(stepup.transform.position, transform.TransformDirection(Vector3.forward), out high[i], 0.2f))
+                    num++;
+                else if (high[i].collider.isTrigger)
+                    num++;
             }
+
+            Debug.Log(num);
+            if (num == 3)
+            {
+                Player.position += new Vector3(0f, stepHeight, 0f);
+            }
+            else if (num <=1)
+            {
+                Player.AddForce(Vector3.back, ForceMode.Impulse);
+
+            }
+            if (Physics.Raycast(stepup.transform.position + transform.forward, Vector3.down, out RaycastHit hit, 0.2f))
+                {
+                    Debug.Log("!!");
+                }
 
         }
         
