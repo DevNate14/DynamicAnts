@@ -120,7 +120,7 @@ public class RigidPlayer : MonoBehaviour,IDamageable,IPersist
             if (Player.velocity.y > 0.3f)
                 Player.AddForce(Vector3.down * 80f, ForceMode.Force);
         }
-
+        
 
     }
 
@@ -263,6 +263,13 @@ public class RigidPlayer : MonoBehaviour,IDamageable,IPersist
         // back up plan invisible slope over stairs 
     }
 
+    void pickup()
+    {
+        if (Input.GetKeyDown("E"))
+        {
+            IInteractable interactable;
+        }
+    }
     //void Pullup()
     //{
     //    //look for edge  if edge pull up 
