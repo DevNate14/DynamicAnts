@@ -55,12 +55,14 @@ public class ChangeLevel : MonoBehaviour
 
         while (!asyncLoad.isDone)
         {
+            asyncLoad.allowSceneActivation = loadingCount > 3;
             float progress = Mathf.Clamp01(asyncLoad.progress / 0.9f);
 
             loadingBar.fillAmount = progress;
             loadingText.text = progress.ToString();
 
             yield return new WaitForSecondsRealtime(1f);
+            loadingCount++;
         }
 
         isLoading = false;
