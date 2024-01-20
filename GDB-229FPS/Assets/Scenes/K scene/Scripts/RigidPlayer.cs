@@ -253,10 +253,6 @@ public class RigidPlayer : MonoBehaviour,IDamageable,IPersist
                 Player.AddForce(Vector3.back, ForceMode.Impulse);
 
             }
-            if (Physics.Raycast(stepup.transform.position + transform.forward, Vector3.down, out RaycastHit hit, 0.2f))
-                {
-                    Debug.Log("!!");
-                }
 
         }
         

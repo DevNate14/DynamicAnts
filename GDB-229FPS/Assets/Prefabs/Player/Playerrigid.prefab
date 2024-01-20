@@ -187,7 +187,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2212763630065284158}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: -1, z: 0}
+  m_LocalPosition: {x: -0, y: -0.912, z: 0}
   m_LocalScale: {x: 0.25903, y: 0.25903, z: 0.25903}
   m_Children: []
   m_Father: {fileID: 2212763630186881070}
@@ -394,7 +394,7 @@ MonoBehaviour:
   playerSpawnPos: {x: 0, y: 0, z: 0}
   Feet: {fileID: 2212763630065284130}
   Player: {fileID: 2212763630186881066}
-  Groundraylength: 0.1
+  Groundraylength: 0.09
   gunModel: {fileID: 0}
   muzzlePoint: {fileID: 0}
   HPOrig: 0
@@ -409,6 +409,7 @@ MonoBehaviour:
   jumpedtimes: 0
   jumpMax: 1
   superjumpe: 2
+  LongJumpTime: 2
   CrouchScale: 0.5
   CrounchSpeed: 2.5
   StandingScale: 1
