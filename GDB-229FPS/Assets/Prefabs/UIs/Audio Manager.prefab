@@ -243,3 +243,6 @@ MonoBehaviour:
   sfxMixer: {fileID: 24100000, guid: ca6c353abeacf5746a1bdcd5e7dc5124, type: 2}
   backgroundMusics:
   - {fileID: 8300000, guid: cf36e525a36af1d4794e173a142b52ed, type: 3}
+  - {fileID: 8300000, guid: 7476fc6d6535f394aa7317cc74bd7e1d, type: 3}
+  - {fileID: 8300000, guid: b45d270b91fba21428cd99f53adba2c1, type: 3}
+  - {fileID: 8300000, guid: 4abdd855fe7252741ac38e594dd7154a, type: 3}
