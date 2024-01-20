@@ -56,17 +56,20 @@ public class ButtonFunctions : MonoBehaviour
 
         while (!asyncLoad.isDone)
         {
-            asyncLoad.allowSceneActivation = loadingCount > 3;
-            float progress = Mathf.Clamp01(asyncLoad.progress / 0.9f);
+            //asyncLoad.allowSceneActivation = loadingCount > 3; 
+            //Transition Happens too Quickly - May not Load
+            float progress = Mathf.Clamp01(asyncLoad.progress / 0.9F);
+            //Debug.Log("Loading Progress: " + progress);
 
             GameManager.instance.loadingBar.fillAmount = progress;
             GameManager.instance.loadingText.text = progress.ToString();
 
-            yield return new WaitForSecondsRealtime(1f);
+            yield return new WaitForSecondsRealtime(5F);
             loadingCount++;
         }
 
         GameManager.instance.loadingScreen.SetActive(false);
+
     }
 
     public void MainMenu(int sceneNumber)
