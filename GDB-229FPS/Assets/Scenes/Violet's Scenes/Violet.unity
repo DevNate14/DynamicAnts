@@ -1372,7 +1372,9 @@ MonoBehaviour:
   playerDamageScreen: {fileID: 0}
   playerCam: {fileID: 0}
   gravity: 0
-  LoadingScreen: {fileID: 0}
+  loadingScreen: {fileID: 0}
+  loadingText: {fileID: 0}
+  loadingBar: {fileID: 0}
 --- !u!4 &676859896
 Transform:
   m_ObjectHideFlags: 0
@@ -2404,6 +2406,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 76103134, guid: 6de46bea13cce49459fcfb547faa916e, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2853145113240671652, guid: 6de46bea13cce49459fcfb547faa916e, type: 3}
+      propertyPath: m_UseGravity
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4707246722651801652, guid: 6de46bea13cce49459fcfb547faa916e, type: 3}
       propertyPath: m_Name
       value: Player Updated
@@ -8230,7 +8240,9 @@ MonoBehaviour:
   playerDamageScreen: {fileID: 1022352813109560507}
   playerCam: {fileID: 0}
   gravity: 0
-  LoadingScreen: {fileID: 0}
+  loadingScreen: {fileID: 0}
+  loadingText: {fileID: 0}
+  loadingBar: {fileID: 0}
 --- !u!114 &715994418374487119
 MonoBehaviour:
   m_ObjectHideFlags: 0

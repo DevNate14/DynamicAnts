@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class PersistenceManager : MonoBehaviour
@@ -84,8 +85,35 @@ public class PersistenceManager : MonoBehaviour
 
         for(int i = 0; i < allGunStatSO.Count; i++)
         {
-            weapons += (saving.Contains(allGunStatSO[i]) ? "1" : "0");
+            weapons += saving.Contains(allGunStatSO[i]) ? "1" : "0";
         }
         PlayerPrefs.SetString("Weapons", weapons);
     }
+
+    public bool[] LoadInventoryKeys()
+    {
+        bool[] keys = new bool[3];
+
+        string keyString = PlayerPrefs.GetString("Keys", "000");
+
+        for(int i = 0; i < 3 && i < keyString.Length; i++)
+        {
+            keys[i] = keyString[i] == '1';
+        }
+
+        return keys;
+    }
+
+    public void SaveInventoryKeys(bool[] saving)
+    {
+        string keyString = "";
+
+        for (int i = 0; i < saving.Length; i++)
+        {
+            keyString += saving[i] ? '1' : '0';
+        } 
+
+        PlayerPrefs.SetString("Keys", keyString);
+    }
+
 }

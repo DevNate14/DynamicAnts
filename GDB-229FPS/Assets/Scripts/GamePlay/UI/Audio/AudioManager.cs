@@ -28,11 +28,12 @@ public class AudioManager : MonoBehaviour
         //musicMixer = musicSource.outputAudioMixerGroup.audioMixer;
         //sfxMixer = sfxSource.outputAudioMixerGroup.audioMixer;
 
-        AudioListener.volume = PlayerPrefs.GetFloat("GameVol", 0.5f);
+        AudioListener.volume = PlayerPrefs.GetFloat("GameVol", 0.25f);
 
-        musicMixer.SetFloat("MusicVol", Mathf.Log10(PlayerPrefs.GetFloat("MusicVol", 0.5f)) * 20);
+        musicMixer.SetFloat("MusicVol", Mathf.Log10(PlayerPrefs.GetFloat("MusicVol", 0.25f)) * 20);
 
-        sfxMixer.SetFloat("SFXVol", Mathf.Log10(PlayerPrefs.GetFloat("SFXVol", 0.5f)) * 20);
+        sfxMixer.SetFloat("SFXVol", Mathf.Log10(PlayerPrefs.GetFloat("SFXVol", 0.25f)) * 20);
+        //Should change Default to 25% -- 
 
         PlayMusic(SceneManager.GetActiveScene().buildIndex);
     }

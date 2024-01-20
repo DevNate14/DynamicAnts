@@ -127,9 +127,12 @@ public class Inventory : MonoBehaviour, IInventory, IPersist
     {
         PlayerPrefs.SetInt("SelectedWeapon", selectedWeapon);
         PersistenceManager.instance.SaveInventoryWeapons(weapons);
+        PersistenceManager.instance.SaveInventoryKeys(keys);
     }
     public void LoadState()
     {
+        keys = PersistenceManager.instance.LoadInventoryKeys();
+
         weapons.Clear();
         weapons = PersistenceManager.instance.LoadInventoryWeapons();
         selectedWeapon = PlayerPrefs.GetInt("SelectedWeapon", 0);
