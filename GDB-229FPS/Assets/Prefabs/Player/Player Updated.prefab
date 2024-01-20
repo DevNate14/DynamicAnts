@@ -458,7 +458,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2307946551410496318}
-  m_Mesh: {fileID: 0}
+  m_Mesh: {fileID: 6997236012743576868, guid: f0154324351a2204a934b78c323e8fe8, type: 3}
 --- !u!23 &4052024865899358178
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -668,6 +668,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39541a3da17f29d4a83e4158513ccb4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  aud: {fileID: 0}
+  Maincamera: {fileID: 0}
   playerSpawnPos: {x: 0, y: 0, z: 0}
   Feet: {fileID: 1422550524}
   Player: {fileID: 2853145113240671652}
@@ -686,6 +688,7 @@ MonoBehaviour:
   jumpedtimes: 0
   jumpMax: 2
   superjumpe: 40
+  LongJumpTime: 0
   CrouchScale: 1.5
   CrounchSpeed: 0
   StandingScale: 1
@@ -693,7 +696,6 @@ MonoBehaviour:
   stepup: {fileID: 899088190}
   whatsinfront: {fileID: 484094267}
   stepHeight: 0.5
-  smoothwalk: 0.1
 --- !u!114 &4707246722651801659
 MonoBehaviour:
   m_ObjectHideFlags: 0

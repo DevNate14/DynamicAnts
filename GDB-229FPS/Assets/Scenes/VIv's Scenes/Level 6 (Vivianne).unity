@@ -5171,6 +5171,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6de46bea13cce49459fcfb547faa916e, type: 3}
+--- !u!114 &1475940220 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 289468572992456040, guid: a2ee82543ebe40b418181e738fee1d49, type: 3}
+  m_PrefabInstance: {fileID: 278096678723354181}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &278096678723354181
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5178,6 +5189,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 278096678257680080, guid: a2ee82543ebe40b418181e738fee1d49, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 289468572812367124, guid: a2ee82543ebe40b418181e738fee1d49, type: 3}
+      propertyPath: m_Name
+      value: Key Count Label
+      objectReference: {fileID: 0}
+    - target: {fileID: 289468572812367126, guid: a2ee82543ebe40b418181e738fee1d49, type: 3}
+      propertyPath: m_text
+      value: KEYS FOUND-
+      objectReference: {fileID: 0}
+    - target: {fileID: 289468572812367126, guid: a2ee82543ebe40b418181e738fee1d49, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 289468572812367127, guid: a2ee82543ebe40b418181e738fee1d49, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -9
+      objectReference: {fileID: 0}
+    - target: {fileID: 289468572899502312, guid: a2ee82543ebe40b418181e738fee1d49, type: 3}
+      propertyPath: addedKeysText
+      value: 
+      objectReference: {fileID: 1475940220}
     - target: {fileID: 289468573915789265, guid: a2ee82543ebe40b418181e738fee1d49, type: 3}
       propertyPath: m_Name
       value: UI Items
@@ -5264,6 +5299,34 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 289468573915789269, guid: a2ee82543ebe40b418181e738fee1d49, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 289468574264278772, guid: a2ee82543ebe40b418181e738fee1d49, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 155.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 289468574264278773, guid: a2ee82543ebe40b418181e738fee1d49, type: 3}
+      propertyPath: m_Name
+      value: Key Count
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867348878447105515, guid: a2ee82543ebe40b418181e738fee1d49, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3155621008490518679, guid: a2ee82543ebe40b418181e738fee1d49, type: 3}
+      propertyPath: m_Name
+      value: Key Counter BG
+      objectReference: {fileID: 0}
+    - target: {fileID: 3155621008490518679, guid: a2ee82543ebe40b418181e738fee1d49, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3873070713308960364, guid: a2ee82543ebe40b418181e738fee1d49, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7583237290723950324, guid: a2ee82543ebe40b418181e738fee1d49, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

@@ -26,7 +26,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5021580802629705420}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.000030517578, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -238,11 +238,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   musicSource: {fileID: 5021580802629705421}
+  musicMixer: {fileID: 24100000, guid: ecfa60ada7160014c9e296dc63e3a314, type: 2}
   sfxSource: {fileID: 5021580802629705424}
-  volSliders:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  changedVol: {fileID: 8300000, guid: d70751e409650444bb484ade247e8553, type: 3}
+  sfxMixer: {fileID: 24100000, guid: ca6c353abeacf5746a1bdcd5e7dc5124, type: 2}
   backgroundMusics:
   - {fileID: 8300000, guid: cf36e525a36af1d4794e173a142b52ed, type: 3}
+  - {fileID: 8300000, guid: 7476fc6d6535f394aa7317cc74bd7e1d, type: 3}
+  - {fileID: 8300000, guid: b45d270b91fba21428cd99f53adba2c1, type: 3}
+  - {fileID: 8300000, guid: 4abdd855fe7252741ac38e594dd7154a, type: 3}

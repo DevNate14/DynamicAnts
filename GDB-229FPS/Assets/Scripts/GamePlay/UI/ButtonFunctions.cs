@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -38,12 +40,36 @@ public class ButtonFunctions : MonoBehaviour
 
     public void Play(int sceneNumber)
     {
-        //if(PersistenceManager.instance.savedGameExists)
-        //{
-        //    sceneNumber = PersistenceManager.instance.sceneNumber;
-        //}
+        if (PersistenceManager.instance.savedGameExists)
+        {
+            sceneNumber = PersistenceManager.instance.sceneNumber;
+        }
 
-        SceneManager.LoadScene(sceneNumber);
+        StartCoroutine(LoadAsyncScene(sceneNumber));
+    }
+
+    IEnumerator LoadAsyncScene(int sceneNumber)
+    {
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneNumber);
+        int loadingCount = 0;
+        GameManager.instance.loadingScreen.SetActive(true);
+
+        while (!asyncLoad.isDone)
+        {
+            //asyncLoad.allowSceneActivation = loadingCount > 3; 
+            //Transition Happens too Quickly - May not Load
+            float progress = Mathf.Clamp01(asyncLoad.progress / 0.9F);
+            //Debug.Log("Loading Progress: " + progress);
+
+            GameManager.instance.loadingBar.fillAmount = progress;
+            GameManager.instance.loadingText.text = progress.ToString();
+
+            yield return new WaitForSecondsRealtime(5F);
+            loadingCount++;
+        }
+
+        GameManager.instance.loadingScreen.SetActive(false);
+
     }
 
     public void MainMenu(int sceneNumber)
