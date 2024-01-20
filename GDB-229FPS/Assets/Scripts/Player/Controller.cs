@@ -147,7 +147,8 @@ public class Controller : MonoBehaviour, IDamageable, IImpluse, IPersist
             // to long jump, need a new bool like "longJumped" thattracks the sequence of events will add if noone else gets to it later
     }
 
-    public void Damage(int amount) {
+    public void Damage(int amount)
+    {
         HP -= amount;        
         if (HP <= 0) { 
             GameManager.instance.YouLose();

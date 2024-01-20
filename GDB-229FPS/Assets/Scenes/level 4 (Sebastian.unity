@@ -560,25 +560,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 717715980261720601, guid: 3af7b12ab73fc66419ddf9dc7b1aa9b9, type: 3}
-      propertyPath: HP
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 717715980261720601, guid: 3af7b12ab73fc66419ddf9dc7b1aa9b9, type: 3}
-      propertyPath: dmg
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2692749618907463930, guid: 3af7b12ab73fc66419ddf9dc7b1aa9b9, type: 3}
-      propertyPath: m_AABB.m_Extent.x
-      value: 3.88
-      objectReference: {fileID: 0}
     - target: {fileID: 3134537670170786645, guid: 3af7b12ab73fc66419ddf9dc7b1aa9b9, type: 3}
       propertyPath: m_Name
       value: MeleeEnemy
-      objectReference: {fileID: 0}
-    - target: {fileID: 4649098533013911809, guid: 3af7b12ab73fc66419ddf9dc7b1aa9b9, type: 3}
-      propertyPath: m_AngularSpeed
-      value: 1600
       objectReference: {fileID: 0}
     - target: {fileID: 7545848454748409061, guid: 3af7b12ab73fc66419ddf9dc7b1aa9b9, type: 3}
       propertyPath: m_RootOrder
@@ -690,7 +674,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -1720465457651028882, guid: 6de46bea13cce49459fcfb547faa916e, type: 3}
       propertyPath: HP
-      value: 1
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: -1720465457651028882, guid: 6de46bea13cce49459fcfb547faa916e, type: 3}
       propertyPath: HPOrig
@@ -966,14 +950,6 @@ PrefabInstance:
     - target: {fileID: 1307649683105264535, guid: 24efb84def47ae34bb4e22ee953851d7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4186486447026783859, guid: 24efb84def47ae34bb4e22ee953851d7, type: 3}
-      propertyPath: m_Speed
-      value: 4.75
-      objectReference: {fileID: 0}
-    - target: {fileID: 4186486447026783859, guid: 24efb84def47ae34bb4e22ee953851d7, type: 3}
-      propertyPath: m_AngularSpeed
-      value: 2000
       objectReference: {fileID: 0}
     - target: {fileID: 5844990767487878183, guid: 24efb84def47ae34bb4e22ee953851d7, type: 3}
       propertyPath: m_Name

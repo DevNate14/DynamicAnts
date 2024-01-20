@@ -1337,7 +1337,7 @@ GameObject:
   - component: {fileID: -5773279843693888980}
   m_Layer: 0
   m_Name: MeleeEnemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1371,13 +1371,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 346b65e2c477a8446912eaeb5a95473b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HP: 2
+  HP: 3
   model: {fileID: 2692749618907463930}
   agent: {fileID: 4649098533013911809}
   animate: {fileID: 929986962251255274}
   bite: {fileID: 3057869153639147232, guid: 9805b4271db11d54b9a56c5cde82a971, type: 3}
   BitePos: {fileID: 5265100036031458599}
-  dmg: 1
   animationspeedtransition: 3
   DamageCoolDown: 2
   MeleeRange: 2.26
@@ -1569,7 +1568,7 @@ SkinnedMeshRenderer:
   m_RootBone: {fileID: 4436805663696350335, guid: dde6397db3786f347ad979b0089e784c, type: 3}
   m_AABB:
     m_Center: {x: -0.09601593, y: 1.6948837, z: -0.09374356}
-    m_Extent: {x: 3.846654, y: 1.8946878, z: 6.3646154}
+    m_Extent: {x: 3.88, y: 1.8946878, z: 6.3646154}
   m_DirtyAABB: 0
 --- !u!136 &5406900716806060888
 CapsuleCollider:
@@ -1598,7 +1597,7 @@ NavMeshAgent:
   m_Speed: 5.06
   m_Acceleration: 20
   avoidancePriority: 50
-  m_AngularSpeed: 600
+  m_AngularSpeed: 1600
   m_StoppingDistance: 2.25
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 0
