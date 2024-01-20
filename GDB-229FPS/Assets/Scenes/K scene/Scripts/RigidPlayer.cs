@@ -7,20 +7,27 @@ using UnityEngine.UIElements;
 using UnityEngine.XR;
 
 
-public class RigidPlayer : MonoBehaviour 
+
+public class RigidPlayer : MonoBehaviour,IDamageable,IPersist
 {
     //inputs to move player and camera
     GameObject Maincamera;
     Vector3 PlayerMovmentInput;
     Vector2 PlayerMouseInput;
+    public Vector3 playerSpawnPos;
     //camera rotaion 
-   // private float xRot;
+    // private float xRot;
 
     [Header("Body parts")]
     [SerializeField] Transform Feet;          
     [SerializeField] Rigidbody Player;
     [SerializeField] float Groundraylength;
-   
+    [Header("Weapons")]
+    [SerializeField] public GameObject gunModel, muzzlePoint;
+    [Header("Health")]
+    [SerializeField] public int HPOrig;
+    [SerializeField] int HP;
+    [SerializeField] public int damageDone;
     //movement variabels 
     [Header("Movement")]
     [SerializeField] private float MoveSpeed;
@@ -172,8 +179,8 @@ public class RigidPlayer : MonoBehaviour
            transform.position=new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z);
             Debug.Log("Im crounching");
             //decrement speed
-            
 
+            
         }//check if grouded check button if true
         else if (Grounded && Input.GetButtonDown("Crouch") && Crouching == true)
         {
@@ -184,9 +191,9 @@ public class RigidPlayer : MonoBehaviour
             //give player back speed 
             Debug.Log("Im not crounching");
         }
-        if (Grounded && Input.GetButtonDown("Crouch") ==true && Input.GetKeyDown("space"))
+        if (Grounded && Input.GetButtonDown("Crouch") == true && Input.GetKeyDown("space"))
         {
-            Vector3 vector3 = (Maincamera.transform.forward * (superjumpe * 100)) + (Maincamera.transform.up * (superjumpe/40)) + Vector3.zero;
+            Vector3 vector3 = (Maincamera.transform.forward * (superjumpe * 100)) + (Maincamera.transform.up * (superjumpe / 40)) + Vector3.zero;
             Player.AddRelativeForce(vector3, ForceMode.Impulse);
 
         }
@@ -233,11 +240,77 @@ public class RigidPlayer : MonoBehaviour
         // back up plan invisible slope over stairs 
     }
 
-    void Pullup()
+    //void Pullup()
+    //{
+    //    //look for edge  if edge pull up 
+    //}
+    public void UpdatePlayerUI()
     {
-        //look for edge  if edge pull up 
+        GameManager.instance.playerHPBar.fillAmount = (float)HP / HPOrig;
+        GameManager.instance.UpdateHPBar(HP, HPOrig);
+    }
+    public void RespawnPlayer()
+    {
+        HP = HPOrig;
+        SpawnPlayer();
     }
 
+    void SpawnPlayer()
+    {
+        UpdatePlayerUI();
+        //impulse = Vector3.zero;
+        //impulseResolve = 0; // I think this fits but rework by player person may have altered the logic to make this line pointless or even dangerous
+        transform.position = playerSpawnPos;
+        
+    }
+
+    IEnumerator PlayerFlashDamage()
+    {
+        GameManager.instance.playerDamageScreen.SetActive(true);
+        yield return new WaitForSeconds(0.1f);
+        GameManager.instance.playerDamageScreen.SetActive(false);
+    }
+
+    public void ShowTotalDamage() // same as other needed damage rework
+    {
+        GameManager.instance.DisplayDamageDone(damageDone);
+    }
+
+    public void Damage(int amount)
+    {
+        HP -= amount;
+        if (HP <= 0)
+        {
+            GameManager.instance.YouLose();
+        }
+        UpdatePlayerUI();
+        StartCoroutine(PlayerFlashDamage());
+    }
+
+    public void Heal(int amount)
+    {
+        HP += amount;
+        UpdatePlayerUI();
+    }
+
+    public void AddToPersistenceManager()
+    {
+        PersistenceManager.instance.AddToManager(this);
+    }
+    public void SaveState()
+    {
+        PlayerPrefs.SetInt("PlayerCurrHP", HP);
+
+        PlayerPrefs.SetFloat("SpawnPosX", playerSpawnPos.x);
+        PlayerPrefs.SetFloat("SpawnPosY", playerSpawnPos.y);
+        PlayerPrefs.SetFloat("SpawnPosZ", playerSpawnPos.z);
+    }
+    public void LoadState()
+    {
+        HP = PlayerPrefs.GetInt("PlayerCurrHP", HPOrig);
+
+        playerSpawnPos = new Vector3(PlayerPrefs.GetFloat("SpawnPosX", GameManager.instance.playerSpawnPOS.transform.position.x), PlayerPrefs.GetFloat("SpawnPosY", GameManager.instance.playerSpawnPOS.transform.position.y), PlayerPrefs.GetFloat("SpawnPosZ", GameManager.instance.playerSpawnPOS.transform.position.z));
+    }
     //void MovePlayerCamera()
     //{
     //    xRot -= PlayerMouseInput.y * Sensitivity;
@@ -246,5 +319,5 @@ public class RigidPlayer : MonoBehaviour
     //    Eyes.transform.localRotation = Quaternion.Euler(xRot, 0f, 0f);
     //}
 
-  
+
 }
