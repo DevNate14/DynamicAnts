@@ -112,15 +112,16 @@ public class RigidPlayer : MonoBehaviour,IDamageable,IPersist
         Stairs();
         Jump();
         Player.velocity = MoveVector + new Vector3(LongJump.x, Player.velocity.y, LongJump.z);
-        
+
         if (OnSlop())
         {
-            Player.AddForce(GetslopeMove() * SprintSpeed * 20f,ForceMode.Force);
-            if(Player.velocity.y > 0.3f)
+            Debug.Log("Slope");
+            Player.AddForce(GetslopeMove() * SprintSpeed * 20f, ForceMode.Force);
+            if (Player.velocity.y > 0.3f)
                 Player.AddForce(Vector3.down * 80f, ForceMode.Force);
         }
-       
-       
+
+
     }
 
     void Jump()
@@ -206,9 +207,10 @@ public class RigidPlayer : MonoBehaviour,IDamageable,IPersist
 
     private bool OnSlop()
     {
-
         if (Physics.Raycast(transform.position, Vector3.down, out slophit, StandingScale * 0.5f + 0.3f))
         {
+            if (slophit.collider.isTrigger)
+                return false;
             float angle = Vector3.Angle(Vector3.up, slophit.normal);
             return angle < MaxslopeAngel && angle != 0;
         }// proirty
