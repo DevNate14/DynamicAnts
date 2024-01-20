@@ -55,7 +55,9 @@ public class GameManager : MonoBehaviour
     public Camera playerCam;
     float timeScaleOrig;
     public float gravity;
-    public GameObject LoadingScreen;
+    public GameObject loadingScreen;
+    public TMP_Text loadingText;
+    public Image loadingBar;
 
     void Awake()
     {
