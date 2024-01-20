@@ -268,6 +268,7 @@ public class RigidPlayer : MonoBehaviour,IDamageable,IPersist
         if (Input.GetKeyDown("E"))
         {
             IInteractable interactable;
+            // how does this work  find a object with the e  button then give interacbele
         }
     }
     //void Pullup()
