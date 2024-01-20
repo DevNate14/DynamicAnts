@@ -166,7 +166,7 @@ GameObject:
   - component: {fileID: 5335449091637666077}
   - component: {fileID: 8034148502579234501}
   m_Layer: 5
-  m_Name: Loading Text
+  m_Name: Loading Numbers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -375,7 +375,7 @@ GameObject:
   - component: {fileID: 7834094968823302527}
   - component: {fileID: 1485903447938422762}
   m_Layer: 5
-  m_Name: Loading
+  m_Name: Loading % Message
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
     //int playerHP;
 
     [Header("------------------------------ ENEMY------------------------------\n")]
-    [SerializeField] TMP_Text enemyCountText;
+    //[SerializeField] TMP_Text enemyCountText;
     int enemiesRemaining;
 
     [Header("------------------------------ GUNS ------------------------------\n")]
@@ -125,8 +125,9 @@ public class GameManager : MonoBehaviour
 
     public void UpdateGameGoal(int amount)
     {
-        enemiesRemaining += amount;
-        enemyCountText.text = enemiesRemaining.ToString("00");
+        // enemiesRemaining += amount;
+        // enemyCountText.text = enemiesRemaining.ToString("00");
+        //Removed from Game
 
         //This should be able to call Player HP 
         // Should be HP # Missing/ HP # Total 

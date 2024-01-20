@@ -85,7 +85,7 @@ public class PersistenceManager : MonoBehaviour
 
         for(int i = 0; i < allGunStatSO.Count; i++)
         {
-            weapons += (saving.Contains(allGunStatSO[i]) ? "1" : "0");
+            weapons += saving.Contains(allGunStatSO[i]) ? "1" : "0";
         }
         PlayerPrefs.SetString("Weapons", weapons);
     }
