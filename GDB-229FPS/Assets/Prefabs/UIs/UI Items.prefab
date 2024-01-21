@@ -839,7 +839,7 @@ GameObject:
   - component: {fileID: 3715650570969020506}
   - component: {fileID: 3715650570969020507}
   m_Layer: 5
-  m_Name: Restart Text
+  m_Name: Quit Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -892,7 +892,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: RESTART
+  m_text: QUIT
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1b52934832e89f54fa94ee06aeca865c, type: 2}
   m_sharedMaterial: {fileID: -7262362321683612070, guid: 1b52934832e89f54fa94ee06aeca865c, type: 2}
@@ -1050,7 +1050,7 @@ GameObject:
   - component: {fileID: 3715650571077433623}
   - component: {fileID: 3715650571077433704}
   m_Layer: 5
-  m_Name: Restart Button
+  m_Name: Quit Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1161,7 +1161,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 3715650572867934313}
         m_TargetAssemblyTypeName: ButtonFunctions, Assembly-CSharp
-        m_MethodName: Restart
+        m_MethodName: Quit
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6686,7 +6686,7 @@ GameObject:
   - component: {fileID: 6771327234528224211}
   - component: {fileID: 6771327234528224208}
   m_Layer: 5
-  m_Name: Restart BG
+  m_Name: Quit BG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
