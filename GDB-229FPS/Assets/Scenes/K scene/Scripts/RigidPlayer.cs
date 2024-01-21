@@ -9,7 +9,7 @@ using UnityEngine.XR;
 
 
 
-public class RigidPlayer : MonoBehaviour,IDamageable,IPersist
+public class RigidPlayer : MonoBehaviour,IDamageable,IPersist,IImpluse
 {
     [SerializeField] public AudioSource aud;
     //inputs to move player and camera
@@ -132,7 +132,7 @@ public class RigidPlayer : MonoBehaviour,IDamageable,IPersist
             if (Crouching)
             {
                 Debug.Log("Super Jump");
-                LongJump = (Maincamera.transform.forward * 12.5f) / 4 * superjumpe;
+                LongJump += (Maincamera.transform.forward * 12.5f) / 4 * superjumpe;
                 //Vector3 vector3 = transform.forward * superjumpe;
 
                 Debug.Log(LongJump);
@@ -365,4 +365,9 @@ public class RigidPlayer : MonoBehaviour,IDamageable,IPersist
         }
     }
 
+    public void AddImpluse(Vector3 _impulse, float resolveTime)
+    {
+        LongJump += _impulse;
+        Player.velocity += new Vector3(0, _impulse.y, 0);
+    }
 }

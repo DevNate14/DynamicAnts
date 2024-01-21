@@ -45,7 +45,7 @@ public class ExplosiveBarrel : BreakableObject
         IImpluse obj = other.GetComponent<IImpluse>();
         if (obj != null)
         {
-            Vector3 imp = (-1 * (other.transform.forward * ImpulseAmount) + (other.transform.up * (ImpulseAmount)));
+            Vector3 imp = ((other.transform.position - transform.position) * ImpulseAmount);
             obj.AddImpluse(imp, .5f);
         }
     }
