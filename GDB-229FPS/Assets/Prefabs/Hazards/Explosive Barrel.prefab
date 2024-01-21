@@ -78,7 +78,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 602b67213132d7b41be54b09a042d6d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHp: 2
+  MaxHP: 2
   Regen: 0
   RegenWaitTime: 0
   RegenCD: 0
