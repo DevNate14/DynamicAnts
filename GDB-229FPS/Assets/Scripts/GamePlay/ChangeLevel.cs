@@ -42,6 +42,10 @@ public class ChangeLevel : MonoBehaviour
 
             PersistenceManager.instance.SaveGame();
 
+            PlayerPrefs.SetFloat("SpawnPosX", NextStartPos.x);
+            PlayerPrefs.SetFloat("SpawnPosY", NextStartPos.y);
+            PlayerPrefs.SetFloat("SpawnPosZ", NextStartPos.z);
+
             StartCoroutine(LoadAsyncScene());
         }
     }

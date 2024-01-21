@@ -367,15 +367,15 @@ public class RigidPlayer : MonoBehaviour,IDamageable,IPersist,IImpluse
     {
         PlayerPrefs.SetInt("PlayerCurrHP", HP);
 
-        PlayerPrefs.SetFloat("SpawnPosX", playerSpawnPos.x);
-        PlayerPrefs.SetFloat("SpawnPosY", playerSpawnPos.y);
-        PlayerPrefs.SetFloat("SpawnPosZ", playerSpawnPos.z);
+        //PlayerPrefs.SetFloat("SpawnPosX", playerSpawnPos.x);
+        //PlayerPrefs.SetFloat("SpawnPosY", playerSpawnPos.y);
+        //PlayerPrefs.SetFloat("SpawnPosZ", playerSpawnPos.z);
     }
     public void LoadState()
     {
         HP = PlayerPrefs.GetInt("PlayerCurrHP", HPOrig);
 
-        playerSpawnPos = new Vector3(PlayerPrefs.GetFloat("SpawnPosX", GameManager.instance.playerSpawnPOS.transform.position.x), PlayerPrefs.GetFloat("SpawnPosY", GameManager.instance.playerSpawnPOS.transform.position.y), PlayerPrefs.GetFloat("SpawnPosZ", GameManager.instance.playerSpawnPOS.transform.position.z));
+        playerSpawnPos = new Vector3(PlayerPrefs.GetFloat("SpawnPosX"), PlayerPrefs.GetFloat("SpawnPosY"), PlayerPrefs.GetFloat("SpawnPosZ"));
     }
     //void MovePlayerCamera()
     //{
