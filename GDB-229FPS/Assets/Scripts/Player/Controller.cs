@@ -42,6 +42,7 @@ public class Controller : MonoBehaviour, IDamageable, IImpluse, IPersist
         isCrouched = false;
         LoadState();
         SpawnPlayer();
+        UpdatePlayerUI(); //This should help....?
     }
 
     // Update is called once per frame
@@ -105,14 +106,14 @@ public class Controller : MonoBehaviour, IDamageable, IImpluse, IPersist
 
     public void UpdatePlayerUI()
     {
-         GameManager.instance.playerHPBar.fillAmount = (float)HP / HPOrig;
+        GameManager.instance.playerHPBar.fillAmount = (float)HP / HPOrig;
         GameManager.instance.UpdateHPBar(HP,HPOrig);
     }
 
-    public void ShowTotalDamage() // same as other needed damage rework
-    {
-        GameManager.instance.DisplayDamageDone(damageDone);
-    }
+    // public void ShowTotalDamage() // same as other needed damage rework
+    // {
+    //     GameManager.instance.DisplayDamageDone(damageDone);
+    // } //Need to Add Beta
 
     //Made toggle for ease of use
     void ToggleCrouch()
