@@ -8140,6 +8140,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Loading Screen BG
       objectReference: {fileID: 0}
+    - target: {fileID: 4858442008549443447, guid: 8373227d99df8b04b838b31ce1e2bf93, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8373227d99df8b04b838b31ce1e2bf93, type: 3}
 --- !u!1 &156266901188051218 stripped
