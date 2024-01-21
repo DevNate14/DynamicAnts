@@ -17,7 +17,7 @@ public class RotatingDoor : Door
             }
             else
             {
-                Open = true;
+                Open = false;
                 transform.rotation = Quaternion.LookRotation(transform.right);
             }
         }

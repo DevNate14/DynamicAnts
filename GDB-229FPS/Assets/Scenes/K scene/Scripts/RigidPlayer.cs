@@ -14,6 +14,7 @@ public class RigidPlayer : MonoBehaviour,IDamageable,IPersist,IImpluse
     [SerializeField] public AudioSource aud;
     //inputs to move player and camera
     [SerializeField] GameObject Maincamera;
+    [SerializeField] float InteractRange;
     Vector3 PlayerMovmentInput;
     Vector2 PlayerMouseInput;
     public Vector3 playerSpawnPos;
@@ -98,6 +99,7 @@ public class RigidPlayer : MonoBehaviour,IDamageable,IPersist,IImpluse
 
         MovePlayer();
         //MovePlayerCamera();
+        pickup();
         
     }
 
@@ -265,22 +267,27 @@ public class RigidPlayer : MonoBehaviour,IDamageable,IPersist,IImpluse
 
     void pickup()
     {
-       RaycastHit iteam;
-
-        if (Physics.Raycast(Maincamera.transform.position, Maincamera.transform.forward, out iteam, 0.2f))
+        Debug.DrawRay(Maincamera.transform.position, Maincamera.transform.forward * InteractRange, Color.blue);
+        if (Input.GetKeyDown(KeyCode.E))
         {
-
-            if (Input.GetKeyDown("E"))
+            RaycastHit[] iteam = Physics.RaycastAll(Maincamera.transform.position, Maincamera.transform.forward, InteractRange);
+            foreach (RaycastHit raycastHit in iteam)
             {
-                IInteractable thing = iteam.transform.GetComponent<IInteractable>();
-
-                if (thing != null)
+                if (raycastHit.collider != null)
                 {
-                    thing.Interact();
+                    if (raycastHit.collider != this)
+                    {
+                        IInteractable thing = raycastHit.transform.GetComponent<IInteractable>();
+
+                        if (thing != null)
+                        {
+                            thing.Interact();
+                            return;
+                        }
+                    }
                 }
-
             }
-
+            
         }
             // how does this work  find a object with the e  button then give interacbele
     }
