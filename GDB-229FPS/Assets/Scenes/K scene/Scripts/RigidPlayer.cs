@@ -69,6 +69,8 @@ public class RigidPlayer : MonoBehaviour,IDamageable,IPersist,IImpluse
     // Update is called once per frame
     void Start()
     {
+        //player height
+        StandingScale = transform.localScale.y;
         AddToPersistenceManager();
         HPOrig = HP;
         LoadState();
@@ -80,8 +82,7 @@ public class RigidPlayer : MonoBehaviour,IDamageable,IPersist,IImpluse
         
         PlayerMovmentInput = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical"));
         //ayerMouseInput = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
-        // player height 
-        StandingScale = transform.localScale.y;
+
         //STAIRS
         
         Debug.DrawRay(stepup.transform.position, stepup.transform.forward);
@@ -150,7 +151,7 @@ public class RigidPlayer : MonoBehaviour,IDamageable,IPersist,IImpluse
                 Crouching = false;
                 //set height back to normal 
                 transform.position = new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z);
-                transform.localScale = new Vector3(transform.localScale.x, StandingScale / CrouchScale, transform.localScale.z);
+                transform.localScale = new Vector3(transform.localScale.x, StandingScale, transform.localScale.z);
                 //give player back speed 
                 Debug.Log("Im not crounching");
             }
@@ -196,7 +197,7 @@ public class RigidPlayer : MonoBehaviour,IDamageable,IPersist,IImpluse
             Crouching = true;
             //change local y scale
             // how do i keep the camera from moving 
-           transform.localScale = new Vector3(transform.localScale.x, StandingScale * CrouchScale,transform.localScale.z);
+           transform.localScale = new Vector3(transform.localScale.x, CrouchScale,transform.localScale.z);
            transform.position=new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z);
             Debug.Log("Im crounching");
             //decrement speed
@@ -208,7 +209,7 @@ public class RigidPlayer : MonoBehaviour,IDamageable,IPersist,IImpluse
             Crouching = false;
             //set height back to normal 
             transform.position = new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z);
-            transform.localScale = new Vector3(transform.localScale.x, StandingScale / CrouchScale, transform.localScale.z);
+            transform.localScale = new Vector3(transform.localScale.x, StandingScale, transform.localScale.z);
             //give player back speed 
             Debug.Log("Im not crounching");
         }
