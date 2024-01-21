@@ -35,8 +35,9 @@ public class AudioManager : MonoBehaviour
         musicMixer.SetFloat("MusicVol", Mathf.Log10(PlayerPrefs.GetFloat("MusicVol", 0.5f)) * 20);
 
         sfxMixer.SetFloat("SFXVol", Mathf.Log10(PlayerPrefs.GetFloat("SFXVol", 0.5f)) * 20);
-
+       
         PlayMusic(SceneManager.GetActiveScene().buildIndex);
+
     }
 
     public void PlaySFX(AudioClip clip)
@@ -46,12 +47,14 @@ public class AudioManager : MonoBehaviour
 
     public void PlayMusic(AudioClip music)
     {
+        musicSource.Pause();
         musicMixer.SetFloat("MusicVol", Mathf.Log10(PlayerPrefs.GetFloat("MusicVol", 0.5f)) * 20);
         musicSource.clip = music;
         musicSource.Play();
     }
     public void PlayMusic(int sceneNumber)
     {
+        musicSource.Pause();
         musicMixer.SetFloat("MusicVol", Mathf.Log10(PlayerPrefs.GetFloat("MusicVol", 0.5f)) * 20);
         musicSource.clip = backgroundMusics[sceneNumber];
         musicSource.Play();

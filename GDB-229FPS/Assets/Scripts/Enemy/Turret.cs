@@ -24,7 +24,7 @@ public class Turret : MonoBehaviour, IDamageable
     // Start is called before the first frame update
     void Start()
     {
-        GameManager.instance.UpdateGameGoal(1);
+        //GameManager.instance.UpdateGameGoal(1);
     }
 
     // Update is called once per frame4
@@ -75,7 +75,6 @@ public class Turret : MonoBehaviour, IDamageable
         {
             if(mySpawner != null)
                 mySpawner.DeadUpdate();
-            GameManager.instance.UpdateGameGoal(-1);
             Destroy(gameObject);
         }
     }

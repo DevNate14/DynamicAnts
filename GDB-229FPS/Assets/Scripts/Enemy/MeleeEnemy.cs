@@ -61,7 +61,6 @@ public class MeleeEnemy : MonoBehaviour, IDamageable
             hasTriggered = true;
             if (mySpawner != null)
                 mySpawner.DeadUpdate();
-            GameManager.instance.UpdateGameGoal(-1);
             animate.SetBool("Dead", true);
             StartCoroutine(DeadAnim());
         }

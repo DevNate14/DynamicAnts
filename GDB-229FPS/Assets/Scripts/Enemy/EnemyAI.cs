@@ -30,7 +30,6 @@ public class EnemyAI : MonoBehaviour, IDamageable //check
     // Start is called before the first frame update
     void Start()
     {
-        GameManager.instance.UpdateGameGoal(1);
         startPosition = transform.position;
         stopdist = agent.stoppingDistance;
     }
@@ -112,7 +111,6 @@ public class EnemyAI : MonoBehaviour, IDamageable //check
         {
             if (mySpawner != null)
                 mySpawner.DeadUpdate();
-            GameManager.instance.UpdateGameGoal(-1);
             Destroy(gameObject);
         }
     }

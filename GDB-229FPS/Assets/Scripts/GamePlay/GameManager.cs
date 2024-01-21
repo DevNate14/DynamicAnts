@@ -4,6 +4,7 @@ using UnityEngine.UI;
 using Unity.VisualScripting;
 using System.Collections;
 using MiscUtil.Extensions.TimeRelated;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -74,6 +75,7 @@ public class GameManager : MonoBehaviour
             playerCam = FindObjectOfType<Camera>();
             //gravity = playerScript.GetGravity();
             timeScaleOrig = Time.timeScale;
+            AudioManager.instance.PlayMusic(SceneManager.GetActiveScene().buildIndex);
         }
 
         //TriggerDialogue("WELCOME TO YOUR FIRST MISSION! GRAB THE GUNS, AND SHOOT THE ENEMIES!");
@@ -126,15 +128,8 @@ public class GameManager : MonoBehaviour
         menuActive = null;
     }
 
-    public void UpdateGameGoal(int amount)
+    public void UpdateGameGoal()
     {
-        // enemiesRemaining += amount;
-        // enemyCountText.text = enemiesRemaining.ToString("00");
-        //Removed from Game
-        //This should be able to call Player HP 
-        // Should be HP # Missing/ HP # Total 
-        //playerHP += amount;
-
        addedKeysText.text = addedKeys.ToString("00");
     }
     public void UpdateHPBar(int hpMissing, int hpTotal)

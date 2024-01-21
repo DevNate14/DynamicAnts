@@ -26,7 +26,6 @@ public class BomberEnemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GameManager.instance.UpdateGameGoal(1);
         detonateTimer = 0f;
         startingPosition = transform.position;
         stoppingDistanceOriginal = agent.stoppingDistance;

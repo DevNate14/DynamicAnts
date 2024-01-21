@@ -16,7 +16,7 @@ public class EnemySpawners : MonoBehaviour
 
     void Start()
     {
-        GameManager.instance.UpdateGameGoal(EnemyToSpawnCount);
+        //GameManager.instance.UpdateGameGoal(EnemyToSpawnCount);
     }
     private void Update()
     {
