@@ -63,7 +63,7 @@ public class ChangeLevel : MonoBehaviour
             float progress = Mathf.Clamp01(asyncLoad.progress / 0.9f);
 
             loadingBar.fillAmount = progress;
-            loadingText.text = progress.ToString();
+            loadingText.text = (progress*100).ToString("F0");
 
             yield return new WaitForSecondsRealtime(1f);
             loadingCount++;
