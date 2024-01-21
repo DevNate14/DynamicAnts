@@ -265,11 +265,24 @@ public class RigidPlayer : MonoBehaviour,IDamageable,IPersist,IImpluse
 
     void pickup()
     {
-        if (Input.GetKeyDown("E"))
+       RaycastHit iteam;
+
+        if (Physics.Raycast(Maincamera.transform.position, Maincamera.transform.forward, out iteam, 0.2f))
         {
-            IInteractable interactable;
-            // how does this work  find a object with the e  button then give interacbele
+
+            if (Input.GetKeyDown("E"))
+            {
+                IInteractable thing = iteam.transform.GetComponent<IInteractable>();
+
+                if (thing != null)
+                {
+                    thing.Interact();
+                }
+
+            }
+
         }
+            // how does this work  find a object with the e  button then give interacbele
     }
     //void Pullup()
     //{
