@@ -21,7 +21,6 @@ public class Bullet : MonoBehaviour
         if(other.isTrigger){
             return;
         }
-
         IDamageable thing = other.GetComponent<IDamageable>();
         if(thing != null){
             thing.Damage(damageAmount);
