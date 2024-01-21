@@ -26,6 +26,10 @@ public class PersistenceManager : MonoBehaviour
         if(!savedGameExists)
         {
             DeleteGame();
+
+            PlayerPrefs.SetFloat("SpawnPosX", -262);
+            PlayerPrefs.SetFloat("SpawnPosY", 6);
+            PlayerPrefs.SetFloat("SpawnPosZ", 78);
         }
 
         sceneNumber = PlayerPrefs.GetInt("SceneNumber", 1);
@@ -65,6 +69,10 @@ public class PersistenceManager : MonoBehaviour
         PlayerPrefs.SetFloat("GameVol", volSettings[0]);
         PlayerPrefs.SetFloat("MusicVol", volSettings[1]);
         PlayerPrefs.SetFloat("SFXVol", volSettings[2]);
+
+        PlayerPrefs.SetFloat("SpawnPosX", -262);
+        PlayerPrefs.SetFloat("SpawnPosY", 10);
+        PlayerPrefs.SetFloat("SpawnPosZ", 78);
     }
 
 

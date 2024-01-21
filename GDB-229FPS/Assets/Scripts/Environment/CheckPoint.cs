@@ -36,6 +36,9 @@ public class CheckPoint : MonoBehaviour, IPersist
 
             GameManager.instance.playerScript.playerSpawnPos = transform.position;
             PersistenceManager.instance.SaveGame();
+            PlayerPrefs.SetFloat("SpawnPosX", transform.position.x);
+            PlayerPrefs.SetFloat("SpawnPosY", transform.position.y);
+            PlayerPrefs.SetFloat("SpawnPosZ", transform.position.z);
         }
     }
 
