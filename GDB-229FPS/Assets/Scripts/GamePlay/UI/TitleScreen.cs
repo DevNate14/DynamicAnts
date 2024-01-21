@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
+
 //using UnityEditor; this makes the editor unable to build a project please dont include/"use" these in the project
 //using UnityEditor.ProBuilder;
 using UnityEngine;
@@ -9,6 +11,7 @@ public class TitleScreen : MonoBehaviour
 {
     public RawImage[] weaponImages;
     [SerializeField] float rotationSpeed = 100f;
+    [SerializeField] TMP_Text playButton;
     //public Vector3 rotationAxis= Vector3.up; //Changes Axis
     //public bool isSpinning = false;
 
@@ -17,6 +20,7 @@ public class TitleScreen : MonoBehaviour
         StartSpinning(); //Rotates Images
         AudioManager.instance.PlayMusic(0);
         GetComponentInChildren<Button>().Select();
+        playButton.text = PersistenceManager.instance.savedGameExists ? "Continue Game" : "New Game";
     }
 
     void StartSpinning()
