@@ -1219,7 +1219,7 @@ MonoBehaviour:
   totalDamage: {fileID: 8105189826495986476}
   playerHPMissing: {fileID: 3715650571368113998}
   playerHPTotal: {fileID: 3715650572745479485}
-  playerHPBar: {fileID: 0}
+  playerHPBar: {fileID: 1663217490234218514}
   player: {fileID: 0}
   playerSpawnPOS: {fileID: 0}
   playerScript: {fileID: 0}

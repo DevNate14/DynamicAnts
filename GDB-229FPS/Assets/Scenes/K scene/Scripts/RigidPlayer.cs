@@ -67,6 +67,14 @@ public class RigidPlayer : MonoBehaviour,IDamageable,IPersist,IImpluse
 
     // [SerializeField] float smoothwalk;
     // Update is called once per frame
+    void Start()
+    {
+        AddToPersistenceManager();
+        HPOrig = HP;
+        LoadState();
+        SpawnPlayer();
+    }
+
     void Update()
     {
         

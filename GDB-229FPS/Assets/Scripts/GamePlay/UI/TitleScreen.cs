@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
-using UnityEditor.ProBuilder;
+//using UnityEditor; this makes the editor unable to build a project please dont include/"use" these in the project
+//using UnityEditor.ProBuilder;
 using UnityEngine;
 using UnityEngine.UI;
 

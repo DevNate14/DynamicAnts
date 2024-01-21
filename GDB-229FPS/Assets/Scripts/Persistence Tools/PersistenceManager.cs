@@ -22,6 +22,12 @@ public class PersistenceManager : MonoBehaviour
             instance = this;
         }
         savedGameExists = 1 == PlayerPrefs.GetInt("SavedGameExists", 0);
+        
+        if(!savedGameExists)
+        {
+            DeleteGame();
+        }
+
         sceneNumber = PlayerPrefs.GetInt("SceneNumber", 1);
     }
 
