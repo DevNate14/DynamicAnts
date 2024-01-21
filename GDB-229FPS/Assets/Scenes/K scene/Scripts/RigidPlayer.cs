@@ -250,7 +250,7 @@ public class RigidPlayer : MonoBehaviour,IDamageable,IPersist,IImpluse
             }
             else if (num <=1)
             {
-                Player.AddForce(Vector3.back, ForceMode.Impulse);
+                Player.AddForce(-transform.forward, ForceMode.Impulse);
 
             }
 
