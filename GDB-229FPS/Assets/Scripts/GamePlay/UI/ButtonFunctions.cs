@@ -25,7 +25,7 @@ public class ButtonFunctions : MonoBehaviour
         GameManager.instance.StateUnpaused();
     }
 
-    public void Respawn() 
+    public void Respawn()
     {
         GameManager.instance.playerScript.RespawnPlayer();
         GameManager.instance.StateUnpaused();
@@ -50,22 +50,23 @@ public class ButtonFunctions : MonoBehaviour
 
     IEnumerator LoadAsyncScene(int sceneNumber)
     {
+        GameManager.instance.loadingScreen.SetActive(true);
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneNumber);
         int loadingCount = 0;
-        GameManager.instance.loadingScreen.SetActive(true);
 
         while (!asyncLoad.isDone)
         {
-            //asyncLoad.allowSceneActivation = loadingCount > 3; 
+            asyncLoad.allowSceneActivation = loadingCount > 5; 
             //Transition Happens too Quickly - May not Load
             float progress = Mathf.Clamp01(asyncLoad.progress / 0.9F);
             //Debug.Log("Loading Progress: " + progress);
 
             GameManager.instance.loadingBar.fillAmount = progress;
-            GameManager.instance.loadingText.text = progress.ToString();
+            GameManager.instance.loadingText.text = $"{(int)(progress * 100)}%";
+            //GameManager.instance.loadingText.text = progress.ToString();
 
             yield return new WaitForSecondsRealtime(5F);
-            loadingCount++;
+            //loadingCount++;
         }
 
         GameManager.instance.loadingScreen.SetActive(false);
@@ -74,7 +75,8 @@ public class ButtonFunctions : MonoBehaviour
 
     public void MainMenu(int sceneNumber)
     {
-        if (GameManager.instance.isPaused) {
+        if (GameManager.instance.isPaused)
+        {
             GameManager.instance.StateUnpaused();
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.Confined;
