@@ -50,27 +50,34 @@ public class ButtonFunctions : MonoBehaviour
 
     IEnumerator LoadAsyncScene(int sceneNumber)
     {
-        GameManager.instance.loadingScreen.SetActive(true);
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneNumber);
-        int loadingCount = 0;
-
-        while (!asyncLoad.isDone)
+        asyncLoad.allowSceneActivation = true; 
+        bool completed = false;
+        asyncLoad.completed += (AsyncOperation op)=>
         {
-            asyncLoad.allowSceneActivation = loadingCount > 5; 
-            //Transition Happens too Quickly - May not Load
-            float progress = Mathf.Clamp01(asyncLoad.progress / 0.9F);
-            //Debug.Log("Loading Progress: " + progress);
+            // do something after completed loading
+            Debug.Log("Completed loading of the new scene");
+            completed = true;
+            GameManager.instance.loadingScreen.SetActive(false);
+        };
+        //int loadingCount = 0;
 
-            GameManager.instance.loadingBar.fillAmount = progress;
-            GameManager.instance.loadingText.text = $"{(int)(progress * 100)}%";
-            //GameManager.instance.loadingText.text = progress.ToString();
+        // while(!completed)  // still loading
+        // //Updates Loading Progress UI
+        // {
+        //     Debug.Log("Starting Progress Loop");
+        //     float progress = Mathf.Clamp01(asyncLoad.progress);
+        //     GameManager.instance.loadingBar.fillAmount = progress;
+        //     //GameManager.instance.loadingText.text = progress.ToString();
+        //     GameManager.instance.loadingText.text = $"{(int)(progress * 100)}%";
+        //     Debug.Log("Progress is " + progress);
+        //     yield return new WaitForSeconds(0.1F);
+        // }
+        // Debug.Log("Finished displaying progress.");
+        // GameManager.instance.loadingScreen.SetActive(false);
+        // yield return null;
 
-            yield return new WaitForSecondsRealtime(5F);
-            //loadingCount++;
-        }
-
-        GameManager.instance.loadingScreen.SetActive(false);
-
+        return null;
     }
 
     public void MainMenu(int sceneNumber)

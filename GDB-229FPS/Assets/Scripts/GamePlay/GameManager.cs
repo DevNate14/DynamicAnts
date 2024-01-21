@@ -131,12 +131,11 @@ public class GameManager : MonoBehaviour
         // enemiesRemaining += amount;
         // enemyCountText.text = enemiesRemaining.ToString("00");
         //Removed from Game
-
-       addedKeysText.text = addedKeys.ToString("00");
-
         //This should be able to call Player HP 
         // Should be HP # Missing/ HP # Total 
         //playerHP += amount;
+
+       addedKeysText.text = addedKeys.ToString("00");
     }
     public void UpdateHPBar(int hpMissing, int hpTotal)
     {
@@ -144,7 +143,8 @@ public class GameManager : MonoBehaviour
         playerHPTotal.text = hpTotal.ToString("00");
     }
 
-    public void DisplayDamageDone(int amount) // needs a rework of damage system to track which bullets are hitting and from player unless we decouple player and enemy bullets
+    public void DisplayDamageDone(int amount) 
+    // needs a rework of damage system to track which bullets are hitting and from player unless we decouple player and enemy bullets
     {
         damageDone += amount;
         totalDamage.text = damageDone.ToString("00");
