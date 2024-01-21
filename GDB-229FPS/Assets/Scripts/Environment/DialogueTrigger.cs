@@ -9,7 +9,7 @@ public class DialogueTrigger : MonoBehaviour
     {
         if (other.CompareTag("Player")) {
             GameManager.instance.TriggerDialogue(text);
-
+            Destroy(gameObject);
         }
     }
 }

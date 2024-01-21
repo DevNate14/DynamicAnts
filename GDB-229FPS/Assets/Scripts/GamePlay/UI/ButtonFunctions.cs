@@ -51,33 +51,41 @@ public class ButtonFunctions : MonoBehaviour
     IEnumerator LoadAsyncScene(int sceneNumber)
     {
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneNumber);
-        asyncLoad.allowSceneActivation = true; 
+        asyncLoad.allowSceneActivation = false;
         bool completed = false;
-        asyncLoad.completed += (AsyncOperation op)=>
+
+            asyncLoad.completed += (AsyncOperation op) =>
         {
-            // do something after completed loading
-            Debug.Log("Completed loading of the new scene");
+            // Do something after Loading
+            //Debug.Log("Completed loading of the new scene");
             completed = true;
             GameManager.instance.loadingScreen.SetActive(false);
         };
-        //int loadingCount = 0;
 
-        // while(!completed)  // still loading
-        // //Updates Loading Progress UI
-        // {
-        //     Debug.Log("Starting Progress Loop");
-        //     float progress = Mathf.Clamp01(asyncLoad.progress);
-        //     GameManager.instance.loadingBar.fillAmount = progress;
-        //     //GameManager.instance.loadingText.text = progress.ToString();
-        //     GameManager.instance.loadingText.text = $"{(int)(progress * 100)}%";
-        //     Debug.Log("Progress is " + progress);
-        //     yield return new WaitForSeconds(0.1F);
-        // }
-        // Debug.Log("Finished displaying progress.");
-        // GameManager.instance.loadingScreen.SetActive(false);
-        // yield return null;
+        while (!asyncLoad.isDone) //Progress UI
+        {
+            float progress = Mathf.Clamp01(asyncLoad.progress / 0.9f); // Scales Progress to 0-1
+            GameManager.instance.loadingBar.fillAmount = progress;
 
-        return null;
+            if (progress >= 1F)
+            {
+                GameManager.instance.loadingText.text = "100%";
+            }
+
+            else
+            {
+                GameManager.instance.loadingText.text = $"{(int)(progress * 100)}%"; //Shows 0-100%
+            }
+
+            if (asyncLoad.progress >= 0.9f && !completed)
+            {
+                asyncLoad.allowSceneActivation = true;
+            }
+
+            yield return null;
+        }
+
+        //return null;
     }
 
     public void MainMenu(int sceneNumber)
