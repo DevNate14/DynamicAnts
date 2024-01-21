@@ -9,6 +9,12 @@ EditorBuildSettings:
     path: Assets/Scenes/VIv's Scenes/Title Scene.unity
     guid: ad932f72253a6e14b92bdf3a5359d973
   - enabled: 1
-    path: Assets/Scenes/Level 5 (Dante)/New Scene.unity
-    guid: d8ac9bf4b6ab1cf438eed32f05ada6ab
+    path: Assets/Scenes/Level 1 Alpha (Nate).unity
+    guid: f910b88d4c7cfa34ea8c8ce3eafbb122
+  - enabled: 1
+    path: Assets/Scenes/Level 2 Alpha (Sebastian).unity
+    guid: e2e852137e8463942ab8697f9275c3c5
+  - enabled: 1
+    path: Assets/Scenes/Level 3 Alpha (Dante).unity
+    guid: 8ba9edd3b513b7946a4d002fd6431570
   m_configObjects: {}

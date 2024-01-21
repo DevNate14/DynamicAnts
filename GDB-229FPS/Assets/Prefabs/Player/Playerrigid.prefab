@@ -392,14 +392,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   aud: {fileID: 1520310690}
   Maincamera: {fileID: 1549124673}
+  InteractRange: 0
   playerSpawnPos: {x: 0, y: 0, z: 0}
   Feet: {fileID: 2212763630065284130}
   Player: {fileID: 2212763630186881066}
   Groundraylength: 0.09
   gunModel: {fileID: 9171185922032096686}
   muzzlePoint: {fileID: 4109002566342219493}
-  HPOrig: 0
-  HP: 0
+  HPOrig: 20
+  HP: 20
   damageDone: 0
   MoveSpeed: 5
   walkSpeed: 5
