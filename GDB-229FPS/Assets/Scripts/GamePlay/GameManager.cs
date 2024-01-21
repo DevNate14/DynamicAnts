@@ -219,7 +219,7 @@ public class GameManager : MonoBehaviour
         menuActive = menuWin;
         menuActive.SetActive(true);
         menuActive.GetComponentInChildren<Button>().Select();
-        PlayerPrefs.DeleteAll();
+        PersistenceManager.instance.DeleteGame();
     }
 
 
