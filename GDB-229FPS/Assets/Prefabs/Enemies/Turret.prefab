@@ -196,6 +196,7 @@ MonoBehaviour:
   bullet: {fileID: 5293575694773355670, guid: 4a558839255bb47429f5620b311ae65b, type: 3}
   headPosition: {fileID: 7843411015561531496}
   viewCone: 90
+  mySpawner: {fileID: 0}
 --- !u!33 &7202853675063468491
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -290,7 +291,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 2.1
+  m_Radius: 12.44
   m_Center: {x: 0.001727432, y: 0.10396846, z: 0.006566763}
 --- !u!195 &7202853675066572276
 NavMeshAgent:
