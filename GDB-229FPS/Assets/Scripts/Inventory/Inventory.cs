@@ -25,6 +25,14 @@ public class Inventory : MonoBehaviour, IInventory, IPersist
         }
         return result;
     }
+    public int KeyCount() {
+        int num = 0;
+        foreach (bool key in keys) {
+            if (key)
+                ++num;
+        }
+        return num;
+    }
     public bool CheckKeyById(int id) { // returns whether or not the key has been collected based on ID
         bool result = false;
         if (keys[id-1]) {
