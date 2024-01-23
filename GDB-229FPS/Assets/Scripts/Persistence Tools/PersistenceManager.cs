@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor.SearchService;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PersistenceManager : MonoBehaviour
 {
@@ -27,12 +29,18 @@ public class PersistenceManager : MonoBehaviour
         {
             DeleteGame();
 
-            PlayerPrefs.SetFloat("SpawnPosX", -262);
-            PlayerPrefs.SetFloat("SpawnPosY", 6);
-            PlayerPrefs.SetFloat("SpawnPosZ", 78);
+            Vector3 defaultSpawn = GameObject.FindWithTag("Respawn").transform.position;
+            if(defaultSpawn == null)
+            {
+                defaultSpawn = Vector3.zero;
+            }    
+
+            PlayerPrefs.SetFloat("SpawnPosX", defaultSpawn.x);
+            PlayerPrefs.SetFloat("SpawnPosY", defaultSpawn.y);
+            PlayerPrefs.SetFloat("SpawnPosZ", defaultSpawn.z);
         }
 
-        sceneNumber = PlayerPrefs.GetInt("SceneNumber", 1);
+        sceneNumber = PlayerPrefs.GetInt("SceneNumber", SceneManager.GetActiveScene().buildIndex);
     }
 
     private void Update()
