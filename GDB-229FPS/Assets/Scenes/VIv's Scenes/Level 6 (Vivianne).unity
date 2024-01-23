@@ -5170,6 +5170,42 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 606502987098220706, guid: a2ee82543ebe40b418181e738fee1d49, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2044570694286479337, guid: a2ee82543ebe40b418181e738fee1d49, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3715650570969020507, guid: a2ee82543ebe40b418181e738fee1d49, type: 3}
+      propertyPath: m_text
+      value: MAIN MENU
+      objectReference: {fileID: 0}
+    - target: {fileID: 3715650570969020509, guid: a2ee82543ebe40b418181e738fee1d49, type: 3}
+      propertyPath: m_Name
+      value: MainMenu Text
+      objectReference: {fileID: 0}
+    - target: {fileID: 3715650571077433704, guid: a2ee82543ebe40b418181e738fee1d49, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3715650571077433704, guid: a2ee82543ebe40b418181e738fee1d49, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: MainMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 3715650571077433706, guid: a2ee82543ebe40b418181e738fee1d49, type: 3}
+      propertyPath: m_Name
+      value: MainMenu Button
+      objectReference: {fileID: 0}
+    - target: {fileID: 3715650571372743067, guid: a2ee82543ebe40b418181e738fee1d49, type: 3}
+      propertyPath: m_text
+      value: QUIT
+      objectReference: {fileID: 0}
+    - target: {fileID: 3715650571372743069, guid: a2ee82543ebe40b418181e738fee1d49, type: 3}
+      propertyPath: m_Name
+      value: Quit Text
+      objectReference: {fileID: 0}
     - target: {fileID: 3715650572279046315, guid: a2ee82543ebe40b418181e738fee1d49, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -5257,6 +5293,70 @@ PrefabInstance:
     - target: {fileID: 3715650572279046319, guid: a2ee82543ebe40b418181e738fee1d49, type: 3}
       propertyPath: m_Name
       value: UI Items
+      objectReference: {fileID: 0}
+    - target: {fileID: 3715650572284038876, guid: a2ee82543ebe40b418181e738fee1d49, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3715650572509121737, guid: a2ee82543ebe40b418181e738fee1d49, type: 3}
+      propertyPath: m_Name
+      value: Quit Button
+      objectReference: {fileID: 0}
+    - target: {fileID: 3715650572509121783, guid: a2ee82543ebe40b418181e738fee1d49, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3715650572509121783, guid: a2ee82543ebe40b418181e738fee1d49, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Quit
+      objectReference: {fileID: 0}
+    - target: {fileID: 3769299396323253737, guid: a2ee82543ebe40b418181e738fee1d49, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 207.487
+      objectReference: {fileID: 0}
+    - target: {fileID: 3769299396323253737, guid: a2ee82543ebe40b418181e738fee1d49, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.2328
+      objectReference: {fileID: 0}
+    - target: {fileID: 3769299397058990056, guid: a2ee82543ebe40b418181e738fee1d49, type: 3}
+      propertyPath: m_Name
+      value: Mag/Ammo Text
+      objectReference: {fileID: 0}
+    - target: {fileID: 3769299397058990062, guid: a2ee82543ebe40b418181e738fee1d49, type: 3}
+      propertyPath: m_text
+      value: MAG / AMMO -
+      objectReference: {fileID: 0}
+    - target: {fileID: 3769299397058990062, guid: a2ee82543ebe40b418181e738fee1d49, type: 3}
+      propertyPath: m_fontSize
+      value: 36.74
+      objectReference: {fileID: 0}
+    - target: {fileID: 3769299397058990062, guid: a2ee82543ebe40b418181e738fee1d49, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 36.74
+      objectReference: {fileID: 0}
+    - target: {fileID: 3769299397373700746, guid: a2ee82543ebe40b418181e738fee1d49, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 221.9596
+      objectReference: {fileID: 0}
+    - target: {fileID: 3769299397373700746, guid: a2ee82543ebe40b418181e738fee1d49, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.0636
+      objectReference: {fileID: 0}
+    - target: {fileID: 6028296881681499104, guid: a2ee82543ebe40b418181e738fee1d49, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6771327234528224206, guid: a2ee82543ebe40b418181e738fee1d49, type: 3}
+      propertyPath: m_Name
+      value: MainMenu BG
+      objectReference: {fileID: 0}
+    - target: {fileID: 6771327234761016701, guid: a2ee82543ebe40b418181e738fee1d49, type: 3}
+      propertyPath: m_Name
+      value: Quit BG
+      objectReference: {fileID: 0}
+    - target: {fileID: 6821212373145119114, guid: a2ee82543ebe40b418181e738fee1d49, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a2ee82543ebe40b418181e738fee1d49, type: 3}
