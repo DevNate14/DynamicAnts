@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Net.Sockets;
 using System.Xml.Serialization;
 using Unity.VisualScripting;
+using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.XR;
@@ -27,6 +28,8 @@ public class RigidPlayer : MonoBehaviour,IDamageable,IPersist,IImpluse
     [SerializeField] float Groundraylength;
     [Header("Weapons")]
     [SerializeField] public GameObject gunModel, muzzlePoint;
+    [SerializeField] Animator GunAnim;
+    [SerializeField] float GunAnimSpeed;
     [Header("Health")]
     [SerializeField] public int HPOrig;
     [SerializeField] int HP;
@@ -59,6 +62,7 @@ public class RigidPlayer : MonoBehaviour,IDamageable,IPersist,IImpluse
     [Header("Slope")]
     public float MaxslopeAngel;
     private RaycastHit slophit;
+    bool OnSlope;
 
     [Header("stairs")]
     [SerializeField]GameObject stepup;
@@ -96,17 +100,16 @@ public class RigidPlayer : MonoBehaviour,IDamageable,IPersist,IImpluse
         RaycastHit[] hits = Physics.RaycastAll(Feet.position, Vector3.down, Groundraylength);
         foreach (RaycastHit hit in hits)
         {
-            if (hit.collider != null && hit.transform != this)
+            if (hit.collider != null && hit.transform != this && Grounded != true)
             {
-
                 Grounded = true;
                 jumpedtimes = 0;
-
             }
         }
 
 
         MovePlayer();
+        BounceGun();
         //MovePlayerCamera();
         pickup();
         
@@ -114,26 +117,27 @@ public class RigidPlayer : MonoBehaviour,IDamageable,IPersist,IImpluse
 
     private void MovePlayer()
     {
-        Vector3 MoveVector = transform.TransformDirection(PlayerMovmentInput) * MoveSpeed;
-        
-        
-
         Sprint();
         Crouch();
         Stairs();
         Jump();
+        Vector3 MoveVector = transform.TransformDirection(PlayerMovmentInput) * MoveSpeed;
+        
         Player.velocity = MoveVector + new Vector3(LongJump.x, Player.velocity.y, LongJump.z);
 
-        if (OnSlop())
+        if (OnSlope = OnSlop())
         {
-            Debug.Log("Slope");
-            Player.AddForce(GetslopeMove() * SprintSpeed * 20f, ForceMode.Force);
-            if (Player.velocity.y > 0.3f)
-                Player.AddForce(Vector3.down * 80f, ForceMode.Force);
+            Grounded = true;
+            jumpedtimes = 0;
+            //    Debug.Log("Slope");
+            //    //Player.AddForce(GetslopeMove() * SprintSpeed * 20f, ForceMode.Force);
+            //    Player.velocity = GetslopeMove();
+            //    if (Player.velocity.y > 0.3f)
+            //        Player.AddForce(Vector3.down * 80f, ForceMode.Force);
         }
-        
 
-    }
+
+}
 
     void Jump()
     {
@@ -167,6 +171,7 @@ public class RigidPlayer : MonoBehaviour,IDamageable,IPersist,IImpluse
         }
 
     }
+
     void Sprint()
     {
         
@@ -218,21 +223,24 @@ public class RigidPlayer : MonoBehaviour,IDamageable,IPersist,IImpluse
 
     private bool OnSlop()
     {
-        if (Physics.Raycast(transform.position, Vector3.down, out slophit, StandingScale * 0.5f + 0.3f))
+
+        if (Physics.Raycast(whatsinfront.transform.position, Vector3.down, out slophit, 0.3f))
         {
+            //Debug.Log("Slope");
             if (slophit.collider.isTrigger)
                 return false;
             float angle = Vector3.Angle(Vector3.up, slophit.normal);
+            //Debug.Log(angle < MaxslopeAngel && angle != 0);
             return angle < MaxslopeAngel && angle != 0;
         }// proirty
          // 
          return false;
     }
 
-    private Vector3 GetslopeMove()
-    {
-        return Vector3.ProjectOnPlane(PlayerMovmentInput, slophit.normal).normalized;
-    }
+    //private Vector3 GetslopeMove()
+    //{
+    //    return Vector3.ProjectOnPlane(new Vector3(Player.velocity.x, 0, Player.velocity.z), slophit.normal).normalized;
+    //}
 
     void Stairs()
     {
@@ -241,14 +249,14 @@ public class RigidPlayer : MonoBehaviour,IDamageable,IPersist,IImpluse
         RaycastHit[] high = new RaycastHit[3];
 
 
-        if (Physics.Raycast(whatsinfront.transform.position, transform.TransformDirection(Vector3.forward), out low, 0.1f))
+        if (Physics.Raycast(whatsinfront.transform.position, transform.forward, out low, 0.1f) && !OnSlope)
         {
             if (low.collider.isTrigger)
                 return;
             int num = 0;
             for (int i = 0; i < 3; i++)
             {
-                if (!Physics.Raycast(stepup.transform.position, transform.TransformDirection(Vector3.forward), out high[i], 0.2f))
+                if (!Physics.Raycast(stepup.transform.position, transform.forward, out high[i], 0.2f))
                     num++;
                 else if (high[i].collider.isTrigger)
                     num++;
@@ -300,6 +308,7 @@ public class RigidPlayer : MonoBehaviour,IDamageable,IPersist,IImpluse
         }
             // how does this work  find a object with the e  button then give interacbele
     }
+
     //void Pullup()
     //{
     //    //look for edge  if edge pull up 
@@ -307,11 +316,13 @@ public class RigidPlayer : MonoBehaviour,IDamageable,IPersist,IImpluse
     //    //only caveat is we have to set a rule to only make things in the level that keep that spacing rule in mind or else we can get some weird bugs like 
     //    //one I saw in someones project where a flawed ray check let you "vault" through a wall
     //}
+
     public void UpdatePlayerUI()
     {
         GameManager.instance.playerHPBar.fillAmount = (float)HP / HPOrig;
         GameManager.instance.UpdateHPBar(HP, HPOrig);
     }
+
     public void RespawnPlayer()
     {
         HP = HPOrig;
@@ -349,11 +360,7 @@ public class RigidPlayer : MonoBehaviour,IDamageable,IPersist,IImpluse
         UpdatePlayerUI();
         StartCoroutine(PlayerFlashDamage());
     }
-    //public void AddImpluse(Vector3 _impulse, float resolveTime)
-    //{
-    //    impulse = _impulse;
-    //    impulseResolve = resolveTime;
-    //}
+
     public void Heal(int amount)
     {
         HP += amount;
@@ -364,6 +371,7 @@ public class RigidPlayer : MonoBehaviour,IDamageable,IPersist,IImpluse
     {
         PersistenceManager.instance.AddToManager(this);
     }
+
     public void SaveState()
     {
         PlayerPrefs.SetInt("PlayerCurrHP", HP);
@@ -372,12 +380,14 @@ public class RigidPlayer : MonoBehaviour,IDamageable,IPersist,IImpluse
         //PlayerPrefs.SetFloat("SpawnPosY", playerSpawnPos.y);
         //PlayerPrefs.SetFloat("SpawnPosZ", playerSpawnPos.z);
     }
+
     public void LoadState()
     {
         HP = PlayerPrefs.GetInt("PlayerCurrHP", HPOrig);
 
         playerSpawnPos = new Vector3(PlayerPrefs.GetFloat("SpawnPosX"), PlayerPrefs.GetFloat("SpawnPosY"), PlayerPrefs.GetFloat("SpawnPosZ"));
     }
+
     //void MovePlayerCamera()
     //{
     //    xRot -= PlayerMouseInput.y * Sensitivity;
@@ -385,6 +395,7 @@ public class RigidPlayer : MonoBehaviour,IDamageable,IPersist,IImpluse
     //    transform.Rotate(0f, PlayerMouseInput.x * Sensitivity, 0f);
     //    Eyes.transform.localRotation = Quaternion.Euler(xRot, 0f, 0f);
     //}
+
     public void ApplyBuff(int type) {
         switch (type)
         {
@@ -398,5 +409,10 @@ public class RigidPlayer : MonoBehaviour,IDamageable,IPersist,IImpluse
     {
         LongJump += _impulse;
         Player.velocity += new Vector3(0, _impulse.y, 0);
+    }
+
+    private void BounceGun()
+    {
+        GunAnim.SetFloat("Movement", Mathf.Lerp(GunAnim.GetFloat("Movement"), (MoveSpeed - walkSpeed) / 5, Time.deltaTime * GunAnimSpeed));
     }
 }
