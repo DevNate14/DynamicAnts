@@ -131,7 +131,7 @@ public class RigidPlayer : MonoBehaviour,IDamageable,IPersist,IImpluse
             if (Player.velocity.y > 0.3f)
                 Player.AddForce(Vector3.down * 80f, ForceMode.Force);
         }
-        
+
 
     }
 
