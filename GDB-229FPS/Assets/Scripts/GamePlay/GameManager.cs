@@ -75,7 +75,7 @@ public class GameManager : MonoBehaviour
             playerCam = FindObjectOfType<Camera>();
             //gravity = playerScript.GetGravity();
             timeScaleOrig = Time.timeScale;
-            AudioManager.instance.PlayMusic(SceneManager.GetActiveScene().buildIndex);
+            AudioManager.instance.PlayMusic(SceneManager.GetActiveScene().buildIndex); //will throw an error when testing individual levels, won't be a problem in the game build
         }
 
         //TriggerDialogue("WELCOME TO YOUR FIRST MISSION! GRAB THE GUNS, AND SHOOT THE ENEMIES!");
@@ -128,10 +128,11 @@ public class GameManager : MonoBehaviour
         menuActive = null;
     }
 
-    public void UpdateGameGoal()
+    public void UpdateKeyUI()
     {
        addedKeysText.text = addedKeys.ToString("00");
     }
+
     public void UpdateHPBar(int hpMissing, int hpTotal)
     {
         playerHPMissing.text = hpMissing.ToString("00");

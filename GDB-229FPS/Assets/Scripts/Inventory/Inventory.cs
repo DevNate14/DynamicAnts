@@ -18,6 +18,28 @@ public class Inventory : MonoBehaviour, IInventory, IPersist
     {
         AddToPersistenceManager();
     }
+    public bool CheckKeys() { //checks status of all keys
+        bool result = false;
+        if (keys[0] && keys[1] && keys[2]) {
+            result = true;
+        }
+        return result;
+    }
+    public int KeyCount() {
+        int num = 0;
+        foreach (bool key in keys) {
+            if (key)
+                ++num;
+        }
+        return num;
+    }
+    public bool CheckKeyById(int id) { // returns whether or not the key has been collected based on ID
+        bool result = false;
+        if (keys[id-1]) {
+            result = true;
+        }
+        return result;
+    }
     private void Update() {
         if (!GameManager.instance.isPaused && weapons.Count > 0) {
             if (!weapons[selectedWeapon].isShooting) {
@@ -125,7 +147,7 @@ public class Inventory : MonoBehaviour, IInventory, IPersist
     }
     public void SaveState()
     {
-        //PlayerPrefs.SetInt("SelectedWeapon", selectedWeapon);
+        PlayerPrefs.SetInt("SelectedWeapon", selectedWeapon);
         PersistenceManager.instance.SaveInventoryWeapons(weapons);
         PersistenceManager.instance.SaveInventoryKeys(keys);
     }
@@ -137,16 +159,22 @@ public class Inventory : MonoBehaviour, IInventory, IPersist
         List<GunStatsSO> weaponsToAdd = PersistenceManager.instance.LoadInventoryWeapons();
         foreach (GunStatsSO weapon in weaponsToAdd) 
         { 
-            PickUpWeapon(weapon);
+            LoadWeapon(weapon);
         }
 
-        //selectedWeapon = PlayerPrefs.GetInt("SelectedWeapon", 0);
+        selectedWeapon = PlayerPrefs.GetInt("SelectedWeapon", 0);
 
-        if(weapons.Count > 0)
+        if(weapons.Count > selectedWeapon)
         {
-            selectedWeapon = 0;
             ChangeGun();
         }
+    }
+
+    public void LoadWeapon(GunStatsSO stats)
+    {
+        stats.isShooting = false;
+        weapons.Add(stats);
+        weapons[selectedWeapon].Initialize(GameManager.instance.playerScript.muzzlePoint);
     }
 
 }

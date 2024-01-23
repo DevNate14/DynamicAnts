@@ -360,7 +360,11 @@ public class RigidPlayer : MonoBehaviour,IDamageable,IPersist,IImpluse
         UpdatePlayerUI();
         StartCoroutine(PlayerFlashDamage());
     }
-
+    //public void AddImpluse(Vector3 _impulse, float resolveTime)
+    //{
+    //    impulse = _impulse;
+    //    impulseResolve = resolveTime;
+    //}
     public void Heal(int amount)
     {
         HP += amount;
