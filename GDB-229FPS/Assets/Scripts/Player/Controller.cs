@@ -124,14 +124,23 @@ public class Controller : MonoBehaviour, IDamageable, IImpluse, IPersist
             speed *= sprintMod;
         isCrouched = !isCrouched;
     }
-    void Sprint()
+    public bool Sprint()
     {
         if (isCrouched)
-            return;
+            return false;
+            
         if (Input.GetButtonDown("Sprint"))
+        {
             speed *= sprintMod;
+            return true;
+        }
+
         else if (Input.GetButtonUp("Sprint"))
+        {
             speed /= sprintMod;
+            return false;
+        }
+            return false; //No Sprint- By Default
     }
     void Jump()
     {
