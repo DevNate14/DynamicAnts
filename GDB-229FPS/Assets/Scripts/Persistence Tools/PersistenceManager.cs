@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,12 +8,15 @@ using UnityEngine.SceneManagement;
 
 public class PersistenceManager : MonoBehaviour
 {
+
     public static PersistenceManager instance;
 
     List<IPersist> persistingObjects = new List<IPersist>();
 
     [SerializeField] List<GunStatsSO> allGunStatSO = new List<GunStatsSO>();
 
+    [Header("When testing individual levels: \ntestingLevel should be clicked and \nsaveGameExists should onl be clicked after \na checkpoint in the level has been activated")] //will need to be removed before beta build
+    public bool testingLevel; //will need to be removed before beta build
     public bool savedGameExists;
 
     public int sceneNumber;
@@ -23,7 +27,8 @@ public class PersistenceManager : MonoBehaviour
         {
             instance = this;
         }
-        savedGameExists = 1 == PlayerPrefs.GetInt("SavedGameExists", 0);
+
+        if (!testingLevel) { savedGameExists = 1 == PlayerPrefs.GetInt("SavedGameExists", 0); }
         
         if(!savedGameExists)
         {
@@ -43,7 +48,7 @@ public class PersistenceManager : MonoBehaviour
         sceneNumber = PlayerPrefs.GetInt("SceneNumber", SceneManager.GetActiveScene().buildIndex);
     }
 
-    private void Update()
+    private void Update() //will need to be removed before beta build
     {
         if (Input.GetKeyDown(KeyCode.Backspace)) { DeleteGame(); print("Game Save Deleted"); }
         if (Input.GetKeyDown(KeyCode.Equals)) { SaveGame(); print("Game Saved"); }
@@ -90,14 +95,11 @@ public class PersistenceManager : MonoBehaviour
 
         List<GunStatsSO> loading = new List<GunStatsSO>();
 
-        for(int i = 0; i < allGunStatSO.Count && i < weapons.Length; i++)
+        for(int i = 0; i < weapons.Length; i++)
         {
-            if (weapons[i] == '1')
-            { 
-                loading.Add(allGunStatSO[i]);
-            }
+            loading.Add(allGunStatSO[(int)char.GetNumericValue(weapons[i])]);
         }
-
+        
         return loading;
     }
 
@@ -105,10 +107,18 @@ public class PersistenceManager : MonoBehaviour
     {
         string weapons = "";
 
-        for(int i = 0; i < allGunStatSO.Count; i++)
+        foreach (GunStatsSO weapon in saving)
         {
-            weapons += saving.Contains(allGunStatSO[i]) ? "1" : "0";
+            for (int i = 0; i < allGunStatSO.Count; i++)
+            {
+                if(weapon == allGunStatSO[i])
+                {
+                    weapons += i.ToString();
+                    break;
+                }
+            }
         }
+
         PlayerPrefs.SetString("Weapons", weapons);
     }
 

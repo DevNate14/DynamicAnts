@@ -125,7 +125,7 @@ public class Inventory : MonoBehaviour, IInventory, IPersist
     }
     public void SaveState()
     {
-        //PlayerPrefs.SetInt("SelectedWeapon", selectedWeapon);
+        PlayerPrefs.SetInt("SelectedWeapon", selectedWeapon);
         PersistenceManager.instance.SaveInventoryWeapons(weapons);
         PersistenceManager.instance.SaveInventoryKeys(keys);
     }
@@ -137,16 +137,22 @@ public class Inventory : MonoBehaviour, IInventory, IPersist
         List<GunStatsSO> weaponsToAdd = PersistenceManager.instance.LoadInventoryWeapons();
         foreach (GunStatsSO weapon in weaponsToAdd) 
         { 
-            PickUpWeapon(weapon);
+            LoadWeapon(weapon);
         }
 
-        //selectedWeapon = PlayerPrefs.GetInt("SelectedWeapon", 0);
+        selectedWeapon = PlayerPrefs.GetInt("SelectedWeapon", 0);
 
-        if(weapons.Count > 0)
+        if(weapons.Count > selectedWeapon)
         {
-            selectedWeapon = 0;
             ChangeGun();
         }
+    }
+
+    public void LoadWeapon(GunStatsSO stats)
+    {
+        stats.isShooting = false;
+        weapons.Add(stats);
+        weapons[selectedWeapon].Initialize(GameManager.instance.playerScript.muzzlePoint);
     }
 
 }
