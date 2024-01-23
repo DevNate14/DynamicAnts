@@ -18,6 +18,20 @@ public class Inventory : MonoBehaviour, IInventory, IPersist
     {
         AddToPersistenceManager();
     }
+    public bool CheckKeys() { //checks status of all keys
+        bool result = false;
+        if (keys[0] && keys[1] && keys[2]) {
+            result = true;
+        }
+        return result;
+    }
+    public bool CheckKeyById(int id) { // returns whether or not the key has been collected based on ID
+        bool result = false;
+        if (keys[id-1]) {
+            result = true;
+        }
+        return result;
+    }
     private void Update() {
         if (!GameManager.instance.isPaused && weapons.Count > 0) {
             if (!weapons[selectedWeapon].isShooting) {
