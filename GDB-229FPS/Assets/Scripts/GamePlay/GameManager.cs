@@ -128,10 +128,11 @@ public class GameManager : MonoBehaviour
         menuActive = null;
     }
 
-    public void UpdateGameGoal()
+    public void UpdateKeyUI()
     {
        addedKeysText.text = addedKeys.ToString("00");
     }
+
     public void UpdateHPBar(int hpMissing, int hpTotal)
     {
         playerHPMissing.text = hpMissing.ToString("00");
