@@ -30,6 +30,10 @@ public class ShotgunBullet : MonoBehaviour
         IDamageable thing = other.GetComponent<IDamageable>();
         if(thing != null){
             thing.Damage(damageAmount);
+            if (!other.CompareTag("Player"))
+            {
+                GameManager.instance.DisplayDamageDone(damageAmount);
+            }
         }
         IImpluse obj = other.GetComponent<IImpluse>();
         if (obj != null) {
