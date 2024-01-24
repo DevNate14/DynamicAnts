@@ -712,8 +712,9 @@ MonoBehaviour:
   WithObject: 1
   Object: {fileID: 1549124674}
   WithDelay: 1
-  delay: 0.05
-  delayType: 1
+  Delay: 0.1
+  DelayType: 1
+  LerpSpeed: 2
   Offset: {x: -1, y: 0, z: 0, w: 1}
   X: 0
   Y: 0
