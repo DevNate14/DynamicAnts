@@ -1673,6 +1673,7 @@ MonoBehaviour:
   player: {fileID: 0}
   playerSpawnPOS: {fileID: 0}
   playerScript: {fileID: 0}
+  playerInventory: {fileID: 0}
   ammoSizeText: {fileID: 0}
   ammoCountText: {fileID: 0}
   weaponIcon: {fileID: 0}
@@ -1687,13 +1688,15 @@ MonoBehaviour:
   optionsPage: {fileID: 1288867063}
   dialogueText: {fileID: 0}
   dialoguePanel: {fileID: 0}
+  keyUI: {fileID: 0}
+  addedKeysText: {fileID: 0}
   playerDamageScreen: {fileID: 0}
   playerCam: {fileID: 0}
   gravity: 0
   loadingScreen: {fileID: 1531420888}
   loadingText: {fileID: 171180482}
   loadingBar: {fileID: 920281754}
-  addedKeysText: {fileID: 0}
+  saveMessage: {fileID: 0}
 --- !u!114 &861805668
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1738,9 +1741,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   allGunStatSO:
   - {fileID: 11400000, guid: 41226334f07ce8d40b1d68133653c269, type: 2}
-  - {fileID: 11400000, guid: 0b0ee63d4b8cee04a8c64dc52ab1f7c7, type: 2}
+  - {fileID: 0}
   - {fileID: 11400000, guid: e2d2eb14612c0304a8f85f86e131fb07, type: 2}
   - {fileID: 11400000, guid: 285706bc4aa5d5742bd01616119d9c9d, type: 2}
+  saveSound: {fileID: 0}
   testingLevel: 0
   savedGameExists: 0
   sceneNumber: 0
@@ -4086,6 +4090,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1742431388, guid: 96cb0cb3d5d316b42af6e05a73e4cee3, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2483714595891667272, guid: 96cb0cb3d5d316b42af6e05a73e4cee3, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0.5829583
