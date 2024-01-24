@@ -5,6 +5,7 @@ using System.Linq;
 using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class PersistenceManager : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class PersistenceManager : MonoBehaviour
     List<IPersist> persistingObjects = new List<IPersist>();
 
     [SerializeField] List<GunStatsSO> allGunStatSO = new List<GunStatsSO>();
+    [SerializeField] AudioClip saveSound;
 
     [Header("When testing individual levels: \ntestingLevel should be clicked and \nsaveGameExists should onl be clicked after \na checkpoint in the level has been activated")] //will need to be removed before beta build
     public bool testingLevel; //will need to be removed before beta build
@@ -61,6 +63,8 @@ public class PersistenceManager : MonoBehaviour
 
     public void SaveGame()
     {
+        GameManager.instance.saveMessage.SetActive(true);
+        StartCoroutine(SavingMessage());
         savedGameExists = true;
         PlayerPrefs.SetInt("SavedGameExists", 1);
         PlayerPrefs.SetInt("SceneNumber", sceneNumber);
@@ -69,6 +73,20 @@ public class PersistenceManager : MonoBehaviour
         {
             p.SaveState();
         }
+    }
+
+    IEnumerator SavingMessage()
+    {
+        GameManager.instance.saveMessage.GetComponentInChildren<TMP_Text>().text = "Saving...";
+        yield return new WaitForSeconds(1);
+        StartCoroutine(GameSavedMessage());
+    }
+    IEnumerator GameSavedMessage()
+    {
+        AudioManager.instance.PlaySFX(saveSound);
+        GameManager.instance.saveMessage.GetComponentInChildren<TMP_Text>().text = "Game Saved!";
+        yield return new WaitForSeconds(3);
+        GameManager.instance.saveMessage.SetActive(false);
     }
 
     public void DeleteGame()
