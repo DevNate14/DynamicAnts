@@ -1,16 +1,14 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
-using Unity.VisualScripting;
 using System.Collections;
-using MiscUtil.Extensions.TimeRelated;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     public static PersistenceManager persistenceManager;
-    //ublic static Inventory inventory;
+    //Public static Inventory inventory;
 
     [Header("------------------------------ PLAYER ------------------------------\n")]
     [SerializeField] TMP_Text totalDamage;
@@ -136,11 +134,11 @@ public class GameManager : MonoBehaviour
     public void UpdateKeyUI(int addedKeys)
     {
         //keyUI.SetActive(false);
-        StartCoroutine(KeyUIEvent());
+        StartCoroutine(KeyUIEvent(addedKeys));
         addedKeysText.text = addedKeys.ToString("00");
     }
 
-    IEnumerator KeyUIEvent()
+    IEnumerator KeyUIEvent(int addedKeys)
     {
         keyUI.SetActive(false);
         yield return new WaitForSeconds(2);
@@ -157,6 +155,7 @@ public class GameManager : MonoBehaviour
         {
             menuActive.SetActive(false);
             //KeyUI should be gone
+            menuActive = null; //Resets menuActive - Hides UI
         }
     }
 
