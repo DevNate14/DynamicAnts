@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     public static PersistenceManager persistenceManager;
+    public static Inventory inventory;
 
     [Header("------------------------------ PLAYER ------------------------------\n")]
     [SerializeField] TMP_Text totalDamage;
@@ -50,7 +51,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject dialoguePanel;
     float charactersPerSecond = 8.5f;
 
-
+    [Header("------------------------------ KEY UI ------------------------------\n")]
+    [SerializeField] GameObject keyUI;
+    [SerializeField] TMP_Text addedKeysText;
+    int addedKeys;
 
     [Header("------------------------------ OTHER ------------------------------\n")]
     public GameObject playerDamageScreen;
@@ -60,8 +64,6 @@ public class GameManager : MonoBehaviour
     public GameObject loadingScreen;
     public TMP_Text loadingText;
     public Image loadingBar;
-    [SerializeField] TMP_Text addedKeysText;
-    int addedKeys;
 
     void Awake()
     {
@@ -128,9 +130,31 @@ public class GameManager : MonoBehaviour
         menuActive = null;
     }
 
-    public void UpdateKeyUI()
+    public void UpdateKeyUI(int addedKeys)
     {
-       addedKeysText.text = addedKeys.ToString("00");
+        //keyUI.SetActive(false);
+        KeyUIEvent();
+        addedKeysText.text = addedKeys.ToString("00");
+    }
+
+    IEnumerator KeyUIEvent()
+    {
+        keyUI.SetActive(false);
+        yield return new WaitForSeconds(2);
+        //keyUI.SetActive(false);
+        if (addedKeys == 1
+        && menuActive == null)
+        {
+            //Have Key UI appear
+            menuActive = keyUI;
+            menuActive.SetActive(true);
+        }
+        else if (addedKeys == 0
+        && menuActive != null)
+        {
+            menuActive.SetActive(false);
+            //KeyUI should be gone
+        }
     }
 
     public void UpdateHPBar(int hpMissing, int hpTotal)
