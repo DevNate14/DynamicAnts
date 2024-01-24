@@ -66,7 +66,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cooldown: 0.5
-  damage: 1
+  damage: 2
   hit: 0
 --- !u!33 &469366528797443315
 MeshFilter:
@@ -406,7 +406,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cooldown: 0.5
-  damage: 1
+  damage: 2
   hit: 0
 --- !u!33 &469366530007146281
 MeshFilter:
@@ -645,7 +645,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cooldown: 0.5
-  damage: 1
+  damage: 2
   hit: 0
 --- !u!33 &469366530346051265
 MeshFilter:
@@ -884,7 +884,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cooldown: 0.5
-  damage: 1
+  damage: 2
   hit: 0
 --- !u!33 &469366530530173018
 MeshFilter:
@@ -1123,7 +1123,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cooldown: 0.5
-  damage: 1
+  damage: 2
   hit: 0
 --- !u!33 &469366530587630625
 MeshFilter:

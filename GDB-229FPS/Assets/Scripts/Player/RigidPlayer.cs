@@ -100,10 +100,13 @@ public class RigidPlayer : MonoBehaviour,IDamageable,IPersist,IImpluse
         RaycastHit[] hits = Physics.RaycastAll(Feet.position, Vector3.down, Groundraylength);
         foreach (RaycastHit hit in hits)
         {
-            if (hit.collider != null && hit.transform != this && Grounded != true)
+            if (hit.collider != null && hit.transform != this && !Grounded)
             {
-                Grounded = true;
-                jumpedtimes = 0;
+                if (!hit.collider.isTrigger)
+                {
+                    Grounded = true;
+                    jumpedtimes = 0;
+                }
             }
         }
 
