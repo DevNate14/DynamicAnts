@@ -219,7 +219,7 @@ public class GameManager : MonoBehaviour
         && menuActive != null)
         {
             menuActive.SetActive(false);
-            //Reload UI should be gone, after Player clicks R
+            //Reload Ui only disappears- Runs out of time
         }
     }
 

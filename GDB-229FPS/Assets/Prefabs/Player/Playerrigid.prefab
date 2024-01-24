@@ -276,8 +276,6 @@ GameObject:
   - component: {fileID: 1520310690}
   - component: {fileID: 1520310691}
   - component: {fileID: 1146138786}
-  - component: {fileID: 8178996380137869986}
-  - component: {fileID: 1532683361}
   m_Layer: 0
   m_Name: Playerrigid
   m_TagString: Player
@@ -543,36 +541,6 @@ MonoBehaviour:
   weapons: []
   reloadClip: {fileID: 8300000, guid: a7ffc34ab8783ee4882cb3e302dc9412, type: 3}
 --- !u!114 &1146138786
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2212763630186881060}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2878aa5e51b2c0e4b92d72f773b2a112, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerController: {fileID: 2212763630186881061}
-  sprintingParticle: {fileID: 0}
-  minRunSpeed: 5
---- !u!114 &8178996380137869986
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2212763630186881060}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2878aa5e51b2c0e4b92d72f773b2a112, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerController: {fileID: 2212763630186881061}
-  sprintingParticle: {fileID: 2607479478421018516}
-  minRunSpeed: 5
---- !u!114 &1532683361
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
