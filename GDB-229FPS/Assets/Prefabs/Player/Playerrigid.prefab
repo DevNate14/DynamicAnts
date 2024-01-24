@@ -427,11 +427,36 @@ MonoBehaviour:
   stepup: {fileID: 2212763629665694435}
   whatsinfront: {fileID: 2212763629050985804}
   stepHeight: 0.3
-  footstepsVol: 0
-  footstepsSFX: []
-  jumpsSFX: []
-  landSFX: []
-  hurtSFX: []
+  footstepsVol: 0.5
+  footstepsSFX:
+  - {fileID: 8300000, guid: 2c19fee0a2acddd4db14670739c74f77, type: 3}
+  - {fileID: 8300000, guid: 350eb3b787eaaef44b67e58f598a66f7, type: 3}
+  - {fileID: 8300000, guid: c3d2c0016fe954e46b7366e36200b5dc, type: 3}
+  - {fileID: 8300000, guid: 9a800cc76bf65e04fb46186ae1a6a48f, type: 3}
+  - {fileID: 8300000, guid: 7f79fe690b0d3a54b92ad84d97d03bcb, type: 3}
+  - {fileID: 8300000, guid: 2bc489469a921c0468b3239bf8649183, type: 3}
+  - {fileID: 8300000, guid: 66d0ce21c61c18449848a1fc69ab62a8, type: 3}
+  - {fileID: 8300000, guid: 33338e365255e4149826c6331a1465e2, type: 3}
+  jumpsSFX:
+  - {fileID: 8300000, guid: 70c516712decc7d42a43bc159aec30cd, type: 3}
+  - {fileID: 8300000, guid: 79312c6f05e0495488c7abfeb06cc2e2, type: 3}
+  - {fileID: 8300000, guid: 416519bb2ed60b44b99af2c6185bc561, type: 3}
+  landSFX:
+  - {fileID: 8300000, guid: 2c19fee0a2acddd4db14670739c74f77, type: 3}
+  - {fileID: 8300000, guid: 350eb3b787eaaef44b67e58f598a66f7, type: 3}
+  - {fileID: 8300000, guid: c3d2c0016fe954e46b7366e36200b5dc, type: 3}
+  - {fileID: 8300000, guid: 9a800cc76bf65e04fb46186ae1a6a48f, type: 3}
+  - {fileID: 8300000, guid: 7f79fe690b0d3a54b92ad84d97d03bcb, type: 3}
+  - {fileID: 8300000, guid: 2bc489469a921c0468b3239bf8649183, type: 3}
+  - {fileID: 8300000, guid: 66d0ce21c61c18449848a1fc69ab62a8, type: 3}
+  - {fileID: 8300000, guid: 33338e365255e4149826c6331a1465e2, type: 3}
+  hurtSFX:
+  - {fileID: 8300000, guid: cf1d4ed478ec16f4d99bc0be8ebce81b, type: 3}
+  - {fileID: 8300000, guid: ab3427423ee244c43a48150a0a7a3183, type: 3}
+  - {fileID: 8300000, guid: 5c0eb36a1f4bfeb49b5dd728a3dff5f5, type: 3}
+  - {fileID: 8300000, guid: 5a22e29e091924b4ab95ab92b8d672ab, type: 3}
+  - {fileID: 8300000, guid: a8ed1925ef6bcac4a979c3fcf1677762, type: 3}
+  - {fileID: 8300000, guid: 222ed468fa04d9e4296d6de3d5bbb5aa, type: 3}
 --- !u!82 &1520310690
 AudioSource:
   m_ObjectHideFlags: 0
