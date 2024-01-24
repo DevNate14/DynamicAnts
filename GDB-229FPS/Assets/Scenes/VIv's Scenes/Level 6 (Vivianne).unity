@@ -184,6 +184,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5100b15f79f66d0478e31d7fea743319, type: 3}
+--- !u!114 &226864369 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2212763630186881061, guid: 5100b15f79f66d0478e31d7fea743319, type: 3}
+  m_PrefabInstance: {fileID: 226864368}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1532683360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39541a3da17f29d4a83e4158513ccb4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &596857078
 GameObject:
   m_ObjectHideFlags: 0
@@ -5250,6 +5261,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2878aa5e51b2c0e4b92d72f773b2a112, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerController: {fileID: 226864369}
   sprintingParticle: {fileID: 846335987}
 --- !u!1001 &3769299396077660475
 PrefabInstance:
@@ -5262,9 +5274,17 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1279846087193762214, guid: a2ee82543ebe40b418181e738fee1d49, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -164.4
+      objectReference: {fileID: 0}
     - target: {fileID: 2044570694286479337, guid: a2ee82543ebe40b418181e738fee1d49, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2308756578775108331, guid: a2ee82543ebe40b418181e738fee1d49, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -60
       objectReference: {fileID: 0}
     - target: {fileID: 3715650570969020507, guid: a2ee82543ebe40b418181e738fee1d49, type: 3}
       propertyPath: m_text

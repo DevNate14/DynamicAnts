@@ -9,7 +9,7 @@ using UnityEngine.XR;
 
 
 
-public class RigidPlayer : MonoBehaviour,IDamageable,IPersist,IImpluse
+public class RigidPlayer : MonoBehaviour, IDamageable, IPersist, IImpluse
 {
     [SerializeField] public AudioSource aud;
     //inputs to move player and camera
@@ -22,7 +22,7 @@ public class RigidPlayer : MonoBehaviour,IDamageable,IPersist,IImpluse
     // private float xRot;
 
     [Header("Body parts")]
-    [SerializeField] Transform Feet;          
+    [SerializeField] Transform Feet;
     [SerializeField] Rigidbody Player;
     [SerializeField] float Groundraylength;
     [Header("Weapons")]
@@ -36,7 +36,9 @@ public class RigidPlayer : MonoBehaviour,IDamageable,IPersist,IImpluse
     [SerializeField] private float MoveSpeed;
     [SerializeField] public float walkSpeed;
     [SerializeField] public float SprintSpeed;
-    [SerializeField]float temp ;
+    [SerializeField] float temp;
+
+    public bool isSprinting = false;
 
     [Header("Eye Sensitivity")]
     [SerializeField] float Sensitivity;
@@ -61,8 +63,8 @@ public class RigidPlayer : MonoBehaviour,IDamageable,IPersist,IImpluse
     private RaycastHit slophit;
 
     [Header("stairs")]
-    [SerializeField]GameObject stepup;
-    [SerializeField]GameObject whatsinfront;
+    [SerializeField] GameObject stepup;
+    [SerializeField] GameObject whatsinfront;
     [SerializeField] float stepHeight;
 
     // [SerializeField] float smoothwalk;
@@ -79,12 +81,12 @@ public class RigidPlayer : MonoBehaviour,IDamageable,IPersist,IImpluse
 
     void Update()
     {
-        
+
         PlayerMovmentInput = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical"));
         //ayerMouseInput = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
 
         //STAIRS
-        
+
         Debug.DrawRay(stepup.transform.position, stepup.transform.forward);
         Debug.DrawRay(stepup.transform.position, stepup.transform.forward + stepup.transform.right);
         Debug.DrawRay(stepup.transform.position, stepup.transform.forward + -stepup.transform.right);
@@ -105,18 +107,17 @@ public class RigidPlayer : MonoBehaviour,IDamageable,IPersist,IImpluse
             }
         }
 
-
         MovePlayer();
         //MovePlayerCamera();
         pickup();
-        
+
     }
 
     private void MovePlayer()
     {
         Vector3 MoveVector = transform.TransformDirection(PlayerMovmentInput) * MoveSpeed;
-        
-        
+
+
 
         Sprint();
         Crouch();
@@ -169,22 +170,27 @@ public class RigidPlayer : MonoBehaviour,IDamageable,IPersist,IImpluse
     }
     void Sprint()
     {
-        
 
         if (Input.GetKeyDown("left shift"))
         {
-            Debug.Log("IM RUNNING");
             temp = SprintSpeed;
             MoveSpeed = temp;
-            
+            isSprinting = true;
+            Debug.Log("IM RUNNING");
         }
+
         if (Input.GetKeyUp("left shift"))
         {
-            Debug.Log("IM WALKING");
             temp = walkSpeed;
             MoveSpeed = temp;
-
+            isSprinting = false;
+            Debug.Log("IM WALKING");
         }
+    }
+
+    public bool IsSprinting()
+    {
+        return isSprinting;
     }
 
     void Crouch()
@@ -192,17 +198,17 @@ public class RigidPlayer : MonoBehaviour,IDamageable,IPersist,IImpluse
         float temp;
         temp = StandingScale;
         //check if grouded check button if false
-        if (Grounded && Input.GetButtonDown("Crouch") && Crouching==false)
+        if (Grounded && Input.GetButtonDown("Crouch") && Crouching == false)
         {
             Crouching = true;
             //change local y scale
             // how do i keep the camera from moving 
-           transform.localScale = new Vector3(transform.localScale.x, CrouchScale,transform.localScale.z);
-           transform.position=new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z);
+            transform.localScale = new Vector3(transform.localScale.x, CrouchScale, transform.localScale.z);
+            transform.position = new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z);
             Debug.Log("Im crounching");
             //decrement speed
-            
-            
+
+
         }//check if grouded check button if true
         else if (Grounded && Input.GetButtonDown("Crouch") && Crouching == true)
         {
@@ -213,7 +219,7 @@ public class RigidPlayer : MonoBehaviour,IDamageable,IPersist,IImpluse
             //give player back speed 
             Debug.Log("Im not crounching");
         }
-        
+
     }
 
     private bool OnSlop()
@@ -226,7 +232,7 @@ public class RigidPlayer : MonoBehaviour,IDamageable,IPersist,IImpluse
             return angle < MaxslopeAngel && angle != 0;
         }// proirty
          // 
-         return false;
+        return false;
     }
 
     private Vector3 GetslopeMove()
@@ -259,14 +265,14 @@ public class RigidPlayer : MonoBehaviour,IDamageable,IPersist,IImpluse
             {
                 Player.position += new Vector3(0f, stepHeight, 0f);
             }
-            else if (num <=1)
+            else if (num <= 1)
             {
                 Player.AddForce(-transform.forward, ForceMode.Impulse);
 
             }
 
         }
-        
+
         // if i do two ray cast one on th bottom another by the knes 
         // then chck fo an objct in front
         // check if room at top then pass in no roomisa all move alng 
@@ -296,9 +302,9 @@ public class RigidPlayer : MonoBehaviour,IDamageable,IPersist,IImpluse
                     }
                 }
             }
-            
+
         }
-            // how does this work  find a object with the e  button then give interacbele
+        // how does this work  find a object with the e  button then give interacbele
     }
     //void Pullup()
     //{
@@ -324,7 +330,7 @@ public class RigidPlayer : MonoBehaviour,IDamageable,IPersist,IImpluse
         //impulse = Vector3.zero;
         //impulseResolve = 0; // I think this fits but rework by player person may have altered the logic to make this line pointless or even dangerous
         transform.position = playerSpawnPos;
-        
+
     }
 
     IEnumerator PlayerFlashDamage()
@@ -385,7 +391,8 @@ public class RigidPlayer : MonoBehaviour,IDamageable,IPersist,IImpluse
     //    transform.Rotate(0f, PlayerMouseInput.x * Sensitivity, 0f);
     //    Eyes.transform.localRotation = Quaternion.Euler(xRot, 0f, 0f);
     //}
-    public void ApplyBuff(int type) {
+    public void ApplyBuff(int type)
+    {
         switch (type)
         {
             case 1:

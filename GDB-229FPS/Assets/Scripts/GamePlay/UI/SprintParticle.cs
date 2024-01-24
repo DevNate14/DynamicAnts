@@ -4,25 +4,30 @@ using UnityEngine;
 
 public class SprintParticle : MonoBehaviour
 {
-    public Controller Controller;
+    public RigidPlayer playerController;
     [SerializeField] ParticleSystem sprintingParticle;
-    
-    void Update()
+
+
+    void Start()
     {
+        sprintingParticle.Stop();
+    }
 
-        if (Controller != null)
+     void Update()
+    {
+        PlayParticles();
+    }
+
+
+    public void PlayParticles()
+    {
+        if (playerController != null)
         {
-            bool isSprinting = Controller.Sprint();
-        
-            if (!sprintingParticle.isPlaying)
-            {
-                sprintingParticle.Play();
-            }
+            bool isSprinting = playerController.IsSprinting(); 
+            Debug.Log("Is Sprinting " + isSprinting);
 
-            else 
-            {
-                sprintingParticle.Stop();
-            }
+            if (isSprinting) sprintingParticle.Play();
+            else sprintingParticle.Stop();
         }
     }
 }
