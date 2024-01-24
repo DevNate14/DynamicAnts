@@ -164,9 +164,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 5293575694773355666}
+  shotByPlayer: 1
   damageAmount: 5
   destroyTimer: 10
-  speed: 45
+  speed: 65
 --- !u!54 &5293575694773355666
 Rigidbody:
   m_ObjectHideFlags: 0

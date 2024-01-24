@@ -5,7 +5,7 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     [SerializeField] Rigidbody rb;
-
+    [SerializeField] bool shotByPlayer;
     [SerializeField] int damageAmount;
     [SerializeField] int destroyTimer;
     [SerializeField] int speed;
@@ -22,11 +22,13 @@ public class Bullet : MonoBehaviour
             return;
         }
         IDamageable thing = other.GetComponent<IDamageable>();
-        if(thing != null){
-            thing.Damage(damageAmount);
-            if (!other.CompareTag("Player")) {
+        bool isPlayer = other.CompareTag("Player");
+        if (thing != null){
+            if (isPlayer && shotByPlayer)
+                Destroy(gameObject);
+            if (!isPlayer)
                 GameManager.instance.DisplayDamageDone(damageAmount);
-            }
+            thing.Damage(damageAmount);
         }
         Destroy(gameObject);
     }
