@@ -26,7 +26,7 @@ public class MeleeEnemy : MonoBehaviour, IDamageable
     // Start is called before the first frame update
     void Start()
     {
-        //GameManager.instance.UpdateGameGoal(1);
+        agent.SetDestination(transform.position);
     }
 
     // Update is called once per frame
@@ -93,6 +93,8 @@ public class MeleeEnemy : MonoBehaviour, IDamageable
     }
     IEnumerator DeadAnim()
     {
+        Collider col = GetComponent<Collider>();
+        col.enabled = false;
         yield return new WaitForSeconds(1.9f);
         Destroy(gameObject);
     }

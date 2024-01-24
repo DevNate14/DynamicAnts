@@ -111,6 +111,7 @@ public class EnemyAI : MonoBehaviour, IDamageable //check
         {
             if (mySpawner != null)
                 mySpawner.DeadUpdate();
+
             Destroy(gameObject);
         }
     }
