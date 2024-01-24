@@ -585,7 +585,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerController: {fileID: 2212763630186881061}
-  sprintingParticle: {fileID: 0}
+  sprintingParticle: {fileID: 2607479478421018516}
   minRunSpeed: 5
 --- !u!1 &4109002566342219493
 GameObject:
