@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
     public GameObject player;
     public GameObject playerSpawnPOS;
     public RigidPlayer playerScript;
+    public Inventory playerInventory;
     //int playerHP;
 
     [Header("------------------------------ ENEMY------------------------------\n")]
@@ -74,6 +75,7 @@ public class GameManager : MonoBehaviour
             
             player = GameObject.FindWithTag("Player");
             playerScript = player.GetComponent<RigidPlayer>();
+            playerInventory = player.GetComponent<Inventory>();
             playerCam = FindObjectOfType<Camera>();
             //gravity = playerScript.GetGravity();
             timeScaleOrig = Time.timeScale;

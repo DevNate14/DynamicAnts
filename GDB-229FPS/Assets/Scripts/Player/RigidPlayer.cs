@@ -71,6 +71,15 @@ public class RigidPlayer : MonoBehaviour, IDamageable, IPersist, IImpluse
     [SerializeField] GameObject whatsinfront;
     [SerializeField] float stepHeight;
 
+    [Header("audio")]
+    [Range(0, 1)] [SerializeField] float footstepsVol;
+    [SerializeField] AudioClip[] footstepsSFX;
+    [SerializeField] AudioClip[] jumpsSFX;
+    [SerializeField] AudioClip[] landSFX;
+    [SerializeField] AudioClip[] hurtSFX;
+    bool isPlayingFootsteps;
+    bool wasFalling;
+
     // [SerializeField] float smoothwalk;
     // Update is called once per frame
     void Start()
@@ -97,7 +106,7 @@ public class RigidPlayer : MonoBehaviour, IDamageable, IPersist, IImpluse
         Debug.DrawRay(stepup.transform.position, stepup.transform.forward + -stepup.transform.right);
 
         Debug.DrawRay(whatsinfront.transform.position, stepup.transform.forward, Color.green);
-
+       
         //ground check
         Debug.DrawRay(Feet.position, transform.TransformDirection(Vector3.down * Groundraylength));
         RaycastHit[] hits = Physics.RaycastAll(Feet.position, Vector3.down, Groundraylength);
@@ -111,6 +120,12 @@ public class RigidPlayer : MonoBehaviour, IDamageable, IPersist, IImpluse
                     jumpedtimes = 0;
                 }
             }
+        }
+
+        if (wasFalling && Grounded)
+        {
+            aud.PlayOneShot(landSFX[Random.Range(0, landSFX.Length)], 1);
+            wasFalling = false;
         }
 
         MovePlayer();
@@ -128,6 +143,11 @@ public class RigidPlayer : MonoBehaviour, IDamageable, IPersist, IImpluse
         Jump();
         Vector3 MoveVector = transform.TransformDirection(PlayerMovmentInput) * MoveSpeed;
         
+        if(MoveVector.magnitude > 0.1f && !isPlayingFootsteps)
+        {
+            StartCoroutine(PlayFootsteps());
+        }
+
         Player.velocity = MoveVector + new Vector3(LongJump.x, Player.velocity.y, LongJump.z);
 
         if (OnSlope = OnSlop())
@@ -142,7 +162,7 @@ public class RigidPlayer : MonoBehaviour, IDamageable, IPersist, IImpluse
         }
 
 
-}
+    }
 
     void Jump()
     {
@@ -167,7 +187,9 @@ public class RigidPlayer : MonoBehaviour, IDamageable, IPersist, IImpluse
             //Player.AddForce(Vector3.up * Jumpforce, ForceMode.Impulse);
             Player.velocity += Vector3.up * Jumpforce;
             Grounded = false;
+            wasFalling = true;
             jumpedtimes++;
+            aud.PlayOneShot(jumpsSFX[Random.Range(0, jumpsSFX.Length)]);
             //if (jumpedtimes >= jumpMax)
             //{
             //    Player.AddForce(Vector3.down, ForceMode.Impulse);
@@ -292,6 +314,26 @@ public class RigidPlayer : MonoBehaviour, IDamageable, IPersist, IImpluse
         // back up plan invisible slope over stairs 
     }
 
+    IEnumerator PlayFootsteps()
+    {
+        isPlayingFootsteps = true;
+
+        float currentVol = Grounded ? (Crouching ? footstepsVol / 2 : footstepsVol) : 0;
+        
+        aud.PlayOneShot(footstepsSFX[Random.Range(0, footstepsSFX.Length)], currentVol);
+
+        if(isSprinting)
+        {
+            yield return new WaitForSeconds(0.2f);
+        }
+        else
+        {
+            yield return new WaitForSeconds(0.4f);
+        }
+
+        isPlayingFootsteps = false;
+    }
+
     void pickup()
     {
         Debug.DrawRay(Maincamera.transform.position, Maincamera.transform.forward * InteractRange, Color.blue);
@@ -363,6 +405,7 @@ public class RigidPlayer : MonoBehaviour, IDamageable, IPersist, IImpluse
     public void Damage(int amount)
     {
         HP -= amount;
+        aud.PlayOneShot(hurtSFX[Random.Range(0, hurtSFX.Length)]);
         if (HP <= 0)
         {
             GameManager.instance.YouLose();

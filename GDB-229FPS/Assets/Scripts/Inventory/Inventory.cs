@@ -14,6 +14,7 @@ public class Inventory : MonoBehaviour, IInventory, IPersist
         keys = new bool[3];
         AddToPersistenceManager();
         LoadState();
+        GameManager.instance.playerInventory = this;
     }
     private void OnDestroy()
     {
