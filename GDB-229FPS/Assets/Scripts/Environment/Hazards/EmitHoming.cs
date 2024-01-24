@@ -8,7 +8,7 @@ public class EmitHoming : MonoBehaviour
     [SerializeField] float destroyTime; // 0 for infinite
     [SerializeField] Transform ShootPos;
     [SerializeField] GameObject bullet;
-    [SerializeField] BulletHoming script;
+    BulletHoming script;
     [SerializeField] Transform destination;
     [SerializeField] bool targetPlayer;
     bool shooting;

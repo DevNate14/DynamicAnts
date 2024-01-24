@@ -8,19 +8,19 @@ public class RotatingDoor : Door
     bool OpenRight;
     public override void Interact()
     {
-        if (!Locked)
-        {
             if (!Open)
             {
-                Open = true;
-                transform.rotation = Quaternion.LookRotation(-transform.right);
+                if (!Locked)
+                {
+                    Open = true;
+                    transform.rotation = Quaternion.LookRotation(-transform.right);
+                }
             }
             else
             {
                 Open = false;
                 transform.rotation = Quaternion.LookRotation(transform.right);
             }
-        }
     }
 
     //private void OnTriggerEnter(Collider other)

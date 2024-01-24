@@ -293,7 +293,7 @@ MonoBehaviour:
   rb: {fileID: 249750431279723446}
   damageAmount: 1
   destroyTimer: 10
-  speed: 2
+  speed: 5
   turnSpeed: 90
 --- !u!54 &249750431279723446
 Rigidbody:
