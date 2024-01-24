@@ -287,7 +287,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1221625976}
   m_Layer: 0
-  m_Name: ken
+  m_Name: vfx_sparks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
