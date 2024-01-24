@@ -96,7 +96,8 @@ public class RigidPlayer : MonoBehaviour, IDamageable, IPersist, IImpluse
     {
 
         PlayerMovmentInput = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical"));
-        PlayerMovmentInput = PlayerMovmentInput.normalized; //Prevents Faster movement - moving Diagonally
+        /*PlayerMovmentInput = PlayerMovmentInput.normalized;*/ //Prevents Faster movement - moving Diagonally
+        // commented out because it caused input lag
         //ayerMouseInput = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
 
         //STAIRS
