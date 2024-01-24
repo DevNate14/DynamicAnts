@@ -7,8 +7,9 @@ public class Rotate : MonoBehaviour
     [SerializeField] bool WithObject;
     [SerializeField] Transform Object;
     [SerializeField] bool WithDelay;
-    [SerializeField] float delay;
-    [Range(0, 1)][SerializeField] int delayType; //1 for rotating with an object
+    [SerializeField] float Delay;
+    [Range(0, 1)][SerializeField] int DelayType; //1 for rotating with an object
+    [SerializeField] float LerpSpeed;
     [SerializeField] Quaternion Offset;
     Quaternion Rotation;
     bool CoroutineRunning;
@@ -36,9 +37,12 @@ public class Rotate : MonoBehaviour
         }
         else
         {
-            if (!CoroutineRunning)
+            if (CoroutineRunning)
             {
-                Rotation = Object.rotation;
+                transform.rotation = Quaternion.Lerp(transform.rotation, Rotation * Offset, LerpSpeed * Time.deltaTime);
+            }
+            else
+            {
                 StartCoroutine(RotateDelay());
             }
         }
@@ -47,16 +51,15 @@ public class Rotate : MonoBehaviour
     IEnumerator RotateDelay()
     {
         CoroutineRunning = true;
-        yield return new WaitForSeconds(delay);
+        yield return new WaitForSeconds(Delay);
         if (WithObject)
         {
-            switch (delayType)
+            switch (DelayType)
             {
                 case 0:
                     transform.rotation = Object.rotation;
                     break; 
                 case 1:
-                    transform.rotation = Quaternion.Lerp(transform.rotation, Rotation * Offset, delay / Time.deltaTime);
                     Rotation = Object.rotation;
                     break;
 
