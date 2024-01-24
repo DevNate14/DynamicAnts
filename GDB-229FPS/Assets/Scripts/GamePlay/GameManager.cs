@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     public static PersistenceManager persistenceManager;
-    public static Inventory inventory;
+    //ublic static Inventory inventory;
 
     [Header("------------------------------ PLAYER ------------------------------\n")]
     [SerializeField] TMP_Text totalDamage;
@@ -135,7 +135,7 @@ public class GameManager : MonoBehaviour
     public void UpdateKeyUI(int addedKeys)
     {
         //keyUI.SetActive(false);
-        KeyUIEvent();
+        StartCoroutine(KeyUIEvent());
         addedKeysText.text = addedKeys.ToString("00");
     }
 
