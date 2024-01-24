@@ -516,7 +516,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -110, y: -60}
+  m_AnchoredPosition: {x: -110, y: -164.4}
   m_SizeDelta: {x: 200, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7777522187638068145
@@ -839,7 +839,7 @@ GameObject:
   - component: {fileID: 3715650570969020506}
   - component: {fileID: 3715650570969020507}
   m_Layer: 5
-  m_Name: Quit Text
+  m_Name: MainMenu Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -892,7 +892,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: QUIT
+  m_text: MAIN MENU
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1b52934832e89f54fa94ee06aeca865c, type: 2}
   m_sharedMaterial: {fileID: -7262362321683612070, guid: 1b52934832e89f54fa94ee06aeca865c, type: 2}
@@ -1050,7 +1050,7 @@ GameObject:
   - component: {fileID: 3715650571077433623}
   - component: {fileID: 3715650571077433704}
   m_Layer: 5
-  m_Name: Quit Button
+  m_Name: MainMenu Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1161,8 +1161,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 3715650572867934313}
         m_TargetAssemblyTypeName: ButtonFunctions, Assembly-CSharp
-        m_MethodName: Quit
-        m_Mode: 1
+        m_MethodName: MainMenu
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1223,6 +1223,7 @@ MonoBehaviour:
   player: {fileID: 0}
   playerSpawnPOS: {fileID: 0}
   playerScript: {fileID: 0}
+  playerInventory: {fileID: 0}
   ammoSizeText: {fileID: 3769299397895880229}
   ammoCountText: {fileID: 3769299397289709180}
   weaponIcon: {fileID: 3769299397271042243}
@@ -1237,13 +1238,15 @@ MonoBehaviour:
   optionsPage: {fileID: 0}
   dialogueText: {fileID: 3769299396452061390}
   dialoguePanel: {fileID: 3769299396811491758}
+  keyUI: {fileID: 2044570694286479337}
+  addedKeysText: {fileID: 3715650571321086486}
   playerDamageScreen: {fileID: 3769299397394430690}
   playerCam: {fileID: 0}
   gravity: 0
   loadingScreen: {fileID: 156266901188051218}
   loadingText: {fileID: 6950319493210612725}
   loadingBar: {fileID: 251546188098738656}
-  addedKeysText: {fileID: 3715650571321086486}
+  saveMessage: {fileID: 0}
 --- !u!114 &3715650572867934313
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1274,6 +1277,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0b0ee63d4b8cee04a8c64dc52ab1f7c7, type: 2}
   - {fileID: 11400000, guid: e2d2eb14612c0304a8f85f86e131fb07, type: 2}
   - {fileID: 11400000, guid: 285706bc4aa5d5742bd01616119d9c9d, type: 2}
+  saveSound: {fileID: 0}
+  testingLevel: 0
   savedGameExists: 0
   sceneNumber: 0
 --- !u!1 &3715650571229759880
@@ -1589,7 +1594,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 6.7, y: -42.2}
+  m_AnchoredPosition: {x: 8.6, y: -42.3}
   m_SizeDelta: {x: 69.182, y: 48}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3715650571368113997
@@ -1701,7 +1706,7 @@ GameObject:
   - component: {fileID: 3715650571372743066}
   - component: {fileID: 3715650571372743067}
   m_Layer: 5
-  m_Name: MainMenu Text
+  m_Name: Quit Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1754,7 +1759,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: MAIN MENU
+  m_text: QUIT
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1b52934832e89f54fa94ee06aeca865c, type: 2}
   m_sharedMaterial: {fileID: -7262362321683612070, guid: 1b52934832e89f54fa94ee06aeca865c, type: 2}
@@ -2579,7 +2584,7 @@ GameObject:
   - component: {fileID: 3715650572509121782}
   - component: {fileID: 3715650572509121783}
   m_Layer: 5
-  m_Name: MainMenu Button
+  m_Name: Quit Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2690,8 +2695,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 3715650572867934313}
         m_TargetAssemblyTypeName: ButtonFunctions, Assembly-CSharp
-        m_MethodName: MainMenu
-        m_Mode: 3
+        m_MethodName: Quit
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2868,7 +2873,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 129.2, y: -46}
+  m_AnchoredPosition: {x: 129.2, y: -45}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3715650572745479484
@@ -3852,8 +3857,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1.5968, y: -0.1312}
-  m_SizeDelta: {x: 168.9366, y: 57.4649}
+  m_AnchoredPosition: {x: -0.2328, y: -0.1312}
+  m_SizeDelta: {x: 207.487, y: 57.4649}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3769299396323253743
 CanvasRenderer:
@@ -4286,8 +4291,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -106, y: -162}
-  m_SizeDelta: {x: 1691.7603, y: 92.9563}
+  m_AnchoredPosition: {x: -106, y: -177.79834}
+  m_SizeDelta: {x: 1691.7603, y: 124.5529}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3769299396811491747
 CanvasRenderer:
@@ -4491,7 +4496,7 @@ GameObject:
   - component: {fileID: 3769299397058990061}
   - component: {fileID: 3769299397058990062}
   m_Layer: 5
-  m_Name: Ammo Label
+  m_Name: Mag/Ammo Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4544,7 +4549,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "AMMO- \n"
+  m_text: MAG / AMMO -
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1b52934832e89f54fa94ee06aeca865c, type: 2}
   m_sharedMaterial: {fileID: -7262362321683612070, guid: 1b52934832e89f54fa94ee06aeca865c, type: 2}
@@ -4571,8 +4576,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 40
-  m_fontSizeBase: 40
+  m_fontSize: 36.74
+  m_fontSizeBase: 36.74
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -5138,8 +5143,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 1, y: 109}
-  m_SizeDelta: {x: 195.9233, y: 76.174}
+  m_AnchoredPosition: {x: -0.0636, y: 109}
+  m_SizeDelta: {x: 221.9596, y: 76.174}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3769299397373700744
 CanvasRenderer:
@@ -5719,8 +5724,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.1466, y: 0.5731}
-  m_SizeDelta: {x: 1670.9976, y: 73.1015}
+  m_AnchoredPosition: {x: 0.1466, y: 0.4973}
+  m_SizeDelta: {x: 1670.9976, y: 100.6856}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3769299398117381434
 CanvasRenderer:
@@ -6686,7 +6691,7 @@ GameObject:
   - component: {fileID: 6771327234528224211}
   - component: {fileID: 6771327234528224208}
   m_Layer: 5
-  m_Name: Quit BG
+  m_Name: MainMenu BG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6761,7 +6766,7 @@ GameObject:
   - component: {fileID: 6771327234761016702}
   - component: {fileID: 6771327234761016703}
   m_Layer: 5
-  m_Name: MainManu BG
+  m_Name: Quit BG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6916,7 +6921,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2308756578775108331
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6934,7 +6939,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -110, y: -164.4}
+  m_AnchoredPosition: {x: -110, y: -60}
   m_SizeDelta: {x: 200, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7182199963188167171
