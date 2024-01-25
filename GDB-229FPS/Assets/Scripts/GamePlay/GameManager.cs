@@ -64,6 +64,7 @@ public class GameManager : MonoBehaviour
     public TMP_Text loadingText;
     public Image loadingBar;
     public GameObject saveMessage;
+    public GameObject deleteWarning;
 
     void Awake()
     {

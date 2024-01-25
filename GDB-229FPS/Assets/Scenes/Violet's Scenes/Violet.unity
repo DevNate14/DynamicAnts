@@ -1375,6 +1375,7 @@ MonoBehaviour:
   loadingText: {fileID: 0}
   loadingBar: {fileID: 0}
   saveMessage: {fileID: 0}
+  deleteWarning: {fileID: 0}
 --- !u!4 &676859896
 Transform:
   m_ObjectHideFlags: 0
@@ -1740,34 +1741,6 @@ PrefabInstance:
     - target: {fileID: 3715650572279046319, guid: a2ee82543ebe40b418181e738fee1d49, type: 3}
       propertyPath: m_Name
       value: UI Items
-      objectReference: {fileID: 0}
-    - target: {fileID: 3715650572828445331, guid: a2ee82543ebe40b418181e738fee1d49, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3715650572828445331, guid: a2ee82543ebe40b418181e738fee1d49, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3715650572828445331, guid: a2ee82543ebe40b418181e738fee1d49, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
-      value: 
-      objectReference: {fileID: 1525253411}
-    - target: {fileID: 3715650572828445331, guid: a2ee82543ebe40b418181e738fee1d49, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3715650572828445331, guid: a2ee82543ebe40b418181e738fee1d49, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: SaveGame
-      objectReference: {fileID: 0}
-    - target: {fileID: 3715650572828445331, guid: a2ee82543ebe40b418181e738fee1d49, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: PersistenceManager, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 3715650572828445331, guid: a2ee82543ebe40b418181e738fee1d49, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a2ee82543ebe40b418181e738fee1d49, type: 3}
@@ -4368,17 +4341,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1448209421}
   m_CullTransparentMesh: 1
---- !u!114 &1525253411 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4005039961519568503, guid: a2ee82543ebe40b418181e738fee1d49, type: 3}
-  m_PrefabInstance: {fileID: 777445638}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 77b9e42714fd6b240a7e1cd194ba059c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1537761395
 GameObject:
   m_ObjectHideFlags: 0
@@ -8514,6 +8476,7 @@ MonoBehaviour:
   loadingText: {fileID: 0}
   loadingBar: {fileID: 0}
   saveMessage: {fileID: 0}
+  deleteWarning: {fileID: 0}
 --- !u!114 &715994418374487119
 MonoBehaviour:
   m_ObjectHideFlags: 0

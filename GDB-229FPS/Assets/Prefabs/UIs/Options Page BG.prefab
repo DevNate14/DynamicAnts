@@ -1423,6 +1423,7 @@ MonoBehaviour:
   - {fileID: 2483714596618075974}
   - {fileID: 2483714596905254869}
   changedVol: {fileID: 8300000, guid: d70751e409650444bb484ade247e8553, type: 3}
+  resetButton: {fileID: 5634952804754558875}
 --- !u!1 &2483714596937269817
 GameObject:
   m_ObjectHideFlags: 0
@@ -3094,7 +3095,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6070312201813845948, guid: c76d92c75c71b3a43ab7a730f5db847a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6070312201813845948, guid: c76d92c75c71b3a43ab7a730f5db847a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
@@ -3114,7 +3115,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6070312201813845948, guid: c76d92c75c71b3a43ab7a730f5db847a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: DeleteGame
+      value: ShowDeleteWarning
       objectReference: {fileID: 0}
     - target: {fileID: 6070312201813845948, guid: c76d92c75c71b3a43ab7a730f5db847a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
@@ -3122,11 +3123,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6070312201813845948, guid: c76d92c75c71b3a43ab7a730f5db847a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: PersistenceManager, Assembly-CSharp
+      value: ButtonFunctions, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 6070312201813845948, guid: c76d92c75c71b3a43ab7a730f5db847a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
       value: AudioManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6070312201813845948, guid: c76d92c75c71b3a43ab7a730f5db847a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6070312201813845948, guid: c76d92c75c71b3a43ab7a730f5db847a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -3134,7 +3139,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6070312202813627033, guid: c76d92c75c71b3a43ab7a730f5db847a, type: 3}
       propertyPath: m_text
-      value: DELETE GAME SAVE
+      value: DELETE SAVED GAME
       objectReference: {fileID: 0}
     - target: {fileID: 6070312202813627039, guid: c76d92c75c71b3a43ab7a730f5db847a, type: 3}
       propertyPath: m_Name

@@ -27,6 +27,12 @@ public class ButtonFunctions : MonoBehaviour
         ButtonSound();
     }
 
+    public void ShowDeleteWarning(int on)
+    {
+        GameManager.instance.deleteWarning.SetActive(on == 1);
+        ButtonSound();
+    }
+
     public void Respawn()
     {
         GameManager.instance.playerScript.RespawnPlayer();
@@ -43,7 +49,6 @@ public class ButtonFunctions : MonoBehaviour
 
     public void Play(int sceneNumber)
     {
-        ButtonSound();
         if (PersistenceManager.instance.savedGameExists)
         {
             sceneNumber = PersistenceManager.instance.sceneNumber;
