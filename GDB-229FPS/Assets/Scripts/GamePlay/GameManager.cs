@@ -53,7 +53,7 @@ public class GameManager : MonoBehaviour
     [Header("------------------------------ KEY UI ------------------------------\n")]
     [SerializeField] GameObject keyUI;
     [SerializeField] TMP_Text addedKeysText;
-    int addedKeys;
+    //int addedKeys;
 
     [Header("------------------------------ OTHER ------------------------------\n")]
     public GameObject playerDamageScreen;
@@ -132,32 +132,12 @@ public class GameManager : MonoBehaviour
         menuActive = null;
     }
 
-    public void UpdateKeyUI(int addedKeys)
+    public void UpdateKeyUI(int keyCount)
     {
         //keyUI.SetActive(false);
-        StartCoroutine(KeyUIEvent(addedKeys));
-        addedKeysText.text = addedKeys.ToString("00");
-    }
-
-    IEnumerator KeyUIEvent(int addedKeys)
-    {
-        keyUI.SetActive(false);
-        yield return new WaitForSeconds(2);
-        //keyUI.SetActive(false);
-        if (addedKeys == 1
-        && menuActive == null)
-        {
-            //Have Key UI appear
-            menuActive = keyUI;
-            menuActive.SetActive(true);
-        }
-        else if (addedKeys == 0
-        && menuActive != null)
-        {
-            menuActive.SetActive(false);
-            //KeyUI should be gone
-            menuActive = null; //Resets menuActive - Hides UI
-        }
+        // StartCoroutine(KeyUIEvent(keyCount));
+        addedKeysText.text = keyCount.ToString("00");
+        keyUI.SetActive(keyCount > 0);
     }
 
     public void UpdateHPBar(int hpMissing, int hpTotal)
@@ -192,34 +172,10 @@ public class GameManager : MonoBehaviour
 
         if (newWeapon.magAmmoCount == 0) //Should only call UI when mag is empty .
         {
-            ReloadUI();
-        }
-
-    }
-
-    public void ReloadUI()
-    {
-        StartCoroutine(ReloadUIEvent());
-    }
-
-    IEnumerator ReloadUIEvent()
-    {
-        reloadMessage.SetActive(true);
-        yield return new WaitForSeconds(2);
-        reloadMessage.SetActive(false);
-        if (Input.GetButtonDown("Reload")
-        && menuActive == null)
-        {
-            //Have Reload UI appear
-            //StateUnpaused(); //Game should still play....?
-            menuActive = reloadMessage;
-            menuActive.SetActive(true);
-        }
-        else if (Input.GetButtonDown("Reload")
-        && menuActive != null)
-        {
-            menuActive.SetActive(false);
-            //Reload Ui only disappears- Runs out of time
+            // ReloadUI();
+            reloadMessage.SetActive(true);
+        } else {
+            reloadMessage.SetActive(false);
         }
     }
 

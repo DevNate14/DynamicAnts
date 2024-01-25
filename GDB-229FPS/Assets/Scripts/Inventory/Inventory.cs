@@ -55,8 +55,10 @@ public class Inventory : MonoBehaviour, IInventory, IPersist
             }
         }
     }
-    public void PickUpKey(int keyNum) { //keyNum is 1-3 since only three keys
+    public void PickUpKey(int keyNum) 
+    { //keyNum is 1-3 since only three keys
         keys[keyNum - 1] = true;
+        GameManager.instance.UpdateKeyUI(KeyCount());
     }
     public void PickUpWeapon(GunStatsSO stats) {
         string wepName = stats.name;
