@@ -17,18 +17,21 @@ public class ButtonFunctions : MonoBehaviour
     public void Resume()
     {
         GameManager.instance.StateUnpaused();
+        ButtonSound();
     }
 
     public void Restart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         GameManager.instance.StateUnpaused();
+        ButtonSound();
     }
 
     public void Respawn()
     {
         GameManager.instance.playerScript.RespawnPlayer();
         GameManager.instance.StateUnpaused();
+        ButtonSound();
     }
 
     public void Quit()
@@ -40,11 +43,12 @@ public class ButtonFunctions : MonoBehaviour
 
     public void Play(int sceneNumber)
     {
+        ButtonSound();
         if (PersistenceManager.instance.savedGameExists)
         {
             sceneNumber = PersistenceManager.instance.sceneNumber;
         }
-
+        AudioManager.instance.PlayMusic(sceneNumber);
         StartCoroutine(LoadAsyncScene(sceneNumber));
     }
 
@@ -90,6 +94,7 @@ public class ButtonFunctions : MonoBehaviour
 
     public void MainMenu(int sceneNumber)
     {
+        ButtonSound();
         if (GameManager.instance.isPaused)
         {
             GameManager.instance.StateUnpaused();

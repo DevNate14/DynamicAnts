@@ -1290,9 +1290,25 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 530344166238802895, guid: b4938385ae87b7646b2e83d48c9865f2, type: 3}
+      propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 530344166238802895, guid: b4938385ae87b7646b2e83d48c9865f2, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5021580802629705420, guid: b4938385ae87b7646b2e83d48c9865f2, type: 3}
       propertyPath: m_Name
       value: Audio Manager
+      objectReference: {fileID: 0}
+    - target: {fileID: 5021580802629705421, guid: b4938385ae87b7646b2e83d48c9865f2, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5021580802629705421, guid: b4938385ae87b7646b2e83d48c9865f2, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5021580802629705426, guid: b4938385ae87b7646b2e83d48c9865f2, type: 3}
       propertyPath: m_RootOrder
@@ -3936,6 +3952,11 @@ MonoBehaviour:
   - {fileID: 1585358311}
   rotationSpeed: 125
   playButton: {fileID: 1380420671}
+--- !u!1 &1779257626 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5634952804754558875, guid: 96cb0cb3d5d316b42af6e05a73e4cee3, type: 3}
+  m_PrefabInstance: {fileID: 2076283813}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1833078952
 GameObject:
   m_ObjectHideFlags: 0
@@ -4090,6 +4111,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1288867064, guid: 96cb0cb3d5d316b42af6e05a73e4cee3, type: 3}
+      propertyPath: resetButton
+      value: 
+      objectReference: {fileID: 1779257626}
     - target: {fileID: 1742431388, guid: 96cb0cb3d5d316b42af6e05a73e4cee3, type: 3}
       propertyPath: m_IsActive
       value: 1
