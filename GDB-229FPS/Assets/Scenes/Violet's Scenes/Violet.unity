@@ -457,17 +457,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1520310690, guid: 5100b15f79f66d0478e31d7fea743319, type: 3}
-      propertyPath: OutputAudioMixerGroup
-      value: 
-      objectReference: {fileID: 24300002, guid: ca6c353abeacf5746a1bdcd5e7dc5124, type: 2}
     - target: {fileID: 2212763630186881060, guid: 5100b15f79f66d0478e31d7fea743319, type: 3}
       propertyPath: m_Name
       value: Playerrigid
-      objectReference: {fileID: 0}
-    - target: {fileID: 2212763630186881061, guid: 5100b15f79f66d0478e31d7fea743319, type: 3}
-      propertyPath: footstepsVol
-      value: 0.12
       objectReference: {fileID: 0}
     - target: {fileID: 2212763630186881070, guid: 5100b15f79f66d0478e31d7fea743319, type: 3}
       propertyPath: m_RootOrder

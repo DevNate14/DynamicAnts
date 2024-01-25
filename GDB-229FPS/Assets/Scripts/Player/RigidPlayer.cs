@@ -13,6 +13,7 @@ using UnityEngine.XR;
 public class RigidPlayer : MonoBehaviour, IDamageable, IPersist, IImpluse
 {
     [SerializeField] public AudioSource aud;
+    [SerializeField] AudioSource footstepsAud;
     //inputs to move player and camera
     [SerializeField] GameObject Maincamera;
     [SerializeField] float InteractRange;
@@ -73,11 +74,11 @@ public class RigidPlayer : MonoBehaviour, IDamageable, IPersist, IImpluse
 
     [Header("audio")]
     [Range(0, 1)] [SerializeField] float footstepsVol;
-    [SerializeField] AudioClip[] footstepsSFX;
     [SerializeField] AudioClip[] jumpsSFX;
     [SerializeField] AudioClip[] landSFX;
     [SerializeField] AudioClip[] hurtSFX;
-    bool isPlayingFootsteps;
+    [SerializeField] AudioClip walkingStep;
+    [SerializeField] AudioClip runningStep;
     bool wasFalling;
 
     // [SerializeField] float smoothwalk;
@@ -164,10 +165,14 @@ public class RigidPlayer : MonoBehaviour, IDamageable, IPersist, IImpluse
         Stairs();
         Jump();
         Vector3 MoveVector = transform.TransformDirection(PlayerMovmentInput) * MoveSpeed;
-        
-        if(MoveVector.magnitude > 0.1f && !isPlayingFootsteps)
+
+        if(MoveVector.magnitude > 0.1f && Grounded && !GameManager.instance.isPaused)
         {
-            StartCoroutine(PlayFootsteps());
+            footstepsAud.UnPause();
+        }
+        else
+        {
+            footstepsAud.Pause();
         }
 
         Player.velocity = MoveVector + new Vector3(LongJump.x, Player.velocity.y, LongJump.z);
@@ -210,6 +215,7 @@ public class RigidPlayer : MonoBehaviour, IDamageable, IPersist, IImpluse
             Player.velocity += Vector3.up * Jumpforce;
             Grounded = false;
             wasFalling = true;
+            footstepsAud.Pause();
             jumpedtimes++;
             aud.PlayOneShot(jumpsSFX[Random.Range(0, jumpsSFX.Length)]);
             //if (jumpedtimes >= jumpMax)
@@ -230,6 +236,9 @@ public class RigidPlayer : MonoBehaviour, IDamageable, IPersist, IImpluse
             MoveSpeed = temp;
             isSprinting = true;
             Debug.Log("IM RUNNING");
+            footstepsAud.Stop();
+            footstepsAud.clip = runningStep;
+            footstepsAud.Play();
         }
 
         if (Input.GetKeyUp("left shift"))
@@ -238,6 +247,9 @@ public class RigidPlayer : MonoBehaviour, IDamageable, IPersist, IImpluse
             MoveSpeed = temp;
             isSprinting = false;
             Debug.Log("IM WALKING");
+            footstepsAud.Stop();
+            footstepsAud.clip = walkingStep;
+            footstepsAud.Play();
         }
     }
 
@@ -260,7 +272,7 @@ public class RigidPlayer : MonoBehaviour, IDamageable, IPersist, IImpluse
             transform.position = new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z);
             Debug.Log("Im crounching");
             //decrement speed
-
+            footstepsAud.volume = footstepsVol / 2;
 
         }//check if grouded check button if true
         else if (Grounded && Input.GetButtonDown("Crouch") && Crouching == true)
@@ -271,6 +283,7 @@ public class RigidPlayer : MonoBehaviour, IDamageable, IPersist, IImpluse
             transform.localScale = new Vector3(transform.localScale.x, StandingScale, transform.localScale.z);
             //give player back speed 
             Debug.Log("Im not crounching");
+            footstepsAud.volume = footstepsVol;
         }
 
     }
@@ -334,26 +347,6 @@ public class RigidPlayer : MonoBehaviour, IDamageable, IPersist, IImpluse
         // check if room at top then pass in no roomisa all move alng 
         //look into this  low priorty 
         // back up plan invisible slope over stairs 
-    }
-
-    IEnumerator PlayFootsteps()
-    {
-        isPlayingFootsteps = true;
-
-        float currentVol = Grounded ? (Crouching ? footstepsVol / 2 : footstepsVol) : 0;
-        
-        aud.PlayOneShot(footstepsSFX[Random.Range(0, footstepsSFX.Length)], currentVol);
-
-        if(isSprinting)
-        {
-            yield return new WaitForSeconds(0.2f);
-        }
-        else
-        {
-            yield return new WaitForSeconds(0.4f);
-        }
-
-        isPlayingFootsteps = false;
     }
 
     void pickup()
