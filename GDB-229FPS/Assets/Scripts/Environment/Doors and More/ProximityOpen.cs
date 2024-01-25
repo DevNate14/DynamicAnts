@@ -6,21 +6,36 @@ using UnityEngine;
 public class ProximityOpen : MonoBehaviour
 {
     [SerializeField] Door Door;
-    [SerializeField] MonoBehaviour IdentifyingScript;
+    [SerializeField] bool OpenOnly;
 
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
-        if (other.isTrigger)
-            return;
-        if (other.GetComponent(IdentifyingScript.GetType()) != null)
+        if (other.CompareTag("Player"))
         {
-            Debug.Log("Door is Open");
-            Door.Open = true;
-        }
-        else
-        {
-            Debug.Log("Nuh uh");
-            Door.Open = false;
+            if (OpenOnly && !Door.Open)
+            {
+                Door.Interact();
+            }
+            else if (!Door.Open)
+            {
+                Door.Interact();
+            }
         }
     }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            if (OpenOnly && Door.Open)
+            {
+                Door.Interact();
+            }
+            else if (Door.Open)
+            {
+                Door.Interact();
+            }
+        }
+    }
+
 }

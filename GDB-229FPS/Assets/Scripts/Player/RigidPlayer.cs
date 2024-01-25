@@ -110,18 +110,18 @@ public class RigidPlayer : MonoBehaviour, IDamageable, IPersist, IImpluse
        
         //ground check
         Debug.DrawRay(Feet.position, transform.TransformDirection(Vector3.down * Groundraylength));
-        RaycastHit[] hits = Physics.RaycastAll(Feet.position, Vector3.down, Groundraylength);
-        foreach (RaycastHit hit in hits)
-        {
-            if (hit.collider != null && hit.transform != this && !Grounded)
-            {
-                if (!hit.collider.isTrigger)
-                {
-                    Grounded = true;
-                    jumpedtimes = 0;
-                }
-            }
-        }
+        //RaycastHit[] hits = Physics.RaycastAll(Feet.position, Vector3.down, Groundraylength);
+        //foreach (RaycastHit hit in hits)
+        //{
+        //    if (hit.collider != null && hit.transform != this && !Grounded)
+        //    {
+        //        if (!hit.collider.isTrigger)
+        //        {
+        //            Grounded = true;
+        //            jumpedtimes = 0;
+        //        }
+        //    }
+        //}
 
         if (wasFalling && Grounded)
         {
@@ -135,6 +135,27 @@ public class RigidPlayer : MonoBehaviour, IDamageable, IPersist, IImpluse
         pickup();
 
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+
+        float angle = Vector3.Angle(Vector3.up, slophit.normal);
+        if (angle <= MaxslopeAngel)
+        {
+            Grounded = true;
+            jumpedtimes = 0;
+        }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        float angle = Vector3.Angle(Vector3.up, slophit.normal);
+        if (angle <= MaxslopeAngel)
+        {
+            Grounded = false;
+        }
+    }
+
 
     private void MovePlayer()
     {
@@ -168,7 +189,7 @@ public class RigidPlayer : MonoBehaviour, IDamageable, IPersist, IImpluse
     void Jump()
     {
         LongJump = Vector3.Lerp(LongJump, Vector3.zero, LongJumpTime * Time.deltaTime);
-        if (Input.GetKeyDown("space") && jumpedtimes < jumpMax)
+        if (Input.GetKeyDown("space") && jumpedtimes < jumpMax && Grounded)
         {
             if (Crouching)
             {
