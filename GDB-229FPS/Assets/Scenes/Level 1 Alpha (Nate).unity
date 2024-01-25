@@ -68051,7 +68051,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2492515027461704366, guid: da9dbca263a2fa8498e8596539eb74a7, type: 3}
       propertyPath: text
-      value: Finally! You found some more pistol ammo
+      value: ' Finally! You found some more ammo for your pistol'
       objectReference: {fileID: 0}
     - target: {fileID: 3171273082636145770, guid: da9dbca263a2fa8498e8596539eb74a7, type: 3}
       propertyPath: m_RootOrder
