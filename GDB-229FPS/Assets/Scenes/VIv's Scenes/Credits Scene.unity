@@ -159,7 +159,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0.21960786, g: 0.21960786, b: 0.21960786, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -372,6 +372,203 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1422218443, guid: 530901c9a1de1f942adf2eb83224e342, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -4315
+      objectReference: {fileID: 0}
+    - target: {fileID: 254407006939003228, guid: 530901c9a1de1f942adf2eb83224e342, type: 3}
+      propertyPath: m_text
+      value: '
+
+
+        PLAYER/ LEVEL DESIGN
+
+
+        LEAD LEVEL DESIGN
+
+
+        ENEMY/
+        LEVEL DESIGN
+
+
+        SETTINGS/UI DESIGN
+
+
+        HAZARDS/ LEVEL DESIGN
+
+
+        LEAD
+        UI DESIGN
+
+
+
+
+
+        CLICK MENU APP
+
+        PIXABAY.COM
+
+
+        COMPUTER
+        PROCESSING
+
+        PIXABAY.COM
+
+
+        VIDEO GAME NOTIFICATIONS
+
+        SOUNDIDEAS.SOURCEAUDIO.COM
+
+
+
+
+
+
+
+        CORRUPT
+        MASTER CPU
+
+        PIXABAY.COM
+
+
+        GOING THROUGH THE MOTIONS
+
+        WESTARMUSIC.SOURCEAUDIO.COM
+
+
+        TRIAL
+        RUN
+
+        WESTARMUSIC.SOURCEAUDIO.COM
+
+
+        DYSTOPIAN FUTURE
+
+        WESTARMUSIC.SOURCEAUDIO.COM
+
+
+
+
+
+
+        FLAME
+        CARTOON FREE - CLIPART
+
+        CLEANPNG.COM
+
+
+        FIRE ON TRANSPARENT
+        BACKGROUND
+
+        VECTORSTOCK.COM
+
+
+        SIMPLE UI ELEMENTS
+
+        ASSETSTORE.UNITY.COM
+
+
+        FULL
+        SAIL UNIVERSITY LOGO
+
+        LOGOSAVE.COM
+
+
+
+
+
+        FREE PIXEL FONT-
+        THALEAH
+
+        ASSETSTORE.UNITY.COM
+
+
+        STYLIZED DEVIL BULLDOG
+
+        ASSETSTORE.UNITY.COM
+
+
+        SLEEK
+        TOON BOT
+
+        ASSETSTORE.UNITY.COM
+
+
+        LASER TURRETS
+
+        ASSETSTORE.UNITY.COM'
+      objectReference: {fileID: 0}
+    - target: {fileID: 254407007416097126, guid: 530901c9a1de1f942adf2eb83224e342, type: 3}
+      propertyPath: m_text
+      value: 'DEVELOPERS-
+
+
+
+
+
+
+
+
+        SFX EFFECTS-
+
+
+
+
+
+
+
+
+        MUSIC EFFECTS-
+
+
+
+
+
+
+
+
+
+        IMAGES-
+
+
+
+
+
+
+
+
+        ASSETS-
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        MORE
+        CREDITS TBA'
+      objectReference: {fileID: 0}
+    - target: {fileID: 254407007416097129, guid: 530901c9a1de1f942adf2eb83224e342, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -2094
+      objectReference: {fileID: 0}
+    - target: {fileID: 254407007444198456, guid: 530901c9a1de1f942adf2eb83224e342, type: 3}
+      propertyPath: m_text
+      value: "\n\nKENNETH FITZPATRICK\r\n\r\nNATHAN PARTIPILO\r\n\r\nSEBASTIAN RAMIREZ
+        BEJARANO\r\n\r\nVIOLET WEATHERSBY\r\n\r\nDANTE WILLIAMS\r\n\r\nVIVIANNE ZSOLDOS\n\n\n\n\nUNIVERSFIELD\r\n\r\n\nSAMUEL
+        FRANCIS JOHNSON\r\n\r\n\r\nUNKNOWN ARTIST\r\n\r\n\r\n\r\n\n\n\n\r\nFREE-TO-USE-AUDIO\r\n\r\n\r\nWILLIAM
+        PEARSON\r\n\r\n\r\nJOSEPH RUSNAK\r\n\r\n\r\nJOSEPH RUSKNAK\r\n\r\n\r\n    
+        \r\n\r\n\r\n\nGYAMFUA\r\n\r\n\r\nBIGMOUSE108\r\n\n\r\n\rMADEFIREON\n\n\nUNKNOWN
+        ARTIST\r\n\n\n\n\n\nTINY WORLDS\r\n\n\nDEEPEST STUDIO\n\n\nSETH WARD\n\n\nURSA.ANIM"
+      objectReference: {fileID: 0}
     - target: {fileID: 254407007618654296, guid: 530901c9a1de1f942adf2eb83224e342, type: 3}
       propertyPath: m_Pivot.x
       value: 0

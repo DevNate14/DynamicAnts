@@ -43,7 +43,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject instructionsPage;
     [SerializeField] GameObject optionsPage;
 
-    [Header("------------------------------ GAME DIALOG ------------------------------\n")]
+    [Header("------------------------------ GAME DIALOGUE ------------------------------\n")]
     //[SerializeField] private string gameText;
     // [SerializeField] TextMeshProUGUI nameText;
     [SerializeField] TMP_Text dialogueText;
@@ -105,7 +105,7 @@ public class GameManager : MonoBehaviour
         foreach (char c in line)
         {
             dialogueText.text += c;
-            yield return new WaitForSeconds(1F / charactersPerSecond);
+            yield return new WaitForSeconds(0.75F / charactersPerSecond);
         }
 
         yield return new WaitForSeconds(5F);
