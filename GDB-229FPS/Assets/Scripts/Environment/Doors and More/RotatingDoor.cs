@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class RotatingDoor : Door
 {
+    [SerializeField] Animation Anim;
     [SerializeField] bool OpenRight;
     [SerializeField] float Cooldown;
     bool CanOpen = true;
@@ -17,13 +18,13 @@ public class RotatingDoor : Door
                 if (!Locked)
                 {
                     Open = true;
-                    transform.rotation = Quaternion.LookRotation(-transform.right);
+                    Anim.Play("open");
                 }
             }
             else
             {
                 Open = false;
-                transform.rotation = Quaternion.LookRotation(transform.right);
+                Anim.Play("close");
             }
             StartCoroutine(OpenCooldown());
         }
