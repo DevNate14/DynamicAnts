@@ -68,8 +68,9 @@ public class PersistenceManager : MonoBehaviour
         savedGameExists = true;
         PlayerPrefs.SetInt("SavedGameExists", 1);
         PlayerPrefs.SetInt("SceneNumber", sceneNumber);
+        PlayerPrefs.GetInt("DamageDone", GameManager.instance.playerScript.damageDone);
 
-        foreach(IPersist p in persistingObjects)
+        foreach (IPersist p in persistingObjects)
         {
             p.SaveState();
         }
@@ -92,7 +93,9 @@ public class PersistenceManager : MonoBehaviour
     public void DeleteGame()
     {
         float[] volSettings = { PlayerPrefs.GetFloat("GameVol"), PlayerPrefs.GetFloat("MusicVol"), PlayerPrefs.GetFloat("SFXVol") };
-        
+        int mouseSensitivity = PlayerPrefs.GetInt("MouseSensitivity", 300);
+        int invertY = PlayerPrefs.GetInt("InvertY", 0);
+
         PlayerPrefs.DeleteAll();
         savedGameExists = false;
         PlayerPrefs.SetInt("SavedGameExists", 0);
@@ -100,6 +103,8 @@ public class PersistenceManager : MonoBehaviour
         PlayerPrefs.SetFloat("GameVol", volSettings[0]);
         PlayerPrefs.SetFloat("MusicVol", volSettings[1]);
         PlayerPrefs.SetFloat("SFXVol", volSettings[2]);
+        PlayerPrefs.SetInt("MouseSensitivity", mouseSensitivity);
+        PlayerPrefs.SetInt("InvertY", invertY);
 
         PlayerPrefs.SetFloat("SpawnPosX", -262);
         PlayerPrefs.SetFloat("SpawnPosY", 10);

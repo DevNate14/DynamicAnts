@@ -77,6 +77,7 @@ public class GameManager : MonoBehaviour
             playerScript = player.GetComponent<RigidPlayer>();
             playerInventory = player.GetComponent<Inventory>();
             playerCam = FindObjectOfType<Camera>();
+            damageDone = PlayerPrefs.GetInt("DamageDone", 0);
             //gravity = playerScript.GetGravity();
             timeScaleOrig = Time.timeScale;
             if(!Application.isEditor)

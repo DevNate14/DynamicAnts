@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,11 +10,16 @@ public class OptionsPage : MonoBehaviour
     [SerializeField] Slider[] volSliders;
     [SerializeField] TMP_Text[] volText;
     [SerializeField] AudioClip changedVol;
+    [SerializeField] Slider mouseSlider;
+    [SerializeField] TMP_Text mouseText;
+    [SerializeField] Toggle invertYToggle;
 
     [SerializeField] GameObject resetButton;
 
     bool playChangedVolClip;
     float[] vols = new float[3];
+    int mouseSensitivity;
+    int invertY;
 
     private void Start()
     {
@@ -48,12 +54,24 @@ public class OptionsPage : MonoBehaviour
         }
     }
 
+    public void SetSensitivity(Slider val)
+    {
+        mouseSensitivity = (int)val.value;
+        mouseText.text = (val.value - 300).ToString();
+    }
+
+    public void SetInvertY(Toggle toggle)
+    {
+        invertY = toggle.isOn ? 1 : 0;
+    }
 
     public void SaveVolSettings()
     {
         PlayerPrefs.SetFloat("GameVol", vols[0]);
         PlayerPrefs.SetFloat("MusicVol", vols[1]);
         PlayerPrefs.SetFloat("SFXVol", vols[2]);
+        PlayerPrefs.SetInt("MouseSensitivity", mouseSensitivity);
+        PlayerPrefs.SetInt("InvertY", invertY);
     }
 
     void LoadVolSettings()
@@ -75,6 +93,11 @@ public class OptionsPage : MonoBehaviour
             volSliders[i].GetComponentInChildren<TMP_Text>().text = (vols[i] * 100).ToString("F0") + "%";
         }
 
+        mouseSlider.value = PlayerPrefs.GetInt("MouseSensitivity", 300);
+        mouseText.text = (PlayerPrefs.GetInt("MouseSensitivity", 300) - 300).ToString();
+
+        invertYToggle.isOn = PlayerPrefs.GetInt("InvertY", 0) == 1;
+
         resetButton.SetActive(PersistenceManager.instance.savedGameExists);
 
         playChangedVolClip = true;
@@ -85,6 +108,8 @@ public class OptionsPage : MonoBehaviour
         PlayerPrefs.SetFloat("GameVol", 0.5f);
         PlayerPrefs.SetFloat("MusicVol", 0.5f);
         PlayerPrefs.SetFloat("SFXVol", 0.5f);
+        PlayerPrefs.SetInt("MouseSensitivity", 300);
+        PlayerPrefs.SetInt("InvertY", 0);
         LoadVolSettings();
     }
 

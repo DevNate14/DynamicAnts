@@ -92,6 +92,7 @@ public class RigidPlayer : MonoBehaviour, IDamageable, IPersist, IImpluse
         HPOrig = HP;
         LoadState();
         SpawnPlayer();
+        footstepsAud.Pause();
     }
 
     void Update()

@@ -15,6 +15,8 @@ public class Camera : MonoBehaviour
     {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+        sensitivity = PlayerPrefs.GetInt("MouseSensitivity", sensitivity);
+        invert = PlayerPrefs.GetInt("InvertY", invert ? 1 : 0) == 1;
     }
 
     // Update is called once per frame
