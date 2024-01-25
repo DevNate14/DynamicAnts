@@ -5,9 +5,13 @@ using UnityEngine;
 
 public class RotatingDoor : Door
 {
-    bool OpenRight;
+    [SerializeField] bool OpenRight;
+    [SerializeField] float Cooldown;
+    bool CanOpen = true;
     public override void Interact()
     {
+        if (CanOpen)
+        {
             if (!Open)
             {
                 if (!Locked)
@@ -21,6 +25,15 @@ public class RotatingDoor : Door
                 Open = false;
                 transform.rotation = Quaternion.LookRotation(transform.right);
             }
+            StartCoroutine(OpenCooldown());
+        }
+    }
+
+    IEnumerator OpenCooldown()
+    {
+        CanOpen = false;
+        yield return new WaitForSeconds(Cooldown);
+        CanOpen = true;
     }
 
     //private void OnTriggerEnter(Collider other)

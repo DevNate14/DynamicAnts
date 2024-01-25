@@ -17,9 +17,10 @@ public class TitleScreen : MonoBehaviour
     void Start()
     {
         StartSpinning(); //Rotates Images
-        AudioManager.instance.PlayMusic(0);
+        //AudioManager.instance.PlayMusic(0, false);
         GetComponentInChildren<Button>().Select();
         playButton.text = PersistenceManager.instance.savedGameExists ? "Continue Game" : "New Game";
+        AudioManager.instance.PlayMusic(0);
     }
 
     void StartSpinning()

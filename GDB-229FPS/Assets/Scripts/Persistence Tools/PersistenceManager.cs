@@ -32,7 +32,7 @@ public class PersistenceManager : MonoBehaviour
 
         if (!testingLevel) { savedGameExists = 1 == PlayerPrefs.GetInt("SavedGameExists", 0); }
         
-        if(!savedGameExists)
+        if(!savedGameExists && SceneManager.GetActiveScene().buildIndex != 0)
         {
             DeleteGame();
 
@@ -104,6 +104,11 @@ public class PersistenceManager : MonoBehaviour
         PlayerPrefs.SetFloat("SpawnPosX", -262);
         PlayerPrefs.SetFloat("SpawnPosY", 10);
         PlayerPrefs.SetFloat("SpawnPosZ", 78);
+
+        foreach (IPersist p in persistingObjects)
+        {
+            p.LoadState();
+        }
     }
 
 

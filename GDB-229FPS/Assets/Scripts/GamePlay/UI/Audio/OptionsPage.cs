@@ -10,6 +10,8 @@ public class OptionsPage : MonoBehaviour
     [SerializeField] TMP_Text[] volText;
     [SerializeField] AudioClip changedVol;
 
+    [SerializeField] GameObject resetButton;
+
     bool playChangedVolClip;
     float[] vols = new float[3];
 
@@ -73,6 +75,8 @@ public class OptionsPage : MonoBehaviour
             volSliders[i].GetComponentInChildren<TMP_Text>().text = (vols[i] * 100).ToString("F0") + "%";
         }
 
+        resetButton.SetActive(PersistenceManager.instance.savedGameExists);
+
         playChangedVolClip = true;
     }
 
@@ -82,6 +86,12 @@ public class OptionsPage : MonoBehaviour
         PlayerPrefs.SetFloat("MusicVol", 0.5f);
         PlayerPrefs.SetFloat("SFXVol", 0.5f);
         LoadVolSettings();
+    }
+
+    public void DeleteGame()
+    {
+        PersistenceManager.instance.DeleteGame();
+        resetButton.SetActive(false);
     }
 
 }
