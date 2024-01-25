@@ -43,14 +43,6 @@ public class AudioManager : MonoBehaviour
         
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.V))
-        {
-            PlayMusic(1);
-        }
-    }
-
     public void PlaySFX(AudioClip clip)
     {
         sfxSource.PlayOneShot(clip);
