@@ -13,6 +13,7 @@ public class PowerUp : MonoBehaviour
         light = transform.GetChild(0).gameObject;
         switch (type) //we can add more here later but last powerups were of no use in current context of project.
         {
+            default:
             case 1:
                 light.GetComponent<Light>().color = Color.red;
                 break;
@@ -26,8 +27,11 @@ public class PowerUp : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            player.GetComponent<RigidPlayer>().ApplyBuff(type);
-            Destroy(gameObject);
+            var playCont = player.GetComponent<RigidPlayer>();
+            if (playCont.CanHeal()) {
+                playCont.ApplyBuff(type);
+                Destroy(gameObject);
+            }
         }
     }
 }

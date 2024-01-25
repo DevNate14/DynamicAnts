@@ -478,10 +478,14 @@ public class RigidPlayer : MonoBehaviour, IDamageable, IPersist, IImpluse
     public void ApplyBuff(int type) {
         switch (type)
         {
+            default:
             case 1:
                 Heal(HPOrig - HP);
                 break;
         }
+    }
+    public bool CanHeal() {
+        return HP < HPOrig;
     }
 
     public void AddImpluse(Vector3 _impulse, float resolveTime)

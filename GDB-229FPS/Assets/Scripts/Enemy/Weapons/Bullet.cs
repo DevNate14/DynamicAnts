@@ -24,10 +24,8 @@ public class Bullet : MonoBehaviour
         IDamageable thing = other.GetComponent<IDamageable>();
         bool isPlayer = other.CompareTag("Player");
         if (thing != null){
-            if (isPlayer && shotByPlayer) {
-                Destroy(gameObject);
+            if (isPlayer && shotByPlayer) 
                 return;
-            }
             if (!isPlayer)
                 GameManager.instance.DisplayDamageDone(damageAmount);
             thing.Damage(damageAmount);

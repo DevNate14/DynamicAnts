@@ -65,15 +65,15 @@ public abstract class GunStatsSO : ScriptableObject
         //shoot
         Instantiate(bullet, muzzlePoint.transform.position, GameManager.instance.playerCam.transform.rotation);
         GameManager.instance.playerScript.aud.PlayOneShot(shootSound, shootVol);
-
-        //Instantiate(muzzleEffect, muzzlePoint.transform.position, muzzlePoint.transform.rotation); // for vfx when we get to making them
-        yield return new WaitForSeconds(fireRate);
-        isShooting = false;
         if (ammoCount != -1)
         { // checking for infinite ammo weapons
             magAmmoCount--;
             GameManager.instance.UpdateAmmoUI(this);
         }
+        if(muzzleEffect != null)
+            Instantiate(muzzleEffect, muzzlePoint.transform.position, muzzlePoint.transform.rotation); // for vfx when we get to making them
+        yield return new WaitForSeconds(fireRate);
+        isShooting = false;
     }
     public void AddAmmo()
     {
