@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Net.Sockets;
 using System.Xml.Serialization;
+using TreeEditor;
 using Unity.VisualScripting;
 using UnityEditor.Animations;
 using UnityEngine;
@@ -139,22 +140,41 @@ public class RigidPlayer : MonoBehaviour, IDamageable, IPersist, IImpluse
 
     private void OnCollisionEnter(Collision collision)
     {
+        //Physics.Raycast(transform.position, collision.GetContact(0).point, out RaycastHit hit, 0.3f);
+        //float angle = Vector3.Angle(Vector3.up, hit.normal);
+        
+        
+    }
 
-        float angle = Vector3.Angle(Vector3.up, slophit.normal);
-        if (angle <= MaxslopeAngel)
+    private void OnCollisionStay(Collision collision)
+    {
+        int count = collision.contactCount;
+        Debug.Log(count);
+        for (int i = 0; i < count; i++)
         {
-            Grounded = true;
-            jumpedtimes = 0;
+            Debug.DrawLine(collision.GetContact(i).point, transform.position, Color.green, 3);
+            float angle = Vector3.Angle(transform.position - collision.GetContact(i).point, Vector3.up);
+            Debug.Log(angle);
+            if (angle <= MaxslopeAngel)
+            {
+                Grounded = true;
+                jumpedtimes = 0;
+            }
+            else
+            {
+                Player.AddForce((transform.position - collision.GetContact(i).point));
+            }
         }
+
+        if (jumpedtimes == 0)
+            Grounded = true;
     }
 
     private void OnCollisionExit(Collision collision)
     {
-        float angle = Vector3.Angle(Vector3.up, slophit.normal);
-        if (angle <= MaxslopeAngel)
-        {
+        //Physics.Raycast(transform.position, collision.GetContact(0).point, out RaycastHit hit, 0.3f);
+        if (collision.contactCount == 0)
             Grounded = false;
-        }
     }
 
 
@@ -483,7 +503,7 @@ public class RigidPlayer : MonoBehaviour, IDamageable, IPersist, IImpluse
 
     public void AddImpluse(Vector3 _impulse, float resolveTime)
     {
-        LongJump += _impulse;
+        LongJump += _impulse / resolveTime;
         Player.velocity += new Vector3(0, _impulse.y, 0);
     }
 
