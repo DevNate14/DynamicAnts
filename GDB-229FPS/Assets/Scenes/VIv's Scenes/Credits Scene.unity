@@ -372,41 +372,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 254407006939003228, guid: 530901c9a1de1f942adf2eb83224e342, type: 3}
-      propertyPath: m_text
-      value: "PLAYER/ LEVEL DESIGN\n\nLEVEL DESIGN\n\n           ENEMY DESIGN\n\nAUDIO/SETTINGS
-        DESIGN\n\nHAZARDS DESIGN\n\nUI DESIGN\n\n\n\n\n        TINY WORLDS"
-      objectReference: {fileID: 0}
-    - target: {fileID: 254407007444198456, guid: 530901c9a1de1f942adf2eb83224e342, type: 3}
-      propertyPath: m_text
-      value: 'KENNETH FITZPATRICK
-
-
-        NATHAN PARTIPILO
-
-
-        SEBASTIAN
-        RAMIREZ BEJARANO
-
-
-        VIOLET WEATHERSBY
-
-
-        DANTE WILLIAMS
-
-
-        VIVIANNE
-        ZSOLDOS
-
-
-
-
-
-        FREE PIXEL FONT- THALEAH
-
-        -- ASSETSTORE.UNITY.COM
-        --'
-      objectReference: {fileID: 0}
     - target: {fileID: 254407007618654296, guid: 530901c9a1de1f942adf2eb83224e342, type: 3}
       propertyPath: m_Pivot.x
       value: 0
