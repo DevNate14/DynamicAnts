@@ -463,7 +463,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2212763630186881070, guid: 5100b15f79f66d0478e31d7fea743319, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2212763630186881070, guid: 5100b15f79f66d0478e31d7fea743319, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1646,6 +1646,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3025822712751658371, guid: a2ee82543ebe40b418181e738fee1d49, type: 3}
+      propertyPath: testingLevel
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3025822712751658371, guid: a2ee82543ebe40b418181e738fee1d49, type: 3}
+      propertyPath: savedGameExists
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3312828102935724895, guid: a2ee82543ebe40b418181e738fee1d49, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3715650572279046315, guid: a2ee82543ebe40b418181e738fee1d49, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -5140,7 +5152,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2446364460197824941, guid: aa2761ee75936794ba10a5e7fccf8937, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2446364460197824941, guid: aa2761ee75936794ba10a5e7fccf8937, type: 3}
       propertyPath: m_LocalPosition.x

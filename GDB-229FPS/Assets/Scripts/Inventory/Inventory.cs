@@ -178,7 +178,7 @@ public class Inventory : MonoBehaviour, IInventory, IPersist
     {
         stats.isShooting = false;
         weapons.Add(stats);
-        weapons[selectedWeapon].Initialize(GameManager.instance.playerScript.muzzlePoint);
+        weapons[selectedWeapon].Initialize(GameManager.instance.playerScript.muzzlePoint, true);
     }
 
 }

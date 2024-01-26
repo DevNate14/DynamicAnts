@@ -31,16 +31,16 @@ public class PersistenceManager : MonoBehaviour
         }
 
         if (!testingLevel) { savedGameExists = 1 == PlayerPrefs.GetInt("SavedGameExists", 0); }
-        
-        if(!savedGameExists && SceneManager.GetActiveScene().buildIndex != 0)
+
+        if (!savedGameExists && SceneManager.GetActiveScene().buildIndex != 0)
         {
             DeleteGame();
 
             Vector3 defaultSpawn = GameObject.FindWithTag("Respawn").transform.position;
-            if(defaultSpawn == null)
+            if (defaultSpawn == null)
             {
                 defaultSpawn = Vector3.zero;
-            }    
+            }
 
             PlayerPrefs.SetFloat("SpawnPosX", defaultSpawn.x);
             PlayerPrefs.SetFloat("SpawnPosY", defaultSpawn.y);
@@ -119,7 +119,7 @@ public class PersistenceManager : MonoBehaviour
 
     public List<GunStatsSO> LoadInventoryWeapons()
     {
-        string weapons = PlayerPrefs.GetString("Weapons");
+        string weapons = PlayerPrefs.GetString("Weapons", "");
 
         List<GunStatsSO> loading = new List<GunStatsSO>();
 

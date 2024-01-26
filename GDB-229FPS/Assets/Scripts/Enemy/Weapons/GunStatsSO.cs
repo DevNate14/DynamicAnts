@@ -22,11 +22,15 @@ public abstract class GunStatsSO : ScriptableObject
 
     public bool isShooting;
 
-    public void Initialize(GameObject point)
+    public void Initialize(GameObject point, bool loading = false)
     {
         muzzlePoint = point;
+        if(loading)
+        {
+            return;
+        }
         ammoCount = 0;
-        magAmmoCount = 0;
+        magAmmoCount = 0;     
     }
 
     public virtual bool Reload()

@@ -54,6 +54,7 @@ public class ButtonFunctions : MonoBehaviour
             sceneNumber = PersistenceManager.instance.sceneNumber;
         }
         AudioManager.instance.PlayMusic(sceneNumber);
+        PlayerPrefs.SetInt("SavedGameExists", 1);
         StartCoroutine(LoadAsyncScene(sceneNumber));
     }
 
