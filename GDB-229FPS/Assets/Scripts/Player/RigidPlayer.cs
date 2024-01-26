@@ -150,12 +150,12 @@ public class RigidPlayer : MonoBehaviour, IDamageable, IPersist, IImpluse
     private void OnCollisionStay(Collision collision)
     {
         int count = collision.contactCount;
-        Debug.Log(count);
+        //Debug.Log(count);
         for (int i = 0; i < count; i++)
         {
             Debug.DrawLine(collision.GetContact(i).point, transform.position, Color.green, 3);
             float angle = Vector3.Angle(transform.position - collision.GetContact(i).point, Vector3.up);
-            Debug.Log(angle);
+            //Debug.Log(angle);
             if (angle <= MaxslopeAngel)
             {
                 Grounded = true;

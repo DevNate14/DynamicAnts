@@ -6,14 +6,21 @@ public class WeaponPickup : MonoBehaviour, IPersist
 {
     [SerializeField] GunStatsSO gun;
     bool triggerSet; // to prevent the same bug from lecture
+
+    private void Start()
+    {
+        AddToPersistenceManager();
+        LoadState();
+    }
+
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player") && !triggerSet) {
             triggerSet = true;
             var comp = other.GetComponent<Inventory>();
             comp.PickUpWeapon(gun);
-            PlayerPrefs.SetInt(this.gameObject.GetInstanceID().ToString() + "PickedUp", 0);
-            Destroy(gameObject);
+            PlayerPrefs.SetInt(this.gameObject.GetInstanceID().ToString() + "PickedUp", 1);
+            gameObject.SetActive(false);
         }
     }
     public void AddToPersistenceManager()

@@ -75,6 +75,7 @@ public class Turret : MonoBehaviour, IDamageable
         {
             if(mySpawner != null)
                 mySpawner.DeadUpdate();
+
             Destroy(gameObject);
         }
     }

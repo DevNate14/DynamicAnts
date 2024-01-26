@@ -93,8 +93,9 @@ public class OptionsPage : MonoBehaviour
             volSliders[i].GetComponentInChildren<TMP_Text>().text = (vols[i] * 100).ToString("F0") + "%";
         }
 
-        mouseSlider.value = PlayerPrefs.GetInt("MouseSensitivity", 300);
-        mouseText.text = (PlayerPrefs.GetInt("MouseSensitivity", 300) - 300).ToString();
+        mouseSensitivity = PlayerPrefs.GetInt("MouseSensitivity", 300);
+        mouseSlider.value = mouseSensitivity;
+        mouseText.text = (mouseSensitivity - 300).ToString();
 
         invertYToggle.isOn = PlayerPrefs.GetInt("InvertY", 0) == 1;
 

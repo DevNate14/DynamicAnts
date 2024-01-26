@@ -63,6 +63,7 @@ public class GameManager : MonoBehaviour
     public GameObject loadingScreen;
     public TMP_Text loadingText;
     public Image loadingBar;
+    public GameObject loadingReady;
     public GameObject saveMessage;
     public GameObject deleteWarning;
 
