@@ -8,6 +8,8 @@ public class BreakableBarrel : BreakableObject
     [SerializeField] Collider Hitbox;
     [SerializeField] GameObject BrokenBarrel;
     [SerializeField] ParticleSystem BreakFX;
+    [SerializeField] AudioSource Aud;
+    [SerializeField] AudioClip Sound;
 
 
     public override void Break()
@@ -16,5 +18,6 @@ public class BreakableBarrel : BreakableObject
         Barrel.SetActive(false);
         Hitbox.enabled = false;
         Instantiate(BreakFX, transform.position, transform.rotation);
+        Aud.PlayOneShot(Sound);
     }
 }

@@ -7,6 +7,9 @@ public class Emitter : MonoBehaviour
     [SerializeField] float shootrate;
     [SerializeField] Transform ShootPos;
     [SerializeField] GameObject bullet;
+    [SerializeField] bool Audio;
+    [SerializeField] AudioClip Sound;
+    [SerializeField] AudioSource Aud;
     bool shooting;
     // Start is called before the first frame update
     void Start()
@@ -27,6 +30,8 @@ public class Emitter : MonoBehaviour
     {
         shooting = true;
         Instantiate(bullet, ShootPos.position, transform.rotation);
+        if (Audio)
+            Aud.PlayOneShot(Sound);
         yield return new WaitForSeconds(shootrate);
 
         shooting = false;

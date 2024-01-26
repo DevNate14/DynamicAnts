@@ -9,6 +9,8 @@ public class ExplosiveBarrel : BreakableObject
     [SerializeField] Collider BlastHitbox;
     [SerializeField] GameObject BrokenBarrel;
     [SerializeField] ParticleSystem ExplosionFX;
+    [SerializeField] AudioSource Aud;
+    [SerializeField] AudioClip Sound;
     [SerializeField] int BlastDmg;
     [SerializeField] int ImpulseAmount;
     [SerializeField] float BlastHitboxUptime;
@@ -20,6 +22,7 @@ public class ExplosiveBarrel : BreakableObject
         Barrel.SetActive(false);
         Hitbox.enabled = false;
         StartCoroutine(Explosion());
+        Aud.PlayOneShot(Sound);
     }
 
     private IEnumerator Explosion()

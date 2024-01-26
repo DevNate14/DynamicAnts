@@ -12,6 +12,11 @@ public class EmitHoming : MonoBehaviour
     [SerializeField] Transform destination;
     [SerializeField] bool targetPlayer;
     bool shooting;
+    [SerializeField] bool Audio;
+    [SerializeField] bool PlayOnce;
+    float PlayedTimes;
+    [SerializeField] AudioSource Aud;
+    [SerializeField] AudioClip Sound;
     // Start is called before the first frame update
     void Start()
     {
@@ -37,9 +42,21 @@ public class EmitHoming : MonoBehaviour
     IEnumerator shoot()
     {
         shooting = true;
-        GameObject b = Instantiate(bullet, ShootPos.position, transform.rotation); //i figured it out
+        GameObject b = Instantiate(bullet, ShootPos.position, transform.rotation);
         script = b.GetComponent<BulletHoming>();
         script.SetDestination(destination);
+        if (Audio)
+        {
+            if (!PlayOnce)
+            {
+                Aud.PlayOneShot(Sound);
+            }
+            else if (PlayedTimes == 0)
+            {
+                Aud.PlayOneShot(Sound);
+                PlayedTimes++;
+            }
+        }
         yield return new WaitForSeconds(shootrate);
 
         shooting = false;
