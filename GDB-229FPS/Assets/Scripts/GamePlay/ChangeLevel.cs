@@ -12,30 +12,24 @@ public class ChangeLevel : MonoBehaviour
     [SerializeField] Vector3 NextStartPos;
     [SerializeField] int NextSceneNumber;
 
-    //GameObject loadingPage;
-    //TMP_Text loadingText;
-    //Image loadingBar;
-
-    //AsyncOperation asyncLoad;
-
-    //int loadingCount;
+    int loadTime;
 
     bool isLoading = false;
 
-    //private void Start()
-    //{
-    //    loadingPage = GameManager.instance.loadingScreen;
-    //    loadingText = GameManager.instance.loadingText;
-    //    loadingBar = GameManager.instance.loadingBar;
-    //}
-
+    private void Update()
+    {
+        if (Input.anyKeyDown && isLoading)
+        {
+            loadTime = 10;
+        }
+    }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player") && !isLoading)
         {
             isLoading = true;
-            //loadingCount = 0;
+            loadTime = 0;
 
             GameManager.instance.playerScript.playerSpawnPos = NextStartPos;
             PersistenceManager.instance.sceneNumber = NextSceneNumber;
@@ -47,32 +41,10 @@ public class ChangeLevel : MonoBehaviour
             PlayerPrefs.SetFloat("SpawnPosZ", NextStartPos.z);
 
             AudioManager.instance.PlayMusic(NextSceneNumber);
+            GameManager.instance.loadingScreen.SetActive(true);
             StartCoroutine(LoadAsyncScene(NextSceneNumber));
         }
     }
-
-
-    //IEnumerator LoadAsyncScene()
-    //{
-    //    asyncLoad = SceneManager.LoadSceneAsync(NextSceneNumber);
-
-    //    loadingPage.SetActive(true);
-
-    //    while (!asyncLoad.isDone)
-    //    {
-    //        asyncLoad.allowSceneActivation = loadingCount > 3;
-    //        float progress = Mathf.Clamp01(asyncLoad.progress / 0.9f);
-
-    //        loadingBar.fillAmount = progress;
-    //        loadingText.text = (progress*100).ToString("F0");
-
-    //        yield return new WaitForSecondsRealtime(1f);
-    //        loadingCount++;
-    //    }
-
-    //    isLoading = false;
-    //    loadingPage.SetActive(false);
-    //}
 
     IEnumerator LoadAsyncScene(int sceneNumber)
     {
@@ -91,6 +63,7 @@ public class ChangeLevel : MonoBehaviour
         while (!asyncLoad.isDone) //Progress UI
         {
             float progress = Mathf.Clamp01(asyncLoad.progress / 0.9f); // Scales Progress to 0-1
+            progress = Mathf.Clamp(progress, 0, loadTime / 10f);
             GameManager.instance.loadingBar.fillAmount = progress;
 
             if (progress >= 1F)
@@ -103,11 +76,15 @@ public class ChangeLevel : MonoBehaviour
                 GameManager.instance.loadingText.text = $"{(int)(progress * 100)}%"; //Shows 0-100%
             }
 
-            if (asyncLoad.progress >= 0.9f && !completed)
+            if (asyncLoad.progress >= 0.9f && !completed && loadTime >= 10)
             {
                 asyncLoad.allowSceneActivation = true;
             }
-
+            else if (asyncLoad.progress >= 0.9f && !completed)
+            {
+                GameManager.instance.loadingReady.SetActive(true);
+            }
+            loadTime++;
             yield return null;
         }
 

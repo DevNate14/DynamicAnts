@@ -8,6 +8,15 @@ using UnityEngine.UI;
 public class ButtonFunctions : MonoBehaviour
 {
     [SerializeField] AudioClip buttonSFX;
+    int loadTime;
+
+    private void Update()
+    {
+        if(Input.anyKeyDown)
+        {
+            loadTime = 10;
+        }
+    }
 
     public void ButtonSound()
     {
@@ -55,15 +64,18 @@ public class ButtonFunctions : MonoBehaviour
         }
         AudioManager.instance.PlayMusic(sceneNumber);
         PlayerPrefs.SetInt("SavedGameExists", 1);
+        GameManager.instance.loadingScreen.SetActive(true);
+        GameManager.instance.loadingReady.SetActive(false);
+        loadTime = 0;
         StartCoroutine(LoadAsyncScene(sceneNumber));
     }
 
     IEnumerator LoadAsyncScene(int sceneNumber)
     {
+
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneNumber);
         asyncLoad.allowSceneActivation = false;
         bool completed = false;
-
             asyncLoad.completed += (AsyncOperation op) =>
         {
             // Do something after Loading
@@ -75,24 +87,28 @@ public class ButtonFunctions : MonoBehaviour
         while (!asyncLoad.isDone) //Progress UI
         {
             float progress = Mathf.Clamp01(asyncLoad.progress / 0.9f); // Scales Progress to 0-1
+            progress = Mathf.Clamp(progress, 0, loadTime / 9f);
             GameManager.instance.loadingBar.fillAmount = progress;
 
             if (progress >= 1F)
             {
-                GameManager.instance.loadingText.text = "100%";
+                GameManager.instance.loadingText.text = "100";
             }
-
             else
             {
-                GameManager.instance.loadingText.text = $"{(int)(progress * 100)}%"; //Shows 0-100%
+                GameManager.instance.loadingText.text = $"{(int)(progress * 100)}"; //Shows 0-100%
             }
 
-            if (asyncLoad.progress >= 0.9f && !completed)
+            if (asyncLoad.progress >= 0.9f && !completed && loadTime >= 10)
             {
                 asyncLoad.allowSceneActivation = true;
             }
-
-            yield return null;
+            else if(asyncLoad.progress >= 0.9f && !completed)
+            {
+                GameManager.instance.loadingReady.SetActive(true);
+            }
+            loadTime++;
+            yield return new WaitForSeconds(0.3f);
         }
 
         //return null;
@@ -107,6 +123,13 @@ public class ButtonFunctions : MonoBehaviour
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.Confined;
         }
-        SceneManager.LoadScene(sceneNumber);
+        if(SceneManager.GetActiveScene().buildIndex == sceneNumber)
+        {
+            SceneManager.LoadScene(sceneNumber);
+        }
+        AudioManager.instance.PlayMusic(sceneNumber);
+        GameManager.instance.loadingScreen.SetActive(true);
+        loadTime = 0;
+        StartCoroutine(LoadAsyncScene(sceneNumber));
     }
 }
