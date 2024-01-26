@@ -7,7 +7,7 @@ public class Inventory : MonoBehaviour, IInventory, IPersist
     [SerializeField] List<GunStatsSO> weapons = new List<GunStatsSO>();
     [SerializeField] AudioClip reloadClip;
     
-    [SerializeField] bool[] keys; // TODO: unserialize after testing
+    bool[] keys;
     int selectedWeapon;
     private void Start()
     {
