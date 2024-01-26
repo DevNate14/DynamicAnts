@@ -549,16 +549,12 @@ PrefabInstance:
 
 
 
-
-
-
-
         MORE
         CREDITS TBA'
       objectReference: {fileID: 0}
     - target: {fileID: 254407007416097129, guid: 530901c9a1de1f942adf2eb83224e342, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -2094
+      value: -1916
       objectReference: {fileID: 0}
     - target: {fileID: 254407007444198456, guid: 530901c9a1de1f942adf2eb83224e342, type: 3}
       propertyPath: m_text
