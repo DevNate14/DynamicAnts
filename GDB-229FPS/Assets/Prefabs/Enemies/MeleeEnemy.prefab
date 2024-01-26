@@ -46,6 +46,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timer: 2
   impulseamount: 10
+  wee: {fileID: 8300000, guid: edf41d2981e077f4a8067803956b539a, type: 3}
+  SoundVol: 10
 --- !u!65 &1282411795
 BoxCollider:
   m_ObjectHideFlags: 0

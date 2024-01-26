@@ -9,6 +9,8 @@ public class PushObject : MonoBehaviour
     IImpluse impulse;
     bool jumping;
     bool insidebox;
+    public AudioClip wee;
+
 
     // Start is called before the first frame update
     void Start()
@@ -44,9 +46,10 @@ public class PushObject : MonoBehaviour
     {
 
         if (impulse != null)
-        {
+        {          
             Vector3 direction = (-1 * GameManager.instance.player.transform.forward + (GameManager.instance.player.transform.up * (impulseamount)));
             impulse.AddImpluse(direction, 0.5f);
+            
         }
     }
 }
