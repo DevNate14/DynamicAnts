@@ -4,11 +4,17 @@ using UnityEngine;
 
 public class DialogueTrigger : MonoBehaviour
 {
-    [SerializeField] string text;
+    // [SerializeField] string text;
+    [SerializeField] string[] dialogueLines;
+
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player")) {
-            GameManager.instance.TriggerDialogue(text);
+        if (other.CompareTag("Player")) 
+        {
+            foreach (string line in dialogueLines)
+            {
+                GameManager.instance.TriggerDialogue(line);
+            }
             Destroy(gameObject);
         }
     }

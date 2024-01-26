@@ -3,6 +3,7 @@ using TMPro;
 using UnityEngine.UI;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using System.Collections.Generic;
 
 public class GameManager : MonoBehaviour
 {
@@ -49,6 +50,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] TMP_Text dialogueText;
     [SerializeField] GameObject dialoguePanel;
     float charactersPerSecond = 8.5f;
+    private Queue<string> dialogueQueue = new Queue<string>();
+    private bool isDialoguePlaying = false;
 
     [Header("------------------------------ KEY UI ------------------------------\n")]
     [SerializeField] GameObject keyUI;
@@ -69,11 +72,19 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
-        instance = this;
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+
         if (!isTitleScreen)
         {
             playerSpawnPOS = GameObject.FindWithTag("Respawn");
-            
+
             player = GameObject.FindWithTag("Player");
             playerScript = player.GetComponent<RigidPlayer>();
             playerInventory = player.GetComponent<Inventory>();
@@ -81,7 +92,7 @@ public class GameManager : MonoBehaviour
             damageDone = PlayerPrefs.GetInt("DamageDone", 0);
             //gravity = playerScript.GetGravity();
             timeScaleOrig = Time.timeScale;
-            if(!Application.isEditor)
+            if (!Application.isEditor)
                 AudioManager.instance.PlayMusic(SceneManager.GetActiveScene().buildIndex); //will throw an error when testing individual levels, won't be a problem in the game build
         }
 
@@ -92,15 +103,24 @@ public class GameManager : MonoBehaviour
     {
         if (!isTitleScreen)
             PauseMenu();
+
+        if (!isDialoguePlaying && dialogueQueue.Count > 0)
+        {
+            string nextDialogue = dialogueQueue.Dequeue();
+            StartCoroutine(TypeText(nextDialogue));
+        }
+
     }
 
     public void TriggerDialogue(string message)
     {
-        StartCoroutine(TypeText(message));
+        dialogueQueue.Enqueue(message);
     }
 
     IEnumerator TypeText(string line)
     {
+        isDialoguePlaying = true;
+
         dialoguePanel.SetActive(true);
         dialogueText.text = ""; //Clears Text
 
@@ -112,9 +132,9 @@ public class GameManager : MonoBehaviour
 
         yield return new WaitForSeconds(5F);
         dialogueText.text = ""; //Clears Text
-
-
         dialoguePanel.SetActive(false);
+
+        isDialoguePlaying = false;
     }
 
     public void StatePaused()
@@ -149,7 +169,7 @@ public class GameManager : MonoBehaviour
         playerHPTotal.text = hpTotal.ToString("00");
     }
 
-    public void DisplayDamageDone(int amount) 
+    public void DisplayDamageDone(int amount)
     // needs a rework of damage system to track which bullets are hitting and from player unless we decouple player and enemy bullets
     {
         damageDone += amount;
@@ -177,7 +197,9 @@ public class GameManager : MonoBehaviour
         {
             // ReloadUI();
             reloadMessage.SetActive(true);
-        } else {
+        }
+        else
+        {
             reloadMessage.SetActive(false);
         }
     }
