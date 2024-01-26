@@ -13,11 +13,11 @@ public class GameIntro : MonoBehaviour
     [SerializeField] GameObject dialoguePanel;
     [SerializeField] TMP_Text dialogueText;
 
-    string[] messages = { "Hello", "You must be new here.", "Let me explain...", 
-        "Although, maybe you aren't new here.", "It gets hard to remember.", "Or maybe you just don't want an explanation.", "Go ahead and press [ESCAPE] if so.", "   ", 
+    string[] messages = { "Hello, you must be new here.", "Let me explain...", 
+        "Although, maybe you aren't new here. It gets hard to remember.", "Or maybe you just don't want an explanation.", "If so, go ahead and press [ESCAPE].", 
         "The most simple explanation is that I have a mission for you.", "Run through the simulation and test out my latest inventions.", 
         "There'll be weapons and ammo for you to pick up along the way.", "You'll need them if you want to survive.", 
-        "There are pick-ups that will restore your HP to help you survive and checkpoints if you can't.",
+        "There are also pick-ups that will restore your HP", "and checkpoints if you don't survive.",
         "Some parts of the simulation are more realistic than others.", "For example, objects you can interact with or break,", "as well as objects that can interact with and break you.",
         "I have three main areas for you to explore,", "which you can move between freely.",
         "Any questions?", "If so, I'm sure you'll figure it out after a few iterations.", "Don't worry, you'll do great here... eventually.", "Welcome to Ultra-Life", "Press [ESCAPE] to continue"};
@@ -83,10 +83,10 @@ public class GameIntro : MonoBehaviour
         foreach (char c in line)
         {
             dialogueText.text += c;
-            yield return new WaitForSeconds(.75f / 8.5f);
+            yield return new WaitForSeconds(.6f / 8.5f);
         }
 
-        yield return new WaitForSeconds(1F);
+        yield return new WaitForSeconds(1.5f);
 
         if (messageCurr != messages.Length - 1)
         { 
