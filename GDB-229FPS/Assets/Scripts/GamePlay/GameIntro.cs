@@ -83,7 +83,7 @@ public class GameIntro : MonoBehaviour
         foreach (char c in line)
         {
             dialogueText.text += c;
-            yield return new WaitForSeconds(1F / 8.5f);
+            yield return new WaitForSeconds(.75f / 8.5f);
         }
 
         yield return new WaitForSeconds(1F);
