@@ -7,33 +7,43 @@ public class Lever : MonoBehaviour, IInteractable
     [SerializeField] List<Door> Doors;
     [SerializeField] Collider Hitbox;
     bool SingleUse;
+    [SerializeField] Animation Anim;
+    bool On;
+    bool Animating;
+    [SerializeField] float Cooldown;
     [SerializeField] bool Unlocking;
     [SerializeField] bool Opening;
 
     public void Interact()
     {
-        if (Unlocking && Opening)
+        if (Opening)
         {
             foreach (Door door in Doors)
             {
-                door.Locked = !door.Locked;
+                if (Unlocking)
+                    door.Locked = !door.Locked;
                 door.Interact();
             }
         }
-        else if (Unlocking)
+        if (!Animating)
         {
-            foreach (Door door in Doors)
-                door.Locked = !door.Locked;
+            StartCoroutine(Animate());
         }
-        else if (Opening)
-        {
-            foreach (Door door in Doors)
-                door.Interact();
-        }
-
         if (SingleUse)
         {
             Hitbox.enabled = false;
         }
+    }
+
+    IEnumerator Animate()
+    {
+        Animating = true;
+        if (!On)
+            Anim.Play("forward");
+        else
+            Anim.Play("backward");
+        yield return new WaitForSeconds(Cooldown);
+        On = !On;
+        Animating = false;
     }
 }
