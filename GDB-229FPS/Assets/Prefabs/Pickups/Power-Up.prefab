@@ -139,7 +139,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e77da458a777edb46abaca04d8495da8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
+  SoundObject: {fileID: 8423251061914546347, guid: f8a646c1bf7bdec4a9c098e4806241f2, type: 3}
+  type: 1
 --- !u!135 &2095977270089672761
 SphereCollider:
   m_ObjectHideFlags: 0

@@ -6,6 +6,7 @@ public class PowerUp : MonoBehaviour
 {
     private new GameObject light;
     private GameObject player;
+    [SerializeField] GameObject SoundObject;
     [Range(0, 1)] [SerializeField] int type;
     void Start()
     {
@@ -30,6 +31,8 @@ public class PowerUp : MonoBehaviour
             var playCont = player.GetComponent<RigidPlayer>();
             if (playCont.CanHeal()) {
                 playCont.ApplyBuff(type);
+                if (SoundObject != null)
+                    Instantiate(SoundObject, transform.position, transform.rotation);
                 Destroy(gameObject);
             }
         }
