@@ -3,7 +3,14 @@ guid: f72a0bff4b0b31746b4b828a960128f9
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - image: {instanceID: 0}
+  - bullet: {instanceID: 0}
+  - model: {instanceID: 0}
+  - muzzleEffect: {instanceID: 0}
+  - shootSound: {instanceID: 0}
+  - emptySound: {fileID: 8300000, guid: 0b435a009ff19064898fad04fd960599, type: 3}
+  - muzzlePoint: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

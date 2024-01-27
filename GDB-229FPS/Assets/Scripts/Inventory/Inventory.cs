@@ -117,8 +117,12 @@ public class Inventory : MonoBehaviour, IInventory, IPersist
         }
     }
     void ShootGun() {
-        if (weapons[selectedWeapon].ammoCount == -1 || weapons[selectedWeapon].magAmmoCount > 0) {
+        if (weapons[selectedWeapon].ammoCount == -1 || weapons[selectedWeapon].magAmmoCount > 0)
+        {
             StartCoroutine(weapons[selectedWeapon].Shoot());
+        }
+        else {
+            StartCoroutine(weapons[selectedWeapon].EmptyShoot());
         }
     }
     void ReloadGun() {

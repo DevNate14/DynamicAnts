@@ -15,7 +15,7 @@ public abstract class GunStatsSO : ScriptableObject
     public Texture2D image; // Image for UI
     public GameObject bullet, model;
     public ParticleSystem muzzleEffect;
-    public AudioClip shootSound;
+    public AudioClip shootSound, emptySound;
     [Range(0, 1)] public float shootVol;
 
     public GameObject muzzlePoint;// this may need to be replaced with a parameter in the shoot function
@@ -76,6 +76,12 @@ public abstract class GunStatsSO : ScriptableObject
         }
         if(muzzleEffect != null)
             Instantiate(muzzleEffect, muzzlePoint.transform.position, muzzlePoint.transform.rotation); // for vfx when we get to making them
+        yield return new WaitForSeconds(fireRate);
+        isShooting = false;
+    }
+    public virtual IEnumerator EmptyShoot() {
+        isShooting = true;
+        GameManager.instance.playerScript.aud.PlayOneShot(emptySound, shootVol);
         yield return new WaitForSeconds(fireRate);
         isShooting = false;
     }

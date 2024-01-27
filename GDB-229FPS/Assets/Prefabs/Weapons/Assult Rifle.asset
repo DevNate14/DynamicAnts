@@ -14,14 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Assault Rifle
   magSize: 30
-  ammoCount: 0
-  magAmmoCount: 0
+  ammoCount: 16
+  magAmmoCount: 30
   fireRate: 0.25
   image: {fileID: 2800000, guid: 6ad634f0bc2e16543b94658fbac81a9c, type: 3}
   bullet: {fileID: 5293575694773355670, guid: 1515617d10f329649bc21aadb7bac911, type: 3}
   model: {fileID: 2583597474119676894, guid: 89b9258ff25abba48b48dc856aa9acd0, type: 3}
-  muzzleEffect: {fileID: 0}
+  muzzleEffect: {fileID: 8816719049702070842, guid: 2bdb31b8cf045b846845895827401f79, type: 3}
   shootSound: {fileID: 8300000, guid: 180e0b06dbfc8234b8ca991ff3821979, type: 3}
+  emptySound: {fileID: 8300000, guid: 0b435a009ff19064898fad04fd960599, type: 3}
   shootVol: 0.5
   muzzlePoint: {fileID: 0}
   isShooting: 0
