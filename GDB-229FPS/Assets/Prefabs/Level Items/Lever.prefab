@@ -762,7 +762,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  Hitbox: {fileID: 0}
+  Hitbox: {fileID: 876925958206450129}
   Anim: {fileID: 4493709500106087616}
   Cooldown: 0
   Unlocking: 0
