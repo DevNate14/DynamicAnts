@@ -335,12 +335,12 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ButtonFunctions, Assembly-CSharp
-        m_MethodName: Quit
-        m_Mode: 1
+        m_MethodName: MainMenu
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 4
+          m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -866,11 +866,15 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\n\nKENNETH FITZPATRICK\r\n\r\nNATHAN PARTIPILO\r\n\r\nSEBASTIAN RAMIREZ
-    BEJARANO\r\n\r\nVIOLET WEATHERSBY\r\n\r\nDANTE WILLIAMS\r\n\r\nVIVIANNE ZSOLDOS\n\n\n\n\nUNIVERSFIELD\r\n\r\n\nSAMUEL
-    FRANCIS JOHNSON\r\n\r\n\r\nUNKNOWN ARTIST\r\n\r\n\r\n\r\n\n\n\n\r\nFREE-TO-USE-AUDIO\r\n\r\n\r\nWILLIAM
-    PEARSON\r\n\r\n\r\nJOSEPH RUSNAK\r\n\r\n\r\nJOSEPH RUSKNAK\r\n\r\n\r\n     \r\n\r\n\r\n\nGYAMFUA\r\n\r\n\r\nBIGMOUSE108\r\n\n\r\n\rMADEFIREON\n\n\nUNKNOWN
-    ARTIST\r\n\n\n\n\n\nTINY WORLDS\r\n\n\nDEEPEST STUDIO\n\n\nSETH WARD\n\n\nURSA.ANIM"
+  m_text: "\n\n\nKENNETH FITZPATRICK\r\n\r\nNATHAN PARTIPILO\r\n\r\nSEBASTIAN RAMIREZ
+    BEJARANO\r\n\r\nVIOLET WEATHERSBY\r\n\r\nDANTE WILLIAMS\r\n\r\nVIVIANNE ZSOLDOS\n\n\n\n\nSOUND
+    IDEAS\n\n\nCLEARWAVSOUND\n\n\nSOUND IDEAS\n\n\nD4XX\n\n\nSOUND IDEAS\n\n\nSOUND
+    IDEAS\n\n\nSOUND IDEAS\n\n\n\n\nJOSEPH RUSKNAK\n\n\nUNIVERSFIELD\r\n\r\n\nSAMUEL
+    FRANCIS JOHNSON\r\n\r\n\r\nUNKNOWN ARTIST\r\n\r\n\nFREE-TO-USE-AUDIO\r\n\r\n\r\nWILLIAM
+    PEARSON\r\n\r\n\r\nJOSEPH RUSNAK\r\n\r\n\r\nJOSEPH RUSKNAK\r\n\r\n\r\n     \r\n\r\n\n\n\rGREGORY
+    SEGURU\n\n\n255 PIXEL STUDIOS\n\n\nREINFORCEDCC\n\n\nMASH VIRTUAL\n\n\nLMHPOLY\n\n\nLMHPOLY\n\n\nTINY
+    WORLDS\r\n\n\nDEEPEST STUDIO\n\n\nSETH WARD\n\n\nURSA.ANIM\n\n\n\n\n\nGYAMFUA\r\n\r\n\r\nBIGMOUSE108\r\n\n\r\n\rMADEFIREON\n\n\nUNKNOWN
+    ARTIST\r\n\n\n\n\n\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1b52934832e89f54fa94ee06aeca865c, type: 2}
   m_sharedMaterial: {fileID: -7262362321683612070, guid: 1b52934832e89f54fa94ee06aeca865c, type: 2}
@@ -973,7 +977,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -1916}
+  m_AnchoredPosition: {x: 0, y: -2876}
   m_SizeDelta: {x: 685.3191, y: 203.5974}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &413823316748938758
@@ -1022,7 +1026,12 @@ MonoBehaviour:
 
 
 
-    MUSIC EFFECTS-
+
+
+
+
+
+    MUSICAL EFFECTS-
 
 
 
@@ -1031,8 +1040,6 @@ MonoBehaviour:
 
 
 
-
-    IMAGES-
 
 
 
@@ -1044,6 +1051,23 @@ MonoBehaviour:
     ASSETS-
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    IMAGES-
 
 
 
@@ -1191,6 +1215,7 @@ MonoBehaviour:
   m_text: '
 
 
+
     PLAYER/ LEVEL DESIGN
 
 
@@ -1213,6 +1238,52 @@ MonoBehaviour:
 
 
 
+    FOOTSTEPS,
+    WOOD, RUG (1)
+
+    SOUNDIDEAS.SOURCEAUDIO.COM
+
+
+    CRUNCHING BITE
+
+    FREESOUND.ORG
+
+
+    DIRT,
+    HIT (1)
+
+    SOUNDIDEAS.SOURCEAUDIO.COM
+
+
+    LASER SHOT
+
+    FREESOUND.ORG
+
+
+    FOOTSTEPS,
+    WOOD, RUG (2)
+
+    SOUNDIDEAS.SOURCEAUDIO.COM
+
+
+    DIRT, HIT (2)
+
+    SOUNDIDEAS.SOURCEAUDIO.COM
+
+
+    DIRT,
+    HIT (3)
+
+    SOUNDIDEAS.SOURCEAUDIO.COM
+
+
+
+
+    ANALOG SPLENDOR- ALT NAME
+
+    WESTARMUSIC.SOURCEAUDIO.COM
+
+
     CLICK
     MENU APP
 
@@ -1230,29 +1301,24 @@ MonoBehaviour:
     SOUNDIDEAS.SOURCEAUDIO.COM
 
 
-
-
-
-
-
-    CORRUPT MASTER
-    CPU
+    CORRUPT MASTER CPU
 
     PIXABAY.COM
 
 
-    GOING THROUGH THE MOTIONS
+    GOING
+    THROUGH THE MOTIONS
 
     WESTARMUSIC.SOURCEAUDIO.COM
 
 
-    TRIAL
-    RUN
+    TRIAL RUN
 
     WESTARMUSIC.SOURCEAUDIO.COM
 
 
-    DYSTOPIAN FUTURE
+    DYSTOPIAN
+    FUTURE
 
     WESTARMUSIC.SOURCEAUDIO.COM
 
@@ -1261,51 +1327,84 @@ MonoBehaviour:
 
 
 
-    FLAME
-    CARTOON FREE - CLIPART
+    MINE
+
+    ASSETSTORE.UNITY.COM
+
+
+    POLYGUN-
+    WEAPONS
+
+    ASSETSTORE.UNITY.COM
+
+
+    FREE INDUSTRIAL BUILDING/GARAGE
+
+    ASSETSTORE.UNITY.COM
+
+
+    SCI-FI
+    CLIP
+
+    ASSETSTORE.UNITY.COM
+
+
+    LOWPOLY- ROCKS PACK
+
+    ASSETSTORE.UNITY.COM
+
+
+    LOWPOLY-
+    MODULAR TERRAIN PACK
+
+    ASSETSTORE.UNITY.COM
+
+
+    FREE PIXEL FONT- THALEAH
+
+    ASSETSTORE.UNITY.COM
+
+
+    STYLIZED
+    DEVIL BULLDOG
+
+    ASSETSTORE.UNITY.COM
+
+
+    SLEEK TOON BOT
+
+    ASSETSTORE.UNITY.COM
+
+
+    LASER
+    TURRETS
+
+    ASSETSTORE.UNITY.COM
+
+
+
+
+
+    FLAME CARTOON FREE - CLIPART
 
     CLEANPNG.COM
 
 
-    FIRE ON TRANSPARENT BACKGROUND
+    FIRE
+    ON TRANSPARENT BACKGROUND
 
     VECTORSTOCK.COM
 
 
-    SIMPLE
-    UI ELEMENTS
+    SIMPLE UI ELEMENTS
 
     ASSETSTORE.UNITY.COM
 
 
-    FULL SAIL UNIVERSITY LOGO
+    FULL
+    SAIL UNIVERSITY LOGO
 
-    LOGOSAVE.COM
-
-
-
-
-
-    FREE
-    PIXEL FONT- THALEAH
-
-    ASSETSTORE.UNITY.COM
-
-
-    STYLIZED DEVIL BULLDOG
-
-    ASSETSTORE.UNITY.COM
-
-
-    SLEEK
-    TOON BOT
-
-    ASSETSTORE.UNITY.COM
-
-
-    LASER TURRETS
-
-    ASSETSTORE.UNITY.COM'
+    LOGOSAVE.COM'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1b52934832e89f54fa94ee06aeca865c, type: 2}
   m_sharedMaterial: {fileID: -7262362321683612070, guid: 1b52934832e89f54fa94ee06aeca865c, type: 2}
@@ -1411,7 +1510,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 44, y: -751}
+  m_AnchoredPosition: {x: 44, y: -527}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &413823317469000042
@@ -2068,7 +2167,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -4315}
+  m_AnchoredPosition: {x: 0, y: -5979}
   m_SizeDelta: {x: 1468.7173, y: 251.3302}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &448644510641382316
