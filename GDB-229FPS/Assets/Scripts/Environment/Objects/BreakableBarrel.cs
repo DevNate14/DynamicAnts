@@ -7,9 +7,6 @@ public class BreakableBarrel : BreakableObject
     [SerializeField] GameObject Barrel;
     [SerializeField] Collider Hitbox;
     [SerializeField] GameObject BrokenBarrel;
-    [SerializeField] ParticleSystem BreakFX;
-    [SerializeField] AudioSource Aud;
-    [SerializeField] AudioClip Sound;
 
 
     public override void Break()

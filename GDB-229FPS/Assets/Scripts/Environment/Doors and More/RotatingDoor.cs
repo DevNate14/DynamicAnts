@@ -19,12 +19,14 @@ public class RotatingDoor : Door
                 {
                     Open = true;
                     Anim.Play("open");
+                    PlayOpen();
                 }
             }
             else
             {
                 Open = false;
                 Anim.Play("close");
+                PlayClose();
             }
             StartCoroutine(OpenCooldown());
         }

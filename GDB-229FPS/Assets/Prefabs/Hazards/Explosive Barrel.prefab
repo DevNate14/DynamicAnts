@@ -83,13 +83,13 @@ MonoBehaviour:
   Regen: 0
   RegenWaitTime: 0
   RegenCD: 0
+  BreakFX: {fileID: 8841767067418191837, guid: 8ef24a39f40bbb747bb6601f23ee641f, type: 3}
+  Aud: {fileID: 5348382660468870076}
+  Sound: {fileID: 8300000, guid: ea0f0739d9afb294b8c9d2e0ab9b1151, type: 3}
   Barrel: {fileID: 3153136798347406819}
   Hitbox: {fileID: 2571001809516363777}
   BlastHitbox: {fileID: 2571001809516363783}
   BrokenBarrel: {fileID: 6519605178410537422}
-  ExplosionFX: {fileID: 5180970156249029890, guid: a0aea398a6dc78b4baa9b665515bf012, type: 3}
-  Aud: {fileID: 5348382660468870076}
-  Sound: {fileID: 8300000, guid: ea0f0739d9afb294b8c9d2e0ab9b1151, type: 3}
   BlastDmg: 3
   ImpulseAmount: 15
   BlastHitboxUptime: 0.5

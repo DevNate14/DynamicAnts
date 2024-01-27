@@ -8,9 +8,6 @@ public class ExplosiveBarrel : BreakableObject
     [SerializeField] Collider Hitbox;
     [SerializeField] Collider BlastHitbox;
     [SerializeField] GameObject BrokenBarrel;
-    [SerializeField] ParticleSystem ExplosionFX;
-    [SerializeField] AudioSource Aud;
-    [SerializeField] AudioClip Sound;
     [SerializeField] int BlastDmg;
     [SerializeField] int ImpulseAmount;
     [SerializeField] float BlastHitboxUptime;
@@ -27,7 +24,7 @@ public class ExplosiveBarrel : BreakableObject
 
     private IEnumerator Explosion()
     {
-        Instantiate(ExplosionFX, transform.position, transform.rotation);
+        Instantiate(BreakFX, transform.position, transform.rotation);
         BlastHitbox.enabled = true;
         yield return new WaitForSeconds(BlastHitboxUptime);
         BlastHitbox.enabled = false;
