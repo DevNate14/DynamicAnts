@@ -25,7 +25,11 @@ public class PushObject : MonoBehaviour
         if (insidebox)
         {            
             PushPlayerUp(impulseamount);
-            source.PlayOneShot(wee,0.05f);
+            if(!source.isPlaying)
+            {
+                source.PlayOneShot(wee,0.05f);
+            }
+            
      
         }
     }

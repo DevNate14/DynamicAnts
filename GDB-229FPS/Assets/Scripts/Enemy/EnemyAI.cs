@@ -18,7 +18,8 @@ public class EnemyAI : MonoBehaviour, IDamageable //check
     [SerializeField] int roamdist;
     [SerializeField] int roampause;
     [SerializeField] Animator anim;
-
+    public AudioSource source;
+    public AudioClip pewpew;
     Vector3 playerDirection; //check
     Vector3 startPosition;
     bool playerInRange; // check
@@ -143,8 +144,8 @@ public class EnemyAI : MonoBehaviour, IDamageable //check
     {
         shooting = true;
         Instantiate(bullet, ShootPos.position, transform.rotation);
+        source.PlayOneShot(pewpew, 1.5f);
         yield return new WaitForSeconds(shootrate);
-
         shooting = false;
     }
 

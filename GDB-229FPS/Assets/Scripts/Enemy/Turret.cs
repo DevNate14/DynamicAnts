@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class Turret : MonoBehaviour, IDamageable
 {
-    
+
     [Range(1, 10)][SerializeField] int HP; //check
     [Range(1, 10)][SerializeField] float shootrate; //check
     [SerializeField] Transform ShootPos; //check
@@ -21,6 +21,9 @@ public class Turret : MonoBehaviour, IDamageable
     bool shooting; //check
     float angleToPlayer; // check
     public EnemySpawners mySpawner;
+    public AudioSource source;
+    public AudioClip laseraud;
+    public AudioClip deadaud;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,10 +33,10 @@ public class Turret : MonoBehaviour, IDamageable
     // Update is called once per frame4
     void Update()
     {
-        if(playerInRange && canSeePlayer()) //check
+        if (playerInRange && canSeePlayer()) //check
         {
 
-        }   
+        }
     }
 
     bool canSeePlayer() //check
@@ -44,15 +47,15 @@ public class Turret : MonoBehaviour, IDamageable
         //Debug.Log(angleToPlayer);
         RaycastHit hit;
 
-        if(Physics.Raycast(headPosition.position, playerDirection, out hit))
+        if (Physics.Raycast(headPosition.position, playerDirection, out hit))
         {
-            if(hit.collider.CompareTag("Player") && angleToPlayer <= viewCone)
+            if (hit.collider.CompareTag("Player") && angleToPlayer <= viewCone)
             {
-                if(!shooting)
+                if (!shooting)
                 {
                     StartCoroutine(shoot());
                 }
-                if(agent.remainingDistance < agent.stoppingDistance)
+                if (agent.remainingDistance < agent.stoppingDistance)
                 {
                     faceplayer();
                 }
@@ -64,7 +67,7 @@ public class Turret : MonoBehaviour, IDamageable
     void faceplayer()
     {
         Quaternion spin = Quaternion.LookRotation(playerDirection);
-        transform.rotation = Quaternion.Lerp(transform.rotation , spin, Time.deltaTime * spintarget);
+        transform.rotation = Quaternion.Lerp(transform.rotation, spin, Time.deltaTime * spintarget);
     }
 
     public void Damage(int amount) //check
@@ -73,9 +76,9 @@ public class Turret : MonoBehaviour, IDamageable
         StartCoroutine(DamageFeedback());
         if (HP <= 0)
         {
-            if(mySpawner != null)
+            if (mySpawner != null)
                 mySpawner.DeadUpdate();
-
+            source.PlayOneShot(deadaud, 1.5f);
             Destroy(gameObject);
         }
     }
@@ -101,17 +104,18 @@ public class Turret : MonoBehaviour, IDamageable
             playerInRange = false;
         }
     }
-    
+
     IEnumerator shoot()
     {
-       shooting = true;
-       Instantiate(bullet, ShootPos.position, transform.rotation);
+        shooting = true;
+        Instantiate(bullet, ShootPos.position, transform.rotation);
         Instantiate(bullet, ShootPos2.position, transform.rotation);
+        source.PlayOneShot(laseraud, 1.5f);
         yield return new WaitForSeconds(shootrate);
 
-       shooting = false;
+        shooting = false;
     }
-    
+
     IEnumerator DamageFeedback() //Check
     {
         Color Temp = model.material.color;
