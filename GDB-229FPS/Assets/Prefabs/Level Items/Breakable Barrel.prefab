@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 5953886577382915153}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 26.422586, y: 0.679, z: 15.602162}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.24, y: 1.24, z: 1.24}
   m_Children:
   - {fileID: 5953886577475511201}
   - {fileID: 5953886578272972352}
@@ -82,12 +82,12 @@ MonoBehaviour:
   Regen: 0
   RegenWaitTime: 0
   RegenCD: 0
-  Barrel: {fileID: 5953886577475420033}
-  Hitbox: {fileID: 5953886577382915149}
-  BrokenBarrel: {fileID: 5953886578272809568}
   BreakFX: {fileID: 5180970156249029890, guid: a0aea398a6dc78b4baa9b665515bf012, type: 3}
   Aud: {fileID: 7602361229594652884}
   Sound: {fileID: 8300000, guid: 4f8ac853e917e7e47a6eeb8f399727ed, type: 3}
+  Barrel: {fileID: 5953886577475420033}
+  Hitbox: {fileID: 5953886577382915149}
+  BrokenBarrel: {fileID: 5953886578272809568}
 --- !u!82 &7602361229594652884
 AudioSource:
   m_ObjectHideFlags: 0
