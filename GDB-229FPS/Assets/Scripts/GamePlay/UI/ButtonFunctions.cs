@@ -132,4 +132,24 @@ public class ButtonFunctions : MonoBehaviour
         loadTime = 0;
         StartCoroutine(LoadAsyncScene(sceneNumber));
     }
+
+
+    public void CreditsScene()
+{
+    int creditsSceneNumber = 4;
+
+    ButtonSound();
+    
+    if (GameManager.instance.isPaused)
+    {
+        GameManager.instance.StateUnpaused();
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.Confined;
+    }
+
+    AudioManager.instance.PlayMusic(creditsSceneNumber);
+    GameManager.instance.loadingScreen.SetActive(true);
+    loadTime = 0;
+    StartCoroutine(LoadAsyncScene(creditsSceneNumber));
+}
 }
