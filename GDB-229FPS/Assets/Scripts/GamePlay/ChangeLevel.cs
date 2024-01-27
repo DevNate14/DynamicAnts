@@ -68,12 +68,12 @@ public class ChangeLevel : MonoBehaviour
 
             if (progress >= 1F)
             {
-                GameManager.instance.loadingText.text = "100%";
+                GameManager.instance.loadingText.text = "100";
             }
 
             else
             {
-                GameManager.instance.loadingText.text = $"{(int)(progress * 100)}%"; //Shows 0-100%
+                GameManager.instance.loadingText.text = $"{(int)(progress * 100)}"; //Shows 0-100%
             }
 
             if (asyncLoad.progress >= 0.9f && !completed && loadTime >= 10)
@@ -85,7 +85,7 @@ public class ChangeLevel : MonoBehaviour
                 GameManager.instance.loadingReady.SetActive(true);
             }
             loadTime++;
-            yield return null;
+            yield return new WaitForSeconds(0.3f);
         }
 
         //return null;

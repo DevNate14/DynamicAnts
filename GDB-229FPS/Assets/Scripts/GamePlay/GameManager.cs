@@ -93,7 +93,7 @@ public class GameManager : MonoBehaviour
             //gravity = playerScript.GetGravity();
             timeScaleOrig = Time.timeScale;
             if (!Application.isEditor)
-                AudioManager.instance.PlayMusic(SceneManager.GetActiveScene().buildIndex); //will throw an error when testing individual levels, won't be a problem in the game build
+                AudioManager.instance.PlayMusic(SceneManager.GetActiveScene().buildIndex);
         }
 
         //TriggerDialogue("WELCOME TO YOUR FIRST MISSION! GRAB THE GUNS, AND SHOOT THE ENEMIES!");

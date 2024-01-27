@@ -8,7 +8,7 @@ public class AutoSave : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            PersistenceManager.instance.SaveGame();
+            PersistenceManager.instance.SaveGame(false);
         }
     }
 }

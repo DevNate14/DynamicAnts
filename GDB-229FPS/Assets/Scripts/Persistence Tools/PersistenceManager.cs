@@ -61,10 +61,10 @@ public class PersistenceManager : MonoBehaviour
         persistingObjects.Add(adding); 
     }
 
-    public void SaveGame()
+    public void SaveGame(bool playSound = true)
     {
         GameManager.instance.saveMessage.SetActive(true);
-        StartCoroutine(SavingMessage());
+        StartCoroutine(SavingMessage(playSound));
         savedGameExists = true;
         PlayerPrefs.SetInt("SavedGameExists", 1);
         PlayerPrefs.SetInt("SceneNumber", sceneNumber);
@@ -76,15 +76,15 @@ public class PersistenceManager : MonoBehaviour
         }
     }
 
-    IEnumerator SavingMessage()
+    IEnumerator SavingMessage(bool playSound)
     {
         GameManager.instance.saveMessage.GetComponentInChildren<TMP_Text>().text = "Saving...";
         yield return new WaitForSeconds(1);
-        StartCoroutine(GameSavedMessage());
+        StartCoroutine(GameSavedMessage(playSound));
     }
-    IEnumerator GameSavedMessage()
+    IEnumerator GameSavedMessage(bool playSound)
     {
-        AudioManager.instance.PlaySFX(saveSound);
+        if (playSound) { AudioManager.instance.PlaySFX(saveSound); }
         GameManager.instance.saveMessage.GetComponentInChildren<TMP_Text>().text = "Game Saved!";
         yield return new WaitForSeconds(3);
         GameManager.instance.saveMessage.SetActive(false);
@@ -95,6 +95,7 @@ public class PersistenceManager : MonoBehaviour
         float[] volSettings = { PlayerPrefs.GetFloat("GameVol"), PlayerPrefs.GetFloat("MusicVol"), PlayerPrefs.GetFloat("SFXVol") };
         int mouseSensitivity = PlayerPrefs.GetInt("MouseSensitivity", 300);
         int invertY = PlayerPrefs.GetInt("InvertY", 0);
+        int times = PlayerPrefs.GetInt("times", 0);
 
         PlayerPrefs.DeleteAll();
         savedGameExists = false;
@@ -105,6 +106,7 @@ public class PersistenceManager : MonoBehaviour
         PlayerPrefs.SetFloat("SFXVol", volSettings[2]);
         PlayerPrefs.SetInt("MouseSensitivity", mouseSensitivity);
         PlayerPrefs.SetInt("InvertY", invertY);
+        PlayerPrefs.SetInt("times", times);
 
         PlayerPrefs.SetFloat("SpawnPosX", -262);
         PlayerPrefs.SetFloat("SpawnPosY", 10);

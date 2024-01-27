@@ -42,6 +42,28 @@ public class ButtonFunctions : MonoBehaviour
         ButtonSound();
     }
 
+    public void Delete()
+    {
+        float[] volSettings = { PlayerPrefs.GetFloat("GameVol"), PlayerPrefs.GetFloat("MusicVol"), PlayerPrefs.GetFloat("SFXVol") };
+        int mouseSensitivity = PlayerPrefs.GetInt("MouseSensitivity", 300);
+        int invertY = PlayerPrefs.GetInt("InvertY", 0);
+        int times = PlayerPrefs.GetInt("times", 0);
+
+        PlayerPrefs.DeleteAll();
+        PlayerPrefs.SetInt("SavedGameExists", 0);
+
+        PlayerPrefs.SetFloat("GameVol", volSettings[0]);
+        PlayerPrefs.SetFloat("MusicVol", volSettings[1]);
+        PlayerPrefs.SetFloat("SFXVol", volSettings[2]);
+        PlayerPrefs.SetInt("MouseSensitivity", mouseSensitivity);
+        PlayerPrefs.SetInt("InvertY", invertY);
+        PlayerPrefs.SetInt("times", times);
+
+        PlayerPrefs.SetFloat("SpawnPosX", -262);
+        PlayerPrefs.SetFloat("SpawnPosY", 10);
+        PlayerPrefs.SetFloat("SpawnPosZ", 78);
+    }
+
     public void Respawn()
     {
         GameManager.instance.playerScript.RespawnPlayer();
@@ -61,6 +83,10 @@ public class ButtonFunctions : MonoBehaviour
         if (PersistenceManager.instance.savedGameExists)
         {
             sceneNumber = PersistenceManager.instance.sceneNumber;
+        }
+        else
+        {
+            PlayerPrefs.SetInt("times", PlayerPrefs.GetInt("times", -1) + 1);
         }
         AudioManager.instance.PlayMusic(sceneNumber);
         PlayerPrefs.SetInt("SavedGameExists", 1);

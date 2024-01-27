@@ -12645,6 +12645,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Credits Button
       objectReference: {fileID: 0}
+    - target: {fileID: 1673977952450101965, guid: c8af1edfebec3ba45980be082238d89c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1673977952450101966, guid: c8af1edfebec3ba45980be082238d89c, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
