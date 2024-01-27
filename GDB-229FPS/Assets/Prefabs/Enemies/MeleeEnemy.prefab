@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timer: 2
-  impulseamount: 10
+  impulseamount: 5
   source: {fileID: 5627719769480451469}
   wee: {fileID: 8300000, guid: edf41d2981e077f4a8067803956b539a, type: 3}
 --- !u!65 &1282411795
@@ -1480,6 +1480,10 @@ MonoBehaviour:
   DamageCoolDown: 2
   MeleeRange: 2.26
   mySpawner: {fileID: 0}
+  source: {fileID: 5627719769480451469}
+  biteaud: {fileID: 8300000, guid: 927670fed4df68549b34ab112ef7ec4c, type: 3}
+  deadaud: {fileID: 8300000, guid: c00b13d010551ea45a57e4f7727b0000, type: 3}
+  idleaud: {fileID: 0}
 --- !u!95 &929986962251255274
 Animator:
   serializedVersion: 3

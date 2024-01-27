@@ -23,6 +23,9 @@ public class MeleeEnemy : MonoBehaviour, IDamageable
     bool InMeleeRange;
     bool insidesphere,hasTriggered;
     public EnemySpawners mySpawner;
+    public AudioSource source;
+    public AudioClip biteaud;
+    public AudioClip deadaud;
     // Start is called before the first frame update
     void Start()
     {
@@ -63,6 +66,7 @@ public class MeleeEnemy : MonoBehaviour, IDamageable
                 mySpawner.DeadUpdate();
             animate.SetBool("Dead", true);
             StartCoroutine(DeadAnim());
+            
         }
     }
     public void Heal(int amount) //check
@@ -95,7 +99,9 @@ public class MeleeEnemy : MonoBehaviour, IDamageable
     {
         Collider col = GetComponent<Collider>();
         col.enabled = false;
-        yield return new WaitForSeconds(1.9f);
+        yield return new WaitForSeconds(1.0f);
+        source.PlayOneShot(deadaud, 1.5f);
+        yield return new WaitForSeconds(0.9f);
         Destroy(gameObject);
     }
     IEnumerator MeleeDamage(float time)
@@ -103,6 +109,7 @@ public class MeleeEnemy : MonoBehaviour, IDamageable
         InMeleeRange = true;
         animate.SetTrigger("Hit");
         Instantiate(bite, BitePos.position, transform.rotation);
+        source.PlayOneShot(biteaud, 1.5f);
         yield return new WaitForSeconds(time);
         InMeleeRange = false;
     }
