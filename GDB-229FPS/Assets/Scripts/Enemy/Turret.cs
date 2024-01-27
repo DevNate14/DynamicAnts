@@ -110,7 +110,10 @@ public class Turret : MonoBehaviour, IDamageable
         shooting = true;
         Instantiate(bullet, ShootPos.position, transform.rotation);
         Instantiate(bullet, ShootPos2.position, transform.rotation);
-        source.PlayOneShot(laseraud, 1.5f);
+        if (laseraud!=null)
+        {
+            source.PlayOneShot(laseraud, 1.5f);
+        }       
         yield return new WaitForSeconds(shootrate);
 
         shooting = false;
