@@ -5,6 +5,7 @@ using UnityEngine;
 public class KeyPickup : MonoBehaviour
 {
     [SerializeField] int keyId;
+    [SerializeField] GameObject SoundObject;
     void Start()
     {
         LoadState();
@@ -12,6 +13,8 @@ public class KeyPickup : MonoBehaviour
     void OnTriggerEnter(Collider other) {
         if (other.CompareTag("Player")) {
             other.GetComponent<Inventory>().PickUpKey(keyId);
+            if (SoundObject != null)
+                Instantiate(SoundObject, transform.position, transform.rotation);
             Destroy(gameObject);
         }
     }
