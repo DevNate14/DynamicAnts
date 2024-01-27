@@ -3193,7 +3193,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 2566
+  m_VersionIndex: 2572
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -4948,7 +4948,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 1913
+  m_VersionIndex: 1892
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -5507,9 +5507,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 574009743608863005}
-  - component: {fileID: 7123555233244492671}
   - component: {fileID: 381269191}
   - component: {fileID: 381269192}
+  - component: {fileID: 7123555233244492671}
   - component: {fileID: 6525560813568762877}
   m_Layer: 0
   m_Name: podium
@@ -5539,48 +5539,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7123555233244492671
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1515465909273374675}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9608bb4f02be68840a61dee934bc4a9e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  aud: {fileID: 381269192}
-  clip: {fileID: 8300000, guid: 39cc5c8c872eece4297f92ad8d2bc428, type: 3}
-  color1: {r: 0.01886791, g: 0.01886791, b: 0.01886791, a: 0}
-  color2: {r: 0, g: 1, b: 0.4627451, a: 0.9490196}
-  bulbs:
-  - {fileID: 3264011109579776997}
-  - {fileID: 5607010276400594057}
-  - {fileID: 4727546274565163623}
-  Keys:
-  - {fileID: 2992692965062177401}
-  - {fileID: 3937225628090986705}
-  - {fileID: 7854587541002121339}
-  beacon: {fileID: 896768662}
-  portalBack: {fileID: 2012388878}
-  portalWin: {fileID: 174350965}
-  winMessages:
-  - Well done!
-  - You found all the hidden keys.
-  - Thank you for all your help testing my inventions.
-  - I guess this means you're done here.
-  - I hope you enjoyed your time in Ultra-life.
-  - Go ahead leave now so I can send the next tester in.
-  partialMessages:
-  - Looks like you got close.
-  - There are three hidden keys total for you to find.
-  - Head back through and start the next iteration.
-  failMessages:
-  - You haven't found any of them yet?
-  - Seems like you have more exploring to do.
-  - Head back through and start the next iteration.
 --- !u!65 &381269191
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5690,6 +5648,48 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &7123555233244492671
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1515465909273374675}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9608bb4f02be68840a61dee934bc4a9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  aud: {fileID: 381269192}
+  clip: {fileID: 8300000, guid: 39cc5c8c872eece4297f92ad8d2bc428, type: 3}
+  color1: {r: 0.01886791, g: 0.01886791, b: 0.01886791, a: 0}
+  color2: {r: 0, g: 1, b: 0.4627451, a: 0.9490196}
+  bulbs:
+  - {fileID: 3264011109579776997}
+  - {fileID: 5607010276400594057}
+  - {fileID: 4727546274565163623}
+  Keys:
+  - {fileID: 2992692965062177401}
+  - {fileID: 3937225628090986705}
+  - {fileID: 7854587541002121339}
+  beacon: {fileID: 896768662}
+  portalBack: {fileID: 2012388878}
+  portalWin: {fileID: 174350965}
+  winMessages:
+  - Well done!
+  - You found all the hidden keys.
+  - Thank you for all your help testing my inventions.
+  - I guess this means you're done here.
+  - I hope you enjoyed your time in Ultra-life.
+  - Go ahead leave now so I can send the next tester in.
+  partialMessages:
+  - Looks like you got close.
+  - There are three hidden keys total for you to find.
+  - Head back through and start the next iteration.
+  failMessages:
+  - You haven't found any of them yet?
+  - Seems like you have more exploring to do.
+  - Head back through and start the next iteration.
 --- !u!114 &6525560813568762877
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9666,7 +9666,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 1714
+  m_VersionIndex: 1693
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -12688,7 +12688,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 1717
+  m_VersionIndex: 1696
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -12973,7 +12973,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 1907
+  m_VersionIndex: 1886
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -13258,7 +13258,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 1910
+  m_VersionIndex: 1889
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -13662,7 +13662,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 184
+  m_VersionIndex: 163
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -14516,7 +14516,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 194
+  m_VersionIndex: 173
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -14830,7 +14830,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 187
+  m_VersionIndex: 166
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -17665,7 +17665,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 1720
+  m_VersionIndex: 1699
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -18899,7 +18899,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 197
+  m_VersionIndex: 176
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
