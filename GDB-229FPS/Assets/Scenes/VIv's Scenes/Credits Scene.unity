@@ -462,6 +462,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1216449115, guid: bb32ed439a8715f4a983d4fc7a6ad3d8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1216449115, guid: bb32ed439a8715f4a983d4fc7a6ad3d8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1497873166}
+    - target: {fileID: 1216449115, guid: bb32ed439a8715f4a983d4fc7a6ad3d8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: MainMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 1216449115, guid: bb32ed439a8715f4a983d4fc7a6ad3d8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 413823316680955705, guid: bb32ed439a8715f4a983d4fc7a6ad3d8, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -548,7 +564,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 413823316680955709, guid: bb32ed439a8715f4a983d4fc7a6ad3d8, type: 3}
       propertyPath: m_Name
-      value: Credits
+      value: Credits Scene
       objectReference: {fileID: 0}
     - target: {fileID: 7397821039432825498, guid: bb32ed439a8715f4a983d4fc7a6ad3d8, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
