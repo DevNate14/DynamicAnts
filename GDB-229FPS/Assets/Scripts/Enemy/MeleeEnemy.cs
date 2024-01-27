@@ -29,12 +29,20 @@ public class MeleeEnemy : MonoBehaviour, IDamageable
     // Start is called before the first frame update
     void Start()
     {
+        if (agent == null)
+        {
+            return;
+        }
         agent.SetDestination(transform.position);
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (agent == null)
+        {
+            return;
+        }
         float animationspeed = agent.velocity.normalized.magnitude;
         animate.SetFloat("Speed", Mathf.Lerp(animate.GetFloat("Speed"), animationspeed, Time.deltaTime * animationspeedtransition));
         if (insidesphere)
