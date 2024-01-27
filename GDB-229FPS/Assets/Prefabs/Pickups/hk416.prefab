@@ -208,6 +208,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gun: {fileID: 11400000, guid: 41226334f07ce8d40b1d68133653c269, type: 2}
+  SoundObject: {fileID: 8423251061914546347, guid: 78aaff29f86b76a4280a4fbb40342915, type: 3}
 --- !u!1 &5095779778175333641
 GameObject:
   m_ObjectHideFlags: 0

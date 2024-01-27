@@ -5,6 +5,7 @@ using UnityEngine;
 public class WeaponPickup : MonoBehaviour, IPersist
 {
     [SerializeField] GunStatsSO gun;
+    [SerializeField] GameObject SoundObject;
     bool triggerSet; // to prevent the same bug from lecture
 
     private void Start()
@@ -20,6 +21,8 @@ public class WeaponPickup : MonoBehaviour, IPersist
             var comp = other.GetComponent<Inventory>();
             comp.PickUpWeapon(gun);
             PlayerPrefs.SetInt(this.gameObject.GetInstanceID().ToString() + "PickedUp", 1);
+            if (SoundObject != null)
+                Instantiate(SoundObject, transform.position, transform.rotation);
             gameObject.SetActive(false);
         }
     }
