@@ -11,7 +11,11 @@ public class BreakableObject : MonoBehaviour, IDamageable, IPersist
     public float RegenWaitTime; //time after taking damage until regeneration starts
     public float RegenCD; // time between regeneration ticks
     float TimeLeft; //tells code how long it's been since previous two started
-    
+
+    public ParticleSystem BreakFX;
+    public AudioSource Aud;
+    public AudioClip Sound;
+
     // Start is called before the first frame update
     void Start()
     {

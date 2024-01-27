@@ -19,7 +19,7 @@ public class GameIntro : MonoBehaviour
         "There'll be weapons and ammo for you to pick up along the way.", "You'll need them if you want to survive.", 
         "There are also pick-ups that will restore your HP", "and checkpoints if you don't survive.",
         "Some parts of the simulation are more realistic than others.", "For example, objects you can interact with or break,", "as well as objects that can interact with and break you.",
-        "I have three main areas for you to explore,", "which you can move between freely.",
+        "I have three main areas for you to explore,", "which you can move between freely.", "Make sure to find all the secrets I've hidden for you.", 
         "Any questions?", "If so, I'm sure you'll figure it out after a few iterations.", "Don't worry, you'll do great here... eventually.", "Welcome to Ultra-Life", "Press [ESCAPE] to continue"};
 
     bool isPlayingMessage;

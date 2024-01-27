@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Shotgun
   magSize: 12
-  ammoCount: 16
+  ammoCount: 22
   magAmmoCount: 12
   fireRate: 1.5
   image: {fileID: 2800000, guid: 6acc6777f721420439337783425437ab, type: 3}

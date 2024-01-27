@@ -35,6 +35,8 @@ public class PressurePlate : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (other.isTrigger)
+            return;
         hit = true;
         Instantiate(trap, transform.position + transform.up * 10, transform.rotation); // spawn a boulder above
         transform.position = transform.position - transform.up * 0.08f; // pressure plate sinks (a little too far) into the floor

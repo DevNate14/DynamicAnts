@@ -126,11 +126,7 @@ public class RigidPlayer : MonoBehaviour, IDamageable, IPersist, IImpluse
         //    }
         //}
 
-        if (wasFalling && Grounded)
-        {
-            aud.PlayOneShot(landSFX[Random.Range(0, landSFX.Length)], 1);
-            wasFalling = false;
-        }
+        
 
         MovePlayer();
         BounceGun();
@@ -143,8 +139,12 @@ public class RigidPlayer : MonoBehaviour, IDamageable, IPersist, IImpluse
     {
         //Physics.Raycast(transform.position, collision.GetContact(0).point, out RaycastHit hit, 0.3f);
         //float angle = Vector3.Angle(Vector3.up, hit.normal);
-        
-        
+        if (wasFalling)
+        {
+            aud.PlayOneShot(landSFX[Random.Range(0, landSFX.Length)], 1);
+            wasFalling = false;
+        }
+
     }
 
     private void OnCollisionStay(Collision collision)
@@ -175,7 +175,11 @@ public class RigidPlayer : MonoBehaviour, IDamageable, IPersist, IImpluse
     {
         //Physics.Raycast(transform.position, collision.GetContact(0).point, out RaycastHit hit, 0.3f);
         if (collision.contactCount == 0)
+        {
+            wasFalling = true;
             Grounded = false;
+        }
+        
     }
 
 
@@ -504,8 +508,11 @@ public class RigidPlayer : MonoBehaviour, IDamageable, IPersist, IImpluse
 
     public void AddImpluse(Vector3 _impulse, float resolveTime)
     {
-        LongJump += _impulse / resolveTime;
-        Player.velocity += new Vector3(0, _impulse.y, 0);
+        if (!GameManager.instance.isPaused)
+        {
+            LongJump += _impulse / resolveTime;
+            Player.velocity += new Vector3(0, _impulse.y, 0);
+        }
     }
 
     private void BounceGun()
