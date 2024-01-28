@@ -37,9 +37,8 @@ public abstract class GunStatsSO : ScriptableObject
     {// virtual so if you need the ability to change this for your weapon you can
         if (magAmmoCount != magSize)
         {
-            if (ammoCount == 0 && magAmmoCount == 0)
+            if (ammoCount == 0)
             {
-                //  GameManager.instance.ReloadUI();
                 GameManager.instance.UpdateAmmoUI(this);
                 return false;
             }
