@@ -78,7 +78,7 @@ public class Inventory : MonoBehaviour, IInventory, IPersist
                 stats.ammoCount = 0;
                 weapons.Add(stats);
                 selectedWeapon = weapons.Count - 1;
-                weapons[selectedWeapon].Initialize(GameManager.instance.playerScript.muzzlePoint); //this may need to change per weapon but will see
+                weapons[selectedWeapon].Initialize(GameManager.instance.playerScript.muzzlePoint);
                 weapons[selectedWeapon].AddAmmo();
                 ChangeGun();
                 return;
@@ -175,6 +175,8 @@ public class Inventory : MonoBehaviour, IInventory, IPersist
         {
             ChangeGun();
         }
+
+        GameManager.instance.UpdateKeyUI(KeyCount());
     }
 
     public void LoadWeapon(GunStatsSO stats)

@@ -10,7 +10,6 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     public static PersistenceManager persistenceManager;
-    //Public static Inventory inventory;
 
     [Header("------------------------------ PLAYER ------------------------------\n")]
     [SerializeField] TMP_Text totalDamage;
@@ -22,11 +21,6 @@ public class GameManager : MonoBehaviour
     public GameObject playerSpawnPOS;
     public RigidPlayer playerScript;
     public Inventory playerInventory;
-    //int playerHP;
-
-    [Header("------------------------------ ENEMY------------------------------\n")]
-    //[SerializeField] TMP_Text enemyCountText;
-    int enemiesRemaining;
 
     [Header("------------------------------ GUNS ------------------------------\n")]
 
@@ -39,15 +33,12 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject menuActive;
     [SerializeField] GameObject menuPause;
     public bool isPaused;
-    [SerializeField] GameObject menuWin;
     [SerializeField] GameObject menuLose;
     [SerializeField] GameObject reloadMessage;
     [SerializeField] GameObject instructionsPage;
     [SerializeField] GameObject optionsPage;
 
     [Header("------------------------------ GAME DIALOGUE ------------------------------\n")]
-    //[SerializeField] private string gameText;
-    // [SerializeField] TextMeshProUGUI nameText;
     [SerializeField] TMP_Text dialogueText;
     [SerializeField] GameObject dialoguePanel;
     float charactersPerSecond = 8.5f;
@@ -57,7 +48,6 @@ public class GameManager : MonoBehaviour
     [Header("------------------------------ KEY UI ------------------------------\n")]
     [SerializeField] GameObject keyUI;
     [SerializeField] TMP_Text addedKeysText;
-    //int addedKeys;
 
     [Header("------------------------------ OTHER ------------------------------\n")]
     public GameObject playerDamageScreen;
@@ -91,10 +81,14 @@ public class GameManager : MonoBehaviour
             playerInventory = player.GetComponent<Inventory>();
             playerCam = FindObjectOfType<Camera>();
             damageDone = PlayerPrefs.GetInt("DamageDone", 0);
-            //gravity = playerScript.GetGravity();
             timeScaleOrig = Time.timeScale;
             if (!Application.isEditor)
                 AudioManager.instance.PlayMusic(SceneManager.GetActiveScene().buildIndex);
+        }
+        else
+        {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.Confined;
         }
 
     }
@@ -164,10 +158,8 @@ public class GameManager : MonoBehaviour
 
     public void UpdateKeyUI(int keyCount)
     {
-        //keyUI.SetActive(false);
-        // StartCoroutine(KeyUIEvent(keyCount));
-        addedKeysText.text = keyCount.ToString("00");
         keyUI.SetActive(keyCount > 0);
+        addedKeysText.text = keyCount.ToString("00");
     }
 
     public void UpdateHPBar(int hpMissing, int hpTotal)
@@ -177,7 +169,6 @@ public class GameManager : MonoBehaviour
     }
 
     public void DisplayDamageDone(int amount)
-    // needs a rework of damage system to track which bullets are hitting and from player unless we decouple player and enemy bullets
     {
         damageDone += amount;
         totalDamage.text = damageDone.ToString("00");
@@ -192,7 +183,7 @@ public class GameManager : MonoBehaviour
                 weaponIcon.texture = texture;
             }
         }
-    } //Need to add code for Weapon Pick-up
+    }
 
     public void UpdateAmmoUI(GunStatsSO newWeapon)
     {
@@ -200,9 +191,8 @@ public class GameManager : MonoBehaviour
         ammoSizeText.text = newWeapon.ammoCount.ToString("00");
         ammoCountText.text = newWeapon.magAmmoCount.ToString("00");
 
-        if (newWeapon.magAmmoCount == 0) //Should only call UI when mag is empty .
+        if (newWeapon.magAmmoCount == 0) //Should only call UI when mag is empty.
         {
-            // ReloadUI();
             reloadMessage.SetActive(true);
         }
         else
@@ -211,32 +201,8 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void CheckWinState()
-    {
-
-        if (enemiesRemaining <= 0)
-        {
-            //You win!
-            // StatePaused();
-            // menuActive = menuWin;
-            // menuActive.SetActive(true);
-            YouWin();
-        }
-    }
-
-    public void YouWin()
-    {
-        StatePaused();
-        menuActive = menuWin;
-        menuActive.SetActive(true);
-        menuActive.GetComponentInChildren<Button>().Select();
-        PersistenceManager.instance.DeleteGame();
-    }
-
-
     public void YouLose()
     {
-        //new WaitForSeconds(3);
         StatePaused();
         menuActive = menuLose;
         menuActive.SetActive(true);
@@ -245,7 +211,6 @@ public class GameManager : MonoBehaviour
 
     public void Instructions()
     {
-        //StatePaused();
         menuActive = instructionsPage;
         menuActive.SetActive(true);
         menuActive.GetComponentInChildren<Button>().Select();
@@ -267,14 +232,6 @@ public class GameManager : MonoBehaviour
             menuActive.SetActive(isPaused);
             menuActive.GetComponentInChildren<Button>().Select();
         }
-
-        // else if (Input.GetButtonDown("Cancel")
-        // && menuActive != null)
-        // {
-        //     StatePaused();
-        //     menuActive = menuPause;
-        //     menuActive.SetActive(!isPaused);
-        // }
     }
 }
 

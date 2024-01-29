@@ -9,7 +9,7 @@ public class EndPoint : MonoBehaviour
             //Debug.Log("Stepped on");
 
             //Have WinMenu BG Appear
-            GameManager.instance.CheckWinState();
+            //GameManager.instance.CheckWinState();
         }
     }
 }

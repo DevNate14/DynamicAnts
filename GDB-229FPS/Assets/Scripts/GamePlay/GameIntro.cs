@@ -29,7 +29,7 @@ public class GameIntro : MonoBehaviour
     bool isLoading = false;
     private void Start()
     {
-        for(int i = 0; i < marks.Length && i < PlayerPrefs.GetInt("times", 0); i++)
+        for(int i = 0; (i < marks.Length && i < PlayerPrefs.GetInt("times", 0)); i++)
         {
             marks[i].enabled = true;
         }
