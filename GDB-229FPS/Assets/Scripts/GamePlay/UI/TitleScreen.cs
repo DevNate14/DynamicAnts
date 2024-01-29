@@ -1,6 +1,7 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.GameCenter;
 using UnityEngine.UI;
 
 public class TitleScreen : MonoBehaviour
@@ -8,6 +9,7 @@ public class TitleScreen : MonoBehaviour
     public RawImage[] weaponImages;
     [SerializeField] float rotationSpeed = 100f;
     [SerializeField] TMP_Text playButton;
+    [SerializeField] GameObject quitButton;
     //public Vector3 rotationAxis= Vector3.up; //Changes Axis
     //public bool isSpinning = false;
 
@@ -15,6 +17,10 @@ public class TitleScreen : MonoBehaviour
     {
         StartSpinning(); //Rotates Images
         //AudioManager.instance.PlayMusic(0, false);
+        if (Application.platform == RuntimePlatform.WebGLPlayer)
+        {
+            quitButton.SetActive(false);
+        }
         GetComponentInChildren<Button>().Select();
         playButton.text = PersistenceManager.instance.savedGameExists ? "Continue Game" : "New Game";
         AudioManager.instance.PlayMusic(0);
