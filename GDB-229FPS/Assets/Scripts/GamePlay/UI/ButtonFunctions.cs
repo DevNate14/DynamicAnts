@@ -104,10 +104,7 @@ public class ButtonFunctions : MonoBehaviour
         bool completed = false;
             asyncLoad.completed += (AsyncOperation op) =>
         {
-            // Do something after Loading
-            //Debug.Log("Completed loading of the new scene");
             completed = true;
-            GameManager.instance.loadingScreen.SetActive(false);
         };
 
         while (!asyncLoad.isDone) //Progress UI
