@@ -79,7 +79,7 @@ public class ButtonFunctions : MonoBehaviour
 
     public void Play(int sceneNumber)
     {
-        if (PersistenceManager.instance.savedGameExists)
+        if (PlayerPrefs.GetInt("SavedGameExists", 0) == 1)
         {
             sceneNumber = PersistenceManager.instance.sceneNumber;
         }

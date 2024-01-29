@@ -97,7 +97,6 @@ public class GameManager : MonoBehaviour
                 AudioManager.instance.PlayMusic(SceneManager.GetActiveScene().buildIndex);
         }
 
-        //TriggerDialogue("WELCOME TO YOUR FIRST MISSION! GRAB THE GUNS, AND SHOOT THE ENEMIES!");
     }
 
     void Update()
