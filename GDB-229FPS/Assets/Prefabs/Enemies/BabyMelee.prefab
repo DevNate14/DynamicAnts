@@ -2541,7 +2541,7 @@ MonoBehaviour:
   mySpawner: {fileID: 0}
   source: {fileID: 1054795043}
   biteaud: {fileID: 8300000, guid: 7cae6a11da1792e4493714e98603ffc4, type: 3}
-  deadaud: {fileID: 0}
+  deadaud: {fileID: 8300000, guid: c00b13d010551ea45a57e4f7727b0000, type: 3}
 --- !u!95 &8537262980397183640
 Animator:
   serializedVersion: 3
