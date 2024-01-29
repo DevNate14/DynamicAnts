@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PowerUp : MonoBehaviour
 {
-    private new GameObject light;
+    private GameObject light;
     private GameObject player;
     [SerializeField] GameObject SoundObject;
     [Range(0, 1)] [SerializeField] int type;
