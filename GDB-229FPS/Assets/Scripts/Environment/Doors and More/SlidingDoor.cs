@@ -1,6 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class SlidingDoor : Door
@@ -9,13 +7,6 @@ public class SlidingDoor : Door
     [SerializeField] bool OpenOnly;
     [SerializeField] float Cooldown;
     bool CanOpen = true;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     public override void Interact()
     {
         if (CanOpen)
@@ -38,7 +29,6 @@ public class SlidingDoor : Door
             StartCoroutine(OpenCooldown());
         }
     }
-
     IEnumerator OpenCooldown()
     {
         CanOpen = false;

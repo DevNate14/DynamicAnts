@@ -1,13 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 
 public class ProximityOpen : MonoBehaviour
 {
     [SerializeField] Door Door;
     [SerializeField] bool OpenOnly;
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -22,7 +18,6 @@ public class ProximityOpen : MonoBehaviour
             }
         }
     }
-
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -37,5 +32,4 @@ public class ProximityOpen : MonoBehaviour
             }
         }
     }
-
 }

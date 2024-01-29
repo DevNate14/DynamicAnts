@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ExplosiveBarrel : BreakableObject
@@ -11,8 +10,6 @@ public class ExplosiveBarrel : BreakableObject
     [SerializeField] int BlastDmg;
     [SerializeField] int ImpulseAmount;
     [SerializeField] float BlastHitboxUptime;
-
-
     public override void Break()
     {
         BrokenBarrel.SetActive(true);
@@ -21,7 +18,6 @@ public class ExplosiveBarrel : BreakableObject
         StartCoroutine(Explosion());
         Aud.PlayOneShot(Sound);
     }
-
     private IEnumerator Explosion()
     {
         Instantiate(BreakFX, transform.position, transform.rotation);
@@ -29,14 +25,12 @@ public class ExplosiveBarrel : BreakableObject
         yield return new WaitForSeconds(BlastHitboxUptime);
         BlastHitbox.enabled = false;
     }
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.isTrigger)
         {
             return;
         }
-
         IDamageable thing = other.GetComponent<IDamageable>();
         if (thing != null)
         {

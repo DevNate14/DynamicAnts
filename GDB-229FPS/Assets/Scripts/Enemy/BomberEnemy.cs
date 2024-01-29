@@ -22,16 +22,12 @@ public class BomberEnemy : MonoBehaviour
     bool destinationChosen;
     float stoppingDistanceOriginal;
     Vector3 startingPosition;
-    
-    // Start is called before the first frame update
     void Start()
     {
         detonateTimer = 0f;
         startingPosition = transform.position;
         stoppingDistanceOriginal = agent.stoppingDistance;
     }
-
-    // Update is called once per frame
     void Update()
     {
         runTimer();
@@ -52,9 +48,9 @@ public class BomberEnemy : MonoBehaviour
     {
         playerDirection = GameManager.instance.player.transform.position - transform.position;
         angleToPlayer = Vector3.Angle(playerDirection, transform.forward);
-        Debug.DrawRay(transform.position, playerDirection);
-        // Debug.Log(angleToPlayer);
-        Debug.DrawRay(transform.position, playerDirection);
+        //Debug.DrawRay(transform.position, playerDirection);
+        //Debug.Log(angleToPlayer);
+        //Debug.DrawRay(transform.position, playerDirection);
         
         RaycastHit hit;
 
@@ -132,7 +128,7 @@ public void Damage(int amount)
 
         if(detonateTimer >= 5f){
             // go boom
-            Debug.Log("BOOOOOOOOOOMMMMMM");
+            //Debug.Log("BOOOOOOOOOOMMMMMM");
             death();
         }
     }

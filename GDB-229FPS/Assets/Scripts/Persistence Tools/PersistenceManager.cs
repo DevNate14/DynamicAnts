@@ -1,8 +1,5 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
@@ -17,8 +14,8 @@ public class PersistenceManager : MonoBehaviour
     [SerializeField] List<GunStatsSO> allGunStatSO = new List<GunStatsSO>();
     [SerializeField] AudioClip saveSound;
 
-    [Header("When testing individual levels: \ntestingLevel should be clicked and \nsaveGameExists should onl be clicked after \na checkpoint in the level has been activated")] //will need to be removed before beta build
-    public bool testingLevel; //will need to be removed before beta build
+    //[Header("When testing individual levels: \ntestingLevel should be clicked and \nsaveGameExists should onl be clicked after \na checkpoint in the level has been activated")] //will need to be removed before beta build
+    //public bool testingLevel; //will need to be removed before beta build
     public bool savedGameExists;
 
     public int sceneNumber;
@@ -30,7 +27,7 @@ public class PersistenceManager : MonoBehaviour
             instance = this;
         }
 
-        if (!testingLevel) { savedGameExists = 1 == PlayerPrefs.GetInt("SavedGameExists", 0); }
+        //if (!testingLevel) { savedGameExists = 1 == PlayerPrefs.GetInt("SavedGameExists", 0); }
 
         if (!savedGameExists && SceneManager.GetActiveScene().buildIndex != 0)
         {
@@ -50,10 +47,10 @@ public class PersistenceManager : MonoBehaviour
         sceneNumber = PlayerPrefs.GetInt("SceneNumber", SceneManager.GetActiveScene().buildIndex);
     }
 
-    private void Update() //will need to be removed before beta build
+    private void Update() //will need to be removed before beta build; check
     {
-        if (Input.GetKeyDown(KeyCode.Backspace)) { DeleteGame(); print("Game Save Deleted"); }
-        if (Input.GetKeyDown(KeyCode.Equals)) { SaveGame(); print("Game Saved"); }
+        //if (Input.GetKeyDown(KeyCode.Backspace)) { DeleteGame(); print("Game Save Deleted"); }
+        //if (Input.GetKeyDown(KeyCode.Equals)) { SaveGame(); print("Game Saved"); }
     }
 
     public void AddToManager(IPersist adding)

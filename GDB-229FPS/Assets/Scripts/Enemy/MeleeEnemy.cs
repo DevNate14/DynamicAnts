@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -26,7 +25,6 @@ public class MeleeEnemy : MonoBehaviour, IDamageable
     public AudioSource source;
     public AudioClip biteaud;
     public AudioClip deadaud;
-    // Start is called before the first frame update
     void Start()
     {
         if (agent == null)
@@ -35,8 +33,6 @@ public class MeleeEnemy : MonoBehaviour, IDamageable
         }
         agent.SetDestination(transform.position);
     }
-
-    // Update is called once per frame
     void Update()
     {
         if (agent == null)

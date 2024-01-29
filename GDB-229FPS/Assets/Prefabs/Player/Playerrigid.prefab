@@ -651,7 +651,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weapons: []
   reloadClip: {fileID: 8300000, guid: a7ffc34ab8783ee4882cb3e302dc9412, type: 3}
-  keys: 
 --- !u!114 &1146138786
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -690,13 +689,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4109002566342219493}
-  m_LocalRotation: {x: -0.040029254, y: -0.13068274, z: -0.026749713, w: 0.99025464}
-  m_LocalPosition: {x: 0.1229, y: -0.2453, z: 0.7181}
+  m_LocalRotation: {x: -0.03673162, y: -0.01735235, z: -0.031123558, w: 0.99868965}
+  m_LocalPosition: {x: 0.175, y: -0.248, z: 0.72}
   m_LocalScale: {x: 99.544075, y: 99.76639, z: 65.07359}
   m_Children: []
   m_Father: {fileID: 1549124674}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 82.002, y: -51.684, z: -54.402}
+  m_LocalEulerAnglesHint: {x: -4.269, y: -1.86, z: -3.501}
 --- !u!1 &9171185922032096686
 GameObject:
   m_ObjectHideFlags: 0

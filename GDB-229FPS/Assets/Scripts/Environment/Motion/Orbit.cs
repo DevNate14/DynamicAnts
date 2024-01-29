@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Orbit : MonoBehaviour
@@ -9,13 +7,6 @@ public class Orbit : MonoBehaviour
     [SerializeField] bool AroundX;
     [SerializeField] bool AroundY;
     [SerializeField] bool AroundZ;
-
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
         // this was inspired by code i found through google, but i understand how it works so its okay

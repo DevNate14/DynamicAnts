@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -24,13 +23,10 @@ public class Turret : MonoBehaviour, IDamageable
     public AudioSource source;
     public AudioClip laseraud;
     public AudioClip deadaud;
-    // Start is called before the first frame update
     void Start()
     {
         //GameManager.instance.UpdateGameGoal(1);
     }
-
-    // Update is called once per frame4
     void Update()
     {
         if (playerInRange && canSeePlayer()) //check
@@ -43,7 +39,7 @@ public class Turret : MonoBehaviour, IDamageable
     {
         playerDirection = GameManager.instance.player.transform.position - headPosition.position;
         angleToPlayer = Vector3.Angle(playerDirection, transform.forward);
-        Debug.DrawRay(headPosition.position, playerDirection);
+        //Debug.DrawRay(headPosition.position, playerDirection);
         //Debug.Log(angleToPlayer);
         RaycastHit hit;
 

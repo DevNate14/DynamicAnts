@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class WingFlap : MonoBehaviour
@@ -13,8 +11,6 @@ public class WingFlap : MonoBehaviour
     {
 
     }
-
-    // Update is called once per frame
     void Update()
     {
         ElapsedTime += Time.deltaTime;

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PowerUp : MonoBehaviour
@@ -19,10 +17,6 @@ public class PowerUp : MonoBehaviour
                 light.GetComponent<Light>().color = Color.red;
                 break;
         }
-    }
-    void Update()
-    {
-
     }
     void OnTriggerEnter(Collider other)
     {
