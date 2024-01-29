@@ -25,7 +25,7 @@ public class GameOutro : MonoBehaviour
     bool isChangingPitch = false;
     private void Start()
     {
-        for(int i = 0; i < marks.Length && i < PlayerPrefs.GetInt("times", 1); i++)
+        for(int i = 0; (i < marks.Length && i < PlayerPrefs.GetInt("times", 1)); i++)
         {
             marks[i].enabled = true;
         }

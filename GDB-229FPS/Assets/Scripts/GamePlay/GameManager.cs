@@ -85,6 +85,11 @@ public class GameManager : MonoBehaviour
             if (!Application.isEditor)
                 AudioManager.instance.PlayMusic(SceneManager.GetActiveScene().buildIndex);
         }
+        else
+        {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.Confined;
+        }
 
     }
 
