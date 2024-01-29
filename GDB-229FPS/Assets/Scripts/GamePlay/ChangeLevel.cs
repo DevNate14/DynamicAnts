@@ -1,11 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-//using UnityEngine.ProBuilder.Shapes;
 using UnityEngine.SceneManagement;
-using TMPro;
-using System.Threading.Tasks;
-using UnityEngine.UI;
 
 public class ChangeLevel : MonoBehaviour
 {
@@ -54,10 +49,7 @@ public class ChangeLevel : MonoBehaviour
 
         asyncLoad.completed += (AsyncOperation op) =>
         {
-            // Do something after Loading
-            //Debug.Log("Completed loading of the new scene");
             completed = true;
-            GameManager.instance.loadingScreen.SetActive(false);
         };
 
         while (!asyncLoad.isDone) //Progress UI

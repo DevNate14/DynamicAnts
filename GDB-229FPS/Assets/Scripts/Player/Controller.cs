@@ -1,12 +1,8 @@
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Controller : MonoBehaviour, IDamageable, IImpluse, IPersist
 {
-    
     private Vector3 playerVelocity, impulse;
     private bool grounded;
     private Vector3 move;
@@ -28,13 +24,9 @@ public class Controller : MonoBehaviour, IDamageable, IImpluse, IPersist
     [SerializeField] float maxSpeed;
     [SerializeField] Animator animator;
     [SerializeField] AudioClip longJumpSound;
-    
     public bool isCrouched; //Bool is public for GameManager to check
     public bool HasLongJump; // will make a better item inventory asap
-
     public Vector3 playerSpawnPos;
-
-    // Start is called before the first frame update
     void Start()
     {
         AddToPersistenceManager();
@@ -44,8 +36,6 @@ public class Controller : MonoBehaviour, IDamageable, IImpluse, IPersist
         SpawnPlayer();
         UpdatePlayerUI(); //This should help....?
     }
-
-    // Update is called once per frame
     void Update()
     {
         currSpeed = move.magnitude * speed;
@@ -80,13 +70,11 @@ public class Controller : MonoBehaviour, IDamageable, IImpluse, IPersist
             impulseResolve = 0;
         }
     }
-
     public void RespawnPlayer()
     {
         HP = HPOrig;
         SpawnPlayer();
     }
-
     void SpawnPlayer()
     {
         UpdatePlayerUI();
@@ -96,25 +84,21 @@ public class Controller : MonoBehaviour, IDamageable, IImpluse, IPersist
         transform.position = playerSpawnPos;
         controller.enabled = true;
     }
-
     IEnumerator PlayerFlashDamage()
     {
         GameManager.instance.playerDamageScreen.SetActive(true);
         yield return new WaitForSeconds(0.1f);
         GameManager.instance.playerDamageScreen.SetActive(false);
     }
-
     public void UpdatePlayerUI()
     {
         GameManager.instance.playerHPBar.fillAmount = (float)HP / HPOrig;
         GameManager.instance.UpdateHPBar(HP,HPOrig);
     }
-
     // public void ShowTotalDamage() // same as other needed damage rework
     // {
     //     GameManager.instance.DisplayDamageDone(damageDone);
     // } //Need to Add Beta
-
     //Made toggle for ease of use
     void ToggleCrouch()
     {
@@ -128,13 +112,11 @@ public class Controller : MonoBehaviour, IDamageable, IImpluse, IPersist
     {
         if (isCrouched)
             return false;
-            
         if (Input.GetButtonDown("Sprint"))
         {
             speed *= sprintMod;
             return true;
         }
-
         else if (Input.GetButtonUp("Sprint"))
         {
             speed /= sprintMod;
@@ -156,7 +138,6 @@ public class Controller : MonoBehaviour, IDamageable, IImpluse, IPersist
             // we need a check to zero out impulse after landing from a jump since the lerp likes to drag the player along after landing, cant be a grounded check since it would never allow the player 
             // to long jump, need a new bool like "longJumped" thattracks the sequence of events will add if noone else gets to it later
     }
-
     public void Damage(int amount)
     {
         HP -= amount;        
@@ -166,12 +147,10 @@ public class Controller : MonoBehaviour, IDamageable, IImpluse, IPersist
         UpdatePlayerUI();
         StartCoroutine(PlayerFlashDamage());
     }
-
     public void Heal(int amount) {
         HP += amount;
         UpdatePlayerUI();
     }
-
     public void AddImpluse(Vector3 _impulse, float resolveTime) {
         impulse = _impulse;
         impulseResolve = resolveTime;
@@ -199,7 +178,6 @@ public class Controller : MonoBehaviour, IDamageable, IImpluse, IPersist
                 break;
         }
     }
-
     public void AddToPersistenceManager()
     {
         PersistenceManager.instance.AddToManager(this);
@@ -218,5 +196,4 @@ public class Controller : MonoBehaviour, IDamageable, IImpluse, IPersist
 
         playerSpawnPos = new Vector3(PlayerPrefs.GetFloat("SpawnPosX", GameManager.instance.playerSpawnPOS.transform.position.x), PlayerPrefs.GetFloat("SpawnPosY", GameManager.instance.playerSpawnPOS.transform.position.y), PlayerPrefs.GetFloat("SpawnPosZ", GameManager.instance.playerSpawnPOS.transform.position.z));
     }
-
 }

@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Treadmill : MonoBehaviour
@@ -18,9 +15,7 @@ public class Treadmill : MonoBehaviour
         {
             other.transform.position = Vector3.MoveTowards(other.transform.position, other.transform.position + 1.2f * transform.localScale.x * transform.forward, Speed * Time.deltaTime);
         }
-
         // the treadmill now correctly moves the player toward the front instead of a single point, now toggleable by a bool
-
         // Major issue: this does not work for the non-rigidbody player controller unless there is a bullet in scene (why? no clue)
     }
 }

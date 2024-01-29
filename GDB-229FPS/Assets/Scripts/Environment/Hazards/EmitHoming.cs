@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EmitHoming : MonoBehaviour
@@ -17,7 +16,6 @@ public class EmitHoming : MonoBehaviour
     float PlayedTimes;
     [SerializeField] AudioSource Aud;
     [SerializeField] AudioClip Sound;
-    // Start is called before the first frame update
     void Start()
     {
         if (targetPlayer)
@@ -29,8 +27,6 @@ public class EmitHoming : MonoBehaviour
             Destroy(gameObject, destroyTime);
         }
     }
-
-    // Update is called once per frame
     void Update()
     {
         if (!shooting)
@@ -38,7 +34,6 @@ public class EmitHoming : MonoBehaviour
             StartCoroutine(shoot());
         }
     }
-
     IEnumerator shoot()
     {
         shooting = true;
@@ -58,7 +53,6 @@ public class EmitHoming : MonoBehaviour
             }
         }
         yield return new WaitForSeconds(shootrate);
-
         shooting = false;
     }
 }

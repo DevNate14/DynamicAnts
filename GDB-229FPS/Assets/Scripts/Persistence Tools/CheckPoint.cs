@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CheckPoint : MonoBehaviour, IPersist
@@ -7,20 +5,15 @@ public class CheckPoint : MonoBehaviour, IPersist
     [SerializeField] MeshRenderer colliderEffect;
     [SerializeField] Material colliderInactive;
     [SerializeField] Material colliderActive;
-
     [SerializeField] MeshRenderer baseEffect;
     [SerializeField] Material baseInactive;
     [SerializeField] Material baseActive;
-
     public bool active;
-
-
     private void Start()
     {
         AddToPersistenceManager();
         LoadState();
     }
-
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -41,14 +34,12 @@ public class CheckPoint : MonoBehaviour, IPersist
             PlayerPrefs.SetFloat("SpawnPosZ", transform.position.z);
         }
     }
-
     public void Deactivate()
     {
         active = false;
         colliderEffect.material = colliderInactive;
         baseEffect.material = baseInactive;
     }
-
     public void AddToPersistenceManager()
     {
         PersistenceManager.instance.AddToManager(this);

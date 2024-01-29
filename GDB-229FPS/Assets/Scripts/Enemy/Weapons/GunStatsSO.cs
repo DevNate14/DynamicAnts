@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-//using Microsoft.Unity.VisualStudio.Editor;
 
 public abstract class GunStatsSO : ScriptableObject
 {

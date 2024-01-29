@@ -1,13 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
-using System.Net.Sockets;
-using System.Xml.Serialization;
-using TreeEditor;
-using Unity.VisualScripting;
-using UnityEditor.Animations;
 using UnityEngine;
-using UnityEngine.UIElements;
-using UnityEngine.XR;
 
 
 
@@ -105,14 +97,14 @@ public class RigidPlayer : MonoBehaviour, IDamageable, IPersist, IImpluse
 
         //STAIRS
 
-        Debug.DrawRay(stepup.transform.position, stepup.transform.forward);
-        Debug.DrawRay(stepup.transform.position, stepup.transform.forward + stepup.transform.right);
-        Debug.DrawRay(stepup.transform.position, stepup.transform.forward + -stepup.transform.right);
+        //Debug.DrawRay(stepup.transform.position, stepup.transform.forward);
+        //Debug.DrawRay(stepup.transform.position, stepup.transform.forward + stepup.transform.right);
+        //Debug.DrawRay(stepup.transform.position, stepup.transform.forward + -stepup.transform.right);
 
-        Debug.DrawRay(whatsinfront.transform.position, stepup.transform.forward, Color.green);
+        //Debug.DrawRay(whatsinfront.transform.position, stepup.transform.forward, Color.green);
        
         //ground check
-        Debug.DrawRay(Feet.position, transform.TransformDirection(Vector3.down * Groundraylength));
+        //Debug.DrawRay(Feet.position, transform.TransformDirection(Vector3.down * Groundraylength));
         //RaycastHit[] hits = Physics.RaycastAll(Feet.position, Vector3.down, Groundraylength);
         //foreach (RaycastHit hit in hits)
         //{
@@ -153,7 +145,7 @@ public class RigidPlayer : MonoBehaviour, IDamageable, IPersist, IImpluse
         //Debug.Log(count);
         for (int i = 0; i < count; i++)
         {
-            Debug.DrawLine(collision.GetContact(i).point, transform.position, Color.green, 3);
+            //Debug.DrawLine(collision.GetContact(i).point, transform.position, Color.green, 3);
             float angle = Vector3.Angle(transform.position - collision.GetContact(i).point, Vector3.up);
             //Debug.Log(angle);
             if (angle <= MaxslopeAngel)
@@ -223,18 +215,18 @@ public class RigidPlayer : MonoBehaviour, IDamageable, IPersist, IImpluse
         {
             if (Crouching)
             {
-                Debug.Log("Super Jump");
+                //Debug.Log("Super Jump");
                 LongJump += (Maincamera.transform.forward * 12.5f) / 4 * superjumpe;
                 //Vector3 vector3 = transform.forward * superjumpe;
 
-                Debug.Log(LongJump);
+                //Debug.Log(LongJump);
                 Player.AddForce(LongJump, ForceMode.Impulse);
                 Crouching = false;
                 //set height back to normal 
                 transform.position = new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z);
                 transform.localScale = new Vector3(transform.localScale.x, StandingScale, transform.localScale.z);
                 //give player back speed 
-                Debug.Log("Im not crounching");
+                //Debug.Log("Im not crounching");
             }
             //Player.AddForce(Vector3.up * Jumpforce, ForceMode.Impulse);
             Player.velocity += Vector3.up * Jumpforce;
@@ -260,7 +252,7 @@ public class RigidPlayer : MonoBehaviour, IDamageable, IPersist, IImpluse
             temp = SprintSpeed;
             MoveSpeed = temp;
             isSprinting = true;
-            Debug.Log("IM RUNNING");
+            //Debug.Log("IM RUNNING");
             footstepsAud.Stop();
             footstepsAud.clip = runningStep;
             footstepsAud.Play();
@@ -271,7 +263,7 @@ public class RigidPlayer : MonoBehaviour, IDamageable, IPersist, IImpluse
             temp = walkSpeed;
             MoveSpeed = temp;
             isSprinting = false;
-            Debug.Log("IM WALKING");
+            //Debug.Log("IM WALKING");
             footstepsAud.Stop();
             footstepsAud.clip = walkingStep;
             footstepsAud.Play();
@@ -295,7 +287,7 @@ public class RigidPlayer : MonoBehaviour, IDamageable, IPersist, IImpluse
             // how do i keep the camera from moving 
             transform.localScale = new Vector3(transform.localScale.x, CrouchScale, transform.localScale.z);
             transform.position = new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z);
-            Debug.Log("Im crounching");
+            //Debug.Log("Im crounching");
             //decrement speed
             footstepsAud.volume = footstepsVol / 2;
 
@@ -307,7 +299,7 @@ public class RigidPlayer : MonoBehaviour, IDamageable, IPersist, IImpluse
             transform.position = new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z);
             transform.localScale = new Vector3(transform.localScale.x, StandingScale, transform.localScale.z);
             //give player back speed 
-            Debug.Log("Im not crounching");
+            //Debug.Log("Im not crounching");
             footstepsAud.volume = footstepsVol;
         }
 
@@ -376,7 +368,7 @@ public class RigidPlayer : MonoBehaviour, IDamageable, IPersist, IImpluse
 
     void pickup()
     {
-        Debug.DrawRay(Maincamera.transform.position, Maincamera.transform.forward * InteractRange, Color.blue);
+        //Debug.DrawRay(Maincamera.transform.position, Maincamera.transform.forward * InteractRange, Color.blue);
         if (Input.GetKeyDown(KeyCode.E))
         {
             RaycastHit[] iteam = Physics.RaycastAll(Maincamera.transform.position, Maincamera.transform.forward, InteractRange);

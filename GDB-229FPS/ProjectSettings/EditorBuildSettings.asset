@@ -20,4 +20,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/VIv's Scenes/Credits Scene.unity
     guid: 546cac6bc25c82746b6197d0971b95be
+  - enabled: 1
+    path: Assets/Scenes/Violet's Scenes/Game Intro.unity
+    guid: a5f13dc92e44788438deb693f7bc41c3
+  - enabled: 1
+    path: Assets/Scenes/Violet's Scenes/Game Outro.unity
+    guid: 034c5d43fb53c914fabc0e707aca7dee
   m_configObjects: {}

@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -28,14 +27,11 @@ public class EnemyAI : MonoBehaviour, IDamageable //check
     float stopdist;
     float angleToPlayer; // check
     public EnemySpawners mySpawner;
-    // Start is called before the first frame update
     void Start()
     {
         startPosition = transform.position;
         stopdist = agent.stoppingDistance;
     }
-
-    // Update is called once per frame4
     void Update()
     {
         anim.SetFloat("Speed", agent.velocity.normalized.magnitude);
@@ -57,8 +53,8 @@ public class EnemyAI : MonoBehaviour, IDamageable //check
     {
         playerDirection = GameManager.instance.player.transform.position - headPosition.position;
         angleToPlayer = Vector3.Angle(playerDirection, transform.forward);
-        Debug.DrawRay(headPosition.position, playerDirection);
-        Debug.Log(angleToPlayer);
+        //Debug.DrawRay(headPosition.position, playerDirection);
+        //Debug.Log(angleToPlayer);
         RaycastHit hit;
 
         if (Physics.Raycast(headPosition.position, playerDirection, out hit))

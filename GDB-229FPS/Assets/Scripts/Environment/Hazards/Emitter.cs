@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Emitter : MonoBehaviour
@@ -11,13 +10,6 @@ public class Emitter : MonoBehaviour
     [SerializeField] AudioClip Sound;
     [SerializeField] AudioSource Aud;
     bool shooting;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
         if (!shooting)
@@ -25,7 +17,6 @@ public class Emitter : MonoBehaviour
             StartCoroutine(shoot());
         }
     }
-
     IEnumerator shoot()
     {
         shooting = true;
@@ -33,7 +24,6 @@ public class Emitter : MonoBehaviour
         if (Audio)
             Aud.PlayOneShot(Sound);
         yield return new WaitForSeconds(shootrate);
-
         shooting = false;
     }
 }

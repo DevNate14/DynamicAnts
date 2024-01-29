@@ -1,6 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
-using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
 
 public class RotatingDoor : Door
@@ -31,14 +29,12 @@ public class RotatingDoor : Door
             StartCoroutine(OpenCooldown());
         }
     }
-
     IEnumerator OpenCooldown()
     {
         CanOpen = false;
         yield return new WaitForSeconds(Cooldown);
         CanOpen = true;
     }
-
     //private void OnTriggerEnter(Collider other)
     //{
     //    Interact();

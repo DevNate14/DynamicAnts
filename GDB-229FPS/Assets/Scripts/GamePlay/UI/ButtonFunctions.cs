@@ -1,8 +1,6 @@
 using System.Collections;
-using System.Threading;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 
 public class ButtonFunctions : MonoBehaviour
@@ -73,6 +71,7 @@ public class ButtonFunctions : MonoBehaviour
 
     public void Quit()
     {
+        ButtonSound();
         Application.Quit();
     }
 
@@ -104,10 +103,7 @@ public class ButtonFunctions : MonoBehaviour
         bool completed = false;
             asyncLoad.completed += (AsyncOperation op) =>
         {
-            // Do something after Loading
-            //Debug.Log("Completed loading of the new scene");
             completed = true;
-            GameManager.instance.loadingScreen.SetActive(false);
         };
 
         while (!asyncLoad.isDone) //Progress UI

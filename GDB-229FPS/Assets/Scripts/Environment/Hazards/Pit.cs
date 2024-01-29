@@ -1,6 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
-//using UnityEditor.SearchService;
 using UnityEngine;
 
 public class Pit : MonoBehaviour
@@ -10,12 +8,10 @@ public class Pit : MonoBehaviour
     Vector3 CamRelativePos;
     Vector3 LockedCamPos;
     GameObject Camera;
-
     private void Start()
     {
         Camera = GameObject.FindWithTag("MainCamera");
     }
-
     private void Update()
     {
         if (Triggered)
@@ -40,7 +36,6 @@ public class Pit : MonoBehaviour
             }
         }
     }
-
     IEnumerator Kill(IDamageable player)
     {
         yield return new WaitForSeconds(WaitTime);

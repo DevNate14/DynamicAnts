@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Pistol
   magSize: 18
-  ammoCount: 74
-  magAmmoCount: 18
+  ammoCount: 89
+  magAmmoCount: 16
   fireRate: 0.5
   image: {fileID: 2800000, guid: 5d9310a1a3daef1489a66b4653474892, type: 3}
   bullet: {fileID: 5293575694773355670, guid: e057e25fce5bb7b4dbe9a9cd6f1c4011, type: 3}
   model: {fileID: 8993935844262704315, guid: 9c223e0e65d88a84a895223a87fb0ed8, type: 3}
-  muzzleEffect: {fileID: 8816719049702070842, guid: 2bdb31b8cf045b846845895827401f79, type: 3}
+  muzzleEffect: {fileID: 3515701451213717276, guid: 5fc6468a2aa0e214f99e70ae1964e6de, type: 3}
   shootSound: {fileID: 8300000, guid: d26721e2f9dbe1f40a7661c5b0aef2f5, type: 3}
   emptySound: {fileID: 8300000, guid: 0b435a009ff19064898fad04fd960599, type: 3}
   shootVol: 0.5

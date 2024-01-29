@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PressurePlate : MonoBehaviour
@@ -8,8 +6,6 @@ public class PressurePlate : MonoBehaviour
     [SerializeField] Collider Hitbox;
     [SerializeField] bool RaycastMode;
     public bool hit;
-
-    // Start is called before the first frame update
     void Start()
     {
         if (RaycastMode)
@@ -17,13 +13,11 @@ public class PressurePlate : MonoBehaviour
             Hitbox.enabled = false;
         }
     }
-
-    // Update is called once per frame
     void Update()
     {
         if (RaycastMode && !hit) //just so this triggers only once
         {
-            Debug.DrawRay(transform.position, transform.up * 1, Color.red);
+            //Debug.DrawRay(transform.position, transform.up * 1, Color.red);
             if (Physics.Raycast(transform.position, transform.up, 1))
             {
                 hit = true;

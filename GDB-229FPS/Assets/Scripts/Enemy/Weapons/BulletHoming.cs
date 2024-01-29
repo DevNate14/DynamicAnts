@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BulletHoming : MonoBehaviour
@@ -26,7 +24,7 @@ public class BulletHoming : MonoBehaviour
         {
             rb.velocity = transform.forward * speed;
             direction = destination.position - rb.position;
-            Debug.DrawRay(rb.position, direction, Color.blue);
+            //Debug.DrawRay(rb.position, direction, Color.blue);
             rotation = Quaternion.LookRotation(direction);
             rb.MoveRotation(Quaternion.RotateTowards(rb.rotation, rotation, turnSpeed * Time.deltaTime));
         }

@@ -34,7 +34,6 @@ public class Lever : MonoBehaviour, IInteractable
             Hitbox.enabled = false;
         }
     }
-
     IEnumerator Animate()
     {
         Animating = true;

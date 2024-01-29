@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -14,7 +13,6 @@ public class GameOutro : MonoBehaviour
     [SerializeField] GameObject dialoguePanel;
     [SerializeField] TMP_Text dialogueText;
     [SerializeField] Image[] marks;
-
     string[] messages = { "Hello, you must be new here.", "Let me explain...",
         "Although, maybe you aren't new here. It gets hard to remember."};
 
@@ -23,10 +21,8 @@ public class GameOutro : MonoBehaviour
     bool isDone = false;
     bool isLoading = false;
     int loadTime;
-
     float pitchOrig;
     bool isChangingPitch = false;
-
     private void Start()
     {
         for(int i = 0; i < marks.Length && i < PlayerPrefs.GetInt("times", 1); i++)
@@ -36,7 +32,6 @@ public class GameOutro : MonoBehaviour
         pitchOrig = AudioManager.instance.musicSource.pitch;
         Delete();
     }
-
     void Update()
     {
         if (isLoading && Input.anyKeyDown)
@@ -67,7 +62,6 @@ public class GameOutro : MonoBehaviour
             StartCoroutine(MusicPitch());
         }
     }
-
     IEnumerator MusicPitch()
     {
         isChangingPitch = true;
@@ -77,7 +71,6 @@ public class GameOutro : MonoBehaviour
         AudioManager.instance.musicSource.pitch /= 1.1f;
         isChangingPitch = false;
     }
-
     IEnumerator LoadAsyncScene(int sceneNumber)
     {
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneNumber);
@@ -95,17 +88,14 @@ public class GameOutro : MonoBehaviour
             float progress = Mathf.Clamp01(asyncLoad.progress / 0.9f); // Scales Progress to 0-1
             progress = Mathf.Clamp(progress, 0, loadTime / 9f);
             loadingBar.fillAmount = progress;
-
             if (progress >= 1F)
             {
                 loadingText.text = "100";
             }
-
             else
             {
                 loadingText.text = $"{(int)(progress * 100)}"; //Shows 0-100%
             }
-
             if (asyncLoad.progress >= 0.9f && !completed && loadTime >= 10)
             {
                 AudioManager.instance.musicSource.pitch = pitchOrig;
@@ -121,7 +111,6 @@ public class GameOutro : MonoBehaviour
             yield return new WaitForSeconds(0.3f);
         }
     }
-
     IEnumerator TypeText(string line)
     {
         isPlayingMessage = true;
@@ -131,9 +120,7 @@ public class GameOutro : MonoBehaviour
             dialogueText.text += c;
             yield return new WaitForSeconds(.6f / 8.5f);
         }
-
         yield return new WaitForSeconds(1.5f);
-
         if (messageCurr != messages.Length - 1)
         { 
             dialogueText.text = "";
@@ -145,7 +132,6 @@ public class GameOutro : MonoBehaviour
             isDone = true;
         }
     }
-
     void Delete()
     {
         float[] volSettings = { PlayerPrefs.GetFloat("GameVol"), PlayerPrefs.GetFloat("MusicVol"), PlayerPrefs.GetFloat("SFXVol") };
@@ -167,5 +153,4 @@ public class GameOutro : MonoBehaviour
         PlayerPrefs.SetFloat("SpawnPosY", 10);
         PlayerPrefs.SetFloat("SpawnPosZ", 78);
     }
-
 }

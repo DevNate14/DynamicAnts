@@ -4,6 +4,7 @@ using UnityEngine.UI;
 using System.Collections;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
+using UnityEngine.EventSystems;
 
 public class GameManager : MonoBehaviour
 {
@@ -110,6 +111,13 @@ public class GameManager : MonoBehaviour
             StartCoroutine(TypeText(nextDialogue));
         }
 
+        if((isPaused || isTitleScreen) && (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0) && EventSystem.current.currentSelectedGameObject == null)
+        {
+            if (menuActive != null)
+            { menuActive.GetComponentInChildren<Button>().Select(); }
+            else
+            { EventSystem.current.firstSelectedGameObject.GetComponent<Button>().Select(); }    
+        }
     }
 
     public void TriggerDialogue(string message)
@@ -130,7 +138,7 @@ public class GameManager : MonoBehaviour
             yield return new WaitForSeconds(0.75F / charactersPerSecond);
         }
 
-        yield return new WaitForSeconds(5F);
+        yield return new WaitForSeconds(2F);
         dialogueText.text = ""; //Clears Text
         dialoguePanel.SetActive(false);
 
