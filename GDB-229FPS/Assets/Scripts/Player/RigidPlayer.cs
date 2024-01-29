@@ -346,7 +346,7 @@ public class RigidPlayer : MonoBehaviour, IDamageable, IPersist, IImpluse
                     num++;
             }
 
-            Debug.Log(num);
+            //Debug.Log(num);
             if (num == 3)
             {
                 Player.position += new Vector3(0f, stepHeight, 0f);
