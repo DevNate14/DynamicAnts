@@ -169,10 +169,10 @@ RectTransform:
   m_Father: {fileID: 413823316602084820}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 579, y: 8.6}
-  m_SizeDelta: {x: 179.0262, y: 113.9176}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -186, y: -80}
+  m_SizeDelta: {x: 145, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &461678364
 CanvasRenderer:
@@ -248,8 +248,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -88.6344, y: 57.2155}
-  m_SizeDelta: {x: 158.5663, y: 92.604}
+  m_AnchoredPosition: {x: -71.2688, y: 50.659225}
+  m_SizeDelta: {x: 130, y: 75}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1216449117
 CanvasRenderer:
@@ -732,6 +732,7 @@ RectTransform:
   - {fileID: 413823317469000043}
   - {fileID: 413823317933210198}
   - {fileID: 413823317671717727}
+  - {fileID: 2660387455831480805}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -835,7 +836,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -267.9812, y: 59.891876}
+  m_AnchoredPosition: {x: -114, y: 59.891876}
   m_SizeDelta: {x: 781.16, y: 46.0114}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &413823316720407384
@@ -866,15 +867,231 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\n\n\nKENNETH FITZPATRICK\r\n\r\nNATHAN PARTIPILO\r\n\r\nSEBASTIAN RAMIREZ
-    BEJARANO\r\n\r\nVIOLET WEATHERSBY\r\n\r\nDANTE WILLIAMS\r\n\r\nVIVIANNE ZSOLDOS\n\n\n\n\nSOUND
-    IDEAS\n\n\nCLEARWAVSOUND\n\n\nSOUND IDEAS\n\n\nD4XX\n\n\nSOUND IDEAS\n\n\nSOUND
-    IDEAS\n\n\nSOUND IDEAS\n\n\n\n\nJOSEPH RUSKNAK\n\n\nUNIVERSFIELD\r\n\r\n\nSAMUEL
-    FRANCIS JOHNSON\r\n\r\n\r\nUNKNOWN ARTIST\r\n\r\n\nFREE-TO-USE-AUDIO\r\n\r\n\r\nWILLIAM
-    PEARSON\r\n\r\n\r\nJOSEPH RUSNAK\r\n\r\n\r\nJOSEPH RUSKNAK\r\n\r\n\r\n     \r\n\r\n\n\n\rGREGORY
-    SEGURU\n\n\n255 PIXEL STUDIOS\n\n\nREINFORCEDCC\n\n\nMASH VIRTUAL\n\n\nLMHPOLY\n\n\nLMHPOLY\n\n\nTINY
-    WORLDS\r\n\n\nDEEPEST STUDIO\n\n\nSETH WARD\n\n\nURSA.ANIM\n\n\n\n\n\nGYAMFUA\r\n\r\n\r\nBIGMOUSE108\r\n\n\r\n\rMADEFIREON\n\n\nUNKNOWN
-    ARTIST\r\n\n\n\n\n\n"
+  m_text: '
+
+    KENNETH FITZPATRICK
+
+
+    NATHAN PARTIPILO
+
+
+    SEBASTIAN RAMIREZ
+    BEJARANO
+
+
+    VIOLET WEATHERSBY
+
+
+    DANTE WILLIAMS
+
+
+    VIVIANNE ZSOLDOS
+
+
+
+
+
+
+    SOUND
+    IDEAS
+
+
+
+    CLEARWAVSOUND
+
+
+
+    SOUND IDEAS
+
+
+
+    D4XX
+
+
+
+    SOUND IDEAS
+
+
+
+    SOUND
+    IDEAS
+
+
+
+    SOUND IDEAS
+
+
+
+    UNIVERSFIELD
+
+
+
+    SAMUEL FRANCIS JOHNSON
+
+
+
+    PIXABAY
+
+
+
+    PIXABAY
+
+
+
+    AIKO_CHANGING
+
+
+
+    PIXABABY
+
+
+
+    AIKO_CHANGING
+
+
+
+    PIXABABY
+
+
+
+    FLORAPHONIC
+
+
+
+    SOUND
+    IDEAS
+
+
+
+
+
+
+
+
+    ENRIQUE MOLANO
+
+
+
+    FREE-TO-USE-AUDIO
+
+
+
+    WILLIAM PEARSON
+
+
+
+    JOSEPH
+    RUSKNAK
+
+
+
+    JOSEPH RUSKNAK
+
+
+
+    JOSEPH RUSKNAK
+
+
+
+
+
+
+
+
+    GREGORY SEGURU
+
+
+
+    255
+    PIXEL STUDIOS
+
+
+
+    REINFORCEDCC
+
+
+
+    MASH VIRTUAL
+
+
+
+    LMHPOLY
+
+
+
+    LMHPOLY
+
+
+
+    TINY
+    WORLDS
+
+
+
+    DEEPEST STUDIO
+
+
+
+    SETH WARD
+
+
+
+    URSA.ANIM
+
+
+
+    UNLOCK
+    SOFTWARE
+
+
+
+    ANDREY FERAR
+
+
+
+    SYNTOCA
+
+
+
+    3D MONDRA
+
+
+
+    RUNEMARK
+    STUDIO
+
+
+
+    GRUMPNTUG
+
+
+
+    ROBOCG
+
+
+
+    UTILITY FUNCTION
+
+
+
+
+
+
+
+    GYAMFUA
+
+
+
+    BIGMOUSE108
+
+
+
+    MADEFIREON
+
+
+
+    UNKNOWN
+    ARTIST'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1b52934832e89f54fa94ee06aeca865c, type: 2}
   m_sharedMaterial: {fileID: -7262362321683612070, guid: 1b52934832e89f54fa94ee06aeca865c, type: 2}
@@ -977,7 +1194,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -2876}
+  m_AnchoredPosition: {x: 65, y: -3685}
   m_SizeDelta: {x: 685.3191, y: 203.5974}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &413823316748938758
@@ -1017,6 +1234,7 @@ MonoBehaviour:
 
 
 
+
     SFX EFFECTS-
 
 
@@ -1031,10 +1249,26 @@ MonoBehaviour:
 
 
 
-    MUSICAL EFFECTS-
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    MUSICAL
+    EFFECTS-
 
 
 
@@ -1067,7 +1301,6 @@ MonoBehaviour:
 
 
 
-    IMAGES-
 
 
 
@@ -1077,8 +1310,12 @@ MonoBehaviour:
 
 
 
-    MORE
-    CREDITS TBA'
+
+
+
+
+
+    IMAGES-'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1b52934832e89f54fa94ee06aeca865c, type: 2}
   m_sharedMaterial: {fileID: -7262362321683612070, guid: 1b52934832e89f54fa94ee06aeca865c, type: 2}
@@ -1212,199 +1449,30 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '
-
-
-
-    PLAYER/ LEVEL DESIGN
-
-
-    LEAD LEVEL DESIGN
-
-
-    ENEMY/ LEVEL
-    DESIGN
-
-
-    SETTINGS/UI DESIGN
-
-
-    HAZARDS/ LEVEL DESIGN
-
-
-    LEAD UI DESIGN
-
-
-
-
-
-    FOOTSTEPS,
-    WOOD, RUG (1)
-
-    SOUNDIDEAS.SOURCEAUDIO.COM
-
-
-    CRUNCHING BITE
-
-    FREESOUND.ORG
-
-
-    DIRT,
-    HIT (1)
-
-    SOUNDIDEAS.SOURCEAUDIO.COM
-
-
-    LASER SHOT
-
-    FREESOUND.ORG
-
-
-    FOOTSTEPS,
-    WOOD, RUG (2)
-
-    SOUNDIDEAS.SOURCEAUDIO.COM
-
-
-    DIRT, HIT (2)
-
-    SOUNDIDEAS.SOURCEAUDIO.COM
-
-
-    DIRT,
-    HIT (3)
-
-    SOUNDIDEAS.SOURCEAUDIO.COM
-
-
-
-
-    ANALOG SPLENDOR- ALT NAME
-
-    WESTARMUSIC.SOURCEAUDIO.COM
-
-
-    CLICK
-    MENU APP
-
-    PIXABAY.COM
-
-
-    COMPUTER PROCESSING
-
-    PIXABAY.COM
-
-
-    VIDEO
-    GAME NOTIFICATIONS
-
-    SOUNDIDEAS.SOURCEAUDIO.COM
-
-
-    CORRUPT MASTER CPU
-
-    PIXABAY.COM
-
-
-    GOING
-    THROUGH THE MOTIONS
-
-    WESTARMUSIC.SOURCEAUDIO.COM
-
-
-    TRIAL RUN
-
-    WESTARMUSIC.SOURCEAUDIO.COM
-
-
-    DYSTOPIAN
-    FUTURE
-
-    WESTARMUSIC.SOURCEAUDIO.COM
-
-
-
-
-
-
-    MINE
-
-    ASSETSTORE.UNITY.COM
-
-
-    POLYGUN-
-    WEAPONS
-
-    ASSETSTORE.UNITY.COM
-
-
-    FREE INDUSTRIAL BUILDING/GARAGE
-
-    ASSETSTORE.UNITY.COM
-
-
-    SCI-FI
-    CLIP
-
-    ASSETSTORE.UNITY.COM
-
-
-    LOWPOLY- ROCKS PACK
-
-    ASSETSTORE.UNITY.COM
-
-
-    LOWPOLY-
-    MODULAR TERRAIN PACK
-
-    ASSETSTORE.UNITY.COM
-
-
-    FREE PIXEL FONT- THALEAH
-
-    ASSETSTORE.UNITY.COM
-
-
-    STYLIZED
-    DEVIL BULLDOG
-
-    ASSETSTORE.UNITY.COM
-
-
-    SLEEK TOON BOT
-
-    ASSETSTORE.UNITY.COM
-
-
-    LASER
-    TURRETS
-
-    ASSETSTORE.UNITY.COM
-
-
-
-
-
-    FLAME CARTOON FREE - CLIPART
-
-    CLEANPNG.COM
-
-
-    FIRE
-    ON TRANSPARENT BACKGROUND
-
-    VECTORSTOCK.COM
-
-
-    SIMPLE UI ELEMENTS
-
-    ASSETSTORE.UNITY.COM
-
-
-    FULL
-    SAIL UNIVERSITY LOGO
-
-    LOGOSAVE.COM'
+  m_text: "\nPLAYER/ LEVEL DESIGN\n\r\nLEAD LEVEL DESIGN\r\n\r\nENEMY/ LEVEL DESIGN\r\n\r\nSETTINGS/
+    UI DESIGN\r\n\r\nHAZARDS/ LEVEL DESIGN\r\n\r\nLEAD UI DESIGN\r\n\n\n\r\n\r\n\r\nFOOTSTEPS,
+    WOOD, RUG (1)\r\nSOUNDIDEAS.SOURCEAUDIO.COM\r\n\r\nCRUNCHING BITE\r\nFREESOUND.ORG\r\n\r\nDIRT,
+    HIT (1)\r\nSOUNDIDEAS.SOURCEAUDIO.COM\r\n\r\nLASER SHOT\r\nFREESOUND.ORG\r\n\r\nFOOTSTEPS,
+    WOOD, RUG (2)\r\nSOUNDIDEAS.SOURCEAUDIO.COM\r\n\r\nDIRT, HIT (2)\r\nSOUNDIDEAS.SOURCEAUDIO.COM\r\n\r\nDIRT,
+    HIT (3)\r\nSOUNDIDEAS.SOURCEAUDIO.COM\r\n\r\nCLICK MENU APP\r\nPIXABAY.COM\r\n\r\nCOMPUTER
+    PROCESSING\r\nPIXABAY.COM\r\n\r\nKEY GET\r\nPIXABAY.COM\r\n\r\n080977_BULLET\r\nPIXABAY.COM\r\n\r\nWHOOSH
+    VELOCE TRANSIZIONE\r\nPIXABAY.COM\r\n\r\nONE_BEEP\r\nPIXABAY.COM\r\n\r\nCINEMATIC
+    GLITCH FEAR\r\nPIXABAY.COM\r\n\r\nNOTIFICATION\r\nPIXABAY.COM\r\n\r\nWOOD SMASH
+    4\r\nPIXABAY.COM\r\n\r\nVIDEO GAME \r\nSOUNDIDEAS.SOURCEAUDIO.COM\r\n\r\n\r\n\r\n\n\n\r\nTRACKING
+    THE CLUES\r\nWESTARMUSIC.SOURCEAUDIO.COM\r\n\r\nCORRUPT MASTER CPU\r\nPIXABAY.COM\r\n\r\nGOING
+    THROUGH THE MOTIONS\r\nWESTARMUSIC.SOURCEAUDIO.COM\r\n\r\nTRIAL RUN\r\nWESTARMUSIC.SOURCEAUDIO.COM\r\n\r\nDYSTOPIAN
+    FUTURE\r\nWESTARMUSIC.SOURCEAUDIO.COM\r\n\r\nANALOG SPLENDOR- ALT NAME\r\nWESTARMUSIC.SOURCEAUDIO.COM\r\n\r\n\r\n\r\n\n\n\r\nMINE\r\nASSETSTORE.UNITY.COM\r\n\r\nPOLYGUN-
+    WEAPONS\r\nASSETSTORE.UNITY.COM\r\n\r\nFREE INDUSTRIAL BUILDING/GARAGE\r\nASSETSTORE.UNITY.COM\r\n\r\nSCI-FI
+    CLIP\r\nASSETSTORE.UNITY.COM\r\n\r\nLOWPOLY- ROCKS PACK\r\nASSETSTORE.UNITY.COM\r\n\r\nLOWPOLY-
+    MODULAR TERRAIN PACK\r\nASSETSTORE.UNITY.COM\r\n\r\nFREE PIXEL FONT- THALEAH\r\nASSETSTORE.UNITY.COM\r\n\r\nSTYLIZED
+    DEVIL BULLDOG\r\nASSETSTORE.UNITY.COM\r\n\r\nSLEEK TOON BOT\r\nASSETSTORE.UNITY.COM\r\n\r\nLASER
+    TURRETS\r\nASSETSTORE.UNITY.COM\r\n\r\nBREAKABLE BARRELS\r\nASSETSTORE.UNITY.COM\r\n\r\nDOOR
+    (FREE PACK)- AFERAR\r\nASSETSTORE.UNITY.COM\r\n\r\nDOOR, CREDITS & LOCKERS (FREE)\r\nASSETSTORE.UNITY.COM\r\n\r\nSCI-
+    FI DOOR\r\nASSETSTORE.UNITY.COM\r\n\r\nPOLYDESERT\r\nASSETSTORE.UNITY.COM\r\n\r\nFREE
+    DEMO PACK\r\nASSETSTORE.UNITY.COMA\r\n\r\nROBO'S TURRET (FREE SAMPLE)\r\nASSETSTORE.UNITY.COM\r\n\r\nVR
+    BUTTONS AND LEVERS\r\nASSETSTORE.UNITY.COM\r\n\r\n\r\n\n\r\n\r\nFLAME CARTOON
+    FREE - CLIPART\r\nCLEANPNG.COM\r\n\r\nFIRE ON TRANSPARENT BACKGROUND\r\nVECTORSTOCK.COM\r\n\r\nSIMPLE
+    UI ELEMENTS\r\nASSETSTORE.UNITY.COM\r\n\r\nFULL SAIL UNIVERSITY LOGO\r\nLOGOSAVE.COM\r\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1b52934832e89f54fa94ee06aeca865c, type: 2}
   m_sharedMaterial: {fileID: -7262362321683612070, guid: 1b52934832e89f54fa94ee06aeca865c, type: 2}
@@ -1510,7 +1578,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 44, y: -527}
+  m_AnchoredPosition: {x: -26, y: -672}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &413823317469000042
@@ -2031,7 +2099,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 24, y: -61}
+  m_AnchoredPosition: {x: 24, y: -77}
   m_SizeDelta: {x: 1106.7604, y: 132.6812}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &448644510230074481
@@ -2089,8 +2157,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 85
-  m_fontSizeBase: 85
+  m_fontSize: 70
+  m_fontSizeBase: 70
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -2167,7 +2235,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -5979}
+  m_AnchoredPosition: {x: 80, y: -9011}
   m_SizeDelta: {x: 1468.7173, y: 251.3302}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &448644510641382316
@@ -2198,7 +2266,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'THIS PROJECT WAS MADE BY STUDENTS AT
+  m_text: 'THIS PROJECT WAS MADE BY STUDENTS ENROLLED IN
 
 '
   m_isRightToLeft: 0
@@ -2227,8 +2295,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 85
-  m_fontSizeBase: 85
+  m_fontSize: 70
+  m_fontSizeBase: 70
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -2304,8 +2372,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 22, y: 12}
-  m_SizeDelta: {x: 954.7, y: 101.48}
+  m_AnchoredPosition: {x: 42, y: 12}
+  m_SizeDelta: {x: 1130.947, y: 101.48}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &448644511227919820
 CanvasRenderer:
@@ -2362,8 +2430,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 100
-  m_fontSizeBase: 100
+  m_fontSize: 125
+  m_fontSizeBase: 125
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -2438,7 +2506,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -570.5, y: -35}
+  m_AnchoredPosition: {x: -655, y: -35}
   m_SizeDelta: {x: 145, y: 145}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &448644511788824454
@@ -2512,8 +2580,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -88.6344, y: 57.2155}
-  m_SizeDelta: {x: 158.5663, y: 92.604}
+  m_AnchoredPosition: {x: -72.6, y: 51.2}
+  m_SizeDelta: {x: 130, y: 75}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7397821039432825496
 CanvasRenderer:
@@ -2778,10 +2846,10 @@ RectTransform:
   m_Father: {fileID: 413823316602084820}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 773.9, y: 8.7}
-  m_SizeDelta: {x: 179.0262, y: 113.9176}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -28, y: -80}
+  m_SizeDelta: {x: 145, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7397821039877013538
 CanvasRenderer:
@@ -2821,3 +2889,109 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1001 &413823317130614511
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 413823316680955705}
+    m_Modifications:
+    - target: {fileID: 2402013266858839818, guid: 8373227d99df8b04b838b31ce1e2bf93, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2402013266858839818, guid: 8373227d99df8b04b838b31ce1e2bf93, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2402013266858839818, guid: 8373227d99df8b04b838b31ce1e2bf93, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2402013266858839818, guid: 8373227d99df8b04b838b31ce1e2bf93, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2402013266858839818, guid: 8373227d99df8b04b838b31ce1e2bf93, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2402013266858839818, guid: 8373227d99df8b04b838b31ce1e2bf93, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2402013266858839818, guid: 8373227d99df8b04b838b31ce1e2bf93, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2402013266858839818, guid: 8373227d99df8b04b838b31ce1e2bf93, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2402013266858839818, guid: 8373227d99df8b04b838b31ce1e2bf93, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2402013266858839818, guid: 8373227d99df8b04b838b31ce1e2bf93, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2402013266858839818, guid: 8373227d99df8b04b838b31ce1e2bf93, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2402013266858839818, guid: 8373227d99df8b04b838b31ce1e2bf93, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2402013266858839818, guid: 8373227d99df8b04b838b31ce1e2bf93, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2402013266858839818, guid: 8373227d99df8b04b838b31ce1e2bf93, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2402013266858839818, guid: 8373227d99df8b04b838b31ce1e2bf93, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2402013266858839818, guid: 8373227d99df8b04b838b31ce1e2bf93, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2402013266858839818, guid: 8373227d99df8b04b838b31ce1e2bf93, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2402013266858839818, guid: 8373227d99df8b04b838b31ce1e2bf93, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2402013266858839818, guid: 8373227d99df8b04b838b31ce1e2bf93, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2402013266858839818, guid: 8373227d99df8b04b838b31ce1e2bf93, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2402013266858839818, guid: 8373227d99df8b04b838b31ce1e2bf93, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4858442008549443447, guid: 8373227d99df8b04b838b31ce1e2bf93, type: 3}
+      propertyPath: m_Name
+      value: Loading Screen BG
+      objectReference: {fileID: 0}
+    - target: {fileID: 4858442008549443447, guid: 8373227d99df8b04b838b31ce1e2bf93, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 8373227d99df8b04b838b31ce1e2bf93, type: 3}
+--- !u!224 &2660387455831480805 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 2402013266858839818, guid: 8373227d99df8b04b838b31ce1e2bf93, type: 3}
+  m_PrefabInstance: {fileID: 413823317130614511}
+  m_PrefabAsset: {fileID: 0}
