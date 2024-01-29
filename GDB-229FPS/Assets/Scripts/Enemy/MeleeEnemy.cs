@@ -27,7 +27,7 @@ public class MeleeEnemy : MonoBehaviour, IDamageable
     public AudioClip deadaud;
     void Start()
     {
-        if (agent == null)
+        if (agent == null || model == null)
         {
             return;
         }
