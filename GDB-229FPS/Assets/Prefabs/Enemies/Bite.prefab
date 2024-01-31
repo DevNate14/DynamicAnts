@@ -44,10 +44,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9d3d15383a7c85439724f0402be0811, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageAmount: 1
+  damageAmount: 2
   destroyTimer: 0.1
-  BitePos: {fileID: 1356536035507645938}
-  impulseamount: 5
+  impulseamount: 10
 --- !u!135 &2209645192026689026
 SphereCollider:
   m_ObjectHideFlags: 0
