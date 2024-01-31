@@ -438,23 +438,28 @@ public class RigidPlayer : MonoBehaviour, IDamageable, IPersist, IImpluse
     {
         HP -= amount;
         aud.PlayOneShot(hurtSFX[Random.Range(0, hurtSFX.Length)]);
+
+        HP = Mathf.Max(HP, 0);//Removes Neg Values from HP
+
         if (HP <= 0)
         {
             GameManager.instance.YouLose();
         }
+
         UpdatePlayerUI();
         StartCoroutine(PlayerFlashDamage());
+    }
+
+    public void Heal(int amount)
+    {
+        HP += amount;
+        UpdatePlayerUI();
     }
     //public void AddImpluse(Vector3 _impulse, float resolveTime)
     //{
     //    impulse = _impulse;
     //    impulseResolve = resolveTime;
     //}
-    public void Heal(int amount)
-    {
-        HP += amount;
-        UpdatePlayerUI();
-    }
 
     public void AddToPersistenceManager()
     {

@@ -2863,7 +2863,6 @@ MonoBehaviour:
   menuActive: {fileID: 0}
   menuPause: {fileID: 52176457909412210}
   isPaused: 0
-  menuWin: {fileID: 0}
   menuLose: {fileID: 6591921189698882096}
   reloadMessage: {fileID: 4367603930406414002}
   instructionsPage: {fileID: 0}
@@ -2911,7 +2910,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e2d2eb14612c0304a8f85f86e131fb07, type: 2}
   - {fileID: 11400000, guid: 285706bc4aa5d5742bd01616119d9c9d, type: 2}
   saveSound: {fileID: 8300000, guid: 39cc5c8c872eece4297f92ad8d2bc428, type: 3}
-  testingLevel: 0
   savedGameExists: 0
   sceneNumber: 0
 --- !u!1 &4270329390279619606
