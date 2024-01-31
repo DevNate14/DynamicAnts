@@ -12,5 +12,6 @@ public class BreakableBarrel : BreakableObject
         Hitbox.enabled = false;
         Instantiate(BreakFX, transform.position, transform.rotation);
         Aud.PlayOneShot(Sound);
+        Destroy(BrokenBarrel, 5);
     }
 }

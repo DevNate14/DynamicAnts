@@ -17,6 +17,7 @@ public class ExplosiveBarrel : BreakableObject
         Hitbox.enabled = false;
         StartCoroutine(Explosion());
         Aud.PlayOneShot(Sound);
+        Destroy(BrokenBarrel, 5);
     }
     private IEnumerator Explosion()
     {
