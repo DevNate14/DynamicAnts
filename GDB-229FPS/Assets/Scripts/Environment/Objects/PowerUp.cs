@@ -2,19 +2,19 @@ using UnityEngine;
 
 public class PowerUp : MonoBehaviour
 {
-    private GameObject light;
+    private GameObject nLight;
     private GameObject player;
     [SerializeField] GameObject SoundObject;
     [Range(0, 1)] [SerializeField] int type;
     void Start()
     {
         player = GameObject.FindWithTag("Player");
-        light = transform.GetChild(0).gameObject;
+        nLight = transform.GetChild(0).gameObject;
         switch (type) //we can add more here later but last powerups were of no use in current context of project.
         {
             default:
             case 1:
-                light.GetComponent<Light>().color = Color.red;
+                nLight.GetComponent<Light>().color = Color.red;
                 break;
         }
     }
