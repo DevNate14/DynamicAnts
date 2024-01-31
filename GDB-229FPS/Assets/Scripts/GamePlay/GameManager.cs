@@ -164,7 +164,12 @@ public class GameManager : MonoBehaviour
 
     public void UpdateHPBar(int hpMissing, int hpTotal)
     {
-        playerHPMissing.text = hpMissing.ToString("00");
+
+        if (playerHPMissing < 0) //Should Prevent UI from going Neg
+        {
+            playerHPMissing.text = hpMissing.ToString("00");
+        }
+
         playerHPTotal.text = hpTotal.ToString("00");
     }
 

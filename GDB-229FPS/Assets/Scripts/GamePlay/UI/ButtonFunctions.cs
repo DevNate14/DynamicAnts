@@ -170,8 +170,9 @@ public class ButtonFunctions : MonoBehaviour
     }
 
     AudioManager.instance.PlayMusic(creditsSceneNumber);
-    GameManager.instance.loadingScreen.SetActive(true);
-    loadTime = 0;
-    StartCoroutine(LoadAsyncScene(creditsSceneNumber));
-}
+    //GameManager.instance.loadingScreen.SetActive(true);
+    //loadTime = 0;
+    //StartCoroutine(LoadAsyncScene(creditsSceneNumber));
+    //Q&A Requested to remove LS
+    }
 }
