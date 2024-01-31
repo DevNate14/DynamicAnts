@@ -15,14 +15,12 @@ public class TitleScreen : MonoBehaviour
     void Start()
     {
         StartSpinning(); //Rotates Images
-        //AudioManager.instance.PlayMusic(0, false);
         if (Application.platform == RuntimePlatform.WebGLPlayer)
         {
             quitButton.SetActive(false);
         }
-        GetComponentInChildren<Button>().Select();
         playButton.text = PersistenceManager.instance.savedGameExists ? "Continue Game" : "New Game";
-        AudioManager.instance.PlayMusic(0);
+        AudioManager.instance.PlayMusic(0, false);
     }
 
     void StartSpinning()
@@ -48,4 +46,11 @@ public class TitleScreen : MonoBehaviour
             // Waits for 2nd Scene
         }
     }
+
+    public void ResetPlayButton()
+    {
+        playButton.text = "New Game";
+    }
+
+
 }

@@ -145,34 +145,37 @@ public class ButtonFunctions : MonoBehaviour
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.Confined;
         }
-        if(SceneManager.GetActiveScene().buildIndex == sceneNumber)
+        if(SceneManager.GetActiveScene().buildIndex != sceneNumber)
         {
-            SceneManager.LoadScene(sceneNumber);
+            AudioManager.instance.PlayMusic(sceneNumber);
+            GameManager.instance.loadingScreen.SetActive(true);
+            loadTime = 0;
+            StartCoroutine(LoadAsyncScene(sceneNumber));
         }
-        AudioManager.instance.PlayMusic(sceneNumber);
-        GameManager.instance.loadingScreen.SetActive(true);
-        loadTime = 0;
-        StartCoroutine(LoadAsyncScene(sceneNumber));
+        else
+        {
+
+        }
     }
 
 
     public void CreditsScene()
-{
-    int creditsSceneNumber = 4;
-
-    ButtonSound();
-    
-    if (GameManager.instance.isPaused)
     {
-        GameManager.instance.StateUnpaused();
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.Confined;
-    }
+        int creditsSceneNumber = 4;
 
-    AudioManager.instance.PlayMusic(creditsSceneNumber);
-    GameManager.instance.loadingScreen.SetActive(true);
-    loadTime = 0;
-    StartCoroutine(LoadAsyncScene(creditsSceneNumber));
-    //Q&A Requested to remove LS
+        ButtonSound();
+    
+        if (GameManager.instance.isPaused)
+        {
+            GameManager.instance.StateUnpaused();
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.Confined;
+        }
+
+        AudioManager.instance.PlayMusic(creditsSceneNumber);
+        GameManager.instance.loadingScreen.SetActive(true);
+        loadTime = 0;
+        StartCoroutine(LoadAsyncScene(creditsSceneNumber));
+        //Q&A Requested to remove LS
     }
 }

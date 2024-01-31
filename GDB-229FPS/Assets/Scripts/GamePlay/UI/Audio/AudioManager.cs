@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 
@@ -15,7 +16,11 @@ public class AudioManager : MonoBehaviour
 
     [SerializeField] AudioClip[] backgroundMusics;
 
+    AudioClip musicQueue;
+
     float musicVolumeOrig;
+
+    bool fading = false;
 
     void Awake()
     {
@@ -39,6 +44,18 @@ public class AudioManager : MonoBehaviour
         
     }
 
+    private void Update()
+    {
+        if(!fading && musicQueue != null)
+        {
+            fadeSource.clip = musicQueue;
+            fadeSource.volume = 0;
+            fadeSource.Play();
+            StartCoroutine(FadeMusic());
+            musicQueue = null;
+        }
+    }
+
     public void PlaySFX(AudioClip clip)
     {
         sfxSource.PlayOneShot(clip);
@@ -49,6 +66,11 @@ public class AudioManager : MonoBehaviour
         musicMixer.SetFloat("MusicVol", Mathf.Log10(PlayerPrefs.GetFloat("MusicVol", 0.5f)) * 20);
         if (fade)
         {
+            if (fading)
+            {
+                musicQueue = music;
+                return;
+            }
             fadeSource.clip = music;
             fadeSource.volume = 0;
             fadeSource.Play();
@@ -61,31 +83,16 @@ public class AudioManager : MonoBehaviour
             musicSource.Play();
         }
     }
-
-    IEnumerator FadeMusic()
-    {
-        while(musicSource.volume > 0.1 && fadeSource.volume < musicVolumeOrig - 0.1f)
-        {
-            musicSource.volume -= 0.1f;
-            fadeSource.volume += 0.1f;
-            yield return new WaitForSeconds(0.5f);
-        }
-
-        fadeSource.volume = musicVolumeOrig;
-        musicSource.volume = 0;
-
-        AudioSource temp = fadeSource;
-        fadeSource = musicSource;
-        musicSource = temp;
-
-        fadeSource.Stop();
-    }
-
     public void PlayMusic(int sceneNumber, bool fade = true)
     {
         musicMixer.SetFloat("MusicVol", Mathf.Log10(PlayerPrefs.GetFloat("MusicVol", 0.5f)) * 20);
         if (fade)
         {
+            if (fading)
+            {
+                musicQueue = backgroundMusics[sceneNumber];
+                return;
+            }
             fadeSource.clip = backgroundMusics[sceneNumber];
             fadeSource.volume = 0;
             fadeSource.Play();
@@ -97,5 +104,27 @@ public class AudioManager : MonoBehaviour
             musicSource.clip = backgroundMusics[sceneNumber];
             musicSource.Play();
         }
+    }
+
+    IEnumerator FadeMusic()
+    {
+        AudioSource temp = fadeSource;
+
+        while(musicSource.volume > 0.1 && fadeSource.volume < musicVolumeOrig - 0.1f)
+        {
+            fading = true;
+            musicSource.volume -= 0.1f;
+            fadeSource.volume += 0.1f;
+            yield return new WaitForSeconds(0.5f);
+        }
+
+        fadeSource.volume = musicVolumeOrig;
+        musicSource.volume = 0;
+
+        fadeSource = musicSource;
+        musicSource = temp;
+
+        fadeSource.Stop();
+        fading = false;
     }
 }
