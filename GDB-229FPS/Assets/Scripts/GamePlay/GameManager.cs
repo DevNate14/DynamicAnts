@@ -90,7 +90,7 @@ public class GameManager : MonoBehaviour
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.Confined;
         }
-
+        loadingScreen.SetActive(false);
     }
 
     void Update()
@@ -226,6 +226,11 @@ public class GameManager : MonoBehaviour
         menuActive = optionsPage;
         menuActive.SetActive(true);
         menuActive.GetComponentInChildren<Button>().Select();
+    }
+
+    public void BackToMain()
+    {
+        menuActive.SetActive(false);
     }
 
     public void PauseMenu()
