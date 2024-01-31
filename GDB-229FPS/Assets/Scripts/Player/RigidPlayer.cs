@@ -119,8 +119,10 @@ public class RigidPlayer : MonoBehaviour, IDamageable, IPersist, IImpluse
         //}
 
         
-
+        
         MovePlayer();
+        
+
         BounceGun();
         //MovePlayerCamera();
         pickup();
@@ -179,7 +181,10 @@ public class RigidPlayer : MonoBehaviour, IDamageable, IPersist, IImpluse
     {
         Sprint();
         Crouch();
-        Stairs();
+        if (!GameManager.instance.isPaused)
+        {
+            Stairs();
+        }
         Jump();
         Vector3 MoveVector = transform.TransformDirection(PlayerMovmentInput) * MoveSpeed;
 
@@ -514,6 +519,9 @@ public class RigidPlayer : MonoBehaviour, IDamageable, IPersist, IImpluse
 
     private void BounceGun()
     {
-        GunAnim.SetFloat("Movement", Mathf.Lerp(GunAnim.GetFloat("Movement"), (MoveSpeed - walkSpeed) / 5, Time.deltaTime * GunAnimSpeed));
+        if (isSprinting && Player.velocity.magnitude >= 5)
+            GunAnim.SetFloat("Movement", 1);
+        else
+            GunAnim.SetFloat("Movement", 0);
     }
 }
