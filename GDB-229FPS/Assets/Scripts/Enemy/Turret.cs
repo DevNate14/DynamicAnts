@@ -25,7 +25,7 @@ public class Turret : MonoBehaviour, IDamageable
     public AudioClip deadaud;
     void Start()
     {
-        //GameManager.instance.UpdateGameGoal(1);
+        agent.updatePosition = false;
     }
     void Update()
     {
