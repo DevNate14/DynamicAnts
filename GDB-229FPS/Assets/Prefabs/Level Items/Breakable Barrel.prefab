@@ -88,6 +88,13 @@ MonoBehaviour:
   Barrel: {fileID: 5953886577475420033}
   Hitbox: {fileID: 5953886577382915149}
   BrokenBarrel: {fileID: 5953886578272809568}
+  DroppableObjects:
+  - {fileID: 2095977270089672764, guid: 3f76653c7264e524291e96146bf30b55, type: 3}
+  - {fileID: 2095977270089672764, guid: 3f76653c7264e524291e96146bf30b55, type: 3}
+  - {fileID: 1704720602187545534, guid: aa2761ee75936794ba10a5e7fccf8937, type: 3}
+  - {fileID: 4893294382732909623, guid: eadcdf8e15678274cbce6cd2339d37d8, type: 3}
+  - {fileID: 1372270292491818872, guid: 48a2c840d88f3b14395f7fbe90c03ffa, type: 3}
+  DropRate: 50
 --- !u!82 &7602361229594652884
 AudioSource:
   m_ObjectHideFlags: 0
