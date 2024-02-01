@@ -60,6 +60,7 @@ public class GameManager : MonoBehaviour
     public GameObject loadingReady;
     public GameObject saveMessage;
     public GameObject deleteWarning;
+    public GameObject blockScreen;
 
     void Awake()
     {
@@ -91,6 +92,7 @@ public class GameManager : MonoBehaviour
             Cursor.lockState = CursorLockMode.Confined;
         }
         loadingScreen.SetActive(false);
+        blockScreen.SetActive(false);
     }
 
     void Update()
@@ -103,13 +105,19 @@ public class GameManager : MonoBehaviour
             string nextDialogue = dialogueQueue.Dequeue();
             StartCoroutine(TypeText(nextDialogue));
         }
-
-        if((isPaused || isTitleScreen) && (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0) && EventSystem.current.currentSelectedGameObject == null)
+        
+        if ((menuActive != null || isTitleScreen) && (Input.GetButton("Horizontal") || Input.GetButton("Vertical")) && EventSystem.current.currentSelectedGameObject == null)
         {
             if (menuActive != null)
             { menuActive.GetComponentInChildren<Button>().Select(); }
             else
-            { EventSystem.current.firstSelectedGameObject.GetComponent<Button>().Select(); }    
+            { EventSystem.current.firstSelectedGameObject.GetComponent<Button>().Select(); }
+            blockScreen.SetActive(true);
+        }
+        else if ((menuActive != null || isTitleScreen) && (Input.GetAxis("Mouse X") != 0 || Input.GetAxis("Mouse Y") != 0 || Input.GetMouseButtonDown(0)))
+        {
+            blockScreen.SetActive(false);
+            EventSystem.current.SetSelectedGameObject(null);
         }
     }
 
@@ -212,20 +220,17 @@ public class GameManager : MonoBehaviour
         StatePaused();
         menuActive = menuLose;
         menuActive.SetActive(true);
-        menuActive.GetComponentInChildren<Button>().Select();
     }
 
     public void Instructions()
     {
         menuActive = instructionsPage;
         menuActive.SetActive(true);
-        menuActive.GetComponentInChildren<Button>().Select();
     }
     public void Options()
     {
         menuActive = optionsPage;
         menuActive.SetActive(true);
-        menuActive.GetComponentInChildren<Button>().Select();
     }
 
     public void BackToMain()
@@ -241,7 +246,6 @@ public class GameManager : MonoBehaviour
             StatePaused();
             menuActive = menuPause;
             menuActive.SetActive(isPaused);
-            menuActive.GetComponentInChildren<Button>().Select();
         }
     }
 }
