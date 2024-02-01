@@ -374,6 +374,7 @@ MonoBehaviour:
   loadingReady: {fileID: 1595587441}
   saveMessage: {fileID: 0}
   deleteWarning: {fileID: 0}
+  blockScreen: {fileID: 0}
 --- !u!4 &1497873168
 Transform:
   m_ObjectHideFlags: 0
@@ -493,6 +494,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 461678362, guid: bb32ed439a8715f4a983d4fc7a6ad3d8, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 144.4573
+      objectReference: {fileID: 0}
+    - target: {fileID: 461678362, guid: bb32ed439a8715f4a983d4fc7a6ad3d8, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 461678362, guid: bb32ed439a8715f4a983d4fc7a6ad3d8, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -79.48053
+      objectReference: {fileID: 0}
+    - target: {fileID: 461678362, guid: bb32ed439a8715f4a983d4fc7a6ad3d8, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -94.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 461678364, guid: bb32ed439a8715f4a983d4fc7a6ad3d8, type: 3}
+      propertyPath: m_CullTransparentMesh
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1216449115, guid: bb32ed439a8715f4a983d4fc7a6ad3d8, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
