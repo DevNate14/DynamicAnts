@@ -9,6 +9,7 @@ public class TitleScreen : MonoBehaviour
     [SerializeField] float rotationSpeed = 100f;
     [SerializeField] TMP_Text playButton;
     [SerializeField] GameObject quitButton;
+    [SerializeField] GameObject quitGameWarning;
     //public Vector3 rotationAxis= Vector3.up; //Changes Axis
     //public bool isSpinning = false;
 

@@ -39,6 +39,11 @@ public class ButtonFunctions : MonoBehaviour
         GameManager.instance.deleteWarning.SetActive(on == 1);
         ButtonSound();
     }
+    public void ShowQuitWarning(int on)
+    {
+        GameManager.instance.quitWarning.SetActive(on == 1);
+        ButtonSound();
+    }
 
     public void Delete()
     {

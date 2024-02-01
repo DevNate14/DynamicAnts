@@ -60,6 +60,7 @@ public class GameManager : MonoBehaviour
     public GameObject loadingReady;
     public GameObject saveMessage;
     public GameObject deleteWarning;
+    public GameObject quitWarning;
     public GameObject blockScreen;
 
     void Awake()

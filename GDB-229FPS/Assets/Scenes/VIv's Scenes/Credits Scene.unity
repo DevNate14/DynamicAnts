@@ -474,7 +474,7 @@ MonoBehaviour:
   loadingReady: {fileID: 1595587441}
   saveMessage: {fileID: 0}
   deleteWarning: {fileID: 0}
-  blockScreen: {fileID: 0}
+  blockScreen: {fileID: 1056870605}
 --- !u!4 &1497873168
 Transform:
   m_ObjectHideFlags: 0
