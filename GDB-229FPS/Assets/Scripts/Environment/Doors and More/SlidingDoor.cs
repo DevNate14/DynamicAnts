@@ -32,7 +32,7 @@ public class SlidingDoor : Door
     IEnumerator OpenCooldown()
     {
         CanOpen = false;
-        yield return new WaitForSeconds(Cooldown);
+        yield return new WaitForSecondsRealtime(Cooldown);
         CanOpen = true;
     }
 }

@@ -38,7 +38,7 @@ public class Pit : MonoBehaviour
     }
     IEnumerator Kill(IDamageable player)
     {
-        yield return new WaitForSeconds(WaitTime);
+        yield return new WaitForSecondsRealtime(WaitTime);
         player.Damage(999);
         Triggered = false;
         Camera.transform.localPosition = CamRelativePos;

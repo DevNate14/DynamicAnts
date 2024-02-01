@@ -32,7 +32,7 @@ public class RotatingDoor : Door
     IEnumerator OpenCooldown()
     {
         CanOpen = false;
-        yield return new WaitForSeconds(Cooldown);
+        yield return new WaitForSecondsRealtime(Cooldown);
         CanOpen = true;
     }
     //private void OnTriggerEnter(Collider other)

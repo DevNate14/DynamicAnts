@@ -24,7 +24,7 @@ public class ContactDamage : MonoBehaviour
         {
             dmg.Damage(damage);
         }
-        yield return new WaitForSeconds(cooldown);
+        yield return new WaitForSecondsRealtime(cooldown);
         hit = false;
         // this most likely only can trigger on one target at a time, and I do not know how to fix that yet
     }

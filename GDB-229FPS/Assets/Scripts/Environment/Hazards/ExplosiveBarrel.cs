@@ -23,7 +23,7 @@ public class ExplosiveBarrel : BreakableObject
     {
         Instantiate(BreakFX, transform.position, transform.rotation);
         BlastHitbox.enabled = true;
-        yield return new WaitForSeconds(BlastHitboxUptime);
+        yield return new WaitForSecondsRealtime(BlastHitboxUptime);
         BlastHitbox.enabled = false;
     }
     private void OnTriggerEnter(Collider other)

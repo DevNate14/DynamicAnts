@@ -52,7 +52,7 @@ public class EmitHoming : MonoBehaviour
                 PlayedTimes++;
             }
         }
-        yield return new WaitForSeconds(shootrate);
+        yield return new WaitForSecondsRealtime(shootrate);
         shooting = false;
     }
 }

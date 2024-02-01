@@ -41,7 +41,7 @@ public class Rotate : MonoBehaviour
     IEnumerator RotateDelay()
     {
         CoroutineRunning = true;
-        yield return new WaitForSeconds(Delay);
+        yield return new WaitForSecondsRealtime(Delay);
         if (WithObject)
         {
             switch (DelayType)

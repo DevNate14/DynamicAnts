@@ -41,7 +41,7 @@ public class Lever : MonoBehaviour, IInteractable
             Anim.Play("forward");
         else
             Anim.Play("backward");
-        yield return new WaitForSeconds(Cooldown);
+        yield return new WaitForSecondsRealtime(Cooldown);
         On = !On;
         Animating = false;
     }

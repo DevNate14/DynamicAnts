@@ -23,7 +23,7 @@ public class Emitter : MonoBehaviour
         Instantiate(bullet, ShootPos.position, transform.rotation);
         if (Audio)
             Aud.PlayOneShot(Sound);
-        yield return new WaitForSeconds(shootrate);
+        yield return new WaitForSecondsRealtime(shootrate);
         shooting = false;
     }
 }

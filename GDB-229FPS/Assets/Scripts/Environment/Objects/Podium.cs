@@ -75,7 +75,7 @@ public class Podium : MonoBehaviour
             bulbs[keyCurr].material.color = color2;
             aud.PlayOneShot(clip);
         }
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSecondsRealtime(1);
         keyCurr++;
         isChecking = false;
     }
