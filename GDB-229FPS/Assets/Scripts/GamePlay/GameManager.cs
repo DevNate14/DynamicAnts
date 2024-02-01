@@ -108,10 +108,8 @@ public class GameManager : MonoBehaviour
         
         if ((menuActive != null || isTitleScreen) && (Input.GetButton("Horizontal") || Input.GetButton("Vertical")) && EventSystem.current.currentSelectedGameObject == null)
         {
-            if (menuActive != null)
-            { menuActive.GetComponentInChildren<Button>().Select(); }
-            else
-            { EventSystem.current.firstSelectedGameObject.GetComponent<Button>().Select(); }
+
+            EventSystem.current.SetSelectedGameObject(Selectable.allSelectablesArray[0].gameObject);
             blockScreen.SetActive(true);
         }
         else if ((menuActive != null || isTitleScreen) && (Input.GetAxis("Mouse X") != 0 || Input.GetAxis("Mouse Y") != 0 || Input.GetMouseButtonDown(0)))
