@@ -1470,7 +1470,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 346b65e2c477a8446912eaeb5a95473b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HP: 3
+  HP: 5
   model: {fileID: 2692749618907463930}
   agent: {fileID: 4649098533013911809}
   animate: {fileID: 929986962251255274}
@@ -1479,11 +1479,11 @@ MonoBehaviour:
   animationspeedtransition: 3
   DamageCoolDown: 2
   MeleeRange: 2.26
+  howlong: 2
   mySpawner: {fileID: 0}
   source: {fileID: 5627719769480451469}
   biteaud: {fileID: 8300000, guid: 927670fed4df68549b34ab112ef7ec4c, type: 3}
   deadaud: {fileID: 8300000, guid: c00b13d010551ea45a57e4f7727b0000, type: 3}
-  idleaud: {fileID: 0}
 --- !u!95 &929986962251255274
 Animator:
   serializedVersion: 3

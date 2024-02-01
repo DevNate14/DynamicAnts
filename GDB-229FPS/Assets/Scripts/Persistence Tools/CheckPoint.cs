@@ -27,6 +27,11 @@ public class CheckPoint : MonoBehaviour, IPersist
             colliderEffect.material = colliderActive;
             baseEffect.material = baseActive;
 
+            if (GameManager.instance.playerScript.CanHeal())
+            {
+                GameManager.instance.playerScript.ApplyBuff(1);
+            }
+
             GameManager.instance.playerScript.playerSpawnPos = transform.position;
             PersistenceManager.instance.SaveGame();
             PlayerPrefs.SetFloat("SpawnPosX", transform.position.x);
