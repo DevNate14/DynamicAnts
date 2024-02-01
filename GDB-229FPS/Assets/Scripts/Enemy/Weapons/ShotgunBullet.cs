@@ -17,7 +17,7 @@ public class ShotgunBullet : MonoBehaviour
         Destroy(gameObject, 2);
     }
     IEnumerator ExplodeCheck() {
-        yield return new WaitForSeconds(timer);
+        yield return new WaitForSecondsRealtime(timer);
         rb.velocity = Vector3.zero;
     }
     void OnTriggerEnter(Collider other)

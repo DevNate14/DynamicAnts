@@ -75,7 +75,7 @@ public class BomberEnemy : MonoBehaviour
         if(agent.remainingDistance < .05f && !destinationChosen){
             destinationChosen = true;
             agent.stoppingDistance = 0;
-            yield return new WaitForSeconds(roamPauseTime);
+            yield return new WaitForSecondsRealtime(roamPauseTime);
 
             Vector3 randomPosition = Random.insideUnitSphere * roamDistance;
             randomPosition += startingPosition;
@@ -86,7 +86,7 @@ public class BomberEnemy : MonoBehaviour
 
             destinationChosen = false;
         }
-            Debug.Log(agent.destination);
+            //Debug.Log(agent.destination);
     }
     
     void faceTarget(){
@@ -171,7 +171,7 @@ public void Damage(int amount)
     {
         Color Temp = model.material.color;
         model.material.color = Color.red;
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSecondsRealtime(0.2f);
         model.material.color = Temp;
     }
 }

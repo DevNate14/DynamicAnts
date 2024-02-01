@@ -53,14 +53,14 @@ public class PersistenceManager : MonoBehaviour
     IEnumerator SavingMessage(bool playSound)
     {
         GameManager.instance.saveMessage.GetComponentInChildren<TMP_Text>().text = "Saving...";
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSecondsRealtime(1);
         StartCoroutine(GameSavedMessage(playSound));
     }
     IEnumerator GameSavedMessage(bool playSound)
     {
         if (playSound) { AudioManager.instance.PlaySFX(saveSound); }
         GameManager.instance.saveMessage.GetComponentInChildren<TMP_Text>().text = "Game Saved!";
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSecondsRealtime(3);
         GameManager.instance.saveMessage.SetActive(false);
     }
 

@@ -74,13 +74,13 @@ public abstract class GunStatsSO : ScriptableObject
         }
         if(muzzleEffect != null)
             Instantiate(muzzleEffect, muzzlePoint.transform.position, muzzlePoint.transform.rotation); // for vfx when we get to making them
-        yield return new WaitForSeconds(fireRate);
+        yield return new WaitForSecondsRealtime(fireRate);
         isShooting = false;
     }
     public virtual IEnumerator EmptyShoot() {
         isShooting = true;
         GameManager.instance.playerScript.aud.PlayOneShot(emptySound, shootVol);
-        yield return new WaitForSeconds(fireRate);
+        yield return new WaitForSecondsRealtime(fireRate);
         isShooting = false;
     }
     public void AddAmmo()

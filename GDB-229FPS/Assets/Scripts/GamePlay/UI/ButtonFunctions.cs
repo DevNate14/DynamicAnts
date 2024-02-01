@@ -130,7 +130,7 @@ public class ButtonFunctions : MonoBehaviour
                 GameManager.instance.loadingReady.SetActive(true);
             }
             loadTime++;
-            yield return new WaitForSeconds(0.3f);
+            yield return new WaitForSecondsRealtime(0.3f);
         }
 
         //return null;

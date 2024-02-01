@@ -110,7 +110,7 @@ public class Turret : MonoBehaviour, IDamageable
         {
             source.PlayOneShot(laseraud, 1.5f);
         }       
-        yield return new WaitForSeconds(shootrate);
+        yield return new WaitForSecondsRealtime(shootrate);
 
         shooting = false;
     }
@@ -119,7 +119,7 @@ public class Turret : MonoBehaviour, IDamageable
     {
         Color Temp = model.material.color;
         model.material.color = Color.red;
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSecondsRealtime(0.2f);
         model.material.color = Temp;
     }
 }

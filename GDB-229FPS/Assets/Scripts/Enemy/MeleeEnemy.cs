@@ -102,16 +102,16 @@ public class MeleeEnemy : MonoBehaviour, IDamageable
     {
         Color Temp = model.material.color;
         model.material.color = Color.red;
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSecondsRealtime(0.2f);
         model.material.color = Temp;
     }
     IEnumerator DeadAnim()
     {
         Collider col = GetComponent<Collider>();
         col.enabled = false;
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSecondsRealtime(1.0f);
         source.PlayOneShot(deadaud, 1.5f);
-        yield return new WaitForSeconds(0.9f);
+        yield return new WaitForSecondsRealtime(0.9f);
         Destroy(gameObject);
     }
     IEnumerator MeleeDamage(float time)
@@ -120,13 +120,13 @@ public class MeleeEnemy : MonoBehaviour, IDamageable
         animate.SetTrigger("Hit");
         Instantiate(bite, BitePos.position, transform.rotation);
         source.PlayOneShot(biteaud, 1.5f);
-        yield return new WaitForSeconds(time);
+        yield return new WaitForSecondsRealtime(time);
         InMeleeRange = false;
     }
     IEnumerator Targetplayer()
     {
         insidesphere = true;
-        yield return new WaitForSeconds(howlong);
+        yield return new WaitForSecondsRealtime(howlong);
         if (!enteredSphere)
         {
             insidesphere = false;

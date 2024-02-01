@@ -85,7 +85,7 @@ public class EnemyAI : MonoBehaviour, IDamageable //check
         {
             playerdestination = true;
             agent.stoppingDistance = 0;
-            yield return new WaitForSeconds(roampause);
+            yield return new WaitForSecondsRealtime(roampause);
             Vector3 posinrange = Random.insideUnitSphere * roamdist;
             posinrange += startPosition;
             NavMeshHit hit;
@@ -141,7 +141,7 @@ public class EnemyAI : MonoBehaviour, IDamageable //check
         shooting = true;
         Instantiate(bullet, ShootPos.position, transform.rotation);
         source.PlayOneShot(pewpew, 1.5f);
-        yield return new WaitForSeconds(shootrate);
+        yield return new WaitForSecondsRealtime(shootrate);
         shooting = false;
     }
 
@@ -149,7 +149,7 @@ public class EnemyAI : MonoBehaviour, IDamageable //check
     {
         Color Temp = model.material.color;
         model.material.color = Color.red;
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSecondsRealtime(0.2f);
         model.material.color = Temp;
     }
 }

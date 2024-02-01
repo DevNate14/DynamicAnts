@@ -115,7 +115,7 @@ public class AudioManager : MonoBehaviour
             fading = true;
             musicSource.volume -= 0.1f;
             fadeSource.volume += 0.1f;
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSecondsRealtime(0.5f);
         }
 
         fadeSource.volume = musicVolumeOrig;

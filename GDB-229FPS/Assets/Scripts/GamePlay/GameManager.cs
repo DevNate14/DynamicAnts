@@ -134,10 +134,10 @@ public class GameManager : MonoBehaviour
         foreach (char c in line)
         {
             dialogueText.text += c;
-            yield return new WaitForSeconds(0.75F / charactersPerSecond);
+            yield return new WaitForSecondsRealtime(0.75F / charactersPerSecond);
         }
 
-        yield return new WaitForSeconds(2F);
+        yield return new WaitForSecondsRealtime(2F);
         dialogueText.text = ""; //Clears Text
         dialoguePanel.SetActive(false);
 

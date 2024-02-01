@@ -49,7 +49,7 @@ public class EnemySpawners : MonoBehaviour
         //CheckType(temp);
         SpawnList.Add(temp);
         spawncount++;
-        yield return new WaitForSeconds(EnemySpawnDelay);
+        yield return new WaitForSecondsRealtime(EnemySpawnDelay);
         IsSpawning = false;
     }
     //void CheckType(GameObject obj) {

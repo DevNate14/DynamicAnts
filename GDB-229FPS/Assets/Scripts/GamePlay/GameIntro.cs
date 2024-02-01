@@ -98,7 +98,7 @@ public class GameIntro : MonoBehaviour
                 loadingReady.SetActive(true);
             }
             loadTime++;
-            yield return new WaitForSeconds(0.3f);
+            yield return new WaitForSecondsRealtime(0.3f);
         }
     }
 
@@ -109,10 +109,10 @@ public class GameIntro : MonoBehaviour
         foreach (char c in line)
         {
             dialogueText.text += c;
-            yield return new WaitForSeconds(.6f / 8.5f);
+            yield return new WaitForSecondsRealtime(.6f / 8.5f);
         }
 
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSecondsRealtime(1.5f);
 
         if (messageCurr != messages.Length - 1)
         { 

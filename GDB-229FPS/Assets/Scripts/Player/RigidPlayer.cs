@@ -98,11 +98,11 @@ public class RigidPlayer : MonoBehaviour, IDamageable, IPersist, IImpluse
 
         //STAIRS
 
-        Debug.DrawRay(stepup.transform.position, stepup.transform.forward);
-        Debug.DrawRay(stepup.transform.position, stepup.transform.forward + stepup.transform.right);
-        Debug.DrawRay(stepup.transform.position, stepup.transform.forward + -stepup.transform.right);
+        //Debug.DrawRay(stepup.transform.position, stepup.transform.forward);
+        //Debug.DrawRay(stepup.transform.position, stepup.transform.forward + stepup.transform.right);
+        //Debug.DrawRay(stepup.transform.position, stepup.transform.forward + -stepup.transform.right);
 
-        Debug.DrawRay(whatsinfront.transform.position, stepup.transform.forward, Color.green);
+        //Debug.DrawRay(whatsinfront.transform.position, stepup.transform.forward, Color.green);
 
         //ground check
         //Debug.DrawRay(Feet.position, transform.TransformDirection(Vector3.down * Groundraylength));
@@ -357,7 +357,7 @@ public class RigidPlayer : MonoBehaviour, IDamageable, IPersist, IImpluse
                 }
             if (low.collider.CompareTag("Podium"))
             {
-                Debug.Log("YOUR STUPIED");
+                //Debug.Log("YOUR STUPIED");
                 return;
                 
             }
@@ -441,7 +441,7 @@ public class RigidPlayer : MonoBehaviour, IDamageable, IPersist, IImpluse
     IEnumerator PlayerFlashDamage()
     {
         GameManager.instance.playerDamageScreen.SetActive(true);
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSecondsRealtime(0.1f);
         GameManager.instance.playerDamageScreen.SetActive(false);
     }
 
