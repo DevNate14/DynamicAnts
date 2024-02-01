@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 
@@ -97,12 +98,12 @@ public class RigidPlayer : MonoBehaviour, IDamageable, IPersist, IImpluse
 
         //STAIRS
 
-        //Debug.DrawRay(stepup.transform.position, stepup.transform.forward);
-        //Debug.DrawRay(stepup.transform.position, stepup.transform.forward + stepup.transform.right);
-        //Debug.DrawRay(stepup.transform.position, stepup.transform.forward + -stepup.transform.right);
+        Debug.DrawRay(stepup.transform.position, stepup.transform.forward);
+        Debug.DrawRay(stepup.transform.position, stepup.transform.forward + stepup.transform.right);
+        Debug.DrawRay(stepup.transform.position, stepup.transform.forward + -stepup.transform.right);
 
-        //Debug.DrawRay(whatsinfront.transform.position, stepup.transform.forward, Color.green);
-       
+        Debug.DrawRay(whatsinfront.transform.position, stepup.transform.forward, Color.green);
+
         //ground check
         //Debug.DrawRay(Feet.position, transform.TransformDirection(Vector3.down * Groundraylength));
         //RaycastHit[] hits = Physics.RaycastAll(Feet.position, Vector3.down, Groundraylength);
@@ -118,8 +119,8 @@ public class RigidPlayer : MonoBehaviour, IDamageable, IPersist, IImpluse
         //    }
         //}
 
-        
-        
+
+
         MovePlayer();
         
 
@@ -181,9 +182,11 @@ public class RigidPlayer : MonoBehaviour, IDamageable, IPersist, IImpluse
     {
         Sprint();
         Crouch();
-        if (!GameManager.instance.isPaused)
+    
+
+        if (!GameManager.instance.isPaused )
         {
-            Stairs();
+           Stairs();
         }
         Jump();
         Vector3 MoveVector = transform.TransformDirection(PlayerMovmentInput) * MoveSpeed;
@@ -337,33 +340,41 @@ public class RigidPlayer : MonoBehaviour, IDamageable, IPersist, IImpluse
         RaycastHit low;
         RaycastHit[] high = new RaycastHit[3];
 
-
-        if (Physics.Raycast(whatsinfront.transform.position, transform.forward, out low, 0.1f) && !OnSlope)
-        {
-            if (low.collider.isTrigger)
+        
+        
+            if (Physics.Raycast(whatsinfront.transform.position, transform.forward, out low, 0.1f) && !OnSlope)
+            {
+                if (low.collider.isTrigger)
+                    return;
+                int num = 0;
+                for (int i = 0; i < 3; i++)
+                {
+                    if (!Physics.Raycast(stepup.transform.position, transform.forward, out high[i], 0.2f))
+                        num++;
+                    else if (high[i].collider.isTrigger)
+                        num++;
+                    
+                }
+            if (low.collider.CompareTag("Podium"))
+            {
+                Debug.Log("YOUR STUPIED");
                 return;
-            int num = 0;
-            for (int i = 0; i < 3; i++)
-            {
-                if (!Physics.Raycast(stepup.transform.position, transform.forward, out high[i], 0.2f))
-                    num++;
-                else if (high[i].collider.isTrigger)
-                    num++;
+                
             }
-
             //Debug.Log(num);
+            // PUSH OF WALL 
             if (num == 3)
-            {
-                Player.position += new Vector3(0f, stepHeight, 0f);
-            }
-            else if (num <= 1)
-            {
-                Player.AddForce(-transform.forward, ForceMode.Impulse);
+                {
+                    Player.position += new Vector3(0f, stepHeight, 0f);
+                }
+                else if (num <= 1)
+                {
+                    Player.AddForce(-transform.forward, ForceMode.Impulse);
+
+                }
 
             }
-
-        }
-
+        
         // if i do two ray cast one on th bottom another by the knes 
         // then chck fo an objct in front
         // check if room at top then pass in no roomisa all move alng 
