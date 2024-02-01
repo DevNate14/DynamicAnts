@@ -19,8 +19,10 @@ public class MeleeEnemy : MonoBehaviour, IDamageable
     [SerializeField] float animationspeedtransition;
     [SerializeField] float DamageCoolDown;
     [SerializeField] float MeleeRange;
+    [SerializeField] float howlong;
     bool InMeleeRange;
-    bool insidesphere,hasTriggered;
+    bool insidesphere, hasTriggered;
+    bool enteredSphere;
     public EnemySpawners mySpawner;
     public AudioSource source;
     public AudioClip biteaud;
@@ -46,7 +48,7 @@ public class MeleeEnemy : MonoBehaviour, IDamageable
             agent.SetDestination(GameManager.instance.player.transform.position); //check
             if (agent.remainingDistance < MeleeRange)
             {
-               if (!InMeleeRange)
+                if (!InMeleeRange)
                 {
                     StartCoroutine(MeleeDamage(DamageCoolDown));
                 }
@@ -62,6 +64,7 @@ public class MeleeEnemy : MonoBehaviour, IDamageable
     public void Damage(int amount) //check
     {
         HP -= amount;
+        StartCoroutine(Targetplayer());
         StartCoroutine(DamageFeedback());
         if (HP <= 0 && !hasTriggered)
         {
@@ -70,7 +73,7 @@ public class MeleeEnemy : MonoBehaviour, IDamageable
                 mySpawner.DeadUpdate();
             animate.SetBool("Dead", true);
             StartCoroutine(DeadAnim());
-            
+
         }
     }
     public void Heal(int amount) //check
@@ -83,15 +86,18 @@ public class MeleeEnemy : MonoBehaviour, IDamageable
     }
     public void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Player"))
+        if (other.CompareTag("Player"))
+        {
+            enteredSphere = true;
             insidesphere = true;
+        }
     }
     public void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
             insidesphere = false;
     }
-        
+
     IEnumerator DamageFeedback() //Check
     {
         Color Temp = model.material.color;
@@ -116,5 +122,14 @@ public class MeleeEnemy : MonoBehaviour, IDamageable
         source.PlayOneShot(biteaud, 1.5f);
         yield return new WaitForSeconds(time);
         InMeleeRange = false;
+    }
+    IEnumerator Targetplayer()
+    {
+        insidesphere = true;
+        yield return new WaitForSeconds(howlong);
+        if (!enteredSphere)
+        {
+            insidesphere = false;
+        }
     }
 }
