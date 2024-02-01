@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Shotgun
   magSize: 12
-  ammoCount: 3
-  magAmmoCount: 12
+  ammoCount: 24
+  magAmmoCount: 10
   fireRate: 1.5
-  image: {fileID: 2800000, guid: 6acc6777f721420439337783425437ab, type: 3}
+  image: {fileID: 2800000, guid: 01b02b9fc8e4d74478978981cbe23699, type: 3}
   bullet: {fileID: 5293575694773355670, guid: c776bac94b425d64fb0a30dd27647f1e, type: 3}
-  model: {fileID: 6999201169320141973, guid: c8aab981a08fa6e41937ae47c1b885ed, type: 3}
+  model: {fileID: 8551838549260969275, guid: d3931f2046e39184ca37777d16109c98, type: 3}
   muzzleEffect: {fileID: 8841767067418191837, guid: 8ef24a39f40bbb747bb6601f23ee641f, type: 3}
   shootSound: {fileID: 8300000, guid: 3fffeda9f0caefd43ad45f9e44d59603, type: 3}
   emptySound: {fileID: 8300000, guid: 0b435a009ff19064898fad04fd960599, type: 3}

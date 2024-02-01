@@ -164,6 +164,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 5293575694773355666}
+  BulletHit: {fileID: 8423251061914546347, guid: af18806bcc39be5408616c285930c14a, type: 3}
+  BulletMiss: {fileID: 8423251061914546347, guid: 0480eb9dc8feae74babdf3805fe96efa, type: 3}
   shotByPlayer: 1
   damageAmount: 2
   destroyTimer: 5

@@ -296,6 +296,7 @@ MonoBehaviour:
   destroyTimer: 10
   speed: 5
   turnSpeed: 90
+  bulletMiss: {fileID: 8423251061914546347, guid: 0480eb9dc8feae74babdf3805fe96efa, type: 3}
 --- !u!54 &249750431279723446
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -3,6 +3,7 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     [SerializeField] Rigidbody rb;
+    [SerializeField] GameObject BulletHit, BulletMiss;
     [SerializeField] bool shotByPlayer;
     [SerializeField] int damageAmount;
     [SerializeField] int destroyTimer;
@@ -21,13 +22,18 @@ public class Bullet : MonoBehaviour
         }
         IDamageable thing = other.GetComponent<IDamageable>();
         bool isPlayer = other.CompareTag("Player");
-        if (thing != null){
-            if (isPlayer && shotByPlayer) 
+        if (thing != null)
+        {
+            if (isPlayer && shotByPlayer)
                 return;
             if (!isPlayer)
                 GameManager.instance.DisplayDamageDone(damageAmount);
             thing.Damage(damageAmount);
+            if (BulletHit != null)
+                Instantiate(BulletHit, transform.position, transform.rotation);
         }
+        else if (BulletMiss != null)
+            Instantiate(BulletMiss, transform.position, transform.rotation);
         Destroy(gameObject);
     }
 

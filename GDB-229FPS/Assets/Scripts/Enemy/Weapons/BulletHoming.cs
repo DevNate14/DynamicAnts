@@ -12,6 +12,7 @@ public class BulletHoming : MonoBehaviour
     [SerializeField] int destroyTimer;
     [SerializeField] int speed;
     [SerializeField] float turnSpeed;
+    [SerializeField] GameObject bulletMiss;
     // Start is called before the first frame update
     void Start()
     {
@@ -45,6 +46,8 @@ public class BulletHoming : MonoBehaviour
         if(thing != null){
             thing.Damage(damageAmount);
         }
+        else if (bulletMiss != null)
+            Instantiate(bulletMiss, transform.position, transform.rotation);
         Destroy(gameObject);
     }
 
