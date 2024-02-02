@@ -23,6 +23,7 @@ public class MeleeEnemy : MonoBehaviour, IDamageable
     bool InMeleeRange;
     bool insidesphere, hasTriggered;
     bool enteredSphere;
+    bool isdying;
     public EnemySpawners mySpawner;
     public AudioSource source;
     public AudioClip biteaud;
@@ -43,7 +44,7 @@ public class MeleeEnemy : MonoBehaviour, IDamageable
         }
         float animationspeed = agent.velocity.normalized.magnitude;
         animate.SetFloat("Speed", Mathf.Lerp(animate.GetFloat("Speed"), animationspeed, Time.deltaTime * animationspeedtransition));
-        if (insidesphere)
+        if (insidesphere && isdying != true)
         {
             agent.SetDestination(GameManager.instance.player.transform.position); //check
             if (agent.remainingDistance < MeleeRange)
@@ -68,12 +69,13 @@ public class MeleeEnemy : MonoBehaviour, IDamageable
         StartCoroutine(DamageFeedback());
         if (HP <= 0 && !hasTriggered)
         {
+            isdying = true;
+            agent.SetDestination(transform.position);
             hasTriggered = true;
             if (mySpawner != null)
                 mySpawner.DeadUpdate();
             animate.SetBool("Dead", true);
             StartCoroutine(DeadAnim());
-
         }
     }
     public void Heal(int amount) //check
