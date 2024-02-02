@@ -30,15 +30,11 @@ public class MeleeEnemy : MonoBehaviour, IDamageable
     public AudioClip deadaud;
     void Start()
     {
-        if (agent == null || model == null)
-        {
-            return;
-        }
         agent.SetDestination(transform.position);
     }
     void Update()
     {
-        if (agent == null)
+        if (agent == null || model == null)
         {
             return;
         }
