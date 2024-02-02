@@ -2518,8 +2518,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -1740, y: -173}
-  m_SizeDelta: {x: 200, y: 200}
+  m_AnchoredPosition: {x: -1745.6467, y: -167.2273}
+  m_SizeDelta: {x: 188.7065, y: 188.4547}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &686414916
 MonoBehaviour:
@@ -3257,17 +3257,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 830245208}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: 0.19091067, w: 0.9816075}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1403030344}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 22.012}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -1420, y: -877}
-  m_SizeDelta: {x: 375, y: 250}
+  m_AnchoredPosition: {x: -1415, y: -861}
+  m_SizeDelta: {x: 340.1515, y: 216.16}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &830245210
 MonoBehaviour:
@@ -6871,17 +6871,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1833078952}
-  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: 0, z: -86}
+  m_LocalRotation: {x: -0.18957256, y: -0.9818667, z: -0, w: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1403030344}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -180, z: 21.856}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -481, y: -858}
-  m_SizeDelta: {x: 301.8328, y: 370.441}
+  m_AnchoredPosition: {x: -487.61963, y: -852.31274}
+  m_SizeDelta: {x: 363.1784, y: 190.0343}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1833078954
 MonoBehaviour:
@@ -6903,7 +6903,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: 6acc6777f721420439337783425437ab, type: 3}
+  m_Texture: {fileID: 2800000, guid: 01b02b9fc8e4d74478978981cbe23699, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0

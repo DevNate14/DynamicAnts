@@ -2955,6 +2955,7 @@ MonoBehaviour:
   loadingReady: {fileID: 6618244830621106598}
   saveMessage: {fileID: 8248593068911191402}
   deleteWarning: {fileID: 636104270805330449}
+  quitWarning: {fileID: 0}
   blockScreen: {fileID: 2134980292246654775}
 --- !u!114 &4270329391715897785
 MonoBehaviour:
