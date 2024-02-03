@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8888125758438590598}
   - component: {fileID: 5985300111207981242}
   - component: {fileID: 7803620260743385330}
+  - component: {fileID: 770353526719838794}
   m_Layer: 0
   m_Name: 01_low
   m_TagString: Untagged
@@ -82,6 +83,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &770353526719838794
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2941549212739551595}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.10887215, y: 0.8030787, z: 1.9387606}
+  m_Center: {x: 0.01797909, y: -0.39169106, z: 0.9756203}
 --- !u!1 &6324018915076330255
 GameObject:
   m_ObjectHideFlags: 0
@@ -175,6 +189,7 @@ GameObject:
   - component: {fileID: 9051687048567472421}
   - component: {fileID: 9051687048567184647}
   - component: {fileID: 9051687048567184646}
+  - component: {fileID: 2117849505881280126}
   - component: {fileID: 723646897}
   m_Layer: 0
   m_Name: RotatingDoorV1
@@ -245,8 +260,20 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 898f03a7c6c254aa2bffc1050c10ea08, type: 3}
   Aud: {fileID: 723646897}
   Anim: {fileID: 9051687048567184647}
-  OpenRight: 0
   Cooldown: 1
+--- !u!65 &2117849505881280126
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9051687048567184645}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Size: {x: 0, y: 2, z: 0.9}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!82 &723646897
 AudioSource:
   m_ObjectHideFlags: 0
