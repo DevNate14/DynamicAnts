@@ -3091,7 +3091,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 12.7, y: 13.5}
+  m_AnchoredPosition: {x: 15.3, y: 13.5}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4270329390282427335
@@ -3122,7 +3122,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "COLLECTED\n KEYS-"
+  m_text: 'COLLECTED
+
+    KEYS-'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1b52934832e89f54fa94ee06aeca865c, type: 2}
   m_sharedMaterial: {fileID: -7262362321683612070, guid: 1b52934832e89f54fa94ee06aeca865c, type: 2}
@@ -3838,7 +3840,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 109.9, y: -39.9}
+  m_AnchoredPosition: {x: 96.6, y: -39.9}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4270329391579799641
@@ -5821,16 +5823,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4367603929560352849}
-  m_LocalRotation: {x: -0.0028720638, y: -0.0038086697, z: -0.19353618, w: -0.9810816}
+  m_LocalRotation: {x: -0.0044668703, y: -0.0016738777, z: 0.36289984, w: -0.9318159}
   m_LocalPosition: {x: 0, y: 0, z: 0.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4270329390282427321}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0.238, y: 0.492, z: -337.68}
+  m_LocalEulerAnglesHint: {x: 0.547, y: -0.007, z: -402.557}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -113.5, y: -25.2}
+  m_AnchoredPosition: {x: 49, y: -50.2}
   m_SizeDelta: {x: 32.1389, y: 87.4437}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4367603929560352854
