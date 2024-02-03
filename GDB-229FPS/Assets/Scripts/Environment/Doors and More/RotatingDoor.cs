@@ -4,7 +4,6 @@ using UnityEngine;
 public class RotatingDoor : Door
 {
     [SerializeField] Animation Anim;
-    [SerializeField] bool OpenRight;
     [SerializeField] float Cooldown;
     bool CanOpen = true;
     public override void Interact()
