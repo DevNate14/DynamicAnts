@@ -1079,7 +1079,7 @@ MonoBehaviour:
   walkSpeed: 10
   SprintSpeed: 15
   temp: 0
-  ShadowAnim: {fileID: 922585466}
+  ShadowAnim: {fileID: 922585466, guid: 5100b15f79f66d0478e31d7fea743319, type: 3}
   isSprinting: 0
   Sensitivity: 3
   Jumpforce: 15
