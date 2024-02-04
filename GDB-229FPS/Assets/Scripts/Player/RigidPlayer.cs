@@ -35,6 +35,8 @@ public class RigidPlayer : MonoBehaviour, IDamageable, IPersist, IImpluse
     [SerializeField] public float walkSpeed;
     [SerializeField] public float SprintSpeed;
     [SerializeField] float temp;
+    [SerializeField] Animator ShadowAnim;
+
 
     public bool isSprinting = false;
 
@@ -212,8 +214,7 @@ public class RigidPlayer : MonoBehaviour, IDamageable, IPersist, IImpluse
             //    if (Player.velocity.y > 0.3f)
             //        Player.AddForce(Vector3.down * 80f, ForceMode.Force);
         }
-
-
+        ShadowAnim.SetFloat("New Float", Mathf.Max(Player.velocity.magnitude - Mathf.Abs(Player.velocity.y), 3));
     }
 
     void Jump()
